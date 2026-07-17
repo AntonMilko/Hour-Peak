@@ -1,11 +1,10 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// UI manager for save/load menu.
-/// Displays list of save slots and handles user interaction.
+/// UI-менеджер меню сохранений.
+/// Отображает список слотов, обрабатывает выбор и действия пользователя.
 /// </summary>
 public class SaveManagerUI : MonoBehaviour
 {
@@ -20,16 +19,32 @@ public class SaveManagerUI : MonoBehaviour
 
     #region Private Fields
 
-    private List<SaveSlotUI> _slotUIs;
+    /// <summary>
+    /// Кэш UI-компонентов слотов. Заполняется при открытии меню.
+    /// </summary>
+    private SaveSlotUI[] _slotUIs;
+
+    /// <summary>
+    /// Индекс выбранного слота (-1 = ничего не выбрано).
+    /// </summary>
     private int _selectedSlotIndex = -1;
+
+    /// <summary>
+    /// Флаг: меню открыто.
+    /// </summary>
     private bool _isMenuOpen;
+
+    /// <summary>
+    /// Флаг: идёт обновление UI. Блокирует повторные вызовы RefreshSlots.
+    /// </summary>
+    private bool _isRefreshing;
 
     #endregion
 
     #region Properties
 
     /// <summary>
-    /// Whether the save menu is currently open.
+    /// Открыто ли в данный момент меню сохранений.
     /// </summary>
     public bool IsMenuOpen => _isMenuOpen;
 
@@ -37,17 +52,18 @@ public class SaveManagerUI : MonoBehaviour
 
     #region Unity Lifecycle
 
-    private void Awake()
-    {
-        InitializeUI();
-    }
-
     private void Start()
     {
         if (saveMenuPanel != null)
         {
             saveMenuPanel.SetActive(false);
         }
+    }
+
+    private void OnDestroy()
+    {
+        // Отписываемся от событий SaveManager при уничтожении компонента
+        UnsubscribeFromSaveManager();
     }
 
     private void Update()
@@ -58,114 +74,92 @@ public class SaveManagerUI : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        UnsubscribeFromEvents();
-    }
-
     #endregion
 
-    #region Initialization
-
-    private void InitializeUI()
-    {
-        _slotUIs = new List<SaveSlotUI>();
-
-        // Create slot UIs
-        for (int i = 0; i < SaveManager.Instance.MaxSaveSlots; i++)
-        {
-            // Slot prefab should be assigned in Inspector
-            // var slotGO = Instantiate(slotPrefab, slotContainer);
-            // _slotUIs.Add(slotGO);
-        }
-
-        // Subscribe to SaveManager events
-        SubscribeToEvents();
-
-        Debug.Log("SaveManagerUI initialized.");
-    }
-
-    private void SubscribeToEvents()
-    {
-        SaveManager.Instance.OnSaveListRefreshed += OnSaveListRefreshed;
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (SaveManager.Instance != null)
-        {
-            SaveManager.Instance.OnSaveListRefreshed -= OnSaveListRefreshed;
-        }
-    }
-
-    #endregion
-
-    #region Public Methods
+    #region Menu Control
 
     /// <summary>
-    /// Opens the save/load menu.
+    /// Открывает меню сохранений и обновляет список слотов.
     /// </summary>
     public void OpenMenu()
     {
-        if (!_isMenuOpen)
+        if (_isMenuOpen) return;
+
+        // Подписываемся на события SaveManager, чтобы автоматически обновлять UI
+        SubscribeToSaveManager();
+
+        // Загружаем данные и обновляем UI
+        SaveManager.Instance.RefreshSaveList();
+        RefreshSlots();
+
+        if (saveMenuPanel != null)
         {
-            RefreshSlots();
-            
-            if (saveMenuPanel != null)
-            {
-                saveMenuPanel.SetActive(true);
-            }
-            
-            _isMenuOpen = true;
-            _selectedSlotIndex = -1;
-            UpdateStatus("Select a save slot");
+            saveMenuPanel.SetActive(true);
         }
+
+        _isMenuOpen = true;
+        _selectedSlotIndex = -1;
+        UpdateStatus("Выберите слот сохранения");
     }
 
     /// <summary>
-    /// Closes the save/load menu.
+    /// Закрывает меню сохранений.
     /// </summary>
     public void CloseMenu()
     {
-        if (_isMenuOpen)
+        if (!_isMenuOpen) return;
+
+        UnsubscribeFromSaveManager();
+
+        if (saveMenuPanel != null)
         {
-            if (saveMenuPanel != null)
-            {
-                saveMenuPanel.SetActive(false);
-            }
-            
-            _isMenuOpen = false;
-            _selectedSlotIndex = -1;
-            UpdateStatus("");
+            saveMenuPanel.SetActive(false);
         }
+
+        _isMenuOpen = false;
+        _selectedSlotIndex = -1;
+        UpdateStatus("");
     }
 
+    #endregion
+
+    #region Slot Refresh
+
     /// <summary>
-    /// Refreshes all save slots.
+    /// Обновляет визуальное представление всех слотов.
+    /// Читает актуальные данные из кэша SaveManager и привязывает
+    /// каждое сохранение к правильному слоту по индексу.
     /// </summary>
     public void RefreshSlots()
     {
-        var saves = SaveManager.Instance.RefreshSaveList();
-        
-        for (int i = 0; i < _slotUIs.Count; i++)
-        {
-            SaveData saveData = null;
-            
-            if (i < saves.Count)
-            {
-                saveData = saves[i];
-            }
-            
-            _slotUIs[i].Initialize(i, saveData, OnSlotSelected);
-        }
-    }
+        // Защита от рекурсии: если обновление уже идёт, выходим
+        if (_isRefreshing) return;
+        _isRefreshing = true;
 
-    /// <summary>
-    /// Gets the currently selected slot index.
-    /// </summary>
-    public int GetSelectedSlotIndex()
-    {
-        return _selectedSlotIndex;
+        try
+        {
+            // Получаем все UI-компоненты слотов из контейнера
+            _slotUIs = slotContainer.GetComponentsInChildren<SaveSlotUI>();
+
+            if (_slotUIs.Length == 0)
+            {
+                Debug.LogWarning("SaveManagerUI: Нет компонентов SaveSlotUI в slotContainer.");
+                return;
+            }
+
+            // Проходим по каждому слоту и привязываем данные из кэша SaveManager.
+            // SaveManager.refreshSaveList() уже заполнил _saveCache с правильным
+            // соответствием: ключ = индекс слота, значение = SaveData.
+            for (int i = 0; i < _slotUIs.Length; i++)
+            {
+                SaveData saveData = SaveManager.Instance.GetCachedSave(i);
+                _slotUIs[i].Initialize(i, saveData, OnSlotSelected);
+            }
+        }
+        finally
+        {
+            _isRefreshing = false;
+        }
     }
 
     #endregion
@@ -175,15 +169,15 @@ public class SaveManagerUI : MonoBehaviour
     private void OnSlotSelected(int slotIndex)
     {
         _selectedSlotIndex = slotIndex;
-        
+
         var saveData = SaveManager.Instance.GetCachedSave(slotIndex);
         if (saveData != null)
         {
-            UpdateStatus($"Selected: {saveData.SaveName}");
+            UpdateStatus($"Выбрано: {saveData.SaveName}");
         }
         else
         {
-            UpdateStatus("Selected: Empty Slot");
+            UpdateStatus("Выбран: пустой слот");
         }
     }
 
@@ -191,21 +185,21 @@ public class SaveManagerUI : MonoBehaviour
     {
         if (_selectedSlotIndex < 0)
         {
-            UpdateStatus("Please select a slot first!");
+            UpdateStatus("Сначала выберите слот!");
             return;
         }
 
         var saveData = SaveManager.Instance.CreateCurrentSaveData();
-        saveData.SaveName = $"Save {_selectedSlotIndex + 1}";
-        
+        saveData.SaveName = $"Сохранение {_selectedSlotIndex + 1}";
+
         if (SaveManager.Instance.SaveGame(_selectedSlotIndex, saveData))
         {
             RefreshSlots();
-            UpdateStatus($"Save created: {saveData.SaveName}");
+            UpdateStatus($"Создано: {saveData.SaveName}");
         }
         else
         {
-            UpdateStatus("Failed to create save!");
+            UpdateStatus("Не удалось сохранить!");
         }
     }
 
@@ -213,24 +207,26 @@ public class SaveManagerUI : MonoBehaviour
     {
         if (_selectedSlotIndex < 0)
         {
-            UpdateStatus("Please select a slot first!");
+            UpdateStatus("Сначала выберите слот!");
             return;
         }
 
         if (!SaveManager.Instance.HasSave(_selectedSlotIndex))
         {
-            UpdateStatus("Slot is empty!");
+            UpdateStatus("Слот пуст!");
             return;
         }
 
         if (SaveManager.Instance.LoadAndApplyGame(_selectedSlotIndex))
         {
             CloseMenu();
-            UpdateStatus($"Loaded: {SaveManager.Instance.GetCachedSave(_selectedSlotIndex).SaveName}");
+            var saveData = SaveManager.Instance.GetCachedSave(_selectedSlotIndex);
+            if (saveData != null)
+                UpdateStatus($"Загружено: {saveData.SaveName}");
         }
         else
         {
-            UpdateStatus("Failed to load save!");
+            UpdateStatus("Не удалось загрузить!");
         }
     }
 
@@ -238,36 +234,80 @@ public class SaveManagerUI : MonoBehaviour
     {
         if (_selectedSlotIndex < 0)
         {
-            UpdateStatus("Please select a slot first!");
+            UpdateStatus("Сначала выберите слот!");
             return;
         }
 
         if (!SaveManager.Instance.HasSave(_selectedSlotIndex))
         {
-            UpdateStatus("Slot is empty!");
+            UpdateStatus("Слот пуст!");
             return;
         }
 
         if (SaveManager.Instance.DeleteSave(_selectedSlotIndex))
         {
             RefreshSlots();
-            UpdateStatus($"Save deleted from slot {_selectedSlotIndex + 1}");
+            UpdateStatus($"Слот {_selectedSlotIndex + 1} очищен");
         }
         else
         {
-            UpdateStatus("Failed to delete save!");
+            UpdateStatus("Не удалось удалить!");
         }
-    }
-
-    private void OnSaveListRefreshed()
-    {
-        RefreshSlots();
     }
 
     #endregion
 
-    #region UI Updates
+    #region SaveManager Events
 
+    /// <summary>
+    /// Подписывается на события SaveManager для авто-обновления UI.
+    /// </summary>
+    private void SubscribeToSaveManager()
+    {
+        SaveManager.Instance.OnSaveCreated += OnSaveCreated;
+        SaveManager.Instance.OnSaveDeleted += OnSaveDeleted;
+    }
+
+    /// <summary>
+    /// Отписывается от событий SaveManager.
+    /// </summary>
+    private void UnsubscribeFromSaveManager()
+    {
+        SaveManager.Instance.OnSaveCreated -= OnSaveCreated;
+        SaveManager.Instance.OnSaveDeleted -= OnSaveDeleted;
+    }
+
+    /// <summary>
+    /// Вызывается при создании нового сохранения.
+    /// </summary>
+    private void OnSaveCreated(int slotIndex, SaveData data)
+    {
+        // Обновляем UI только если меню открыто — это предотвращает
+        // вызов RefreshSlots, когда SaveManager сам только что создал файл.
+        if (_isMenuOpen)
+        {
+            RefreshSlots();
+        }
+    }
+
+    /// <summary>
+    /// Вызывается при удалении сохранения.
+    /// </summary>
+    private void OnSaveDeleted(int slotIndex)
+    {
+        if (_isMenuOpen)
+        {
+            RefreshSlots();
+        }
+    }
+
+    #endregion
+
+    #region UI Helpers
+
+    /// <summary>
+    /// Устанавливает текст статусной строки.
+    /// </summary>
     private void UpdateStatus(string message)
     {
         if (statusText != null)

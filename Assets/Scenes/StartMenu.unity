@@ -5655,7 +5655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa839ae382759b4f8238abbd7d3d150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveManager
-  maxSaveSlots: 5
+  maxSaveSlots: 20
   saveDirectoryName: HourPeakSaves
   fileExtension: .json
   encodingName: UTF8
@@ -21076,7 +21076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa839ae382759b4f8238abbd7d3d150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveManager
-  maxSaveSlots: 5
+  maxSaveSlots: 20
   saveDirectoryName: HourPeakSaves
   fileExtension: .json
   encodingName: UTF8
@@ -21920,7 +21920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa839ae382759b4f8238abbd7d3d150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveManager
-  maxSaveSlots: 5
+  maxSaveSlots: 20
   saveDirectoryName: HourPeakSaves
   fileExtension: .json
   encodingName: UTF8
@@ -23809,7 +23809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa839ae382759b4f8238abbd7d3d150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveManager
-  maxSaveSlots: 5
+  maxSaveSlots: 20
   saveDirectoryName: HourPeakSaves
   fileExtension: .json
   encodingName: UTF8
@@ -26774,7 +26774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa839ae382759b4f8238abbd7d3d150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveManager
-  maxSaveSlots: 5
+  maxSaveSlots: 20
   saveDirectoryName: HourPeakSaves
   fileExtension: .json
   encodingName: UTF8
@@ -28462,7 +28462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa839ae382759b4f8238abbd7d3d150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveManager
-  maxSaveSlots: 5
+  maxSaveSlots: 20
   saveDirectoryName: HourPeakSaves
   fileExtension: .json
   encodingName: UTF8
@@ -34095,7 +34095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa839ae382759b4f8238abbd7d3d150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveManager
-  maxSaveSlots: 5
+  maxSaveSlots: 20
   saveDirectoryName: HourPeakSaves
   fileExtension: .json
   encodingName: UTF8
@@ -37095,7 +37095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa839ae382759b4f8238abbd7d3d150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveManager
-  maxSaveSlots: 5
+  maxSaveSlots: 20
   saveDirectoryName: HourPeakSaves
   fileExtension: .json
   encodingName: UTF8
@@ -42381,7 +42381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa839ae382759b4f8238abbd7d3d150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveManager
-  maxSaveSlots: 5
+  maxSaveSlots: 20
   saveDirectoryName: HourPeakSaves
   fileExtension: .json
   encodingName: UTF8
@@ -44711,7 +44711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa839ae382759b4f8238abbd7d3d150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveManager
-  maxSaveSlots: 5
+  maxSaveSlots: 20
   saveDirectoryName: HourPeakSaves
   fileExtension: .json
   encodingName: UTF8
@@ -47643,7 +47643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa839ae382759b4f8238abbd7d3d150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveManager
-  maxSaveSlots: 5
+  maxSaveSlots: 20
   saveDirectoryName: HourPeakSaves
   fileExtension: .json
   encodingName: UTF8

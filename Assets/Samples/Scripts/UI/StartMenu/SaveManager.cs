@@ -77,11 +77,6 @@ public class SaveManager : MonoBehaviour
     /// </summary>
     public event Action<int> OnSaveDeleted;
 
-    /// <summary>
-    /// Event triggered when save list is refreshed.
-    /// </summary>
-    public event Action OnSaveListRefreshed;
-
     #endregion
 
     #region Private Fields
@@ -136,18 +131,33 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        Destroy(gameObject);
+    }
+
     #endregion
 
     #region Initialization
 
     /// <summary>
-    /// Initializes the save system.
+    /// Убедиться, что система инициализирована.
+    /// Вызывается перед любой операцией с сохранениями.
+    /// </summary>
+    private void EnsureInitialized()
+    {
+        if (_isInitialized) return;
+        Initialize();
+    }
+
+    /// <summary>
+    /// Базовая инициализация системы сохранений.
+    /// Создаёт директорию, настраивает кодировку, инициализирует кэш.
+    /// НЕ сканирует файлы — это делает RefreshSaveList отдельно.
     /// </summary>
     private void Initialize()
     {
-        if (_isInitialized) return;
-
-        // Setup encoding
+        // Настройка кодировки
         _encoding = Encoding.UTF8;
         if (!string.IsNullOrEmpty(encodingName))
         {
@@ -157,31 +167,27 @@ public class SaveManager : MonoBehaviour
             }
             catch (ArgumentException e)
             {
-                Debug.LogWarning($"Invalid encoding '{encodingName}', using UTF8. Error: {e.Message}");
+                Debug.LogWarning($"Неподдерживаемая кодировка '{encodingName}', используется UTF8. Ошибка: {e.Message}");
             }
         }
 
-        // Create save directory
+        // Создание директории для сохранений
         _saveDirectoryPath = Path.Combine(Application.persistentDataPath, saveDirectoryName);
-        
         if (!Directory.Exists(_saveDirectoryPath))
         {
             Directory.CreateDirectory(_saveDirectoryPath);
-            Debug.Log($"Save directory created: {_saveDirectoryPath}");
+            Debug.Log($"Создана директория сохранений: {_saveDirectoryPath}");
         }
 
-        // Initialize cache
+        // Инициализация кэша
         _saveCache = new Dictionary<int, SaveData>();
 
-        // Load existing saves
-        RefreshSaveList();
-
         _isInitialized = true;
-        Debug.Log("SaveManager initialized successfully.");
+        Debug.Log("SaveManager инициализирован.");
     }
 
     /// <summary>
-    /// Cleans up resources.
+    /// Очищает ресурсы.
     /// </summary>
     private void Cleanup()
     {
@@ -194,14 +200,14 @@ public class SaveManager : MonoBehaviour
     #region Save Operations
 
     /// <summary>
-    /// Saves game data to specified slot.
+    /// Сохраняет данные игры в указанный слот.
     /// </summary>
-    /// <param name="slotIndex">Slot index (0 to MaxSaveSlots-1).</param>
-    /// <param name="saveData">Data to save.</param>
-    /// <returns>True if save succeeded.</returns>
+    /// <param name="slotIndex">Индекс слота (от 0 до MaxSaveSlots-1).</param>
+    /// <param name="saveData">Данные для сохранения.</param>
+    /// <returns>True, если сохранение прошло успешно.</returns>
     public bool SaveGame(int slotIndex, SaveData saveData)
     {
-        if (!_isInitialized) Initialize();
+        EnsureInitialized();
         if (slotIndex < 0 || slotIndex >= maxSaveSlots)
         {
             Debug.LogError($"Invalid slot index: {slotIndex}. Must be between 0 and {maxSaveSlots - 1}.");
@@ -293,13 +299,13 @@ public class SaveManager : MonoBehaviour
     #region Load Operations
 
     /// <summary>
-    /// Loads game data from specified slot.
+    /// Загружает данные игры из указанного слота.
     /// </summary>
-    /// <param name="slotIndex">Slot index (0 to MaxSaveSlots-1).</param>
-    /// <returns>Loaded SaveData or null if failed.</returns>
+    /// <param name="slotIndex">Индекс слота (от 0 до MaxSaveSlots-1).</param>
+    /// <returns>Загруженные данные или null, если не удалось.</returns>
     public SaveData LoadGame(int slotIndex)
     {
-        if (!_isInitialized) Initialize();
+        EnsureInitialized();
         if (slotIndex < 0 || slotIndex >= maxSaveSlots)
         {
             Debug.LogError($"Invalid slot index: {slotIndex}. Must be between 0 and {maxSaveSlots - 1}.");
@@ -379,11 +385,11 @@ public class SaveManager : MonoBehaviour
     #region Save Management
 
     /// <summary>
-    /// Deletes save data from specified slot.
+    /// Удаляет данные из указанного слота.
     /// </summary>
     public bool DeleteSave(int slotIndex)
     {
-        if (!_isInitialized) Initialize();
+        EnsureInitialized();
         if (slotIndex < 0 || slotIndex >= maxSaveSlots)
         {
             Debug.LogError($"Invalid slot index: {slotIndex}.");
@@ -413,19 +419,20 @@ public class SaveManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Refreshes the list of available saves.
+    /// Пересчитывает и возвращает список всех сохранений.
+    /// Сканирует файлы с диска и обновляет внутренний кэш.
+    /// Каждый файл привязывается к слоту по его номеру в имени файла.
     /// </summary>
     public List<SaveData> RefreshSaveList()
     {
-        _saveCache?.Clear();
-        _saveCache = new Dictionary<int, SaveData>();
+        EnsureInitialized();
 
+        _saveCache.Clear();
         var saves = new List<SaveData>();
 
         for (int i = 0; i < maxSaveSlots; i++)
         {
             string filePath = GetSaveFilePath(i);
-            
             if (File.Exists(filePath))
             {
                 try
@@ -441,15 +448,13 @@ public class SaveManager : MonoBehaviour
                 }
                 catch (Exception e)
                 {
-                    Debug.LogWarning($"Failed to read save at slot {i}: {e.Message}");
+                    Debug.LogWarning($"Не удалось прочитать сохранение в слоте {i}: {e.Message}");
                 }
             }
         }
 
-        // Sort by last modified (newest first)
-        saves.Sort((a, b) => b.LastModified.CompareTo(a.LastModified));
-
-        OnSaveListRefreshed?.Invoke();
+        // Сортировка: самые свежие сверху
+        saves.Sort((a, b) => b.LastModified.CompareTo(a.LastModified));      
         return saves;
     }
 
