@@ -1,0 +1,387 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:83f1f4cf-da74-496f-adeb-0746298ca8b4",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-02-12T06:54:28Z",
+    "tools": [
+      {
+        "vendor": "CycloneDX",
+        "name": "CycloneDX module for .NET",
+        "version": "5.1.1.0"
+      }
+    ],
+    "component": {
+      "type": "library",
+      "bom-ref": "Aspose.PDF.NET@26.02",
+      "name": "Aspose.PDF.NET",
+      "version": "26.02"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "pkg:generic/JZlib@0.0.0",
+      "name": "JZlib",
+      "version": "0.0.0",
+      "description": "JZlib component with custom license",
+      "scope": "required",
+      "licenses": [
+        {
+          "license": {
+            "name": "JZlib License",
+            "text": {
+              "contentType": "text/plain",
+              "content": "Copyright (c) 2000-2011 ymnk, JCraft,Inc. All rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n  1. Redistributions of source code must retain the above copyright notice,\n     this list of conditions and the following disclaimer.\n\n  2. Redistributions in binary form must reproduce the above copyright \n     notice, this list of conditions and the following disclaimer in \n     the documentation and/or other materials provided with the distribution.\n\n  3. The names of the authors may not be used to endorse or promote products\n     derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED \u0060\u0060AS IS\u0027\u0027 AND ANY EXPRESSED OR IMPLIED WARRANTIES,\nINCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND\nFITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL JCRAFT,\nINC. OR ANY CONTRIBUTORS TO THIS SOFTWARE BE LIABLE FOR ANY DIRECT, INDIRECT,\nINCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\nLIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,\nOR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\nLIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\nNEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,\nEVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+            }
+          }
+        }
+      ],
+      "purl": "pkg:generic/JZlib@0.0.0",
+      "properties": [
+        {
+          "name": "supplier",
+          "value": "JCraft, Inc."
+        }
+      ],
+      "copyright": "Copyright (c) 2000-2011 ymnk, JCraft,Inc. All rights reserved."
+    },
+    {
+      "type": "data",
+      "bom-ref": "pkg:generic/Adobe-Font-Metrics-(AFM)-for-PDF-Core-14-Fonts@0.0.0",
+      "name": "Adobe Font Metrics (AFM) for PDF Core 14 Fonts",
+      "version": "0.0.0",
+      "description": "Adobe Font Metrics (AFM) for PDF Core 14 Fonts component with custom license",
+      "scope": "required",
+      "licenses": [
+        {
+          "license": {
+            "name": "Adobe Font Metrics License",
+            "text": {
+              "contentType": "text/plain",
+              "content": "This file and the 14 PostScript(R) AFM files it accompanies may be used,\ncopied, and distributed for any purpose and without charge, with or without\nmodification, provided that all copyright notices are retained; that the\nAFM files are not distributed without this file; that all modifications\nto this file or any of the AFM files are prominently noted in the modified\nfile(s); and that this paragraph is not modified. Adobe Systems has no\nresponsibility or obligation to support the use of the AFM files."
+            }
+          }
+        }
+      ],
+      "purl": "pkg:generic/Adobe-Font-Metrics-(AFM)-for-PDF-Core-14-Fonts@0.0.0",
+      "properties": [
+        {
+          "name": "supplier",
+          "value": "Adobe Systems Incorporated"
+        }
+      ]
+    },
+    {
+      "type": "data",
+      "bom-ref": "pkg:generic/CMaps-for-PDF-Fonts@0.0.0",
+      "name": "CMaps for PDF Fonts",
+      "version": "0.0.0",
+      "description": "CMaps for PDF Fonts component with custom license",
+      "scope": "required",
+      "licenses": [
+        {
+          "license": {
+            "name": "CMaps for PDF Fonts License",
+            "text": {
+              "contentType": "text/plain",
+              "content": "Copyright 1990-2009 Adobe Systems Incorporated.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions\nare met:\n\nRedistributions of source code must retain the above copyright notice,\nthis list of conditions and the following disclaimer.\n\nRedistributions in binary form must reproduce the above copyright notice,\nthis list of conditions and the following disclaimer in the documentation\nand/or other materials provided with the distribution. \n\nNeither the name of Adobe Systems Incorporated nor the names of its\ncontributors may be used to endorse or promote products derived from this\nsoftware without specific prior written permission. \n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \u0022AS IS\u0022\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE\nARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE\nLIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR\nCONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF\nSUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS\nINTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN\nCONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)\nARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF\nTHE POSSIBILITY OF SUCH DAMAGE."
+            }
+          }
+        }
+      ],
+      "purl": "pkg:generic/CMaps-for-PDF-Fonts@0.0.0",
+      "properties": [
+        {
+          "name": "supplier",
+          "value": "Adobe Systems Incorporated"
+        }
+      ],
+      "copyright": "Copyright 1990-2009 Adobe Systems Incorporated. All rights reserved."
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:generic/Glyphlist@0.0.0",
+      "name": "Glyphlist",
+      "version": "0.0.0",
+      "description": "Glyphlist component with custom license",
+      "scope": "required",
+      "licenses": [
+        {
+          "license": {
+            "name": "Glyphlist License",
+            "text": {
+              "contentType": "text/plain",
+              "content": "Copyright (c) 1997,1998,2002,2007 Adobe Systems Incorporated\n \nPermission is hereby granted, free of charge, to any person obtaining a\ncopy of this documentation file to use, copy, publish, distribute,\nsublicense, and/or sell copies of the documentation, and to permit\nothers to do the same, provided that:\n- No modification, editing or other alteration of this document is\nallowed; and\n- The above copyright notice and this permission notice shall be\nincluded in all copies of the documentation.\n \nPermission is hereby granted, free of charge, to any person obtaining a\ncopy of this documentation file, to create their own derivative works\nfrom the content of this document to use, copy, publish, distribute,\nsublicense, and/or sell the derivative works, and to permit others to do\nthe same, provided that the derived work is not represented as being a\ncopy or version of this document.\n \nAdobe shall not be liable to any party for any loss of revenue or profit\nor for indirect, incidental, special, consequential, or other similar\ndamages, whether based on tort (including without limitation negligence\nor strict liability), contract or other legal or equitable grounds even\nif Adobe has been advised or had reason to know of the possibility of\nsuch damages. The Adobe materials are provided on an \u0022AS IS\u0022 basis.\nAdobe specifically disclaims all express, statutory, or implied\nwarranties relating to the Adobe materials, including but not limited to\nthose concerning merchantability or fitness for a particular purpose or\nnon-infringement of any third party rights regarding the Adobe\nmaterials.\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n \nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \u0022AS IS\u0022 BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License."
+            }
+          }
+        }
+      ],
+      "purl": "pkg:generic/Glyphlist@0.0.0",
+      "properties": [
+        {
+          "name": "supplier",
+          "value": "Adobe Systems Incorporated"
+        }
+      ],
+      "copyright": "Copyright (c) 1997,1998,2002,2007 Adobe Systems Incorporated"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:generic/DotNetZip@0.0.0",
+      "name": "DotNetZip",
+      "version": "0.0.0",
+      "description": "DotNetZip component with custom license",
+      "scope": "required",
+      "licenses": [
+        {
+          "license": {
+            "name": "DotNetZip License",
+            "text": {
+              "contentType": "text/plain",
+              "content": "This software is open source. It is released under the Microsoft Public\nLicense of October 2006.  The use of the \u0022Microsoft Public License\u0022 does\nnot mean it is licensed by Microsoft.  This license is copied below, and is\nalso available online at: http://dotnetzip.codeplex.com/license\n\n\n-----------------------------------------------------------\nMicrosoft Public License (Ms-PL) - 27 October 2007\n-----------------------------------------------------------\n\nThis license governs use of the accompanying software. If you use the software, you accept this license. If you do not\naccept the license, do not use the software.\n\n1. Definitions\nThe terms \u0022reproduce,\u0022 \u0022reproduction,\u0022 \u0022derivative works,\u0022 and \u0022distribution\u0022 have the same meaning here as under\nU.S. copyright law.\n\nA \u0022contribution\u0022 is the original software, or any additions or changes to the software.\n\nA \u0022contributor\u0022 is any person that distributes its contribution under this license.\n\n\u0022Licensed patents\u0022 are a contributor\u0027s patent claims that read directly on its contribution.\n\n2. Grant of Rights\n(A) Copyright Grant- Subject to the terms of this license, including the license conditions and limitations in section 3,\neach contributor grants you a non-exclusive, worldwide, royalty-free copyright license to reproduce its contribution,\nprepare derivative works of its contribution, and distribute its contribution or any derivative works that you create.\n\n(B) Patent Grant- Subject to the terms of this license, including the license conditions and limitations in section 3,\neach contributor grants you a non-exclusive, worldwide, royalty-free license under its licensed patents to make, have\nmade, use, sell, offer for sale, import, and/or otherwise dispose of its contribution in the software or derivative works\nof the contribution in the software.\n\n3. Conditions and Limitations\n\n(A) No Trademark License- This license does not grant you rights to use any contributors\u0027 name, logo, or trademarks.\n\n(B) If you bring a patent claim against any contributor over patents that you claim are infringed by the software,\nyour patent license from such contributor to the software ends automatically.\n\n(C) If you distribute any portion of the software, you must retain all copyright, patent, trademark, and attribution\nnotices that are present in the software.\n\n(D) If you distribute any portion of the software in source code form, you may do so only under this license by including a complete copy of this license with your distribution. If you distribute any portion of the software in\ncompiled or object code form, you may only do so under a license that complies with this license.\n\n(E) The software is licensed \u0022as-is.\u0022 You bear the risk of using it. The contributors give no express warranties,\nguarantees or conditions. You may have additional consumer rights under your local laws which this license cannot\nchange. To the extent permitted under your local laws, the contributors exclude the implied warranties of\nmerchantability, fitness for a particular purpose and non-infringement."
+            }
+          }
+        }
+      ],
+      "purl": "pkg:generic/DotNetZip@0.0.0",
+      "properties": []
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:generic/ANTLR@0.0.0",
+      "name": "ANTLR",
+      "version": "0.0.0",
+      "description": "ANTLR component with custom license",
+      "scope": "required",
+      "licenses": [
+        {
+          "license": {
+            "name": "ANTLR 4 License BSD License",
+            "text": {
+              "contentType": "text/plain",
+              "content": "ANTLR 4 License\n[The BSD License]\nCopyright (c) 2012 Terence Parr and Sam Harwell\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n\n    Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n    Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n    Neither the name of the author nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. \n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \u0022AS IS\u0022 AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+            }
+          }
+        }
+      ],
+      "purl": "pkg:generic/ANTLR@0.0.0",
+      "properties": [
+        {
+          "name": "supplier",
+          "value": "Terence Parr and Sam Harwell"
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "bom-ref": "pkg:generic/Font-DejaVu-Sans@0.0.0",
+      "name": "Font DejaVu Sans",
+      "version": "0.0.0",
+      "description": "Font DejaVu Sans component with custom license",
+      "scope": "required",
+      "licenses": [
+        {
+          "license": {
+            "name": "Font DejaVu Sans License",
+            "text": {
+              "contentType": "text/plain",
+              "content": "Fonts are (c) Bitstream (see below). DejaVu changes\nare in public domain.\nGlyphs imported from Arev fonts are (c) Tavmjong Ba\nh (see below)\nBitstream Vera Fonts Copyright\n------------------------------\nCopyright (c) 2003 by Bitstream, Inc. All Rights Re\nserved. Bitstream Vera\nis\na trademark of Bitstream, Inc.\nPermission is hereby granted, free of charge, to an\ny person obtaining a\ncopy\nof the fonts accompanying this license (\u0022Fonts\u0022) an\nd associated\ndocumentation files (the \u0022Font Software\u0022), to repro\nduce and distribute\nthe\nFont Software, including without limitation the rig\nhts to use, copy,\nmerge,\npublish, distribute, and/or sell copies of the Font\nSoftware, and to\npermit\npersons to whom the Font Software is furnished to d\no so, subject to the\nfollowing conditions:\nThe above copyright and trademark notices and this\npermission notice\nshall\nbe included in all copies of one or more of the Fon\nt Software typefaces.\nThe Font Software may be modified, altered, or adde\nd to, and in\nparticular\nthe designs of glyphs or characters in the Fonts ma\ny be modified and\nadditional glyphs or characters may be added to the\nFonts, only if the\nfonts\nare renamed to names not containing either the word\ns \u0022Bitstream\u0022 or the\nword\n\u0022Vera\u0022.\nThis License becomes null and void to the extent ap\nplicable to Fonts or\nFont\nSoftware that has been modified and is distributed\nunder the \u0022Bitstream\nVera\u0022 names.\nThe Font Software may be sold as part of a larger s\noftware package but no\ncopy of one or more of the Font Software typefaces\nmay be sold by itself.\nTHE FONT SOFTWARE IS PROVIDED \u0022AS IS\u0022, WITHOUT WARR\nANTY OF ANY KIND,\nEXPRESS\nOR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRAN\nTIES OF\nMERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMEN\nT OF COPYRIGHT,\nPATENT,\nTRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL BITSTR\nEAM OR THE GNOME\nFOUNDATION BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHE\nR LIABILITY, INCLUDING\nANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONS\nEQUENTIAL DAMAGES,\nWHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE\n, ARISING FROM, OUT OF\nTHE USE OR INABILITY TO USE THE FONT SOFTWARE OR FR\nOM OTHER DEALINGS IN\nTHE\nFONT SOFTWARE.\nExcept as contained in this notice, the names of Gn\nome, the Gnome\nFoundation, and Bitstream Inc., shall not be used i\nn advertising or\notherwise to promote the sale, use or other dealing\ns in this Font\nSoftware\nwithout prior written authorization from the Gnome\nFoundation or\nBitstream\nInc., respectively. For further information, contac\nt: fonts at gnome dot\norg.\nArev Fonts Copyright\n------------------------------\nCopyright (c) 2006 by Tavmjong Bah. All Rights Rese\nrved.\nPermission is hereby granted, free of charge, to an\ny person obtaining\na copy of the fonts accompanying this license (\u0022Fon\nts\u0022) and\nassociated documentation files (the \u0022Font Software\u0022\n), to reproduce\nand distribute the modifications to the Bitstream V\nera Font Software,\nincluding without limitation the rights to use, cop\ny, merge, publish,\ndistribute, and/or sell copies of the Font Software\n, and to permit\npersons to whom the Font Software is furnished to d\no so, subject to\nthe following conditions:\nThe above copyright and trademark notices and this\npermission notice\nshall be included in all copies of one or more of t\nhe Font Software\ntypefaces.\nThe Font Software may be modified, altered, or adde\nd to, and in\nparticular the designs of glyphs or characters in t\nhe Fonts may be\nmodified and additional glyphs or characters may be\nadded to the\nFonts, only if the fonts are renamed to names not c\nontaining either\nthe words \u0022Tavmjong Bah\u0022 or the word \u0022Arev\u0022.\nThis License becomes null and void to the extent ap\nplicable to Fonts\nor Font Software that has been modified and is dist\nributed under the\n\u0022Tavmjong Bah Arev\u0022 names.\nThe Font Software may be sold as part of a larger s\noftware package but\nno copy of one or more of the Font Software typefac\nes may be sold by\nitself.\nTHE FONT SOFTWARE IS PROVIDED \u0022AS IS\u0022, WITHOUT WARR\nANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO AN\nY WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE A\nND NONINFRINGEMENT\nOF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN\nNO EVENT SHALL\nTAVMJONG BAH BE LIABLE FOR ANY CLAIM, DAMAGES OR OT\nHER LIABILITY,\nINCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTA\nL, OR CONSEQUENTIAL\nDAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR\nOTHERWISE, ARISING\nFROM, OUT OF THE USE OR INABILITY TO USE THE FONT S\nOFTWARE OR FROM\nOTHER DEALINGS IN THE FONT SOFTWARE."
+            }
+          }
+        }
+      ],
+      "purl": "pkg:generic/Font-DejaVu-Sans@0.0.0",
+      "properties": [
+        {
+          "name": "supplier",
+          "value": "Bitstream, Inc."
+        }
+      ],
+      "copyright": "Copyright (c) 2003 by Bitstream, Inc. All Rights Reserved; Copyright (c) 2006 by Tavmjong Bah. All Rights Reserved."
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:generic/ICU@0.0.0",
+      "name": "ICU",
+      "version": "0.0.0",
+      "description": "ICU component with custom license",
+      "scope": "required",
+      "licenses": [
+        {
+          "license": {
+            "name": "ICU License",
+            "text": {
+              "contentType": "text/plain",
+              "content": "ICU License - ICU 1.8.1 and later\n\nCOPYRIGHT AND PERMISSION NOTICE\n\nCopyright (c) 1995-2003 International Business Machines Corporation and others\nAll rights reserved.\n\nPermission is hereby granted, free of charge, to any person obtaining a\ncopy of this software and associated documentation files (the\n\u0022Software\u0022), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, and/or sell copies of the Software, and to permit persons\nto whom the Software is furnished to do so, provided that the above\ncopyright notice(s) and this permission notice appear in all copies of\nthe Software and that both the above copyright notice(s) and this\npermission notice appear in supporting documentation.\n\nTHE SOFTWARE IS PROVIDED \u0022AS IS\u0022, WITHOUT WARRANTY OF ANY KIND, EXPRESS\nOR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT\nOF THIRD PARTY RIGHTS. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR\nHOLDERS INCLUDED IN THIS NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL\nINDIRECT OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING\nFROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,\nNEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION\nWITH THE USE OR PERFORMANCE OF THIS SOFTWARE.\n\nExcept as contained in this notice, the name of a copyright holder\nshall not be used in advertising or otherwise to promote the sale, use\nor other dealings in this Software without prior written authorization\nof the copyright holder.\n\n--------------------------------------------------------------------------------\nAll trademarks and registered trademarks mentioned herein are the property of their respective owners."
+            }
+          }
+        }
+      ],
+      "purl": "pkg:generic/ICU@0.0.0",
+      "properties": [
+        {
+          "name": "supplier",
+          "value": "International Business Machines Corporation and others"
+        }
+      ],
+      "copyright": "Copyright (c) 1995-2003 International Business Machines Corporation and others"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:generic/DjvuNet@0.0.0",
+      "name": "DjvuNet",
+      "version": "0.0.0",
+      "description": "DjvuNet component with custom license",
+      "scope": "required",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT License",
+            "text": {
+              "contentType": "text/plain",
+              "content": "The MIT License (MIT)\n\nCopyright (c) 2014 Telavian\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \u0022Software\u0022), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of\nthe Software, and to permit persons to whom the Software is furnished to do so,\nsubject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \u0022AS IS\u0022, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS\nFOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR\nCOPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER\nIN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN\nCONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+            }
+          }
+        }
+      ],
+      "purl": "pkg:generic/DjvuNet@0.0.0",
+      "properties": [
+        {
+          "name": "supplier",
+          "value": "Telavian"
+        }
+      ],
+      "copyright": "Copyright (c) 2014 Telavian"
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:generic/CSJ2K@0.0.0",
+      "name": "CSJ2K",
+      "version": "0.0.0",
+      "description": "CSJ2K component with custom license",
+      "scope": "required",
+      "licenses": [
+        {
+          "license": {
+            "name": "New BSD License (BSD)",
+            "text": {
+              "contentType": "text/plain",
+              "content": "New BSD License (BSD)\nCopyright (c) 2007, CSJ2K Team\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n\n* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n\n* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n* Neither the name of CSJ2K Team nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \u0022AS IS\u0022 AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+            }
+          }
+        }
+      ],
+      "purl": "pkg:generic/CSJ2K@0.0.0",
+      "properties": [
+        {
+          "name": "supplier",
+          "value": "CSJ2K Team"
+        }
+      ],
+      "copyright": "Copyright (c) 2007, CSJ2K Team"
+    },
+    {
+      "type": "file",
+      "bom-ref": "pkg:generic/sRGB_v4_ICC_preference.icc-color-profile@0.0.0",
+      "name": "sRGB_v4_ICC_preference.icc color profile",
+      "version": "0.0.0",
+      "description": "sRGB_v4_ICC_preference.icc color profile component with custom license",
+      "scope": "required",
+      "licenses": [
+        {
+          "license": {
+            "name": "sRGB_v4_ICC_preference.icc License",
+            "text": {
+              "contentType": "text/plain",
+              "content": "To anyone who acknowledges that the file \u0022sRGB_v4_ICC_preference.icc\u0022 is provided \u0022AS IS\u0022 WITH NO EXPRESS OR IMPLIED\nWARRANTY, permission to use, copy and distribute this file for any purpose is hereby granted without fee, provided that the file is\nnot changed including the ICC copyright notice tag, and that the name of ICC shall not be used in advertising or publicity\npertaining to distribution of the software without specific, written prior permission. ICC makes no representations about the\nsuitability of this software for any purpose."
+            }
+          }
+        }
+      ],
+      "purl": "pkg:generic/sRGB_v4_ICC_preference.icc-color-profile@0.0.0",
+      "properties": []
+    },
+    {
+      "type": "file",
+      "bom-ref": "pkg:generic/RSWOP.ICM-color-profile@0.0.0",
+      "name": "RSWOP.ICM color profile",
+      "version": "0.0.0",
+      "description": "RSWOP.ICM color profile component with custom license",
+      "scope": "required",
+      "licenses": [
+        {
+          "license": {
+            "name": "RSWOP.ICM License",
+            "text": {
+              "contentType": "text/plain",
+              "content": "These license terms are an agreement between Microsoft Corporation (or based on where you live, one of its\naffiliates) and you. Please read them. They apply to the software named above, which includes the media on which\nyou received it, if any.\nBY USING THE SOFTWARE, YOU ACCEPT THESE TERMS. IF YOU DO NOT ACCEPT THEM, DO NOT USE THE\nSOFTWARE.\nIf you comply with these license terms, you have the rights below.\n1. INSTALLATION AND USE RIGHTS. You may install and use any number of copies of the software on your\ndevices.\n2. ADDITIONAL LICENSING REQUIREMENTS AND/OR USE RIGHTS. You are permitted to distribute the software\nif you comply with the terms below.\ni. Right to Use and Distribute.\n\u2022Distribution. You may copy and distribute the software. You may not modify the software. You must distribute a\ncomplete copy of the software, including these license terms.\n\u2022Re-Distribution. You may permit third parties to copy and distribute the software.\nii. Distribution Requirements. If you distribute the software with your programs, you must\n\u2022require distributors and external end users to agree to terms that protect it at least as much as this agreement;\n\u2022display your valid copyright notice on your programs; and\n\u2022indemnify, defend, and hold harmless Microsoft from any claims, including attorneys\u0027 fees, related to the\ndistribution or use of your programs.\niii. Distribution Restrictions. You may not\n\u2022charge a separate price, license fee or royalty for the software;\n\u2022alter any copyright, trademark or patent notice in the software;\n\u2022use Microsoft\u0027s trademarks in your programs\u0027 names or in a way that suggests your programs come from or are\nendorsed by Microsoft; or\n\u2022distribute malicious, deceptive or unlawful programs with the software.\n3. SCOPE OF LICENSE. The software is licensed, not sold. This agreement only gives you some rights to use the\nsoftware. Microsoft reserves all other rights. Unless applicable law gives you more rights despite this limitation, you\nmay use the software only as expressly permitted in this agreement. In doing so, you must comply with any\ntechnical limitations in the software that only allow you to use it in certain ways. You may not\n\u2022work around any technical limitations in the software;\n\u2022reverse engineer, decompile or disassemble the software, except and only to the extent that applicable law\nexpressly permits, despite this limitation;\n\u2022make more copies of the software than specified in this agreement or allowed by applicable law, despite this \nlimitation;\n\u2022rent, lease or lend the software; or\n\u2022transfer the software or this agreement to any third party.\n4. DOCUMENTATION. Any person that has valid access to your computer or internal network may copy and use the\ndocumentation for your internal, reference purposes.\n5. EXPORT RESTRICTIONS. The software is subject to United States export laws and regulations. You must comply\nwith all domestic and international export laws and regulations that apply to the software. These laws include\nrestrictions on destinations, end users and end use. For additional information, see www.microsoft.com/exporting.\n6. SUPPORT SERVICES. Because this software is \u0022as is,\u0022 we do not provide support services for it.\n7. ENTIRE AGREEMENT. This agreement, and the terms for supplements, updates, Internet-based services and\nsupport services that you use, are the entire agreement for the software and support services.\n8. APPLICABLE LAW.\na. United States. If you acquired the software in the United States, Washington state law governs the interpretation\nof this agreement and applies to claims for breach of it, regardless of conflict of laws principles. The laws of the state\nwhere you live govern all other claims, including claims under state consumer protection laws, unfair competition\nlaws, and in tort.\nb. Outside the United States. If you acquired the software in any other country, the laws of that country apply.\n9. LEGAL EFFECT. This agreement describes certain legal rights. You may have other rights under the laws of your\ncountry. You may also have rights with respect to the party from whom you acquired the software. This agreement\ndoes not change your rights under the laws of your country if the laws of your country do not permit it to do so.\n10. DISCLAIMER OF WARRANTY. THE SOFTWARE IS LICENSED \u0022AS-IS.\u0022 YOU BEAR THE RISK OF USING IT.\nMICROSOFT GIVES NO EXPRESS WARRANTIES, GUARANTEES OR CONDITIONS. YOU MAY HAVE\nADDITIONAL CONSUMER RIGHTS UNDER YOUR LOCAL LAWS WHICH THIS AGREEMENT CANNOT CHANGE.\nTO THE EXTENT PERMITTED UNDER YOUR LOCAL LAWS, MICROSOFT EXCLUDES THE IMPLIED WARRANTIES\nOF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.\n11. LIMITATION ON AND EXCLUSION OF REMEDIES AND DAMAGES. YOU CAN RECOVER FROM MICROSOFT\nAND ITS SUPPLIERS ONLY DIRECT DAMAGES UP TO U.S. $5.00. YOU CANNOT RECOVER ANY OTHER\nDAMAGES, INCLUDING CONSEQUENTIAL, LOST PROFITS, SPECIAL, INDIRECT OR INCIDENTAL DAMAGES.\nThis limitation applies to\n\u2022anything related to the software, services, content (including code) on third party Internet sites, or third party\nprograms; and\n\u2022claims for breach of contract, breach of warranty, guarantee or condition, strict liability, negligence, or other tort to\nthe extent permitted by applicable law.\nIt also applies even if Microsoft knew or should have known about the possibility of the damages. The above\nlimitation or exclusion may not apply to you because your country may not allow the exclusion or limitation of\nincidental, consequential or other damages.\nPlease note: As this software is distributed in Quebec, Canada, some of the clauses in this agreement are\nprovided below in French.\nRemarque : Ce logiciel \u00E9tant distribu\u00E9 au Qu\u00E9bec, Canada, certaines des clauses dans ce contrat sont fournies\nci-dessous en fran\u00E7ais.\nEXON\u00C9RATION DE GARANTIE. Le logiciel vis\u00E9 par une licence est offert \u00AB tel quel \u00BB. Toute utilisation de ce logiciel\nest \u00E0 votre seule risque et p\u00E9ril. Microsoft n\u0027accorde aucune autre garantie expresse. Vous pouvez b\u00E9n\u00E9ficier de\ndroits additionnels en vertu du droit local sur la protection des consommateurs, que ce contrat ne peut modifier. La\nou elles sont permises par le droit locale, les garanties implicites de qualit\u00E9 marchande, d\u0027ad\u00E9quation \u00E0 un usage\nparticulier et d\u0027absence de contrefa\u00E7on sont exclues.\nLIMITATION DES DOMMAGES-INT\u00C9R\u00CATS ET EXCLUSION DE RESPONSABILIT\u00C9 POUR LES DOMMAGES.Vous\npouvez obtenir de Microsoft et de ses fournisseurs une indemnisation en cas de dommages directs uniquement \u00E0\nhauteur de 5,00 $ US. Vous ne pouvez pr\u00E9tendre \u00E0 aucune indemnisation pour les autres dommages, y compris les\ndommages sp\u00E9ciaux, indirects ou accessoires et pertes de b\u00E9n\u00E9fices.\nCette limitation concerne :\n\u2022tout ce qui est reli\u00E9 au logiciel, aux services ou au contenu (y compris le code) figurant sur des sites Internet tiers\nou dans des programmes tiers ; et\n\u2022les r\u00E9clamations au titre de violation de contrat ou de garantie, ou au titre de responsabilit\u00E9 stricte, de n\u00E9gligence\nou d\u0027une autre faute dans la limite autoris\u00E9e par la loi en vigueur.\nElle s\u0027applique \u00E9galement, m\u00EAme si Microsoft connaissait ou devrait conna\u00EEtre l\u0027\u00E9ventualit\u00E9 d\u0027un tel dommage. Si\nvotre pays n\u0027autorise pas l\u0027exclusion ou la limitation de responsabilit\u00E9 pour les dommages indirects, accessoires ou\nde quelque nature que ce soit, il se peut que la limitation ou l\u0027exclusion ci-dessus ne s\u0027appliquera pas \u00E0 votre \u00E9gard.\nEFFET JURIDIQUE. Le pr\u00E9sent contrat d\u00E9crit certains droits juridiques. Vous pourriez avoir d\u0027autres droits pr\u00E9vus par\nles lois de votre pays. Le pr\u00E9sent contrat ne modifie pas les droits que vous conf\u00E8rent les lois de votre pays si cellesci\nne le permettent pas.\n\nEND OF TERMS AND CONDITIONS"
+            }
+          }
+        }
+      ],
+      "purl": "pkg:generic/RSWOP.ICM-color-profile@0.0.0",
+      "properties": []
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:generic/XMP-metadata-support@0.0.0",
+      "name": "XMP metadata support",
+      "version": "0.0.0",
+      "description": "XMP metadata support component with custom license",
+      "scope": "required",
+      "licenses": [
+        {
+          "license": {
+            "name": "XMP metadata support License",
+            "text": {
+              "contentType": "text/plain",
+              "content": "XMP Specification\nPublic Patent License\nAdobe Systems Incorporated\nThe XMP Specification provides a standard format for the definition, creation and processing of\nmetadata in a variety of applications. Adobe may own patented technology disclosed in the\nspecification. We offer this patent license to all individuals and organizations in the world in\norder to encourage the use of metadata in the XMP format.\nPublic License\nAdobe grants every individual and organization in the world the right, under all Essential Claims\nthat Adobe owns, to make, have made, use, sell, import and distribute Compliant\nImplementations. If a licensee brings (or participates in the bringing of) a lawsuit or similar\naction against any other party claiming that a Compliant Implementation infringes an Essential\nClaim, Adobe may revoke the rights granted above to such licensee. Upon such revocation, such\nrights will be deemed to have never been granted.\nNo Warranty\nThe XMP Specification and the license granted above are provided without warranty of any kind,\nincluding warranty of title or non-infringement. Nothing in this document shall be construed as\nrequiring the maintenance of any patent, a warranty or representation as to the validity or scope of\nany patent, an agreement to protect or cooperate with any party or to bring or prosecute actions\nagainst any party, or a grant of any right under any patent claim other than an Essential Claim.\nReservation of Rights\nAll rights not expressly granted herein are reserved.\nDefinitions\n\u201CCompliant Implementation\u201D means the portion of an application, product, or service that\ndefines, creates, stores or processes metadata compliant with the XMP Specification.\n\u201CEssential Claim\u201D means a claim of a patent, whenever and wherever issued, that is necessarily\ninfringed in order to achieve compliance with the requirements of the XMP Specification. A\nclaim is necessarily infringed only when there is no reasonable way to avoid infringement of that\nclaim when defining, creating, storing or processing metadata.\n\u201CXMP Specification\u201D means any version of the XMP Specification published by Adobe. By way\nof example only, any specification not published by Adobe or that incorporates the XMP\nSpecification by reference is not the XMP Specification for purposes of this license."
+            }
+          }
+        }
+      ],
+      "purl": "pkg:generic/XMP-metadata-support@0.0.0",
+      "properties": [
+        {
+          "name": "supplier",
+          "value": "Adobe Systems Incorporated"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:generic/Open-Sans@0.0.0",
+      "name": "Open Sans",
+      "version": "0.0.0",
+      "description": "Open Sans component with custom license",
+      "scope": "required",
+      "licenses": [
+        {
+          "license": {
+            "name": "SIL Open Font License Version 1.1",
+            "text": {
+              "contentType": "text/plain",
+              "content": "This Font Software is licensed under the SIL Open Font License, Version 1.1.\nThis license is copied below, and is also available with a FAQ at:\nhttps://openfontlicense.org\n\n\n-----------------------------------------------------------\nSIL OPEN FONT LICENSE Version 1.1 - 26 February 2007\n-----------------------------------------------------------\n\nPREAMBLE\nThe goals of the Open Font License (OFL) are to stimulate worldwide\ndevelopment of collaborative font projects, to support the font creation\nefforts of academic and linguistic communities, and to provide a free and\nopen framework in which fonts may be shared and improved in partnership\nwith others.\n\nThe OFL allows the licensed fonts to be used, studied, modified and\nredistributed freely as long as they are not sold by themselves. The\nfonts, including any derivative works, can be bundled, embedded, \nredistributed and/or sold with any software provided that any reserved\nnames are not used by derivative works. The fonts and derivatives,\nhowever, cannot be released under any other type of license. The\nrequirement for fonts to remain under this license does not apply\nto any document created using the fonts or their derivatives.\n\nDEFINITIONS\n\u0022Font Software\u0022 refers to the set of files released by the Copyright\nHolder(s) under this license and clearly marked as such. This may\ninclude source files, build scripts and documentation.\n\n\u0022Reserved Font Name\u0022 refers to any names specified as such after the\ncopyright statement(s).\n\n\u0022Original Version\u0022 refers to the collection of Font Software components as\ndistributed by the Copyright Holder(s).\n\n\u0022Modified Version\u0022 refers to any derivative made by adding to, deleting,\nor substituting -- in part or in whole -- any of the components of the\nOriginal Version, by changing formats or by porting the Font Software to a\nnew environment.\n\n\u0022Author\u0022 refers to any designer, engineer, programmer, technical\nwriter or other person who contributed to the Font Software.\n\nPERMISSION \u0026 CONDITIONS\nPermission is hereby granted, free of charge, to any person obtaining\na copy of the Font Software, to use, study, copy, merge, embed, modify,\nredistribute, and sell modified and unmodified copies of the Font\nSoftware, subject to the following conditions:\n\n1) Neither the Font Software nor any of its individual components,\nin Original or Modified Versions, may be sold by itself.\n\n2) Original or Modified Versions of the Font Software may be bundled,\nredistributed and/or sold with any software, provided that each copy\ncontains the above copyright notice and this license. These can be\nincluded either as stand-alone text files, human-readable headers or\nin the appropriate machine-readable metadata fields within text or\nbinary files as long as those fields can be easily viewed by the user.\n\n3) No Modified Version of the Font Software may use the Reserved Font\nName(s) unless explicit written permission is granted by the corresponding\nCopyright Holder. This restriction only applies to the primary font name as\npresented to the users.\n\n4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font\nSoftware shall not be used to promote, endorse or advertise any\nModified Version, except to acknowledge the contribution(s) of the\nCopyright Holder(s) and the Author(s) or with their explicit written\npermission.\n\n5) The Font Software, modified or unmodified, in part or in whole,\nmust be distributed entirely under this license, and must not be\ndistributed under any other license. The requirement for fonts to\nremain under this license does not apply to any document created\nusing the Font Software.\n\nTERMINATION\nThis license becomes null and void if any of the above conditions are\nnot met.\n\nDISCLAIMER\nTHE FONT SOFTWARE IS PROVIDED \u0022AS IS\u0022, WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT\nOF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE\nCOPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\nINCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL\nDAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM\nOTHER DEALINGS IN THE FONT SOFTWARE."
+            }
+          }
+        }
+      ],
+      "purl": "pkg:generic/Open-Sans@0.0.0",
+      "properties": [
+        {
+          "name": "supplier",
+          "value": "The Open Sans Project Authors"
+        }
+      ],
+      "copyright": "Copyright 2020 The Open Sans Project Authors"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "Aspose.PDF.NET@26.02",
+      "dependsOn": []
+    }
+  ]
+}

@@ -1,0 +1,1331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document>
+	<SPDXID>SPDXRef-DOCUMENT</SPDXID>
+	<creationInfo>
+		<created>2026-02-12T06:55:35Z</created>
+		<creators>Organization: Aspose Pty Ltd.</creators>
+		<creators>Tool: Microsoft.SBOMTool-4.1.4</creators>
+	</creationInfo>
+	<dataLicense>CC0-1.0</dataLicense>
+	<hasExtractedLicensingInfos>
+		<extractedText>Copyright (c) 2000-2011 ymnk, JCraft,Inc. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+  1. Redistributions of source code must retain the above copyright notice,
+     this list of conditions and the following disclaimer.
+
+  2. Redistributions in binary form must reproduce the above copyright 
+     notice, this list of conditions and the following disclaimer in 
+     the documentation and/or other materials provided with the distribution.
+
+  3. The names of the authors may not be used to endorse or promote products
+     derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL JCRAFT,
+INC. OR ANY CONTRIBUTORS TO THIS SOFTWARE BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</extractedText>
+		<licenseId>LicenseRef-JZlib</licenseId>
+		<name>JZlib License</name>
+	</hasExtractedLicensingInfos>
+	<hasExtractedLicensingInfos>
+		<extractedText>This file and the 14 PostScript(R) AFM files it accompanies may be used,
+copied, and distributed for any purpose and without charge, with or without
+modification, provided that all copyright notices are retained; that the
+AFM files are not distributed without this file; that all modifications
+to this file or any of the AFM files are prominently noted in the modified
+file(s); and that this paragraph is not modified. Adobe Systems has no
+responsibility or obligation to support the use of the AFM files.</extractedText>
+		<licenseId>LicenseRef-Adobe-Font-Metrics-License</licenseId>
+		<name>Adobe Font Metrics License</name>
+	</hasExtractedLicensingInfos>
+	<hasExtractedLicensingInfos>
+		<extractedText>Copyright 1990-2009 Adobe Systems Incorporated.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+
+Redistributions of source code must retain the above copyright notice,
+this list of conditions and the following disclaimer.
+
+Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution. 
+
+Neither the name of Adobe Systems Incorporated nor the names of its
+contributors may be used to endorse or promote products derived from this
+software without specific prior written permission. 
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+THE POSSIBILITY OF SUCH DAMAGE.</extractedText>
+		<licenseId>LicenseRef-CMaps-for-PDF-Fonts</licenseId>
+		<name>CMaps for PDF Fonts License</name>
+	</hasExtractedLicensingInfos>
+	<hasExtractedLicensingInfos>
+		<extractedText>Copyright (c) 1997,1998,2002,2007 Adobe Systems Incorporated
+ 
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this documentation file to use, copy, publish, distribute,
+sublicense, and/or sell copies of the documentation, and to permit
+others to do the same, provided that:
+- No modification, editing or other alteration of this document is
+allowed; and
+- The above copyright notice and this permission notice shall be
+included in all copies of the documentation.
+ 
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this documentation file, to create their own derivative works
+from the content of this document to use, copy, publish, distribute,
+sublicense, and/or sell the derivative works, and to permit others to do
+the same, provided that the derived work is not represented as being a
+copy or version of this document.
+ 
+Adobe shall not be liable to any party for any loss of revenue or profit
+or for indirect, incidental, special, consequential, or other similar
+damages, whether based on tort (including without limitation negligence
+or strict liability), contract or other legal or equitable grounds even
+if Adobe has been advised or had reason to know of the possibility of
+such damages. The Adobe materials are provided on an "AS IS" basis.
+Adobe specifically disclaims all express, statutory, or implied
+warranties relating to the Adobe materials, including but not limited to
+those concerning merchantability or fitness for a particular purpose or
+non-infringement of any third party rights regarding the Adobe
+materials.
+
+http://www.apache.org/licenses/LICENSE-2.0
+ 
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</extractedText>
+		<licenseId>LicenseRef-Glyphlist</licenseId>
+		<name>Glyphlist License</name>
+	</hasExtractedLicensingInfos>
+	<hasExtractedLicensingInfos>
+		<extractedText>This software is open source. It is released under the Microsoft Public
+License of October 2006.  The use of the "Microsoft Public License" does
+not mean it is licensed by Microsoft.  This license is copied below, and is
+also available online at: http://dotnetzip.codeplex.com/license
+
+
+-----------------------------------------------------------
+Microsoft Public License (Ms-PL) - 27 October 2007
+-----------------------------------------------------------
+
+This license governs use of the accompanying software. If you use the software, you accept this license. If you do not
+accept the license, do not use the software.
+
+1. Definitions
+The terms "reproduce," "reproduction," "derivative works," and "distribution" have the same meaning here as under
+U.S. copyright law.
+
+A "contribution" is the original software, or any additions or changes to the software.
+
+A "contributor" is any person that distributes its contribution under this license.
+
+"Licensed patents" are a contributor's patent claims that read directly on its contribution.
+
+2. Grant of Rights
+(A) Copyright Grant- Subject to the terms of this license, including the license conditions and limitations in section 3,
+each contributor grants you a non-exclusive, worldwide, royalty-free copyright license to reproduce its contribution,
+prepare derivative works of its contribution, and distribute its contribution or any derivative works that you create.
+
+(B) Patent Grant- Subject to the terms of this license, including the license conditions and limitations in section 3,
+each contributor grants you a non-exclusive, worldwide, royalty-free license under its licensed patents to make, have
+made, use, sell, offer for sale, import, and/or otherwise dispose of its contribution in the software or derivative works
+of the contribution in the software.
+
+3. Conditions and Limitations
+
+(A) No Trademark License- This license does not grant you rights to use any contributors' name, logo, or trademarks.
+
+(B) If you bring a patent claim against any contributor over patents that you claim are infringed by the software,
+your patent license from such contributor to the software ends automatically.
+
+(C) If you distribute any portion of the software, you must retain all copyright, patent, trademark, and attribution
+notices that are present in the software.
+
+(D) If you distribute any portion of the software in source code form, you may do so only under this license by including a complete copy of this license with your distribution. If you distribute any portion of the software in
+compiled or object code form, you may only do so under a license that complies with this license.
+
+(E) The software is licensed "as-is." You bear the risk of using it. The contributors give no express warranties,
+guarantees or conditions. You may have additional consumer rights under your local laws which this license cannot
+change. To the extent permitted under your local laws, the contributors exclude the implied warranties of
+merchantability, fitness for a particular purpose and non-infringement.</extractedText>
+		<licenseId>LicenseRef-DotNetZip</licenseId>
+		<name>DotNetZip License</name>
+	</hasExtractedLicensingInfos>
+	<hasExtractedLicensingInfos>
+		<extractedText>ANTLR 4 License
+[The BSD License]
+Copyright (c) 2012 Terence Parr and Sam Harwell
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+    Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+    Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+    Neither the name of the author nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. 
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</extractedText>
+		<licenseId>LicenseRef-ANTLR-4-License-BSD-License</licenseId>
+		<name>ANTLR 4 License BSD License</name>
+	</hasExtractedLicensingInfos>
+	<hasExtractedLicensingInfos>
+		<extractedText>Fonts are (c) Bitstream (see below). DejaVu changes
+are in public domain.
+Glyphs imported from Arev fonts are (c) Tavmjong Ba
+h (see below)
+Bitstream Vera Fonts Copyright
+------------------------------
+Copyright (c) 2003 by Bitstream, Inc. All Rights Re
+served. Bitstream Vera
+is
+a trademark of Bitstream, Inc.
+Permission is hereby granted, free of charge, to an
+y person obtaining a
+copy
+of the fonts accompanying this license ("Fonts") an
+d associated
+documentation files (the "Font Software"), to repro
+duce and distribute
+the
+Font Software, including without limitation the rig
+hts to use, copy,
+merge,
+publish, distribute, and/or sell copies of the Font
+Software, and to
+permit
+persons to whom the Font Software is furnished to d
+o so, subject to the
+following conditions:
+The above copyright and trademark notices and this
+permission notice
+shall
+be included in all copies of one or more of the Fon
+t Software typefaces.
+The Font Software may be modified, altered, or adde
+d to, and in
+particular
+the designs of glyphs or characters in the Fonts ma
+y be modified and
+additional glyphs or characters may be added to the
+Fonts, only if the
+fonts
+are renamed to names not containing either the word
+s "Bitstream" or the
+word
+"Vera".
+This License becomes null and void to the extent ap
+plicable to Fonts or
+Font
+Software that has been modified and is distributed
+under the "Bitstream
+Vera" names.
+The Font Software may be sold as part of a larger s
+oftware package but no
+copy of one or more of the Font Software typefaces
+may be sold by itself.
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARR
+ANTY OF ANY KIND,
+EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRAN
+TIES OF
+MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMEN
+T OF COPYRIGHT,
+PATENT,
+TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL BITSTR
+EAM OR THE GNOME
+FOUNDATION BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHE
+R LIABILITY, INCLUDING
+ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONS
+EQUENTIAL DAMAGES,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE
+, ARISING FROM, OUT OF
+THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FR
+OM OTHER DEALINGS IN
+THE
+FONT SOFTWARE.
+Except as contained in this notice, the names of Gn
+ome, the Gnome
+Foundation, and Bitstream Inc., shall not be used i
+n advertising or
+otherwise to promote the sale, use or other dealing
+s in this Font
+Software
+without prior written authorization from the Gnome
+Foundation or
+Bitstream
+Inc., respectively. For further information, contac
+t: fonts at gnome dot
+org.
+Arev Fonts Copyright
+------------------------------
+Copyright (c) 2006 by Tavmjong Bah. All Rights Rese
+rved.
+Permission is hereby granted, free of charge, to an
+y person obtaining
+a copy of the fonts accompanying this license ("Fon
+ts") and
+associated documentation files (the "Font Software"
+), to reproduce
+and distribute the modifications to the Bitstream V
+era Font Software,
+including without limitation the rights to use, cop
+y, merge, publish,
+distribute, and/or sell copies of the Font Software
+, and to permit
+persons to whom the Font Software is furnished to d
+o so, subject to
+the following conditions:
+The above copyright and trademark notices and this
+permission notice
+shall be included in all copies of one or more of t
+he Font Software
+typefaces.
+The Font Software may be modified, altered, or adde
+d to, and in
+particular the designs of glyphs or characters in t
+he Fonts may be
+modified and additional glyphs or characters may be
+added to the
+Fonts, only if the fonts are renamed to names not c
+ontaining either
+the words "Tavmjong Bah" or the word "Arev".
+This License becomes null and void to the extent ap
+plicable to Fonts
+or Font Software that has been modified and is dist
+ributed under the
+"Tavmjong Bah Arev" names.
+The Font Software may be sold as part of a larger s
+oftware package but
+no copy of one or more of the Font Software typefac
+es may be sold by
+itself.
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARR
+ANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO AN
+Y WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE A
+ND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN
+NO EVENT SHALL
+TAVMJONG BAH BE LIABLE FOR ANY CLAIM, DAMAGES OR OT
+HER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTA
+L, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT S
+OFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.</extractedText>
+		<licenseId>LicenseRef-Font-DejaVu-Sans</licenseId>
+		<name>Font DejaVu Sans License</name>
+	</hasExtractedLicensingInfos>
+	<hasExtractedLicensingInfos>
+		<extractedText>ICU License - ICU 1.8.1 and later
+
+COPYRIGHT AND PERMISSION NOTICE
+
+Copyright (c) 1995-2003 International Business Machines Corporation and others
+All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, and/or sell copies of the Software, and to permit persons
+to whom the Software is furnished to do so, provided that the above
+copyright notice(s) and this permission notice appear in all copies of
+the Software and that both the above copyright notice(s) and this
+permission notice appear in supporting documentation.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF THIRD PARTY RIGHTS. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+HOLDERS INCLUDED IN THIS NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL
+INDIRECT OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING
+FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
+NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
+WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+Except as contained in this notice, the name of a copyright holder
+shall not be used in advertising or otherwise to promote the sale, use
+or other dealings in this Software without prior written authorization
+of the copyright holder.
+
+--------------------------------------------------------------------------------
+All trademarks and registered trademarks mentioned herein are the property of their respective owners.</extractedText>
+		<licenseId>LicenseRef-ICU</licenseId>
+		<name>ICU License</name>
+	</hasExtractedLicensingInfos>
+	<hasExtractedLicensingInfos>
+		<extractedText>The MIT License (MIT)
+
+Copyright (c) 2014 Telavian
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</extractedText>
+		<licenseId>LicenseRef-MIT-License</licenseId>
+		<name>MIT License</name>
+	</hasExtractedLicensingInfos>
+	<hasExtractedLicensingInfos>
+		<extractedText>New BSD License (BSD)
+Copyright (c) 2007, CSJ2K Team
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+* Neither the name of CSJ2K Team nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</extractedText>
+		<licenseId>LicenseRef-New-BSD-License-BSD</licenseId>
+		<name>New BSD License (BSD)</name>
+	</hasExtractedLicensingInfos>
+	<hasExtractedLicensingInfos>
+		<extractedText>To anyone who acknowledges that the file "sRGB_v4_ICC_preference.icc" is provided "AS IS" WITH NO EXPRESS OR IMPLIED
+WARRANTY, permission to use, copy and distribute this file for any purpose is hereby granted without fee, provided that the file is
+not changed including the ICC copyright notice tag, and that the name of ICC shall not be used in advertising or publicity
+pertaining to distribution of the software without specific, written prior permission. ICC makes no representations about the
+suitability of this software for any purpose.</extractedText>
+		<licenseId>LicenseRef-sRGB-v4-ICC-preference.icc</licenseId>
+		<name>sRGB_v4_ICC_preference.icc License</name>
+	</hasExtractedLicensingInfos>
+	<hasExtractedLicensingInfos>
+		<extractedText>These license terms are an agreement between Microsoft Corporation (or based on where you live, one of its
+affiliates) and you. Please read them. They apply to the software named above, which includes the media on which
+you received it, if any.
+BY USING THE SOFTWARE, YOU ACCEPT THESE TERMS. IF YOU DO NOT ACCEPT THEM, DO NOT USE THE
+SOFTWARE.
+If you comply with these license terms, you have the rights below.
+1. INSTALLATION AND USE RIGHTS. You may install and use any number of copies of the software on your
+devices.
+2. ADDITIONAL LICENSING REQUIREMENTS AND/OR USE RIGHTS. You are permitted to distribute the software
+if you comply with the terms below.
+i. Right to Use and Distribute.
+�Distribution. You may copy and distribute the software. You may not modify the software. You must distribute a
+complete copy of the software, including these license terms.
+�Re-Distribution. You may permit third parties to copy and distribute the software.
+ii. Distribution Requirements. If you distribute the software with your programs, you must
+�require distributors and external end users to agree to terms that protect it at least as much as this agreement;
+�display your valid copyright notice on your programs; and
+�indemnify, defend, and hold harmless Microsoft from any claims, including attorneys' fees, related to the
+distribution or use of your programs.
+iii. Distribution Restrictions. You may not
+�charge a separate price, license fee or royalty for the software;
+�alter any copyright, trademark or patent notice in the software;
+�use Microsoft's trademarks in your programs' names or in a way that suggests your programs come from or are
+endorsed by Microsoft; or
+�distribute malicious, deceptive or unlawful programs with the software.
+3. SCOPE OF LICENSE. The software is licensed, not sold. This agreement only gives you some rights to use the
+software. Microsoft reserves all other rights. Unless applicable law gives you more rights despite this limitation, you
+may use the software only as expressly permitted in this agreement. In doing so, you must comply with any
+technical limitations in the software that only allow you to use it in certain ways. You may not
+�work around any technical limitations in the software;
+�reverse engineer, decompile or disassemble the software, except and only to the extent that applicable law
+expressly permits, despite this limitation;
+�make more copies of the software than specified in this agreement or allowed by applicable law, despite this 
+limitation;
+�rent, lease or lend the software; or
+�transfer the software or this agreement to any third party.
+4. DOCUMENTATION. Any person that has valid access to your computer or internal network may copy and use the
+documentation for your internal, reference purposes.
+5. EXPORT RESTRICTIONS. The software is subject to United States export laws and regulations. You must comply
+with all domestic and international export laws and regulations that apply to the software. These laws include
+restrictions on destinations, end users and end use. For additional information, see www.microsoft.com/exporting.
+6. SUPPORT SERVICES. Because this software is "as is," we do not provide support services for it.
+7. ENTIRE AGREEMENT. This agreement, and the terms for supplements, updates, Internet-based services and
+support services that you use, are the entire agreement for the software and support services.
+8. APPLICABLE LAW.
+a. United States. If you acquired the software in the United States, Washington state law governs the interpretation
+of this agreement and applies to claims for breach of it, regardless of conflict of laws principles. The laws of the state
+where you live govern all other claims, including claims under state consumer protection laws, unfair competition
+laws, and in tort.
+b. Outside the United States. If you acquired the software in any other country, the laws of that country apply.
+9. LEGAL EFFECT. This agreement describes certain legal rights. You may have other rights under the laws of your
+country. You may also have rights with respect to the party from whom you acquired the software. This agreement
+does not change your rights under the laws of your country if the laws of your country do not permit it to do so.
+10. DISCLAIMER OF WARRANTY. THE SOFTWARE IS LICENSED "AS-IS." YOU BEAR THE RISK OF USING IT.
+MICROSOFT GIVES NO EXPRESS WARRANTIES, GUARANTEES OR CONDITIONS. YOU MAY HAVE
+ADDITIONAL CONSUMER RIGHTS UNDER YOUR LOCAL LAWS WHICH THIS AGREEMENT CANNOT CHANGE.
+TO THE EXTENT PERMITTED UNDER YOUR LOCAL LAWS, MICROSOFT EXCLUDES THE IMPLIED WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+11. LIMITATION ON AND EXCLUSION OF REMEDIES AND DAMAGES. YOU CAN RECOVER FROM MICROSOFT
+AND ITS SUPPLIERS ONLY DIRECT DAMAGES UP TO U.S. $5.00. YOU CANNOT RECOVER ANY OTHER
+DAMAGES, INCLUDING CONSEQUENTIAL, LOST PROFITS, SPECIAL, INDIRECT OR INCIDENTAL DAMAGES.
+This limitation applies to
+�anything related to the software, services, content (including code) on third party Internet sites, or third party
+programs; and
+�claims for breach of contract, breach of warranty, guarantee or condition, strict liability, negligence, or other tort to
+the extent permitted by applicable law.
+It also applies even if Microsoft knew or should have known about the possibility of the damages. The above
+limitation or exclusion may not apply to you because your country may not allow the exclusion or limitation of
+incidental, consequential or other damages.
+Please note: As this software is distributed in Quebec, Canada, some of the clauses in this agreement are
+provided below in French.
+Remarque : Ce logiciel �tant distribu� au Qu�bec, Canada, certaines des clauses dans ce contrat sont fournies
+ci-dessous en fran�ais.
+EXON�RATION DE GARANTIE. Le logiciel vis� par une licence est offert � tel quel �. Toute utilisation de ce logiciel
+est � votre seule risque et p�ril. Microsoft n'accorde aucune autre garantie expresse. Vous pouvez b�n�ficier de
+droits additionnels en vertu du droit local sur la protection des consommateurs, que ce contrat ne peut modifier. La
+ou elles sont permises par le droit locale, les garanties implicites de qualit� marchande, d'ad�quation � un usage
+particulier et d'absence de contrefa�on sont exclues.
+LIMITATION DES DOMMAGES-INT�R�TS ET EXCLUSION DE RESPONSABILIT� POUR LES DOMMAGES.Vous
+pouvez obtenir de Microsoft et de ses fournisseurs une indemnisation en cas de dommages directs uniquement �
+hauteur de 5,00 $ US. Vous ne pouvez pr�tendre � aucune indemnisation pour les autres dommages, y compris les
+dommages sp�ciaux, indirects ou accessoires et pertes de b�n�fices.
+Cette limitation concerne :
+�tout ce qui est reli� au logiciel, aux services ou au contenu (y compris le code) figurant sur des sites Internet tiers
+ou dans des programmes tiers ; et
+�les r�clamations au titre de violation de contrat ou de garantie, ou au titre de responsabilit� stricte, de n�gligence
+ou d'une autre faute dans la limite autoris�e par la loi en vigueur.
+Elle s'applique �galement, m�me si Microsoft connaissait ou devrait conna�tre l'�ventualit� d'un tel dommage. Si
+votre pays n'autorise pas l'exclusion ou la limitation de responsabilit� pour les dommages indirects, accessoires ou
+de quelque nature que ce soit, il se peut que la limitation ou l'exclusion ci-dessus ne s'appliquera pas � votre �gard.
+EFFET JURIDIQUE. Le pr�sent contrat d�crit certains droits juridiques. Vous pourriez avoir d'autres droits pr�vus par
+les lois de votre pays. Le pr�sent contrat ne modifie pas les droits que vous conf�rent les lois de votre pays si cellesci
+ne le permettent pas.
+
+END OF TERMS AND CONDITIONS</extractedText>
+		<licenseId>LicenseRef-RSWOP.ICM</licenseId>
+		<name>RSWOP.ICM License</name>
+	</hasExtractedLicensingInfos>
+	<hasExtractedLicensingInfos>
+		<extractedText>XMP Specification
+Public Patent License
+Adobe Systems Incorporated
+The XMP Specification provides a standard format for the definition, creation and processing of
+metadata in a variety of applications. Adobe may own patented technology disclosed in the
+specification. We offer this patent license to all individuals and organizations in the world in
+order to encourage the use of metadata in the XMP format.
+Public License
+Adobe grants every individual and organization in the world the right, under all Essential Claims
+that Adobe owns, to make, have made, use, sell, import and distribute Compliant
+Implementations. If a licensee brings (or participates in the bringing of) a lawsuit or similar
+action against any other party claiming that a Compliant Implementation infringes an Essential
+Claim, Adobe may revoke the rights granted above to such licensee. Upon such revocation, such
+rights will be deemed to have never been granted.
+No Warranty
+The XMP Specification and the license granted above are provided without warranty of any kind,
+including warranty of title or non-infringement. Nothing in this document shall be construed as
+requiring the maintenance of any patent, a warranty or representation as to the validity or scope of
+any patent, an agreement to protect or cooperate with any party or to bring or prosecute actions
+against any party, or a grant of any right under any patent claim other than an Essential Claim.
+Reservation of Rights
+All rights not expressly granted herein are reserved.
+Definitions
+�Compliant Implementation� means the portion of an application, product, or service that
+defines, creates, stores or processes metadata compliant with the XMP Specification.
+�Essential Claim� means a claim of a patent, whenever and wherever issued, that is necessarily
+infringed in order to achieve compliance with the requirements of the XMP Specification. A
+claim is necessarily infringed only when there is no reasonable way to avoid infringement of that
+claim when defining, creating, storing or processing metadata.
+�XMP Specification� means any version of the XMP Specification published by Adobe. By way
+of example only, any specification not published by Adobe or that incorporates the XMP
+Specification by reference is not the XMP Specification for purposes of this license.</extractedText>
+		<licenseId>LicenseRef-XMP-metadata-support</licenseId>
+		<name>XMP metadata support License</name>
+	</hasExtractedLicensingInfos>
+	<hasExtractedLicensingInfos>
+		<extractedText>This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION &amp; CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.</extractedText>
+		<licenseId>LicenseRef-SIL-Open-Font-License-Version-1.1</licenseId>
+		<name>SIL Open Font License Version 1.1</name>
+	</hasExtractedLicensingInfos>
+	<name>Aspose.PDF.NET 26.02</name>
+	<spdxVersion>SPDX-2.2</spdxVersion>
+	<documentNamespace>https://releases.aspose.com/pdf/net/Aspose.PDF.NET/26.02/QZIxZNSEMkOhDcCxrkvraw</documentNamespace>
+	<packages>
+		<SPDXID>SPDXRef-Package-16B9CB80B3AAD695D669C53C2FD1E16BE8822FBF335BD4FC989FFC2C35B90633</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:nuget/System.Security.Cryptography.ProtectedData@9.0.0</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<name>System.Security.Cryptography.ProtectedData</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>9.0.0</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-Package-3EF298D9552E8657B2DB69D88D232D1C5131003FB2417E17C3854707C8E14C45</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:nuget/System.Windows.Extensions@9.0.0</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<name>System.Windows.Extensions</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>9.0.0</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-Package-0525825FC49870837083F5286BFA48383E60908FC138CA20F09EAC5EF6B5A804</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:nuget/System.Security.Cryptography.Pkcs@9.0.0</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<name>System.Security.Cryptography.Pkcs</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>9.0.0</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-Package-0F25F05698CF105C30AA9AFE54EABB6E0B922EE033CDEF3471CCAEFE5647B34C</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:nuget/System.Drawing.Common@9.0.3</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<name>System.Drawing.Common</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>9.0.3</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-Package-100B18AE736DF3822F5F5168A96BD0CB03317AD2AF3665AACDFD8F9ACB834A2C</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:nuget/System.Text.Encoding.CodePages@9.0.0</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<name>System.Text.Encoding.CodePages</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>9.0.0</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-Package-C2044E69B72805AFD316DBC4F17B8079797D36CFF2293DE7BEFD07592D982FD2</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:nuget/System.Diagnostics.EventLog@9.0.0</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<name>System.Diagnostics.EventLog</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>9.0.0</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-Package-A092770E8354CA90D85493FC4F2941F25FCE4214BAF8EB9A9E4383C495E133E9</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:nuget/System.Diagnostics.DiagnosticSource@9.0.0</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<name>System.Diagnostics.DiagnosticSource</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>9.0.0</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-Package-F9DE28FD2A676FCFAA2081E77C70C49D7B4AA7A180B3A976A0661E7BDCD850E4</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:nuget/Microsoft.Extensions.DependencyModel@9.0.0</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<name>Microsoft.Extensions.DependencyModel</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>9.0.0</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-Package-FB8D026D6343D8A72CA8010CC4C69370407F41797946783373C362E642691BA4</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:nuget/System.Security.Permissions@9.0.0</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<name>System.Security.Permissions</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>9.0.0</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-Package-1E7AD705D55F0B02CF56790CCA941F9CE827E8B9E8AB18D395E24A1D96574B99</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:nuget/Microsoft.Extensions.Logging.Abstractions@9.0.0</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<name>Microsoft.Extensions.Logging.Abstractions</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>9.0.0</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-Package-179851C71BA9806C49C79F4E2DE3E9C8A704F6B6D4B51FE480B628021577331A</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:nuget/Microsoft.Extensions.DependencyInjection.Abstractions@9.0.0</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<name>Microsoft.Extensions.DependencyInjection.Abstractions</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>9.0.0</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-Package-11D027993AE63B78668B1B5B30620D19287B125F65D66CD72A4FD51E7E788575</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:nuget/System.Configuration.ConfigurationManager@9.0.0</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<name>System.Configuration.ConfigurationManager</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>9.0.0</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-Package-B886264C88915A93892AFBE3D28CD5B3C8B7990F0C6A47AD506184440C46436E</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:nuget/Newtonsoft.Json@13.0.3</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<name>Newtonsoft.Json</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>13.0.3</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-Package-E1FC15B01F8BF48D1232EF76F126CABC2D252A1DD7277FA5C397396BEE1A16D8</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:nuget/Microsoft.Win32.SystemEvents@9.0.3</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<name>Microsoft.Win32.SystemEvents</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>9.0.3</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-Package-8B896FA4641F03C717C4A0619AC95186EC02807E55861D57FC9C52378D7E5D9A</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:nuget/System.Diagnostics.PerformanceCounter@9.0.0</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<name>System.Diagnostics.PerformanceCounter</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>9.0.0</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-RootPackage</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<externalRefs>
+			<referenceCategory>PACKAGE_MANAGER</referenceCategory>
+			<referenceLocator>pkg:swid/Aspose%20Pty%20Ltd./releases.aspose.com/Aspose.PDF.NET@26.02?tag_id=dd6c82e1-a8b0-437d-bf92-7b2b10b03f3b</referenceLocator>
+			<referenceType>purl</referenceType>
+		</externalRefs>
+		<filesAnalyzed>true</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>NOASSERTION</licenseDeclared>
+		<licenseInfoFromFiles>NOASSERTION</licenseInfoFromFiles>
+		<name>Aspose.PDF.NET</name>
+		<packageVerificationCode>
+			<packageVerificationCodeValue>c98170ad969f1fa6dc907dbb1778e2d30aa43bb2</packageVerificationCodeValue>
+		</packageVerificationCode>
+		<supplier>Organization: Aspose Pty Ltd.</supplier>
+		<versionInfo>26.02</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-JZlib-db66186f-684d-483a-a0d9-6ac053bf2545</SPDXID>
+		<copyrightText>Copyright (c) 2000-2011 ymnk, JCraft,Inc. All rights reserved.</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>LicenseRef-JZlib</licenseDeclared>
+		<name>JZlib</name>
+		<supplier>Organization: JCraft, Inc.</supplier>
+		<versionInfo>NOASSERTION</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-AdobeFontMetricsAFMforPDFCore14Fonts-cd7c7947-64fc-4a88-b44a-354e9a7e3a32</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>LicenseRef-Adobe-Font-Metrics-License</licenseDeclared>
+		<name>Adobe Font Metrics (AFM) for PDF Core 14 Fonts</name>
+		<supplier>Organization: Adobe Systems Incorporated</supplier>
+		<versionInfo>NOASSERTION</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-CMapsforPDFFonts-2b6151b4-e85e-4fbc-a338-7dec8ed1ea10</SPDXID>
+		<copyrightText>Copyright 1990-2009 Adobe Systems Incorporated. All rights reserved.</copyrightText>
+		<downloadLocation>http://opensource.adobe.com/wiki/display/cmap/Downloads</downloadLocation>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>LicenseRef-CMaps-for-PDF-Fonts</licenseDeclared>
+		<name>CMaps for PDF Fonts</name>
+		<supplier>Organization: Adobe Systems Incorporated</supplier>
+		<versionInfo>NOASSERTION</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-Glyphlist-eb90cadf-a40b-4dbc-b574-04cf2bb09a3c</SPDXID>
+		<copyrightText>Copyright (c) 1997,1998,2002,2007 Adobe Systems Incorporated</copyrightText>
+		<downloadLocation>http://www.adobe.com/devnet/opentype/archives/glyph.html</downloadLocation>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>LicenseRef-Glyphlist</licenseDeclared>
+		<name>Glyphlist</name>
+		<supplier>Organization: Adobe Systems Incorporated</supplier>
+		<versionInfo>NOASSERTION</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-DotNetZip-9141a5d8-7f1f-4827-bcca-4175e2785bbe</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>LicenseRef-DotNetZip</licenseDeclared>
+		<name>DotNetZip</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>NOASSERTION</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-ANTLR-cc8cff97-9f78-4ea3-a3fb-944057892bcc</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>LicenseRef-ANTLR-4-License-BSD-License</licenseDeclared>
+		<name>ANTLR</name>
+		<supplier>Organization: Terence Parr and Sam Harwell</supplier>
+		<versionInfo>NOASSERTION</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-FontDejaVuSans-4b4a58d2-486d-4cea-ace8-797d886a0c07</SPDXID>
+		<copyrightText>Copyright (c) 2003 by Bitstream, Inc. All Rights Reserved; Copyright (c) 2006 by Tavmjong Bah. All Rights Reserved.</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>LicenseRef-Font-DejaVu-Sans</licenseDeclared>
+		<name>Font DejaVu Sans</name>
+		<supplier>Organization: Bitstream, Inc.</supplier>
+		<versionInfo>NOASSERTION</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-ICU-e53d94c1-725b-4689-980d-c6fc42896c47</SPDXID>
+		<copyrightText>Copyright (c) 1995-2003 International Business Machines Corporation and others</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>LicenseRef-ICU</licenseDeclared>
+		<name>ICU</name>
+		<supplier>Organization: International Business Machines Corporation and others</supplier>
+		<versionInfo>NOASSERTION</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-DjvuNet-b8505e9c-0c37-47dc-8c9c-cace950940ab</SPDXID>
+		<copyrightText>Copyright (c) 2014 Telavian</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>LicenseRef-MIT-License</licenseDeclared>
+		<name>DjvuNet</name>
+		<supplier>Organization: Telavian</supplier>
+		<versionInfo>NOASSERTION</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-CSJ2K-06ca1f52-da1a-4207-945f-1420efb8cc42</SPDXID>
+		<copyrightText>Copyright (c) 2007, CSJ2K Team</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>LicenseRef-New-BSD-License-BSD</licenseDeclared>
+		<name>CSJ2K</name>
+		<supplier>Organization: CSJ2K Team</supplier>
+		<versionInfo>NOASSERTION</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-sRGBv4ICCpreferenceicccolorprofile-c0034dcb-3874-46e1-962a-17f94360a1b1</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>LicenseRef-sRGB-v4-ICC-preference.icc</licenseDeclared>
+		<name>sRGB_v4_ICC_preference.icc color profile</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>NOASSERTION</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-RSWOPICMcolorprofile-a2b6cfce-5abc-4624-b9e7-3d523034085c</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>LicenseRef-RSWOP.ICM</licenseDeclared>
+		<name>RSWOP.ICM color profile</name>
+		<supplier>NOASSERTION</supplier>
+		<versionInfo>NOASSERTION</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-XMPmetadatasupport-a34a5710-0468-4f28-8704-3510bf1e37e6</SPDXID>
+		<copyrightText>NOASSERTION</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>LicenseRef-XMP-metadata-support</licenseDeclared>
+		<name>XMP metadata support</name>
+		<supplier>Organization: Adobe Systems Incorporated</supplier>
+		<versionInfo>NOASSERTION</versionInfo>
+	</packages>
+	<packages>
+		<SPDXID>SPDXRef-OpenSans-67d8dcfa-1e66-428b-bd18-33176eacfb78</SPDXID>
+		<copyrightText>Copyright 2020 The Open Sans Project Authors</copyrightText>
+		<downloadLocation>NOASSERTION</downloadLocation>
+		<filesAnalyzed>false</filesAnalyzed>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseDeclared>LicenseRef-SIL-Open-Font-License-Version-1.1</licenseDeclared>
+		<name>Open Sans</name>
+		<supplier>Organization: The Open Sans Project Authors</supplier>
+		<versionInfo>NOASSERTION</versionInfo>
+	</packages>
+	<files>
+		<SPDXID>SPDXRef-File--Aspose.PDF.dll-CE29B251E7E77A5A6E8824C149F8E9956FBB16C5</SPDXID>
+		<checksums>
+			<algorithm>SHA256</algorithm>
+			<checksumValue>adb835f380f5e1e09b5366a57f6c6607981971c53545a40e36e5cd90c92760b2</checksumValue>
+		</checksums>
+		<checksums>
+			<algorithm>SHA1</algorithm>
+			<checksumValue>ce29b251e7e77a5a6e8824c149f8e9956fbb16c5</checksumValue>
+		</checksums>
+		<copyrightText>NOASSERTION</copyrightText>
+		<fileName>./Aspose.PDF.dll</fileName>
+		<licenseConcluded>NOASSERTION</licenseConcluded>
+		<licenseInfoInFiles>NOASSERTION</licenseInfoInFiles>
+	</files>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-B886264C88915A93892AFBE3D28CD5B3C8B7990F0C6A47AD506184440C46436E</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-DOCUMENT</spdxElementId>
+		<relatedSpdxElement>SPDXRef-RootPackage</relatedSpdxElement>
+		<relationshipType>DESCRIBES</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-F9DE28FD2A676FCFAA2081E77C70C49D7B4AA7A180B3A976A0661E7BDCD850E4</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-Package-0F25F05698CF105C30AA9AFE54EABB6E0B922EE033CDEF3471CCAEFE5647B34C</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-E1FC15B01F8BF48D1232EF76F126CABC2D252A1DD7277FA5C397396BEE1A16D8</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-A092770E8354CA90D85493FC4F2941F25FCE4214BAF8EB9A9E4383C495E133E9</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-8B896FA4641F03C717C4A0619AC95186EC02807E55861D57FC9C52378D7E5D9A</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-0F25F05698CF105C30AA9AFE54EABB6E0B922EE033CDEF3471CCAEFE5647B34C</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-Package-8B896FA4641F03C717C4A0619AC95186EC02807E55861D57FC9C52378D7E5D9A</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-11D027993AE63B78668B1B5B30620D19287B125F65D66CD72A4FD51E7E788575</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-0525825FC49870837083F5286BFA48383E60908FC138CA20F09EAC5EF6B5A804</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-FB8D026D6343D8A72CA8010CC4C69370407F41797946783373C362E642691BA4</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-100B18AE736DF3822F5F5168A96BD0CB03317AD2AF3665AACDFD8F9ACB834A2C</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-Package-1E7AD705D55F0B02CF56790CCA941F9CE827E8B9E8AB18D395E24A1D96574B99</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-179851C71BA9806C49C79F4E2DE3E9C8A704F6B6D4B51FE480B628021577331A</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-Package-8B896FA4641F03C717C4A0619AC95186EC02807E55861D57FC9C52378D7E5D9A</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-C2044E69B72805AFD316DBC4F17B8079797D36CFF2293DE7BEFD07592D982FD2</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-Package-11D027993AE63B78668B1B5B30620D19287B125F65D66CD72A4FD51E7E788575</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-C2044E69B72805AFD316DBC4F17B8079797D36CFF2293DE7BEFD07592D982FD2</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-Package-FB8D026D6343D8A72CA8010CC4C69370407F41797946783373C362E642691BA4</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-3EF298D9552E8657B2DB69D88D232D1C5131003FB2417E17C3854707C8E14C45</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-1E7AD705D55F0B02CF56790CCA941F9CE827E8B9E8AB18D395E24A1D96574B99</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-Package-8B896FA4641F03C717C4A0619AC95186EC02807E55861D57FC9C52378D7E5D9A</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-16B9CB80B3AAD695D669C53C2FD1E16BE8822FBF335BD4FC989FFC2C35B90633</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-Package-11D027993AE63B78668B1B5B30620D19287B125F65D66CD72A4FD51E7E788575</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Package-16B9CB80B3AAD695D669C53C2FD1E16BE8822FBF335BD4FC989FFC2C35B90633</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-JZlib-db66186f-684d-483a-a0d9-6ac053bf2545</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-AdobeFontMetricsAFMforPDFCore14Fonts-cd7c7947-64fc-4a88-b44a-354e9a7e3a32</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-CMapsforPDFFonts-2b6151b4-e85e-4fbc-a338-7dec8ed1ea10</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Glyphlist-eb90cadf-a40b-4dbc-b574-04cf2bb09a3c</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-DotNetZip-9141a5d8-7f1f-4827-bcca-4175e2785bbe</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-ANTLR-cc8cff97-9f78-4ea3-a3fb-944057892bcc</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-FontDejaVuSans-4b4a58d2-486d-4cea-ace8-797d886a0c07</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-ICU-e53d94c1-725b-4689-980d-c6fc42896c47</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-DjvuNet-b8505e9c-0c37-47dc-8c9c-cace950940ab</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-CSJ2K-06ca1f52-da1a-4207-945f-1420efb8cc42</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-sRGBv4ICCpreferenceicccolorprofile-c0034dcb-3874-46e1-962a-17f94360a1b1</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-RSWOPICMcolorprofile-a2b6cfce-5abc-4624-b9e7-3d523034085c</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-XMPmetadatasupport-a34a5710-0468-4f28-8704-3510bf1e37e6</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-OpenSans-67d8dcfa-1e66-428b-bd18-33176eacfb78</relatedSpdxElement>
+		<relationshipType>DEPENDS_ON</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-DOCUMENT</spdxElementId>
+		<relatedSpdxElement>SPDXRef-JZlib-db66186f-684d-483a-a0d9-6ac053bf2545</relatedSpdxElement>
+		<relationshipType>DESCRIBES</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-DOCUMENT</spdxElementId>
+		<relatedSpdxElement>SPDXRef-AdobeFontMetricsAFMforPDFCore14Fonts-cd7c7947-64fc-4a88-b44a-354e9a7e3a32</relatedSpdxElement>
+		<relationshipType>DESCRIBES</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-DOCUMENT</spdxElementId>
+		<relatedSpdxElement>SPDXRef-CMapsforPDFFonts-2b6151b4-e85e-4fbc-a338-7dec8ed1ea10</relatedSpdxElement>
+		<relationshipType>DESCRIBES</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-DOCUMENT</spdxElementId>
+		<relatedSpdxElement>SPDXRef-Glyphlist-eb90cadf-a40b-4dbc-b574-04cf2bb09a3c</relatedSpdxElement>
+		<relationshipType>DESCRIBES</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-DOCUMENT</spdxElementId>
+		<relatedSpdxElement>SPDXRef-DotNetZip-9141a5d8-7f1f-4827-bcca-4175e2785bbe</relatedSpdxElement>
+		<relationshipType>DESCRIBES</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-DOCUMENT</spdxElementId>
+		<relatedSpdxElement>SPDXRef-ANTLR-cc8cff97-9f78-4ea3-a3fb-944057892bcc</relatedSpdxElement>
+		<relationshipType>DESCRIBES</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-DOCUMENT</spdxElementId>
+		<relatedSpdxElement>SPDXRef-FontDejaVuSans-4b4a58d2-486d-4cea-ace8-797d886a0c07</relatedSpdxElement>
+		<relationshipType>DESCRIBES</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-DOCUMENT</spdxElementId>
+		<relatedSpdxElement>SPDXRef-ICU-e53d94c1-725b-4689-980d-c6fc42896c47</relatedSpdxElement>
+		<relationshipType>DESCRIBES</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-DOCUMENT</spdxElementId>
+		<relatedSpdxElement>SPDXRef-DjvuNet-b8505e9c-0c37-47dc-8c9c-cace950940ab</relatedSpdxElement>
+		<relationshipType>DESCRIBES</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-DOCUMENT</spdxElementId>
+		<relatedSpdxElement>SPDXRef-CSJ2K-06ca1f52-da1a-4207-945f-1420efb8cc42</relatedSpdxElement>
+		<relationshipType>DESCRIBES</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-DOCUMENT</spdxElementId>
+		<relatedSpdxElement>SPDXRef-sRGBv4ICCpreferenceicccolorprofile-c0034dcb-3874-46e1-962a-17f94360a1b1</relatedSpdxElement>
+		<relationshipType>DESCRIBES</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-DOCUMENT</spdxElementId>
+		<relatedSpdxElement>SPDXRef-RSWOPICMcolorprofile-a2b6cfce-5abc-4624-b9e7-3d523034085c</relatedSpdxElement>
+		<relationshipType>DESCRIBES</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-DOCUMENT</spdxElementId>
+		<relatedSpdxElement>SPDXRef-XMPmetadatasupport-a34a5710-0468-4f28-8704-3510bf1e37e6</relatedSpdxElement>
+		<relationshipType>DESCRIBES</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-DOCUMENT</spdxElementId>
+		<relatedSpdxElement>SPDXRef-OpenSans-67d8dcfa-1e66-428b-bd18-33176eacfb78</relatedSpdxElement>
+		<relationshipType>DESCRIBES</relationshipType>
+	</relationships>
+	<relationships>
+		<spdxElementId>SPDXRef-RootPackage</spdxElementId>
+		<relatedSpdxElement>SPDXRef-File--Aspose.PDF.dll-CE29B251E7E77A5A6E8824C149F8E9956FBB16C5</relatedSpdxElement>
+		<relationshipType>CONTAINS</relationshipType>
+	</relationships>
+</Document>

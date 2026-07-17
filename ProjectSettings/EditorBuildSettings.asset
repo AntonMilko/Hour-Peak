@@ -1,0 +1,466 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/StartMenu.unity
+    guid: de2f06107092778459a94949c883448f
+  - enabled: 1
+    path: Assets/Scenes/Level 1/Morning/Morning 1.1.unity
+    guid: b59e87c0afb6b4e40bc046703177bcd8
+  - enabled: 1
+    path: Assets/Scenes/Level 1/Morning/Morning 1.2.unity
+    guid: 7ccb6593eb9de124a9f6a82c0184b4d2
+  - enabled: 1
+    path: Assets/Scenes/Level 1/Morning/Morning 1.3.unity
+    guid: a81e127e2505d834b912932305a9b515
+  - enabled: 1
+    path: Assets/Scenes/Level 1/Evening/Evening 1.3.unity
+    guid: 721601588d99f4744ab05603ac596356
+  - enabled: 1
+    path: Assets/Scenes/Level 1/Evening/Evening 1.2.unity
+    guid: 4a520b18a57bef04b8254b6eef7dee0b
+  - enabled: 1
+    path: Assets/Scenes/Level 1/Evening/Evening 1.1.unity
+    guid: 490c174917f14184fb256050e016e5d1
+  - enabled: 1
+    path: Assets/Scenes/Level 2/Morning/Morning 2.1.unity
+    guid: cebf03c397f609a4d83c5e5b03274f5b
+  - enabled: 1
+    path: Assets/Scenes/Level 2/Morning/Morning 2.2.unity
+    guid: a72977608e7c3d049bc3e8bbc98a748f
+  - enabled: 1
+    path: Assets/Scenes/Level 2/Evening/Evening 2.2.unity
+    guid: 3108f26590e743b40b6f6b911bf7a65c
+  - enabled: 1
+    path: Assets/Scenes/Level 2/Evening/Evening 2.1.unity
+    guid: dcc426635cfdce34ba90960754442926
+  - enabled: 1
+    path: Assets/Scenes/Level 3/Morning/Morning 3.1.unity
+    guid: 1da3f87e53577614790deaec2e9806eb
+  - enabled: 1
+    path: Assets/Scenes/Level 3/Morning/Morning 3.2.unity
+    guid: 1ba6a0c71fe244846b76d177b0526ded
+  - enabled: 1
+    path: Assets/Scenes/Level 3/Evening/Evening 3.2.unity
+    guid: 99c31866661457a459baffd49234aa3e
+  - enabled: 1
+    path: Assets/Scenes/Level 3/Evening/Evening 3.1.unity
+    guid: 33a2751b3a13bef41a6007502c7b335b
+  - enabled: 1
+    path: Assets/Scenes/Level 4/Morning/Morning 4.1.unity
+    guid: 8ef70baa088e6fe44ac197ff3e0bd728
+  - enabled: 1
+    path: Assets/Scenes/Level 4/Morning/Morning 4.2.unity
+    guid: d692339f7d2a47043be20f8847f9b26d
+  - enabled: 1
+    path: Assets/Scenes/Level 4/Evening/Evening 4.2.unity
+    guid: 020fde958b54eed478a5eaef72bca7ce
+  - enabled: 1
+    path: Assets/Scenes/Level 4/Evening/Evening 4.1.unity
+    guid: 55f3ef5f2dceba14fa9cb72ace994439
+  - enabled: 1
+    path: Assets/Scenes/Level 5/Morning/Morning 5.1.unity
+    guid: 6c2d6ddade64ef446bed08282233c6d5
+  - enabled: 1
+    path: Assets/Scenes/Level 5/Morning/Morning 5.2.unity
+    guid: 4acb59356a64f1b42bc97380392e83f8
+  - enabled: 1
+    path: Assets/Scenes/Level 5/Evening/Evening 5.2.unity
+    guid: 779088770bb43ee47a97932f1ff0092b
+  - enabled: 1
+    path: Assets/Scenes/Level 5/Evening/Evening 5.1.unity
+    guid: d562319c45c61f14c931b59288487ea4
+  - enabled: 1
+    path: Assets/Scenes/Level 6/Morning/Morning 6.1.unity
+    guid: 375dba854db43a24f884cbd853016e54
+  - enabled: 1
+    path: Assets/Scenes/Level 6/Morning/Morning 6.2.unity
+    guid: c170d089e1450574980d36776fab9442
+  - enabled: 1
+    path: Assets/Scenes/Level 6/Evening/Evening 6.2.unity
+    guid: 8f523ad3e326a164d9c17ee0087de1a4
+  - enabled: 1
+    path: Assets/Scenes/Level 6/Evening/Evening 6.1.unity
+    guid: dd333a67161b96f4db490c0dbde5966b
+  - enabled: 1
+    path: Assets/Scenes/Level 7/Morning/Morning 7.1.unity
+    guid: 785e10b92e3faed488f09f9695ca50b0
+  - enabled: 1
+    path: Assets/Scenes/Level 7/Morning/Morning 7.2.unity
+    guid: 7766663f6fc0fc3419e87e8373fc1962
+  - enabled: 1
+    path: Assets/Scenes/Level 7/Evening/Evening 7.2.unity
+    guid: 8f61e8b7c63072643811204812b8660f
+  - enabled: 1
+    path: Assets/Scenes/Level 7/Evening/Evening 7.1.unity
+    guid: faacdc0910074e84c98db291887552a3
+  - enabled: 1
+    path: Assets/Scenes/Level 8/Morning/Morning 8.1.unity
+    guid: b4cc547092a9f874fbfaf6b9a9ba2bd7
+  - enabled: 1
+    path: Assets/Scenes/Level 8/Morning/Morning 8.2.unity
+    guid: 743116eb39456b5448b4d57386beecba
+  - enabled: 1
+    path: Assets/Scenes/Level 8/Evening/Evening 8.2.unity
+    guid: 218f90ad669a03b4ead26a92278b28cd
+  - enabled: 1
+    path: Assets/Scenes/Level 8/Evening/Evening 8.1.unity
+    guid: c1b1fd18a82d58b409fb705d2baedbe0
+  - enabled: 1
+    path: Assets/Scenes/Level 9/Morning/Morning 9.1.unity
+    guid: f727b9c29fc02954582ac7b88c1b16cc
+  - enabled: 1
+    path: Assets/Scenes/Level 9/Morning/Morning 9.2.unity
+    guid: 176f3289c40fbac46850f189355698dc
+  - enabled: 1
+    path: Assets/Scenes/Level 9/Evening/Evening 9.2.unity
+    guid: e2111cccb7f0ce04982a0df454c24a85
+  - enabled: 1
+    path: Assets/Scenes/Level 9/Evening/Evening 9.1.unity
+    guid: dadea84accf5757439c30a99d2522267
+  - enabled: 1
+    path: Assets/Scenes/Level 10/Morning/Morning 10.1.unity
+    guid: b0ad7041b2037df48a5915f80e469786
+  - enabled: 1
+    path: Assets/Scenes/Level 10/Morning/Morning 10.2.unity
+    guid: cfacf0d804c0ae545a5ea959c509028b
+  - enabled: 1
+    path: Assets/Scenes/Level 10/Evening/Evening 10.2.unity
+    guid: 8a2e69a153006b84daa2b2f05fb9817e
+  - enabled: 1
+    path: Assets/Scenes/Level 10/Evening/Evening 10.1.unity
+    guid: 9e3c123c1c6945145b9201ea1e42d2a8
+  - enabled: 1
+    path: Assets/Scenes/Level 11/Morning/Morning 11.1.unity
+    guid: 6f0fc397d965f4340a410c563b47aba6
+  - enabled: 1
+    path: Assets/Scenes/Level 11/Morning/Morning 11.2.unity
+    guid: 66f63b6bc93891b4aa36373b28b27e32
+  - enabled: 1
+    path: Assets/Scenes/Level 11/Evening/Evening 11.2.unity
+    guid: 16415558bcf443c45936944fa3daddad
+  - enabled: 1
+    path: Assets/Scenes/Level 11/Evening/Evening 11.1.unity
+    guid: 084fee4b702f50149a456c8f7a3b6e6f
+  - enabled: 1
+    path: Assets/Scenes/Level 12/Morning/Morning 12.1.unity
+    guid: a28fd9ff6e1f05b49b1be58114c895db
+  - enabled: 1
+    path: Assets/Scenes/Level 12/Morning/Morning 12.2.unity
+    guid: 39fe0b2567c33314fa66874c262da756
+  - enabled: 1
+    path: Assets/Scenes/Level 12/Evening/Evening 12.2.unity
+    guid: f8c78ba5a6f1975479d2b8b283efa4c4
+  - enabled: 1
+    path: Assets/Scenes/Level 12/Evening/Evening 12.1.unity
+    guid: 73be46822d0909d47bb5df64d43b8d3c
+  - enabled: 1
+    path: Assets/Scenes/Level 13/Morning/Morning 13.1.unity
+    guid: b7a695314a1af53468f89f9e7040e493
+  - enabled: 1
+    path: Assets/Scenes/Level 13/Morning/Morning 13.2.unity
+    guid: a6770b3ec5029ce459a44606949cb1d3
+  - enabled: 1
+    path: Assets/Scenes/Level 13/Evening/Evening 13.2.unity
+    guid: a7ee6631707fb3746ab986f096c2e310
+  - enabled: 1
+    path: Assets/Scenes/Level 13/Evening/Evening 13.1.unity
+    guid: d7a51f4b4611a4c469eb6810b9b50e3a
+  - enabled: 1
+    path: Assets/Scenes/Level 14/Morning/Morning 14.1.unity
+    guid: b62e88abc3ed11c4ca332c712ad803ca
+  - enabled: 1
+    path: Assets/Scenes/Level 14/Morning/Morning 14.2.unity
+    guid: 2ed450d63b63d6143aa4bdfe70540f05
+  - enabled: 1
+    path: Assets/Scenes/Level 14/Evening/Evening 14.2.unity
+    guid: c7143e5dd77af1f4e96c9c29d39a3257
+  - enabled: 1
+    path: Assets/Scenes/Level 14/Evening/Evening 14.1.unity
+    guid: 918c5bfa3eaf38d48b195fade51313f5
+  - enabled: 1
+    path: Assets/Scenes/Level 15/Morning/Morning 15.1.unity
+    guid: 7fb6ff6d6ea4a2a42997b6e693a37bec
+  - enabled: 1
+    path: Assets/Scenes/Level 15/Morning/Morning 15.2.unity
+    guid: 7ec775b87f467474e8fde1801a6507f3
+  - enabled: 1
+    path: Assets/Scenes/Level 15/Evening/Evening 15.2.unity
+    guid: 0b0c544611dbe0844b6927d6d67771d9
+  - enabled: 1
+    path: Assets/Scenes/Level 15/Evening/Evening 15.1.unity
+    guid: 026f9bdd610ca5a4f8edbfa22bb86831
+  - enabled: 1
+    path: Assets/Scenes/Level 16/Morning/Morning 16.1.unity
+    guid: 0288c9c6b55bfea45abd2d25d9443e6a
+  - enabled: 1
+    path: Assets/Scenes/Level 16/Morning/Morning 16.2.unity
+    guid: be04438f2b328394e82c11fd0970d4e8
+  - enabled: 1
+    path: Assets/Scenes/Level 16/Evening/Evening 16.2.unity
+    guid: b6444c398beb7d744872ef719622bbca
+  - enabled: 1
+    path: Assets/Scenes/Level 16/Evening/Evening 16.1.unity
+    guid: c6398c8ee21ed934fa1ab96d18212b97
+  - enabled: 1
+    path: Assets/Scenes/Level 17/Morning/Morning 17.1.unity
+    guid: 9127d219b4293654a9915cb8161d8774
+  - enabled: 1
+    path: Assets/Scenes/Level 17/Morning/Morning 17.2.unity
+    guid: 0f20b9bfd84a3ee4a87008c84b78fb77
+  - enabled: 1
+    path: Assets/Scenes/Level 17/Evening/Evening 17.2.unity
+    guid: 254c6fa62981b1f4c99314e39a16a3ab
+  - enabled: 1
+    path: Assets/Scenes/Level 17/Evening/Evening 17.1.unity
+    guid: 5694bb765731c0a4e8af0488ad678219
+  - enabled: 1
+    path: Assets/Scenes/Level 18/Morning/Morning 18.1.unity
+    guid: de8d6dcf916f58a4aa69bb04ba209a4b
+  - enabled: 1
+    path: Assets/Scenes/Level 18/Morning/Morning 18.2.unity
+    guid: 590e9e6ccac877c4e8e905af3a963c47
+  - enabled: 1
+    path: Assets/Scenes/Level 18/Evening/Evening 18.2.unity
+    guid: 24059ac1cc2547d46b796a16b4c0ee93
+  - enabled: 1
+    path: Assets/Scenes/Level 18/Evening/Evening 18.1.unity
+    guid: 999f3355a3331f440bc11441f9464675
+  - enabled: 1
+    path: Assets/Scenes/Level 19/Morning/Morning 19.1.unity
+    guid: a45ee84b41febe24e9c99de066825a30
+  - enabled: 1
+    path: Assets/Scenes/Level 19/Morning/Morning 19.2.unity
+    guid: 8d84865e7220c6743884adc445dfa79c
+  - enabled: 1
+    path: Assets/Scenes/Level 19/Morning/Morning 19.3.unity
+    guid: 11a26065a5e812545b6361f6ff0e1f48
+  - enabled: 1
+    path: Assets/Scenes/Level 19/Evening/Evening 19.3.unity
+    guid: df1d3fafdcf1c634f82cbd89159ca37d
+  - enabled: 1
+    path: Assets/Scenes/Level 19/Evening/Evening 19.2.unity
+    guid: f1fd180543e581349b1b13f589d48291
+  - enabled: 1
+    path: Assets/Scenes/Level 19/Evening/Evening 19.1.unity
+    guid: 6b81a1695f2daee45b30b6a629709211
+  - enabled: 1
+    path: Assets/Scenes/Level 20/Morning/Morning 20.1.unity
+    guid: 80275adec71aa2d4cb2472bf06916f47
+  - enabled: 1
+    path: Assets/Scenes/Level 20/Morning/Morning 20.2.unity
+    guid: 47afb86056543e14da9cc09d6e8ab4d3
+  - enabled: 1
+    path: Assets/Scenes/Level 20/Evening/Evening 20.2.unity
+    guid: 6f11643e171ff5643bcf98cfcff71d17
+  - enabled: 1
+    path: Assets/Scenes/Level 20/Evening/Evening 20.1.unity
+    guid: 8da721e9852cf65408225becf5cdfadc
+  - enabled: 1
+    path: Assets/Scenes/Level 21/Morning/Morning 21.1.unity
+    guid: dadd072e72103f14c9071fee34ba41a8
+  - enabled: 1
+    path: Assets/Scenes/Level 21/Morning/Morning 21.2.unity
+    guid: ee38f389c1fa6cf499e2a3808a9e296c
+  - enabled: 1
+    path: Assets/Scenes/Level 21/Evening/Evening 21.2.unity
+    guid: 916ad210ec029d7419794d2cd6586893
+  - enabled: 1
+    path: Assets/Scenes/Level 21/Evening/Evening 21.1.unity
+    guid: 3f745e760e967c745abda62728496f1c
+  - enabled: 1
+    path: Assets/Scenes/Level 22/Morning/Morning 22.1.unity
+    guid: 56fdb6403d4e6bc45942887b7d3d3908
+  - enabled: 1
+    path: Assets/Scenes/Level 22/Morning/Morning 22.2.unity
+    guid: 06051e711a328304ebac4db926137952
+  - enabled: 1
+    path: Assets/Scenes/Level 22/Evening/Evening 22.2.unity
+    guid: d4790e73890691d4f8a7bfb5a212c584
+  - enabled: 1
+    path: Assets/Scenes/Level 22/Evening/Evening 22.1.unity
+    guid: f22246b49bdbe4e409577668ae2515d7
+  - enabled: 1
+    path: Assets/Scenes/Level 23/Morning/Morning 23.1.unity
+    guid: e0dd8780b9852844e98c720ad63e26a2
+  - enabled: 1
+    path: Assets/Scenes/Level 23/Morning/Morning 23.2.unity
+    guid: 6ecb817315b1dfb4aaeb86d264df6d9a
+  - enabled: 1
+    path: Assets/Scenes/Level 23/Evening/Evening 23.2.unity
+    guid: b1219d50763dedf4e9833b215a27ff29
+  - enabled: 1
+    path: Assets/Scenes/Level 23/Evening/Evening 23.1.unity
+    guid: 4e1ba6764b0916247a6f684d39e9a29a
+  - enabled: 1
+    path: Assets/Scenes/Level 24/Morning/Morning 24.1.unity
+    guid: f67e762e20cd1c54ba8dcb38adf39ed0
+  - enabled: 1
+    path: Assets/Scenes/Level 24/Morning/Morning 24.2.unity
+    guid: a559b6103d2aed54984ef74f51f6e15d
+  - enabled: 1
+    path: Assets/Scenes/Level 24/Evening/Evening 24.2.unity
+    guid: 10b6b3127a2dc814985389513a932f5b
+  - enabled: 1
+    path: Assets/Scenes/Level 24/Evening/Evening 24.1.unity
+    guid: 823c28a1dca11d94abb88c16e38d8904
+  - enabled: 1
+    path: Assets/Scenes/Level 25/Morning/Morning 25.1.unity
+    guid: 1bc86fd9607405642aaaa2031f49eab9
+  - enabled: 1
+    path: Assets/Scenes/Level 25/Morning/Morning 25.2.unity
+    guid: 0a1d12e45abba1e4186527e19cbffe7c
+  - enabled: 1
+    path: Assets/Scenes/Level 25/Evening/Evening 25.2.unity
+    guid: f8a6661d2e7d30a4a9f2bed181297930
+  - enabled: 1
+    path: Assets/Scenes/Level 25/Evening/Evening 25.1.unity
+    guid: 494c8a45f85ee734c895e4fa7ab3d954
+  - enabled: 1
+    path: Assets/Scenes/Level 26/Morning/Morning 26.1.unity
+    guid: 68a0d913678db7d4f840c59272e68315
+  - enabled: 1
+    path: Assets/Scenes/Level 26/Morning/Morning 26.2.unity
+    guid: 26e334326e76dfe46946a3a4adfb2b00
+  - enabled: 1
+    path: Assets/Scenes/Level 26/Evening/Evening 26.2.unity
+    guid: 38db1e11bb427bd4caf7e88e5e4df43b
+  - enabled: 1
+    path: Assets/Scenes/Level 26/Evening/Evening 26.1.unity
+    guid: e1965aa7d321a4441be5f3c65bc97fdb
+  - enabled: 1
+    path: Assets/Scenes/Level 27/Morning/Morning 27.1.unity
+    guid: be90c36142dcbc54abf985811eba3d63
+  - enabled: 1
+    path: Assets/Scenes/Level 27/Morning/Morning 27.2.unity
+    guid: 44d395ffdaefb444c806ffd91bcc6dfb
+  - enabled: 1
+    path: Assets/Scenes/Level 27/Evening/Evening 27.2.unity
+    guid: 8b1e984de2469f54192339b32da07c55
+  - enabled: 1
+    path: Assets/Scenes/Level 27/Evening/Evening 27.1.unity
+    guid: 25f2155b7ec91054c9aa99660ebc6bbb
+  - enabled: 1
+    path: Assets/Scenes/Level 28/Morning/Morning 28.1.unity
+    guid: eaa80fca992592d4f8288fa5bad2e749
+  - enabled: 1
+    path: Assets/Scenes/Level 28/Morning/Morning 28.2.unity
+    guid: 65041f2abd9ae20488510f9a61e29629
+  - enabled: 1
+    path: Assets/Scenes/Level 28/Evening/Evening 28.2.unity
+    guid: 0c97a0119f31f5741add1efc702a69de
+  - enabled: 1
+    path: Assets/Scenes/Level 28/Evening/Evening 28.1.unity
+    guid: cdb542cd84ad32c4ea36f6658218028a
+  - enabled: 1
+    path: Assets/Scenes/Level 29/Morning/Morning 29.1.unity
+    guid: e8737340a24e77740ab002105136381a
+  - enabled: 1
+    path: Assets/Scenes/Level 29/Morning/Morning 29.2.unity
+    guid: ef1ff4044a3565a4fa5b36c1eeda2118
+  - enabled: 1
+    path: Assets/Scenes/Level 29/Evening/Evening 29.2.unity
+    guid: 68d0d23866d2bda40acd0ea98ddc2661
+  - enabled: 1
+    path: Assets/Scenes/Level 29/Evening/Evening 29.1.unity
+    guid: 00cbb85264e8be446bf357d9f4e364ef
+  - enabled: 1
+    path: Assets/Scenes/Level 30/Morning/Morning 30.1.unity
+    guid: 5ee10146bc654d64d99e625e0ea92a52
+  - enabled: 1
+    path: Assets/Scenes/Level 30/Morning/Morning 30.2.unity
+    guid: 5000cb13118d20b47be7f7cf257cfa7b
+  - enabled: 1
+    path: Assets/Scenes/Level 30/Evening/Evening 30.2.unity
+    guid: 1b66a4c78b87d5246b96174f9b933aa1
+  - enabled: 1
+    path: Assets/Scenes/Level 30/Evening/Evening 30.1.unity
+    guid: 3e2583f9268fd9b478c294cf3a46d666
+  - enabled: 1
+    path: Assets/Scenes/Level 31/Morning/Morning 31.1.unity
+    guid: eb43e6fd15eab6247b92146bd3d7c97e
+  - enabled: 1
+    path: Assets/Scenes/Level 31/Morning/Morning 31.2.unity
+    guid: 7ab0a61ad8387d94c9103e2e5d1f5e60
+  - enabled: 1
+    path: Assets/Scenes/Level 31/Evening/Evening 31.2.unity
+    guid: 01c4ec8fcb6d5d744bb6426c29e5d33d
+  - enabled: 1
+    path: Assets/Scenes/Level 31/Evening/Evening 31.1.unity
+    guid: 76a264a61ec7cef4e999d5e762468c79
+  - enabled: 1
+    path: Assets/Scenes/Level 32/Morning/Morning 32.1.unity
+    guid: a9716648092f086418b8bf08a7770490
+  - enabled: 1
+    path: Assets/Scenes/Level 32/Morning/Morning 32.2.unity
+    guid: 2f3f08457ac82144380b2071ab23b3fa
+  - enabled: 1
+    path: Assets/Scenes/Level 32/Evening/Evening 32.2.unity
+    guid: 677f6dabffb0ace4188ea8dac7dbf9cb
+  - enabled: 1
+    path: Assets/Scenes/Level 32/Evening/Evening 32.1.unity
+    guid: 88e5cda51a7dc0c49b852520f05ca600
+  - enabled: 1
+    path: Assets/Scenes/Level 33/Morning/Morning 33.1.unity
+    guid: 3fa23eb239718d94184e33aa51dbd55a
+  - enabled: 1
+    path: Assets/Scenes/Level 33/Morning/Morning 33.2.unity
+    guid: f0fd2d386be7a9d428f7592565df5c97
+  - enabled: 1
+    path: Assets/Scenes/Level 33/Evening/Evening 33.2.unity
+    guid: 9015e71192e2f4940827ccbd4d71d5a4
+  - enabled: 1
+    path: Assets/Scenes/Level 33/Evening/Evening 33.1.unity
+    guid: 46e4a65cb9538fd48a8745701f14c095
+  - enabled: 1
+    path: Assets/Scenes/Level 34/Morning/Morning 34.1.unity
+    guid: 917612b4c12e7584a84a28abeeb7ae44
+  - enabled: 1
+    path: Assets/Scenes/Level 34/Morning/Morning 34.2.unity
+    guid: 14f025bb03a2e4c4f9cb1707fae2b9ef
+  - enabled: 1
+    path: Assets/Scenes/Level 34/Evening/Evening 34.2.unity
+    guid: 2b8e9bfdeaff1f542a908b5c2c0ac83e
+  - enabled: 1
+    path: Assets/Scenes/Level 34/Evening/Evening 34.1.unity
+    guid: 21dc23587b6773142a73e5c3c3e79e23
+  - enabled: 1
+    path: Assets/Scenes/Level 35/Morning/Morning 35.1.unity
+    guid: 5a0be4107abb0434bbf7c11182223379
+  - enabled: 1
+    path: Assets/Scenes/Level 35/Morning/Morning 35.2.unity
+    guid: e81ab663687379a438543226f0c8137c
+  - enabled: 1
+    path: Assets/Scenes/Level 35/Evening/Evening 35.2.unity
+    guid: bcf3f6ae7f7a27c4085df0b467a8df26
+  - enabled: 1
+    path: Assets/Scenes/Level 35/Evening/Evening 35.1.unity
+    guid: 4861d08c4dba7544b8d8366aa05902b8
+  - enabled: 1
+    path: Assets/Scenes/Level 36/Morning/Morning 36.1.unity
+    guid: 4400550886700cf45959377e32cbc983
+  - enabled: 1
+    path: Assets/Scenes/Level 36/Morning/Morning 36.2.unity
+    guid: ab81056701249234ab49a4e42f475b63
+  - enabled: 1
+    path: Assets/Scenes/Level 36/Evening/Evening 36.2.unity
+    guid: 1ccecd4e653065d4d8f38d191b2fcd25
+  - enabled: 1
+    path: Assets/Scenes/Level 36/Evening/Evening 36.1.unity
+    guid: 751c8ecfec2a379438ba8aac80670bf2
+  - enabled: 1
+    path: Assets/Scenes/Game completion certificate.unity
+    guid: 9b33300ffd48b8442afc16c7248bd344
+  m_configObjects:
+    com.unity.adaptivePerformance.basic.provider_settings: {fileID: 11400000, guid: ff8a7e5709bd85846a456da4ba534544, type: 2}
+    com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 393af4954300934459300ebf5547cdbd, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: fd58b46a75b61ac4b97435e631ff2ebb, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: c6ee6fa6406015f45af9cc0089641cc2, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 5e19e9b92de8ad64ea6fb07d8d6c4f58, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 9aba829dd65291045bb91c60ad4b1827, type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 81dbc299c027c514d82d150229f991c6, type: 3}
+  m_UseUCBPForAssetBundles: 0

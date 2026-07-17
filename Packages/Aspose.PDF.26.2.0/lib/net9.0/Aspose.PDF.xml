@@ -1,0 +1,568 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Aspose.PDF</name>
+  </assembly>
+  <members>
+    <member name="T:Aspose.Pdf.AI.IOcrCopilotOptions`1">
+      <summary>
+            Represents an interface for chat copilot options with a specific type.
+            </summary>
+      <typeparam name="TOptions">The type of options for the chat copilot.</typeparam>
+    </member>
+    <member name="M:Aspose.Pdf.AI.IOcrCopilotOptions`1.GetOptions">
+      <summary>
+            Gets the options of type <typeparamref name="TOptions" />.
+            </summary>
+      <returns>The options of type <typeparamref name="TOptions" />.</returns>
+    </member>
+    <member name="T:Aspose.Pdf.AI.IOcrClient`1">
+      <summary>
+            Represents an interface for a OCR client with specific options.
+            </summary>
+      <typeparam name="TOptions">The type of options for the OCR client.</typeparam>
+    </member>
+    <member name="T:Aspose.Pdf.AI.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.AI</b> namespace provides classes for AI functionalities, including API clients and intelligent assistants.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.AI.IImageDescriptionCopilotOptions`1">
+      <summary>
+            Represents an interface for image description copilot options with a specific type.
+            </summary>
+      <typeparam name="TOptions">The type of options for the image description copilot.</typeparam>
+    </member>
+    <member name="M:Aspose.Pdf.AI.IImageDescriptionCopilotOptions`1.GetOptions">
+      <summary>
+            Gets the options of type <typeparamref name="TOptions" />.
+            </summary>
+      <returns>The options of type <typeparamref name="TOptions" />.</returns>
+    </member>
+    <member name="T:Aspose.Pdf.AI.ISummaryCopilotOptions`1">
+      <summary>
+            Represents an interface for summary copilot options with a specific type.
+            </summary>
+      <typeparam name="TOptions">The type of options for the summary copilot.</typeparam>
+    </member>
+    <member name="M:Aspose.Pdf.AI.ISummaryCopilotOptions`1.GetOptions">
+      <summary>
+            Gets the options of type <typeparamref name="TOptions" />.
+            </summary>
+      <returns>The options of type <typeparamref name="TOptions" />.</returns>
+    </member>
+    <member name="T:Aspose.Pdf.AI.IChatCopilotOptions`1">
+      <summary>
+            Represents an interface for chat copilot options with a specific type.
+            </summary>
+      <typeparam name="TOptions">The type of options for the chat copilot.</typeparam>
+    </member>
+    <member name="M:Aspose.Pdf.AI.IChatCopilotOptions`1.GetOptions">
+      <summary>
+            Gets the options of type <typeparamref name="TOptions" />.
+            </summary>
+      <returns>The options of type <typeparamref name="TOptions" />.</returns>
+    </member>
+    <member name="T:Aspose.Pdf.AI.IAICopilot">
+      <summary>
+            Represents a copilot for AI interactions.
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.AI.IAICopilot.HasContext">
+      <summary>
+            Gets a value indicating whether the copilot has context.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.AI.IImageDescriptionClient`1">
+      <summary>
+            Represents an interface for an image description client with specific options.
+            </summary>
+      <typeparam name="TOptions">The type of options for the image description client.</typeparam>
+    </member>
+    <member name="T:Aspose.Pdf.AI.ISummaryClient`1">
+      <summary>
+            Represents an interface for a summary client with specific options.
+            </summary>
+      <typeparam name="TOptions">The type of options for the summary client.</typeparam>
+    </member>
+    <member name="T:Aspose.Pdf.AI.IChatClient`1">
+      <summary>
+            Represents an interface for a chat client with specific options.
+            </summary>
+      <typeparam name="TOptions">The type of options for the chat client.</typeparam>
+    </member>
+    <member name="T:Aspose.Pdf.AI.IAIClient">
+      <summary>
+            Represents an interface for an AI client.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.AI.IEntityId">
+      <summary>
+            Represents an entity with an ID.
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.AI.IEntityId.Id">
+      <summary>
+            Gets or sets the ID of the entity.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.AI.IStatus">
+      <summary>
+            Represents the status of an operation.
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.AI.IStatus.Status">
+      <summary>
+            Gets or sets the status of the operation.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.AI.IQueryParameters">
+      <summary>
+            Represents query parameters for API requests.
+            </summary>
+    </member>
+    <member name="M:Aspose.Pdf.AI.IQueryParameters.GetQueryParameters">
+      <summary>
+            Gets the query parameters as a string.
+            </summary>
+      <returns>The query parameters as a string.</returns>
+    </member>
+    <member name="T:Aspose.Pdf.AI.IStringOrObject`1">
+      <summary>
+            Represents an object that can be either a string value or an object value.
+            </summary>
+      <typeparam name="T">The type of the object value.</typeparam>
+    </member>
+    <member name="P:Aspose.Pdf.AI.IStringOrObject`1.StringValue">
+      <summary>
+            Gets or sets the string value.
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.AI.IStringOrObject`1.ObjectValue">
+      <summary>
+            Gets or sets the object value.
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.AI.IStringOrObject`1.IsStringValue">
+      <summary>
+            Gets a value indicating whether the response format is a string value.
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.AI.IStringOrObject`1.IsObjectValue">
+      <summary>
+            Gets a value indicating whether the response format is an object value.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Engine.CommonData.Text.CMaps.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Engine.CommonData.Text.CMaps</b> is a root namespace for all CMap classes.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Engine.Presentation.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Presentation</b> namespace provides classes that allow to interact with document presentation.  
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Comparison.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Comparison</b> namespace provides classes for the PDF comparison functionalities.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Comparison.IFileOutputGenerator">
+      <summary>
+            Represents an interface for generating output to a file of differences between texts.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Comparison.IStringOutputGenerator">
+      <summary>
+            Represents an interface for generating output to a string of differences between texts.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Annotations.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Annotations</b> namespace provides classes for working with various types of actions, destinations and other features of document 
+            which traditionally called as interactive providing means user can intercommunicate with it.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Annotations.IAnnotationVisitor">
+      <summary>
+            Defines Visitor for visiting different document annotations.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Annotations.IAppointment">
+      <summary>
+            Represents general interface for actions and destinations.
+            </summary>
+    </member>
+    <member name="M:Aspose.Pdf.Annotations.IAppointment.ToString">
+      <summary>
+            Returns string representation
+            </summary>
+      <returns>String representation.</returns>
+    </member>
+    <member name="T:Aspose.Pdf.LowCode.IDataSource">
+      <summary>
+            General data source interface that defines common members that concrete data sources should implement.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.LowCode.IOperationResult">
+      <summary>
+            General operation result interface that defines common methods that concrete plugin operation result should implement.
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.LowCode.IOperationResult.IsFile">
+      <summary>
+            Indicates whether the result is a path to an output file.
+            </summary>
+      <returns>
+        <c>true</c> if the result is a file; otherwise <c>false</c>.</returns>
+    </member>
+    <member name="P:Aspose.Pdf.LowCode.IOperationResult.IsStream">
+      <summary>
+            Indicates whether the result is an output stream.
+            </summary>
+      <returns>
+        <c>true</c> if the result is a stream object; otherwise <c>false</c>.</returns>
+    </member>
+    <member name="P:Aspose.Pdf.LowCode.IOperationResult.IsString">
+      <summary>
+            Indicates whether the result is a text string.
+            </summary>
+      <returns>
+        <c>true</c> if the result is a string; otherwise <c>false</c>.</returns>
+    </member>
+    <member name="P:Aspose.Pdf.LowCode.IOperationResult.Data">
+      <summary>
+            Gets raw data.
+            </summary>
+      <returns>An <c>object</c> representing output data.</returns>
+    </member>
+    <member name="T:Aspose.Pdf.LowCode.IPlugin">
+      <summary>
+            General plugin interface that defines common methods that concrete plugin should implement.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.LowCode.IPluginOptions">
+      <summary>
+            General plugin option interface that defines common methods that concrete plugin option should implement.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.LowCode.ISaveTarget">
+      <summary>
+            General save target interface that defines common members that concrete operation result save target should implement.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.LowCode.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.LowCode</b> is a root namespace for all classes of Aspose.Pdf.LowCode classes which are either directly in it like <b>PdfOrganizer</b> or indirectly through several subnamespaces.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.DataEditor.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.DataEditor</b> contains tools for editing data within a document.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.DataEditor.ICosPdfPrimitive">
+      <summary>
+            Interface for work with PDF data entity
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Facades.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Facades</b> namespace provides classes originaly came from Aspose.Pdf.Kit. These classes are used for manipulating documents
+            perfoming operations like concatenating, stamping, signing, annotating etc. but on the high level without access to a document's inner structure.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Flow.NamespaceDoc">
+      <summary>
+            Contains classes and interfaces for recognizing and analyzing the structural composition of PDF documents.
+            This includes components such as <see cref="T:Aspose.Pdf.Flow.StructureRecognitionVisitor" />, which traverses the layout tree
+            to identify elements like paragraphs, tables, sections, and figures, and to build a structured representation of the document.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Flow.IStructureRecognitionVisitor">
+      <summary>
+            Base interface for a custom document structure recognition visitor
+            </summary>
+    </member>
+    <member name="M:Aspose.Pdf.IBoundsCheckableItem.CheckBounds(System.Double,System.Double)">
+      <summary>
+            Checks if the item fits within the given container dimensions (inclusive).
+            </summary>
+      <param name="containerWidth">Width of the container.</param>
+      <param name="containerHeight">Height of the container.</param>
+      <returns>True if fits; otherwise, false.</returns>
+    </member>
+    <member name="T:Aspose.Pdf.Printing.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Printing</b> namespace provides classes and functionalities for handling PDF printing operations,
+            including printer settings, page settings, and extensions for managing print-related configurations.
+            </summary>
+    </member>
+    <!-- Badly formed XML comment ignored for member "M:Aspose.Pdf.RtfParser.IgnoreDestinationTokens(Aspose.Pdf.RtfToken)" -->
+    <member name="T:Aspose.Pdf.Security.ICustomSecurityHandler">
+      <summary>
+            The custom security handler interface.
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.Security.ICustomSecurityHandler.Filter">
+      <summary>
+            Gets the filter name.
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.Security.ICustomSecurityHandler.SubFilter">
+      <summary>
+            Gets the sub-filter name.
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.Security.ICustomSecurityHandler.Version">
+      <summary>
+            Gets the handler or encryption algorithm version.
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.Security.ICustomSecurityHandler.Revision">
+      <summary>
+            Gets the handler or encryption algorithm revision.
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.Security.ICustomSecurityHandler.KeyLength">
+      <summary>
+            Gets the key length.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Security.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Security</b> namespace contains classes used for encryption and digital signing.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Signatures.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Signatures</b> namespace provides classes for signatures functionalities.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Tagged.IAdjustPosition">
+      <summary>
+            Interface for positioning methods.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Tagged.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Tagged</b> is a namespace for classes for support of Tagged PDF documents.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Tagged.ITaggedContent">
+      <summary>
+            Represents interface for work with TaggedPdf content of document.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.LogicalStructure.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Tagged.LogicalStructure </b> is a namespace for PDF Logical Structure classes.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.LogicalStructure.ITextElement">
+      <summary>
+            Interface for presenting text structure elements.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Text.IFontOptions">
+      <summary>
+            Useful properties to tune Font behaviour
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.Text.IFontOptions.NotifyAboutFontEmbeddingError">
+      <summary>
+            Sometimes it's not possible to embed desired font into document. There are many reasons, for example
+            license restrictions or when desired font was not found on destination computer.
+            When this situation comes it's not simply to detect, because desired font is embedded via set 
+            of property flag Font.IsEmbedded = true; Of course it's possible to read this property immediately after it was set but
+            it's not convenient approach. Flag NotifyAboutFontEmbeddingError enforces exception mechanism 
+            for cases when attempt to embed font became failed. If this flag is set an exception of type
+            <see cref="T:Aspose.Pdf.FontEmbeddingException" /> will be thrown. By default false.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Text.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Text</b> namespace provides classes that allow to extract text, add text, manipulate existing text of a document.  
+            It also contain classes that allow to extract, replace, substitute fonts of a document.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Text.ITableElement">
+      <summary>
+            This interface represents an element of existing table extracted by TableAbsorber.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Optimization.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Optimization</b> is a namespace for classes for managing of document optimization process.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Vector.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Vector</b> is a root namespace for graphics operations.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Multithreading.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Multithreading</b> namespace provides classes that are meant to be used in multi-threaded scenarios.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Forms.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Forms</b> namespace has classes which describes forms (standard, static, dynamic) and various types of fields like text box, list box, radio button etc.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Drawing.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Drawing</b> namespace provides classes describing graphic primitives like arc, line, circle etc. 
+            Corresponding objects can be used for creating new documents.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.INamedDestinationCollection">
+      <summary>
+            Collection of Named Destinations.
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.INamedDestinationCollection.Item(System.String)">
+      <summary>
+            Gets or sets destination by its name.
+            </summary>
+      <param name="name">Name value.</param>
+      <returns>Destination object.</returns>
+    </member>
+    <member name="P:Aspose.Pdf.INamedDestinationCollection.Count">
+      <summary>
+            Returns count of the destinations.
+            </summary>
+    </member>
+    <member name="M:Aspose.Pdf.INamedDestinationCollection.Remove(System.String)">
+      <summary>
+            Removes destination by its name.
+            </summary>
+      <param name="name">Name value.</param>
+    </member>
+    <member name="M:Aspose.Pdf.INamedDestinationCollection.Add(System.String,Aspose.Pdf.Annotations.IAppointment)">
+      <summary>
+            Adds new named destination.
+            </summary>
+      <param name="name">Name value.</param>
+      <param name="appointment">Appointment object.</param>
+    </member>
+    <member name="P:Aspose.Pdf.INamedDestinationCollection.Names">
+      <summary>
+            Gets array of names of the destinations.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.IColorSpaceConversionStrategy">
+      <summary>
+            Interface for color space conversion strategies.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Sanitization.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Sanitization</b> is a namespace for sanitization operations.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.IIndexBitmapConverter">
+      <summary>
+            This interface declared for customization algorithms of quantization. 
+            Users can implement their own realization of this algorithms (for example algorithms based on unmanaged code).
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.GroupProcessor.NamespaceDoc">
+      <summary>
+        <p>The <b>Aspose.Pdf.GroupProcessor</b> namespace provides classes used to work text and fonts.</p>
+      </summary>
+    </member>
+    <member name="T:Aspose.Pdf.GroupProcessor.IDocumentPageTextExtractor">
+      <summary>
+            Interface for document page text extractor.
+            </summary>
+    </member>
+    <member name="M:Aspose.Pdf.GroupProcessor.IDocumentPageTextExtractor.ExtractPageText(System.Int32)">
+      <summary>
+            Extracted page text.
+            </summary>
+      <param name="pageNumber">Page number.</param>
+      <returns>Extracted page text.</returns>
+    </member>
+    <member name="P:Aspose.Pdf.GroupProcessor.IDocumentPageTextExtractor.PageCount">
+      <summary>
+            Returns page count.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.GroupProcessor.IDocumentTextExtractor">
+      <summary>
+            Interface for document text extractor.
+            </summary>
+    </member>
+    <member name="M:Aspose.Pdf.GroupProcessor.IDocumentTextExtractor.ExtractAllText">
+      <summary>
+            Returns collection of extracted text values.
+            </summary>
+      <returns>Extracted text values.</returns>
+    </member>
+    <member name="T:Aspose.Pdf.GroupProcessor.Creators.NamespaceDoc">
+      <summary>
+        <p>The <b>Aspose.Pdf.GroupProcessor.Creators</b> namespace provides classes used to create instances of GroupProcessor classes. </p>
+      </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Devices.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Devices</b> namespace provides classes which are used for representing document as image(s) or a plain text.
+            So document can be sent on to textual or various graphic devices which means we want to get it textual or graphic representation.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.IPipelineOptions">
+      <summary>
+            Defines conversion options related to pipeline configuration.
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.IPipelineOptions.BatchSize">
+      <summary>
+            Specifies the size of a portion of pages to pass from node to node.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.IPageSetOptions">
+      <summary>
+            Defines conversion options related to a set of pages to convert.
+            </summary>
+    </member>
+    <member name="P:Aspose.Pdf.IPageSetOptions.ExplicitListOfSavedPages">
+      <summary>
+            Specifies the array of numbers of pages to convert.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf</b> is a root namespace for all classes of Aspose.Pdf library which are either directly in it like <b>Document</b> or indirectly through several subnamespaces.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.IOperatorSelector">
+      <summary>
+            Defines Visitor for visiting different pdf operators.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Operators.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Operators</b> is a namespace for Operator implementations. These classes describes operators used in PDF page contents.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.XfaConverter.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.XfaConverter</b> namespace provides classes that allow to convert XFA.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.IWarningCallback">
+      <summary>
+            Interface for user's callback mechanism support.
+            </summary>
+    </member>
+    <member name="T:Aspose.Pdf.Structure.NamespaceDoc">
+      <summary>
+            The <b>Aspose.Pdf.Structure</b> namespace provides classes which help to work with a logical structure of a document which presents 
+            the organization of the document into chapters and sections or the identification of special elements such as figures, tables, and footnotes.
+            </summary>
+    </member>
+  </members>
+</doc>

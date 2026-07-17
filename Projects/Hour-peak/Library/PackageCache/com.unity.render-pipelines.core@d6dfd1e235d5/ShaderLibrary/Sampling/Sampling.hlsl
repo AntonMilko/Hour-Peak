@@ -1,0 +1,1 @@
+MyFunction((min16float)someFloat, 0.0f);
