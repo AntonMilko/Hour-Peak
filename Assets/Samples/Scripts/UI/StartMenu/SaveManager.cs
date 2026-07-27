@@ -238,6 +238,9 @@ public class SaveManager : MonoBehaviour
             // Trigger event
             OnSaveCreated?.Invoke(slotIndex, saveData);
 
+            // Обновляем DateTimeText в UI
+            UpdateSlotDateTimeUI(slotIndex);
+
             Debug.Log($"Game saved to slot {slotIndex}: {saveData.SaveName}");
             return true;
         }
@@ -488,6 +491,31 @@ public class SaveManager : MonoBehaviour
     private string GetSaveFilePath(int slotIndex)
     {
         return Path.Combine(_saveDirectoryPath, $"save_{slotIndex:00}{fileExtension}");
+    }
+
+    /// <summary>
+    /// Обновляет DateTimeText в UI для указанного слота при сохранении.
+    /// </summary>
+    private void UpdateSlotDateTimeUI(int slotIndex)
+    {
+        try
+        {
+            // Ищем SaveSlotSystem на сцене
+            var saveSlotSystem = FindFirstObjectByType<SaveSlotSystem>();
+            if (saveSlotSystem == null)
+            {
+                Debug.LogWarning("[SaveManager] SaveSlotSystem не найден — DateTimeText не обновлён.");
+                return;
+            }
+
+            // Форматируем дату и время: dd.MM.yyyy HH:mm:ss
+            string formatted = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
+            saveSlotSystem.UpdateDateTimeText(slotIndex, formatted);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"[SaveManager] Ошибка обновления DateTimeText для слота {slotIndex}: {e.Message}");
+        }
     }
 
     #endregion

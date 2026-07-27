@@ -14,9 +14,6 @@ public class GameSaveController : MonoBehaviour
     [SerializeField] private bool autoSaveOnCheckpoint = true;
     [SerializeField] private int autoSaveSlot = 0;
 
-    [Header("Debug")]
-    [SerializeField] private bool showSaveLogs = true;
-
     #endregion
 
     #region Private Fields
@@ -88,10 +85,47 @@ public class GameSaveController : MonoBehaviour
 
     #region Unity Lifecycle
 
-    private void Start()
+    private void Awake()
     {
+        // Если уже есть инстанс — уничтожаем этот
+        if (Instance != null && Instance != this)
+        {
+            // Проверяем, не является ли это папкой-контейнером
+            if (gameObject.name.StartsWith("Folder"))
+            {
+                // Папки — это контейнеры, компонент на них не должен работать
+                Destroy(gameObject);
+                return;
+            }
+            
+            Debug.LogWarning($"GameSaveController: Найден дубликат на объекте «{gameObject.name}». Удалён. Должен быть только один инстанс.");
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        
+        // Сохраняем между сценами — ищем корневой GameObject
+        GameObject rootGO = gameObject;
+        while (rootGO.transform.parent != null)
+        {
+            rootGO = rootGO.transform.parent.gameObject;
+        }
+        DontDestroyOnLoad(rootGO);
+        
         InitializeGameState();
     }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
+    }
+
+    /// <summary>
+    /// Единственный инстанс контроллера (Singleton).
+    /// </summary>
+    public static GameSaveController Instance { get; private set; }
 
     private void Update()
     {
@@ -124,11 +158,6 @@ public class GameSaveController : MonoBehaviour
         _totalStars = 0;
         _currentLevel = 0;
         _difficultyLevel = 0;
-
-        if (showSaveLogs)
-        {
-            Debug.Log("GameSaveController initialized.");
-        }
     }
 
     #endregion
@@ -170,11 +199,6 @@ public class GameSaveController : MonoBehaviour
         {
             SaveGame(autoSaveSlot);
         }
-
-        if (showSaveLogs)
-        {
-            Debug.Log($"Level completed! Stars: {_currentLevelStars}/{3}, Total: {_totalStars}");
-        }
     }
 
     /// <summary>
@@ -185,11 +209,6 @@ public class GameSaveController : MonoBehaviour
         _levelCompleted = false;
         _currentLevelStars = 0;
         _currentLevelTime = 0f;
-
-        if (showSaveLogs)
-        {
-            Debug.Log("Level failed. Progress reset.");
-        }
     }
 
     /// <summary>
@@ -201,11 +220,6 @@ public class GameSaveController : MonoBehaviour
         _levelCompleted = false;
         _currentLevelStars = 0;
         _currentLevelTime = 0f;
-
-        if (showSaveLogs)
-        {
-            Debug.Log($"Starting level {_currentLevel + 1}");
-        }
     }
 
     #endregion
@@ -217,21 +231,17 @@ public class GameSaveController : MonoBehaviour
     /// </summary>
     public bool SaveGame(int slotIndex)
     {
-        if (SaveManager.Instance == null)
+        var saveManager = FindFirstObjectByType<SaveManager>();
+        if (saveManager == null)
         {
             Debug.LogError("SaveManager not found!");
             return false;
         }
 
-        var saveData = SaveManager.Instance.CreateCurrentSaveData();
+        var saveData = saveManager.CreateCurrentSaveData();
         saveData.SaveName = $"Level {_currentLevel + 1} - {DateTime.Now:dd.MM.yyyy HH.mm}";
 
-        bool success = SaveManager.Instance.SaveGame(slotIndex, saveData);
-
-        if (success && showSaveLogs)
-        {
-            Debug.Log($"Game saved to slot {slotIndex}: {saveData.SaveName}");
-        }
+        bool success = saveManager.SaveGame(slotIndex, saveData);
 
         return success;
     }
@@ -241,13 +251,14 @@ public class GameSaveController : MonoBehaviour
     /// </summary>
     public bool LoadGame(int slotIndex)
     {
-        if (SaveManager.Instance == null)
+        var saveManager = FindFirstObjectByType<SaveManager>();
+        if (saveManager == null)
         {
             Debug.LogError("SaveManager not found!");
             return false;
         }
 
-        var saveData = SaveManager.Instance.LoadGame(slotIndex);
+        var saveData = saveManager.LoadGame(slotIndex);
         if (saveData == null)
         {
             Debug.LogWarning($"No save data found in slot {slotIndex}");
@@ -255,11 +266,6 @@ public class GameSaveController : MonoBehaviour
         }
 
         ApplySaveData(saveData);
-
-        if (showSaveLogs)
-        {
-            Debug.Log($"Game loaded from slot {slotIndex}: {saveData.SaveName}");
-        }
 
         return true;
     }
@@ -282,11 +288,6 @@ public class GameSaveController : MonoBehaviour
         {
             SetPlayerPositionInternal(saveData.PlayerPosition);
         }
-
-        if (showSaveLogs)
-        {
-            Debug.Log($"Applied save: Level {_currentLevel + 1}, Stars {_totalStars}");
-        }
     }
 
     /// <summary>
@@ -300,6 +301,82 @@ public class GameSaveController : MonoBehaviour
     #endregion
 
     #region Player Position (Implement with your player controller)
+
+    /// <summary>
+    /// Получает позицию игрока.
+    /// </summary>
+    public Vector3 GetPlayerPosition()
+    {
+        return GetPlayerPositionInternal();
+    }
+
+    /// <summary>
+    /// Получает вращение игрока.
+    /// </summary>
+    public Vector4 GetPlayerRotation()
+    {
+        return GetPlayerRotationInternal();
+    }
+
+    /// <summary>
+    /// Устанавливает позицию игрока.
+    /// </summary>
+    public void SetPlayerPosition(Vector3 position)
+    {
+        SetPlayerPositionInternal(position);
+    }
+
+    /// <summary>
+    /// Устанавливает вращение игрока.
+    /// </summary>
+    public void SetPlayerRotation(Vector4 rotation)
+    {
+        SetPlayerRotationInternal(rotation);
+    }
+
+    /// <summary>
+    /// Устанавливает время текущего уровня.
+    /// </summary>
+    public void SetCurrentLevelTime(float time)
+    {
+        _currentLevelTime = time;
+    }
+
+    /// <summary>
+    /// Устанавливает общее время игры.
+    /// </summary>
+    public void SetTotalPlaytime(float time)
+    {
+        _totalPlaytime = time;
+    }
+
+    /// <summary>
+    /// Устанавливает статус завершения уровня.
+    /// </summary>
+    public void SetLevelCompleted(bool completed)
+    {
+        _levelCompleted = completed;
+    }
+
+    /// <summary>
+    /// Устанавливает звёзды за текущий уровень.
+    /// </summary>
+    public void SetCurrentLevelStars(int stars)
+    {
+        _currentLevelStars = stars;
+    }
+
+    /// <summary>
+    /// Устанавливает общее количество звёзд.
+    /// </summary>
+    public void SetTotalStars(int stars)
+    {
+        _totalStars = stars;
+    }
+
+    #endregion
+
+    #region Internal Player Methods (for SaveManager compatibility)
 
     private void SetPlayerPositionInternal(Vector3 position)
     {
@@ -341,37 +418,6 @@ public class GameSaveController : MonoBehaviour
     {
         // Implement difficulty change logic
     }
-
-    #endregion
-
-    #region Getters for SaveManager
-
-    // These are called by SaveManager.CreateCurrentSaveData()
-    // They delegate to the actual game state
-
-    private int SaveManager_GetCurrentLevel() => _currentLevel;
-    private int SaveManager_GetDifficultyLevel() => _difficultyLevel;
-    private Vector3 SaveManager_GetPlayerPosition() => GetPlayerPositionInternal();
-    private Vector4 SaveManager_GetPlayerRotation() => GetPlayerRotationInternal();
-    private float SaveManager_GetCurrentLevelTime() => _currentLevelTime;
-    private float SaveManager_GetTotalPlaytime() => _totalPlaytime;
-    private bool SaveManager_IsLevelCompleted() => _levelCompleted;
-    private int SaveManager_GetCurrentLevelStars() => _currentLevelStars;
-    private int SaveManager_GetTotalStars() => _totalStars;
-    private int SaveManager_GetCrowdDensity() => 20; // From GameSettings
-    private float SaveManager_GetCurrentSpeed() => 2.5f; // From GameSettings
-
-    private void SaveManager_SetCurrentLevel(int level) => _currentLevel = level;
-    private void SaveManager_SetDifficultyLevel(int difficulty) => _difficultyLevel = difficulty;
-    private void SaveManager_SetPlayerPosition(Vector3 pos) => SetPlayerPositionInternal(pos);
-    private void SaveManager_SetPlayerRotation(Vector4 rot) => SetPlayerRotationInternal(rot);
-    private void SaveManager_SetCurrentLevelTime(float time) => _currentLevelTime = time;
-    private void SaveManager_SetTotalPlaytime(float time) => _totalPlaytime = time;
-    private void SaveManager_SetLevelCompleted(bool completed) => _levelCompleted = completed;
-    private void SaveManager_SetCurrentLevelStars(int stars) => _currentLevelStars = stars;
-    private void SaveManager_SetTotalStars(int stars) => _totalStars = stars;
-    private void SaveManager_SetCrowdDensity(int density) { /* From GameSettings */ }
-    private void SaveManager_SetCurrentSpeed(float speed) { /* From GameSettings */ }
 
     #endregion
 }

@@ -48,6 +48,15 @@ public class SaveSlotUI : MonoBehaviour
 
     private void Awake()
     {
+        // Активируем слот при загрузке
+        if (!gameObject.activeInHierarchy)
+        {
+            gameObject.SetActive(true);
+            Debug.Log($"SaveSlotUI.Awake: Activated slot '{gameObject.name}'");
+        }
+        
+        Debug.Log($"SaveSlotUI.Awake: slot='{gameObject.name}', active={gameObject.activeInHierarchy}");
+
         if (slotButton == null)
         {
             slotButton = GetComponent<Button>();
@@ -79,6 +88,21 @@ public class SaveSlotUI : MonoBehaviour
         _slotIndex = slotIndex;
         _currentSaveData = saveData;
         _onSlotSelected = onSlotSelected;
+        
+        Debug.Log($"SaveSlotUI[{slotIndex}]: Initialized with saveData={saveData?.SaveName ?? "null"}, active={gameObject?.activeInHierarchy}");
+        
+        // Обновляем текст слота
+        if (slotDateText != null)
+        {
+            if (saveData != null)
+            {
+                slotDateText.text = saveData.SaveName;
+            }
+            else
+            {
+                slotDateText.text = $"Файл {slotIndex + 1}";
+            }
+        }
     }
 
     #endregion
@@ -87,7 +111,12 @@ public class SaveSlotUI : MonoBehaviour
 
     private void OnSlotClicked()
     {
-        _onSlotSelected?.Invoke(_slotIndex);
+        Debug.Log($"SaveSlotUI: Clicked slot index={_slotIndex}, saveData={_currentSaveData?.SaveName ?? "null"}");
+        
+        if (_onSlotSelected != null)
+        {
+            _onSlotSelected(_slotIndex);
+        }
     }
 
     #endregion

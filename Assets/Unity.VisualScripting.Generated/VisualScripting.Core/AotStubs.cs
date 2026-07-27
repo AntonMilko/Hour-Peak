@@ -768,9 +768,9 @@ namespace Unity.VisualScripting.Generated.Aot
 	// SaveSlotUI.op_Implicit
 	// SaveSlotUI.op_Equality
 	// SaveSlotUI.op_Inequality
-	// StartMenu.op_Implicit
-	// StartMenu.op_Equality
-	// StartMenu.op_Inequality
+	// SetupSlotContainer.op_Implicit
+	// SetupSlotContainer.op_Equality
+	// SetupSlotContainer.op_Inequality
 	// TheDisplayingOfStars.op_Implicit
 	// TheDisplayingOfStars.op_Equality
 	// TheDisplayingOfStars.op_Inequality
@@ -10204,9 +10204,9 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// StartMenu.op_Implicit
+		// SetupSlotContainer.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void StartMenu_op_Implicit()
+		public static void SetupSlotContainer_op_Implicit()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			bool conversion = ((bool)(arg0));
@@ -10215,9 +10215,9 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// StartMenu.op_Equality
+		// SetupSlotContainer.op_Equality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void StartMenu_op_Equality()
+		public static void SetupSlotContainer_op_Equality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
@@ -10227,9 +10227,9 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// StartMenu.op_Inequality
+		// SetupSlotContainer.op_Inequality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void StartMenu_op_Inequality()
+		public static void SetupSlotContainer_op_Inequality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);

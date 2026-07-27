@@ -44,6 +44,7 @@ public class Level : MonoBehaviour
     private Color originalColor;
     private Color morningOriginalColor;
     private Color eveningOriginalColor;
+    private LevelManager levelManager;
 
     #endregion
 
@@ -65,7 +66,7 @@ public class Level : MonoBehaviour
         {
             eveningOriginalColor = eveningImage.color;
         }
-
+        levelManager = GetComponent<LevelManager>();
         ApplyVisualState();
     }
 
@@ -88,14 +89,14 @@ public class Level : MonoBehaviour
         // Morning variant
         if (morningImage != null)
         {
-            bool morningUnlocked = levelIndex == 0 || LevelManager.Instance.IsLevelFullyCompleted(levelIndex - 1);
+            bool morningUnlocked = levelIndex == 0 || levelManager.IsLevelFullyCompleted(levelIndex - 1);
             
             Color color = morningUnlocked ? morningOriginalColor : new Color(morningOriginalColor.r, morningOriginalColor.g, morningOriginalColor.b, morningBlockedAlpha);
             morningImage.color = color;
         }
         else if (levelImage != null)
         {
-            bool isAccessible = LevelManager.Instance.CanAccessBaseLevel(levelIndex);
+            bool isAccessible = levelManager.CanAccessBaseLevel(levelIndex);
             Color color = isAccessible ? originalColor : new Color(originalColor.r, originalColor.g, originalColor.b, blockedAlpha);
             levelImage.color = color;
         }
@@ -103,7 +104,7 @@ public class Level : MonoBehaviour
         // Evening variant
         if (eveningImage != null)
         {
-            bool eveningUnlocked = LevelManager.Instance.IsLevelFullyCompleted(levelIndex);
+            bool eveningUnlocked = levelManager.IsLevelFullyCompleted(levelIndex);
             
             Color color = eveningUnlocked ? eveningOriginalColor : new Color(eveningOriginalColor.r, eveningOriginalColor.g, eveningOriginalColor.b, eveningBlockedAlpha);
             eveningImage.color = color;
@@ -117,19 +118,19 @@ public class Level : MonoBehaviour
     {
         if (timeOfDay == TimeOfDay.Morning && morningImage != null)
         {
-            bool morningUnlocked = levelIndex == 0 || LevelManager.Instance.IsLevelFullyCompleted(levelIndex - 1);
+            bool morningUnlocked = levelIndex == 0 || levelManager.IsLevelFullyCompleted(levelIndex - 1);
             Color color = morningUnlocked ? morningOriginalColor : new Color(morningOriginalColor.r, morningOriginalColor.g, morningOriginalColor.b, morningBlockedAlpha);
             morningImage.color = color;
         }
         else if (timeOfDay == TimeOfDay.Evening && eveningImage != null)
         {
-            bool eveningUnlocked = LevelManager.Instance.IsLevelFullyCompleted(levelIndex);
+            bool eveningUnlocked = levelManager.IsLevelFullyCompleted(levelIndex);
             Color color = eveningUnlocked ? eveningOriginalColor : new Color(eveningOriginalColor.r, eveningOriginalColor.g, eveningOriginalColor.b, eveningBlockedAlpha);
             eveningImage.color = color;
         }
         else if (levelImage != null)
         {
-            bool isAccessible = LevelManager.Instance.CanAccessBaseLevel(levelIndex);
+            bool isAccessible = levelManager.CanAccessBaseLevel(levelIndex);
             Color color = isAccessible ? originalColor : new Color(originalColor.r, originalColor.g, originalColor.b, blockedAlpha);
             levelImage.color = color;
         }
@@ -140,7 +141,7 @@ public class Level : MonoBehaviour
     /// </summary>
     public bool IsAccessible()
     {
-        return LevelManager.Instance.CanAccessBaseLevel(levelIndex);
+        return levelManager.CanAccessBaseLevel(levelIndex);
     }
 
     /// <summary>
@@ -148,7 +149,7 @@ public class Level : MonoBehaviour
     /// </summary>
     public bool IsFullyCompleted()
     {
-        return LevelManager.Instance.IsLevelFullyCompleted(levelIndex);
+        return levelManager.IsLevelFullyCompleted(levelIndex);
     }
 
     /// <summary>
@@ -168,7 +169,7 @@ public class Level : MonoBehaviour
     /// </summary>
     public void StartMorning()
     {
-        LevelManager.Instance.LoadLevelWithTime(levelIndex, TimeOfDay.Morning);
+        levelManager.StartCoroutine(levelManager.LoadLevelWithTimeAsync(levelIndex, TimeOfDay.Morning));
     }
 
     /// <summary>
@@ -176,7 +177,7 @@ public class Level : MonoBehaviour
     /// </summary>
     public void StartEvening()
     {
-        LevelManager.Instance.LoadLevelWithTime(levelIndex, TimeOfDay.Evening);
+        levelManager.StartCoroutine(levelManager.LoadLevelWithTimeAsync(levelIndex, TimeOfDay.Evening));
     }
 
     /// <summary>
@@ -184,7 +185,7 @@ public class Level : MonoBehaviour
     /// </summary>
     public void StartLevel(TimeOfDay timeOfDay)
     {
-        LevelManager.Instance.LoadLevelWithTime(levelIndex, timeOfDay);
+        levelManager.StartCoroutine(levelManager.LoadLevelWithTimeAsync(levelIndex, timeOfDay));
     }
 
     /// <summary>
@@ -192,7 +193,7 @@ public class Level : MonoBehaviour
     /// </summary>
     public void StartLevelAuto()
     {
-        LevelManager.Instance.LoadLevel(levelIndex);
+        levelManager.StartCoroutine(levelManager.LoadLevelAsync(levelIndex));
     }
 
     /// <summary>
@@ -200,7 +201,7 @@ public class Level : MonoBehaviour
     /// </summary>
     public void StartNextPart()
     {
-        LevelManager.Instance.LoadNextLevelPart();
+        levelManager.StartCoroutine(levelManager.LoadNextLevelPartAsync());
     }
 
     #endregion
@@ -209,32 +210,32 @@ public class Level : MonoBehaviour
 
     public bool IsMorningCompleted()
     {
-        return LevelManager.Instance.IsMorningCompleted(levelIndex);
+        return levelManager.IsMorningCompleted(levelIndex);
     }
 
     public bool IsEveningCompleted()
     {
-        return LevelManager.Instance.IsEveningCompleted(levelIndex);
+        return levelManager.IsEveningCompleted(levelIndex);
     }
 
     public bool IsLevelFullyCompleted()
     {
-        return LevelManager.Instance.IsLevelFullyCompleted(levelIndex);
+        return levelManager.IsLevelFullyCompleted(levelIndex);
     }
 
     public int GetMorningStars()
     {
-        return LevelManager.Instance.GetMorningStars(levelIndex);
+        return levelManager.GetMorningStars(levelIndex);
     }
 
     public int GetEveningStars()
     {
-        return LevelManager.Instance.GetEveningStars(levelIndex);
+        return levelManager.GetEveningStars(levelIndex);
     }
 
     public int GetTotalStars()
     {
-        return LevelManager.Instance.GetTotalStars(levelIndex);
+        return levelManager.GetTotalStars(levelIndex);
     }
 
     #endregion
@@ -243,18 +244,18 @@ public class Level : MonoBehaviour
 
     public void ResetAllProgress()
     {
-        LevelManager.Instance.ResetLevelProgress(levelIndex);
+        levelManager.ResetLevelProgress(levelIndex);
         Debug.Log("Progress reset for level " + levelIndex + " - " + levelName);
     }
 
     public void ResetMorningProgress()
     {
-        LevelManager.Instance.ResetVariantProgress(levelIndex, TimeOfDay.Morning);
+        levelManager.ResetVariantProgress(levelIndex, TimeOfDay.Morning);
     }
 
     public void ResetEveningProgress()
     {
-        LevelManager.Instance.ResetVariantProgress(levelIndex, TimeOfDay.Evening);
+        levelManager.ResetVariantProgress(levelIndex, TimeOfDay.Evening);
     }
 
     #endregion
@@ -263,11 +264,11 @@ public class Level : MonoBehaviour
 
     public void CompleteLevel(bool success, int stars, bool perfectTiming)
     {
-        LevelManager.Instance.CompleteLevel(success, stars, perfectTiming);
+        levelManager.CompleteLevel(success, stars, perfectTiming);
         Debug.Log($"{(success ? "✅" : "❌")} {levelName} | {stars}/3 ★");
 
         // Обновляем визуальное состояние после завершения
-        ApplyVisualState(LevelManager.Instance.CurrentTimeOfDay);
+        ApplyVisualState(levelManager.CurrentTimeOfDay);
     }
 
     #endregion

@@ -145,6 +145,7 @@ namespace HourPeak.Settings
             if (Instance == null)
             {
                 Instance = this;
+                DontDestroyOnLoad(gameObject);
                 InitializeDifficulties();
                 LoadDifficulty();
                 Debug.Log("✅ SettingDifficulty инициализирован");

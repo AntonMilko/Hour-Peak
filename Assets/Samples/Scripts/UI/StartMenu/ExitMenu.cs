@@ -22,7 +22,6 @@ public class ExitMenu : MonoBehaviour
             {
                 GameObject obj = new GameObject("ExitMenu");
                 _instance = obj.AddComponent<ExitMenu>();
-                DontDestroyOnLoad(obj);
                 Debug.Log("✅ ExitMenu Instance создан автоматически");
             }
             return _instance;

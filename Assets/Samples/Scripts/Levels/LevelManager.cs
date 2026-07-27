@@ -13,33 +13,6 @@ namespace HourPeak.Levels
     /// </summary>
     public class LevelManager : MonoBehaviour
     {
-        #region Singleton
-
-        private static LevelManager _instance;
-
-        /// <summary>
-        /// Глобальный экземпляр.
-        /// </summary>
-        public static LevelManager Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = FindFirstObjectByType<LevelManager>();
-                    if (_instance == null)
-                    {
-                        var go = new GameObject("LevelManager");
-                        _instance = go.AddComponent<LevelManager>();
-                        DontDestroyOnLoad(go);
-                    }
-                }
-                return _instance;
-            }
-        }
-
-        #endregion
-
         #region Configuration
 
         [Header("Level Settings")]
@@ -97,6 +70,9 @@ namespace HourPeak.Levels
         private bool _isLevelActive;
         private DifficultyTimeSettings _currentDifficultyTimes;
         private int _currentMorningCompletedLevel = -1; // Уровень, у которого пройдено утро
+        private TimeOfDay _pendingTimeOfDay; // Время суток для применения после загрузки сцены
+        private UnityEngine.AsyncOperation _asyncLoadOperation; // Асинхронная операция загрузки
+        private bool _isSceneLoading; // Флаг загрузки сцены
 
         #endregion
 
@@ -325,21 +301,11 @@ namespace HourPeak.Levels
 
         private void Awake()
         {
-            if (_instance == null)
-            {
-                _instance = this;
-            }
 
             // Инициализируем настройки времени по умолчанию
             InitializeTimeSettings();
             
             InitializeProgress();
-        }
-
-        private void OnDestroy()
-        {
-            if (_instance == this)
-                _instance = null;
         }
 
         private void Update()
@@ -365,7 +331,8 @@ namespace HourPeak.Levels
         /// </summary>
         private void ApplyDifficultyTimeSettings()
         {
-            var difficultyManager = FindFirstObjectByType<SettingDifficulty>();
+            // Используем Instance вместо FindFirstObjectByType, т.к. SettingDifficulty может быть на другой сцене
+            var difficultyManager = SettingDifficulty.Instance;
             
             if (difficultyManager != null)
             {
@@ -449,6 +416,7 @@ namespace HourPeak.Levels
 
         /// <summary>
         /// Загружает базовый уровень с указанным временем суток.
+        /// Синхронная версия (блокирует main thread во время загрузки).
         /// </summary>
         /// <param name="baseLevelIndex">Индекс базового уровня (0, 1, 2, ...)</param>
         /// <param name="timeOfDay">Время суток</param>
@@ -481,15 +449,20 @@ namespace HourPeak.Levels
             {
                 _currentMorningCompletedLevel = baseLevelIndex;
             }
-            
-            _isLevelActive = true;
-            _levelStartTime = Time.time;
 
             // Применяем настройки времени для текущей сложности
             ApplyDifficultyTimeSettings();
 
-            SceneManager.LoadScene(sceneName);
-            ApplyBackground(timeOfDay);
+            // Сохраняем время суток для применения после загрузки
+            _pendingTimeOfDay = timeOfDay;
+
+            // Асинхронная загрузка сцены (не блокирует main thread)
+            _asyncLoadOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
+            _asyncLoadOperation.allowSceneActivation = false;
+            _isSceneLoading = true;
+
+            // Запускаем корутину для завершения загрузки
+            StartCoroutine(WaitForSceneLoad());
 
             string partName = timeOfDay == TimeOfDay.Morning ? "Утро" : "Вечер";
             string partInfo = $"Уровень {baseLevelIndex + 1}, {partName}";
@@ -497,6 +470,41 @@ namespace HourPeak.Levels
 
             OnLevelStarted?.Invoke(baseLevelIndex, timeOfDay);
             return true;
+        }
+
+        /// <summary>
+        /// Коррутина для завершения асинхронной загрузки сцены.
+        /// </summary>
+        private System.Collections.IEnumerator WaitForSceneLoad()
+        {
+            // Ждём, пока сцена загрузится на 90%
+            while (_asyncLoadOperation != null && _asyncLoadOperation.progress < 0.9f)
+            {
+                yield return null;
+            }
+
+            // Разрешаем активацию сцены
+            if (_asyncLoadOperation != null)
+            {
+                _asyncLoadOperation.allowSceneActivation = true;
+            }
+
+            // Ждём полной загрузки и активации
+            while (_asyncLoadOperation != null && !_asyncLoadOperation.isDone)
+            {
+                yield return null;
+            }
+
+            // Активируем уровень и запускаем таймер после загрузки сцены
+            _isLevelActive = true;
+            _levelStartTime = Time.time;
+
+            // Применяем фон после загрузки сцены
+            if (_isSceneLoading)
+            {
+                ApplyBackground(_pendingTimeOfDay);
+                _isSceneLoading = false;
+            }
         }
 
         /// <summary>
@@ -514,17 +522,82 @@ namespace HourPeak.Levels
             }
         }
 
+        #endregion
+
+        #region Async Level Loading (Non-Blocking)
+
         /// <summary>
-        /// Загружает следующую часть уровня (Утро → Вечер → следующий уровень Утро).
+        /// Асинхронная загрузка уровня с указанным временем суток.
+        /// Не блокирует main thread во время загрузки сцены.
         /// </summary>
-        /// <returns>Успешно ли загружена следующая часть</returns>
-        public bool LoadNextLevelPart()
+        public System.Collections.IEnumerator LoadLevelWithTimeAsync(int baseLevelIndex, TimeOfDay timeOfDay)
+        {
+            // Проверка доступа к уровню
+            if (!CanAccessBaseLevel(baseLevelIndex))
+            {
+                Debug.LogWarning($"🔒 Уровень {baseLevelIndex + 1} закрыт!");
+                yield break;
+            }
+
+            // Проверка валидности индекса
+            if (baseLevelIndex < 0 || baseLevelIndex >= TotalBaseLevels)
+            {
+                Debug.LogError($"❌ Уровень {baseLevelIndex} не найден!");
+                yield break;
+            }
+
+            // Получаем информацию об уровне
+            var levelInfo = levels[baseLevelIndex];
+            string sceneName = levelInfo.SceneName;
+            string levelName = levelInfo.DisplayName;
+
+            // Устанавливаем индексы уровня и части
+            currentBaseLevelIndex = baseLevelIndex;
+            // Отмечаем, что утро этого уровня пройдено, если загружаем вечер
+            if (timeOfDay == TimeOfDay.Evening && _currentMorningCompletedLevel < baseLevelIndex)
+            {
+                _currentMorningCompletedLevel = baseLevelIndex;
+            }
+
+            // Применяем настройки времени для текущей сложности
+            ApplyDifficultyTimeSettings();
+
+            // Сохраняем время суток для применения после загрузки
+            _pendingTimeOfDay = timeOfDay;
+
+            // Асинхронная загрузка сцены (не блокирует main thread)
+            _asyncLoadOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
+            _asyncLoadOperation.allowSceneActivation = false;
+            _isSceneLoading = true;
+
+            // Запускаем корутину для завершения загрузки
+            yield return WaitForSceneLoad();
+
+            string partName = timeOfDay == TimeOfDay.Morning ? "Утро" : "Вечер";
+            string partInfo = $"Уровень {baseLevelIndex + 1}, {partName}";
+            Debug.Log($"🎮 {levelName} ({partName}) начат [Часть: {partInfo}]");
+
+            OnLevelStarted?.Invoke(baseLevelIndex, timeOfDay);
+        }
+
+        /// <summary>
+        /// Асинхронная загрузка уровня с автоматическим временем суток.
+        /// </summary>
+        public System.Collections.IEnumerator LoadLevelAsync(int baseLevelIndex)
+        {
+            return LoadLevelWithTimeAsync(baseLevelIndex, GetLevelTimeOfDay(baseLevelIndex));
+        }
+
+        /// <summary>
+        /// Асинхронная загрузка следующей части уровня (Утро → Вечер → следующий уровень).
+        /// </summary>
+        public System.Collections.IEnumerator LoadNextLevelPartAsync()
         {
             // Если утренняя часть того же уровня ещё не пройдена (утро >= вечера)
             if (currentBaseLevelIndex > _currentMorningCompletedLevel)
             {
                 // Загружаем вечернюю часть текущего уровня
-                return LoadLevelWithTime(currentBaseLevelIndex, TimeOfDay.Evening);
+                yield return LoadLevelWithTimeAsync(currentBaseLevelIndex, TimeOfDay.Evening);
             }
             // Иначе загружаем утру следующего уровня
             else
@@ -533,9 +606,9 @@ namespace HourPeak.Levels
                 if (nextBaseLevel >= TotalBaseLevels)
                 {
                     Debug.Log("🎉 Все уровни пройдены!");
-                    return false;
+                    yield break;
                 }
-                return LoadLevelWithTime(nextBaseLevel, TimeOfDay.Morning);
+                yield return LoadLevelWithTimeAsync(nextBaseLevel, TimeOfDay.Morning);
             }
         }
 
