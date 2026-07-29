@@ -22,6 +22,9 @@ public class SaveSlotSystem : MonoBehaviour
     private List<GameObject> _slots = new List<GameObject>();
     private List<TextMeshProUGUI> _dateTimeTexts = new List<TextMeshProUGUI>();
     private Canvas _canvas;
+    private GameObject _levelMenu;
+    private Transform _slotsParent; // FoldersSavePanel - родитель для слотов
+    private Dictionary<int, Vector2> _slotPositions = new Dictionary<int, Vector2>(); // Сохраняем позиции слотов
     private bool _isInitialized = false;
 
     // ========================================================================
@@ -30,29 +33,20 @@ public class SaveSlotSystem : MonoBehaviour
 
     private void Awake()
     {
-        // НЕ используем GameObject.Find() — это надёжно и быстро
-        _canvas = GetComponentInChildren<Canvas>();
+        // Ищем Canvas на сцене (не в детях этого объекта!)
+        _canvas = FindFirstObjectByType<Canvas>();
         
-        // Если Canvas нет на дочерних объектах — ищем на родителе
-        if (_canvas == null)
-        {
-            _canvas = GetComponent<Canvas>();
-        }
-        
-        // Если всё ещё нет — создаём новый Canvas
+        // Если Canvas нет — создаём
         if (_canvas == null)
         {
             GameObject canvasGO = new GameObject("SaveSlotsCanvas");
-            canvasGO.transform.SetParent(transform);
-            canvasGO.transform.localPosition = Vector3.zero;
             _canvas = canvasGO.AddComponent<Canvas>();
             _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             _canvas.worldCamera = null;
             _canvas.overrideSorting = true;
             _canvas.sortingOrder = 1000;
-            
-            // Добавляем GraphicRaycaster для обработки кликов
             canvasGO.AddComponent<GraphicRaycaster>();
+            canvasGO.AddComponent<CanvasScaler>();
             
             Debug.Log($"[SaveSlotSystem] Создан новый Canvas: {_canvas.name}");
         }
@@ -67,18 +61,51 @@ public class SaveSlotSystem : MonoBehaviour
             canvasRT.anchoredPosition = Vector2.zero;
         }
         
+        // Ищем FoldersSavePanel — ИЩЕМ ПРЯМО В МЕНЮ, а не через root
+        Transform foldersSavePanel = transform.Find("FoldersSavePanel");
+        if (foldersSavePanel == null)
+        {
+            foldersSavePanel = transform.root.Find("FoldersSavePanel");
+        }
+        
+        if (foldersSavePanel != null)
+        {
+            RectTransform panelRT = foldersSavePanel.GetComponent<RectTransform>();
+            if (panelRT != null)
+            {
+                panelRT.offsetMin = Vector2.zero;
+                panelRT.offsetMax = Vector2.zero;
+                panelRT.anchorMin = Vector2.zero;
+                panelRT.anchorMax = Vector2.one;
+                panelRT.anchoredPosition = Vector2.zero;
+                panelRT.sizeDelta = Vector2.zero;
+            }
+            _slotsParent = foldersSavePanel;
+            Debug.Log($"[SaveSlotSystem] ✅ Найден FoldersSavePanel: {_slotsParent.name}");
+        }
+        else
+        {
+            Debug.LogError("[SaveSlotSystem] FoldersSavePanel НЕ НАЙДЕН!");
+            _slotsParent = transform;
+        }
+        
+        // LevelMenu — отдельный корневой GameObject (не ребёнок FoldersSaveMenu)
+        _levelMenu = new GameObject("LevelMenu");
+        _levelMenu.transform.SetParent(null, false);
+        
         _isInitialized = true;
-        Debug.Log($"[SaveSlotSystem] Инициализация завершена. Canvas: {_canvas?.name ?? "null"}");
+        Debug.Log($"[SaveSlotSystem] Инициализация завершена. Canvas: {_canvas?.name ?? "null"}, Parent: {_slotsParent.name}");
     }
 
     private void Start()
     {
         // 🔴 Убедимся что родитель в правильном состоянии
-        if (transform.localScale != Vector3.one)
+        if (_slotsParent.localScale != Vector3.one)
         {
-            transform.localScale = Vector3.one;
-            transform.localRotation = Quaternion.identity;
+            _slotsParent.localScale = Vector3.one;
+            _slotsParent.localRotation = Quaternion.identity;
         }
+        
         SpawnAllSlots();
     }
 
@@ -89,68 +116,103 @@ public class SaveSlotSystem : MonoBehaviour
     [ContextMenu("🔥 Spawn All Slots")]
     public void SpawnAllSlots()
     {
-        // 🔴 АВТОИНИЦИАЛИЗАЦИЯ: если Awake() не сработал (например, вызов из контекстного меню)
-        if (!_isInitialized)
+        // 🔴 КАЖДЫЙ РАЗ ЗАНОВО ИЩЕМ FOLDERSSAVE PANEL — без проверки _isInitialized
+        Debug.Log("[SaveSlotSystem] 🔍 Поиск FoldersSavePanel...");
+        Debug.Log("[SaveSlotSystem] transform.name = " + transform.name);
+        Debug.Log("[SaveSlotSystem] transform.root.name = " + (transform.root != null ? transform.root.name : "null"));
+        
+        // Лог всех имён детей корня
+        if (transform.root != null)
         {
-            Debug.Log("[SaveSlotSystem] Автоинициализация...");
-            
-            _canvas = GetComponentInChildren<Canvas>();
-            if (_canvas == null)
+            Debug.Log("[SaveSlotSystem] === ДЕТІ КОРНЯ (" + transform.root.childCount + "):");
+            for (int i = 0; i < transform.root.childCount; i++)
             {
-                _canvas = GetComponent<Canvas>();
+                Debug.Log("[SaveSlotSystem]   [" + i + "] " + transform.root.GetChild(i).name);
             }
-            if (_canvas == null)
-            {
-                GameObject canvasGO = new GameObject("SaveSlotsCanvas");
-                canvasGO.transform.SetParent(transform);
-                canvasGO.transform.localPosition = Vector3.zero;
-                _canvas = canvasGO.AddComponent<Canvas>();
-                _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-                _canvas.worldCamera = null;
-                _canvas.overrideSorting = true;
-                _canvas.sortingOrder = 1000;
-                canvasGO.AddComponent<GraphicRaycaster>();
-            }
-            RectTransform canvasRT = _canvas.GetComponent<RectTransform>();
-            if (canvasRT != null)
-            {
-                canvasRT.anchorMin = Vector2.zero;
-                canvasRT.anchorMax = Vector2.one;
-                canvasRT.sizeDelta = Vector2.zero;
-                canvasRT.anchoredPosition = Vector2.zero;
-            }
-            _isInitialized = true;
-            Debug.Log("[SaveSlotSystem] ✅ Автоинициализация завершена");
         }
+        
+        // Ищем FoldersSavePanel через всех детей корня
+        Transform foldersSavePanel = null;
+        Transform[] allChildren = transform.root.GetComponentsInChildren<Transform>(true);
+        foreach (Transform child in allChildren)
+        {
+            if (child.name == "FoldersSavePanel" && child != transform)
+            {
+                foldersSavePanel = child;
+                break;
+            }
+        }
+        
+        if (foldersSavePanel != null)
+        {
+            RectTransform panelRT = foldersSavePanel.GetComponent<RectTransform>();
+            if (panelRT != null)
+            {
+                panelRT.offsetMin = Vector2.zero;
+                panelRT.offsetMax = Vector2.zero;
+                panelRT.anchorMin = Vector2.zero;
+                panelRT.anchorMax = Vector2.one;
+                panelRT.anchoredPosition = Vector2.zero;
+                panelRT.sizeDelta = Vector2.zero;
+            }
+            _slotsParent = foldersSavePanel;
+            Debug.Log($"[SaveSlotSystem] ✅ Найден FoldersSavePanel: {_slotsParent.name}");
+        }
+        else
+        {
+            Debug.LogError("[SaveSlotSystem] FoldersSavePanel НЕ НАЙДЕН! Использую transform как fallback.");
+            _slotsParent = transform;
+        }
+        
+        // Ищем Canvas
+        _canvas = FindFirstObjectByType<Canvas>();
+        if (_canvas == null)
+        {
+            GameObject canvasGO = new GameObject("SaveSlotsCanvas");
+            _canvas = canvasGO.AddComponent<Canvas>();
+            _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            _canvas.worldCamera = null;
+            _canvas.overrideSorting = true;
+            _canvas.sortingOrder = 1000;
+            canvasGO.AddComponent<GraphicRaycaster>();
+            canvasGO.AddComponent<CanvasScaler>();
+        }
+        RectTransform canvasRT = _canvas.GetComponent<RectTransform>();
+        if (canvasRT != null)
+        {
+            canvasRT.anchorMin = Vector2.zero;
+            canvasRT.anchorMax = Vector2.one;
+            canvasRT.sizeDelta = Vector2.zero;
+            canvasRT.anchoredPosition = Vector2.zero;
+        }
+        
+        // LevelMenu
+        if (_levelMenu == null)
+        {
+            _levelMenu = new GameObject("LevelMenu");
+            _levelMenu.transform.SetParent(null, false);
+        }
+        
+        _isInitialized = true;
+        Debug.Log("[SaveSlotSystem] ✅ Инициализация завершена. Parent: " + _slotsParent.name);
 
         // Останавливаем все корутины перед новым запуском
         StopAllCoroutines();
 
         // 🔴 СБРОС МАСШТАБА РОДИТЕЛЯ — критически важно!
-        if (transform.localScale != Vector3.one)
+        if (_slotsParent.localScale != Vector3.one)
         {
-            Debug.LogWarning($"[SaveSlotSystem] Сброс localScale родителя: {transform.localScale} -> Vector3.one");
-            transform.localScale = Vector3.one;
-            transform.localRotation = Quaternion.identity;
+            Debug.LogWarning($"[SaveSlotSystem] Сброс localScale родителя: {_slotsParent.localScale} -> Vector3.one");
+            _slotsParent.localScale = Vector3.one;
+            _slotsParent.localRotation = Quaternion.identity;
         }
 
         _slots.Clear();
         _dateTimeTexts.Clear();
 
-        // 🔴 УДАЛЯЕМ ВСЕХ ПРЕДЫДУЩИХ ПОТОМКОВ — чистый лист
-        Debug.Log($"[SaveSlotSystem] Очистка {transform.childCount} предыдущих потомков...");
-        for (int i = transform.childCount - 1; i >= 0; i--)
-        {
-            Transform child = transform.GetChild(i);
-            DestroyImmediate(child.gameObject, true);
-        }
-        Debug.Log("[SaveSlotSystem] ✅ Иерархия очищена");
-
-        // 🔴 РАСЧЁТ РАЗМЕРА СЛОТОВ НА ОСНОВЕ РЕАЛЬНОГО РАЗМЕРА CANVAS
-        CalculateSlotSizeFromCanvas();
-
-        Debug.Log($"[SaveSlotSystem] НАЧАТО СОЗДАНИЕ {totalSlots} СЛОТОВ...");
-
+        // НЕ удаляем GameObject — просто пересоздаём слоты заново
+        // Старые GameObject останутся, но мы будем использовать новые из _slots
+        Debug.Log($"[SaveSlotSystem] Пересоздание {totalSlots} СЛОТОВ...");
         int createdCount = 0;
         int failedCount = 0;
 
@@ -187,10 +249,9 @@ public class SaveSlotSystem : MonoBehaviour
 
         // 💥 УСИЛЕННАЯ ЛОГИКА: финальная проверка
         Debug.Assert(_slots.Count == totalSlots, "Critical failure: slot count mismatch!");
-        Debug.Assert(transform.childCount >= totalSlots, "Critical failure: child count mismatch!");
         
-        // 🔴 Жёсткая валидация: childCount должен быть ровно 20
-        Debug.Assert(transform.childCount == 20, "Wrong file count!");
+        // Валидация: все слоты в списке
+        Debug.Assert(_slots.Count == 20, "Wrong slot count!");
     }
 
     // ========================================================================
@@ -215,23 +276,37 @@ public class SaveSlotSystem : MonoBehaviour
             throw new System.Exception($"Folder {index} не создан");
         }
 
-        // Добавляем в иерархию — прямой ребёнок FoldersSaveMenu
-        folderGO.transform.SetParent(transform, false);
+        // Добавляем в иерархию — прямой ребёнок FoldersSavePanel
+        folderGO.transform.SetParent(_slotsParent, true);
+        Debug.Log($"[CreateSingleSlot] Слот #{index} создан. Родитель: {_slotsParent.name}, childCount родителя: {_slotsParent.childCount}");
         
-        // 🔴 РАСЧЁТ ПОЗИЦИИ В СЕТКЕ 5x4
+        // 🔴 РАСЧЁТ РАЗМЕРА СЛОТОВ НА ОСНОВЕ РАЗМЕРА PARENT (Panel)
+        RectTransform parentRT = _slotsParent as RectTransform;
+        float parentWidth = parentRT != null ? parentRT.rect.width : 800f;
+        float parentHeight = parentRT != null ? parentRT.rect.height : 600f;
+        
+        float slotWidth = (parentWidth - (slotsPerRow - 1) * slotSpacingX) / slotsPerRow;
+        float slotHeight = (parentHeight - (rowsCount - 1) * slotSpacingY) / rowsCount;
+        
+        // Ограничиваем максимальный размер слота — чтобы не были чертовски большими
+        float maxSlotWidth = 300f;
+        float maxSlotHeight = 150f;
+        float currentSlotSizeX = Mathf.Min(Mathf.Max(slotWidth, 50f), maxSlotWidth);
+        float currentSlotSizeY = Mathf.Min(Mathf.Max(slotHeight, 50f), maxSlotHeight);
+        
+        // 🔴 РАСЧЁТ ПОЗИЦИИ В СЕТКЕ 5x4 (сверху вниз по возрастанию)
         int row = index / slotsPerRow;
         int col = index % slotsPerRow;
         
-        float totalGridWidth = slotsPerRow * slotSize.x + (slotsPerRow - 1) * slotSpacingX;
-        float totalGridHeight = rowsCount * slotSize.y + (rowsCount - 1) * slotSpacingY;
+        // Инвертируем row: 0 = верхний ряд, 3 = нижний ряд
+        int displayRow = rowsCount - 1 - row;
         
-        float startX = -totalGridWidth / 2f;
-        float startY = totalGridHeight / 2f;
+        float totalGridWidth = slotsPerRow * currentSlotSizeX + (slotsPerRow - 1) * slotSpacingX;
+        float totalGridHeight = rowsCount * currentSlotSizeY + (rowsCount - 1) * slotSpacingY;
         
-        float posX = startX + col * (slotSize.x + slotSpacingX) + slotSize.x / 2f;
-        float posY = startY - row * (slotSize.y + slotSpacingY) - slotSize.y / 2f;
-        
-        folderGO.transform.localPosition = new Vector3(posX, posY, 0f);
+        // Центрируем сетку относительно родителя
+        float centerX = -totalGridWidth / 2f + (col * (currentSlotSizeX + slotSpacingX) + currentSlotSizeX / 2f);
+        float centerY = totalGridHeight / 2f - (displayRow * (currentSlotSizeY + slotSpacingY) + currentSlotSizeY / 2f);
         
         // Масштаб 1, размеры через RectTransform
         folderGO.transform.localScale = Vector3.one;
@@ -243,11 +318,15 @@ public class SaveSlotSystem : MonoBehaviour
         {
             folderRT = folderGO.AddComponent<RectTransform>();
         }
-        // Устанавливаем размер слота — фиксированный для всех
-        folderRT.sizeDelta = slotSize;
+        // Устанавливаем размер слота на основе размера Panel
+        folderRT.sizeDelta = new Vector2(currentSlotSizeX, currentSlotSizeY);
+        // Используем anchoredPosition для позиционирования относительно центра родителя
         folderRT.anchorMin = new Vector2(0.5f, 0.5f);
         folderRT.anchorMax = new Vector2(0.5f, 0.5f);
-        folderRT.anchoredPosition = new Vector2(posX, posY);
+        folderRT.anchoredPosition = new Vector2(centerX, -centerY);
+        
+        // Запоминаем оригинальную позицию слота для возврата
+        _slotPositions[index] = new Vector2(centerX, -centerY);
 
         // Добавляем Image компонент (UISprite форма)
         Image img = folderGO.AddComponent<Image>();
@@ -271,6 +350,21 @@ public class SaveSlotSystem : MonoBehaviour
         }
 
         btn.enabled = true;
+        
+        // Принудительно включаем Image (Button требует Image для работы!)
+        Image imgComp = folderGO.GetComponent<Image>();
+        if (imgComp != null)
+        {
+            imgComp.enabled = true;
+            imgComp.raycastTarget = true;
+        }
+        
+        // Привязываем обработчик клика к кнопке
+        int slotIndex = index; // замыкаем в локальную переменную для корректной работы лямбды
+        btn.onClick.AddListener(() => {
+            Debug.Log($"[SaveSlotSystem] 🖱️ OnSlotClicked вызван для слота {slotIndex}, parent={folderGO.transform.parent?.name ?? "null"}");
+            OnSlotClicked(slotIndex);
+        });
 
         // Добавляем TextMeshProUGUI для отображения имени папки
         GameObject textGO = new GameObject("FileNameText");
@@ -332,7 +426,7 @@ public class SaveSlotSystem : MonoBehaviour
         _slots.Add(folderGO);
 
         // Лог
-        Debug.Log($"[SaveSlotSystem] ✅ Folder {index + 1}: '{folderName}', pos={posX:F1},{posY:F1}, size={slotSize}");
+        Debug.Log($"[SaveSlotSystem] ✅ Folder {index + 1}: '{folderName}', pos={folderRT.anchoredPosition}, size={folderRT.sizeDelta}");
 
         return true;
     }
@@ -372,6 +466,172 @@ public class SaveSlotSystem : MonoBehaviour
     {
         Debug.Log("[SaveSlotSystem] Closing Menu...");
         gameObject.SetActive(false);
+    }
+
+    // ========================================================================
+    // ОБРАБОТКА КЛИКОВ ПО СЛОТАМ
+    // ========================================================================
+
+    /// <summary>
+    /// Вызывается при клике на слот сохранения.
+    /// Загружает сохранение из слота и переходит на уровень.
+    /// </summary>
+    /// <param name="slotIndex">Индекс слота (0-19).</param>
+    public void OnSlotClicked(int slotIndex)
+    {
+        if (slotIndex < 0 || slotIndex >= _slots.Count)
+        {
+            Debug.LogError($"[SaveSlotSystem] Неверный индекс слота: {slotIndex}");
+            return;
+        }
+        
+        GameObject slot = _slots[slotIndex];
+        if (!Object.Equals(slot, null))
+        {
+            // Проверяем, где сейчас слот
+            if (slot.transform.parent == _slotsParent)
+            {
+                // Сохраняем текущую позицию перед перемещением
+                RectTransform slotRT = slot.GetComponent<RectTransform>();
+                if (slotRT != null)
+                {
+                    _slotPositions[slotIndex] = slotRT.anchoredPosition;
+                }
+                
+                // Перемещаем в LevelMenu
+                slot.transform.SetParent(_levelMenu.transform, true);
+                Debug.Log($"[SaveSlotSystem] 📦 Слот #{slotIndex} перемещён в LevelMenu");
+                
+                // 🔴 ЗАГРУЗКА СОХРАНЕНИЯ ИЗ СЛОТА
+                LoadAndStartGame(slotIndex);
+            }
+            else
+            {
+                // Возвращаем на FoldersSaveMenu
+                slot.transform.SetParent(_slotsParent, true);
+                
+                // Восстанавливаем оригинальную позицию
+                if (_slotPositions.TryGetValue(slotIndex, out Vector2 originalPos))
+                {
+                    RectTransform slotRT = slot.GetComponent<RectTransform>();
+                    if (slotRT != null)
+                    {
+                        slotRT.anchoredPosition = originalPos;
+                    }
+                }
+                
+                Debug.Log($"[SaveSlotSystem] 📤 Слот #{slotIndex} возвращён на FoldersSaveMenu");
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"[SaveSlotSystem] Слот #{slotIndex} уничтожен!");
+        }
+    }
+    
+    /// <summary>
+    /// Загружает сохранение из слота и переходит на уровень.
+    /// </summary>
+    private void LoadAndStartGame(int slotIndex)
+    {
+        Debug.Log($"[SaveSlotSystem] 🔵 Загрузка сохранения из слота {slotIndex}...");
+        
+        // 1. Загружаем данные через SaveManager
+        var saveManager = FindFirstObjectByType<SaveManager>();
+        if (saveManager == null)
+        {
+            Debug.LogError("[SaveSlotSystem] SaveManager не найден!");
+            return;
+        }
+        
+        SaveData saveData = saveManager.LoadGame(slotIndex);
+        if (saveData == null)
+        {
+            Debug.LogWarning($"[SaveSlotSystem] Нет сохранения в слоте {slotIndex}. Создаём новый уровень.");
+            // Если нет сохранения — просто переходим на уровень из сохранения
+            return;
+        }
+        
+        Debug.Log($"[SaveSlotSystem] ✅ Загружено: {saveData.SaveName}, уровень = {saveData.CurrentLevel}");
+        
+        // 2. Применяем данные через GameSaveController
+        var gameController = FindFirstObjectByType<GameSaveController>();
+        if (gameController != null)
+        {
+            System.Type gcType = gameController.GetType();
+            
+            // Устанавливаем свойства с сеттерами
+            gcType.GetProperty("CurrentLevel")?.SetValue(gameController, saveData.CurrentLevel);
+            gcType.GetProperty("DifficultyLevel")?.SetValue(gameController, saveData.DifficultyLevel);
+            
+            // Устанавливаем приватные поля (read-only свойства)
+            gcType.GetField("_currentLevelTime", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.SetValue(gameController, saveData.LevelTime);
+            gcType.GetField("_totalPlaytime", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.SetValue(gameController, saveData.TotalPlaytime);
+            gcType.GetField("_levelCompleted", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.SetValue(gameController, saveData.IsLevelCompleted);
+            gcType.GetField("_currentLevelStars", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.SetValue(gameController, saveData.LevelStars);
+            gcType.GetField("_totalStars", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.SetValue(gameController, saveData.TotalStars);
+            
+            // Устанавливаем позицию игрока через публичный метод
+            if (saveData.PlayerPosition != Vector3.zero)
+            {
+                gcType.GetMethod("SetPlayerPosition")?.Invoke(gameController, new object[] { saveData.PlayerPosition });
+            }
+            
+            Debug.Log($"[SaveSlotSystem] ✅ Данные GameSaveController применены (уровень={saveData.CurrentLevel})");
+        }
+        else
+        {
+            Debug.LogWarning("[SaveSlotSystem] GameSaveController не найден");
+        }
+        
+        // 3. Переходим на уровень через LevelManager
+        int levelIndex = saveData.CurrentLevel;
+        Debug.Log($"[SaveSlotSystem] 🚀 Переход на уровень {levelIndex + 1}...");
+        
+        // Ищем LevelManager по имени GameObject
+        GameObject lmGO = UnityEngine.GameObject.Find("LevelManager");
+        if (lmGO == null)
+        {
+            lmGO = UnityEngine.GameObject.Find("LevelManager (Clone)");
+        }
+        
+        if (lmGO != null)
+        {
+            System.Type levelManagerType = lmGO.GetType();
+            Debug.Log($"[SaveSlotSystem] ✅ LevelManager найден: {lmGO.name}");
+            
+            // Пытаемся вызвать LoadLevelWithTime
+            var method = levelManagerType.GetMethod("LoadLevelWithTime");
+            if (method != null)
+            {
+                // Получаем компонент LevelManager
+                object lmComponent = lmGO.GetComponent(levelManagerType);
+                
+                // Создаём TimeOfDay.Morning через enum
+                System.Type timeOfDayType = method.GetParameters()[1].ParameterType;
+                object morningValue = System.Enum.Parse(timeOfDayType, "Morning");
+                
+                method.Invoke(lmComponent, new object[] { levelIndex, morningValue });
+                Debug.Log($"[SaveSlotSystem] ✅ Уровень {levelIndex + 1} загружается через LoadLevelWithTime (Morning)...");
+            }
+            else
+            {
+                var loadLevelMethod = levelManagerType.GetMethod("LoadLevel");
+                if (loadLevelMethod != null)
+                {
+                    loadLevelMethod.Invoke(lmGO.GetComponent(levelManagerType), new object[] { levelIndex });
+                    Debug.Log($"[SaveSlotSystem] ✅ Уровень {levelIndex + 1} загружается через LoadLevel...");
+                }
+                else
+                {
+                    Debug.LogError("[SaveSlotSystem] Не найден метод LoadLevel или LoadLevelWithTime!");
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("[SaveSlotSystem] LevelManager не найден на сцене!");
+        }
     }
 
     // ========================================================================
@@ -565,15 +825,59 @@ public class SaveSlotSystem : MonoBehaviour
     [ContextMenu("🔧 Fix FoldersSaveMenu")]
     public void FixFoldersSaveMenu()
     {
+        // Автоинициализация если не сработал Awake()
+        if (!_isInitialized || _canvas == null || _slotsParent == null)
+        {
+            Debug.Log("[FixFoldersSaveMenu] Автоинициализация...");
+            _canvas = FindFirstObjectByType<Canvas>();
+            if (_canvas == null)
+            {
+                GameObject canvasGO = new GameObject("SaveSlotsCanvas");
+                _canvas = canvasGO.AddComponent<Canvas>();
+                _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                _canvas.worldCamera = null;
+                _canvas.overrideSorting = true;
+                _canvas.sortingOrder = 1000;
+                canvasGO.AddComponent<GraphicRaycaster>();
+                canvasGO.AddComponent<CanvasScaler>();
+            }
+            RectTransform canvasRT = _canvas.GetComponent<RectTransform>();
+            if (canvasRT != null)
+            {
+                canvasRT.anchorMin = Vector2.zero;
+                canvasRT.anchorMax = Vector2.one;
+                canvasRT.sizeDelta = Vector2.zero;
+                canvasRT.anchoredPosition = Vector2.zero;
+            }
+            
+            // Ищем FoldersSavePanel — ТОЧНО ТАК ЖЕ, КАК В Awake()
+            Transform foldersSavePanel = transform.Find("FoldersSavePanel");
+            if (foldersSavePanel == null)
+            {
+                foldersSavePanel = transform.root.Find("FoldersSavePanel");
+            }
+            if (foldersSavePanel == null)
+            {
+                Debug.LogError("[FixFoldersSaveMenu] FoldersSavePanel НЕ НАЙДЕН!");
+            }
+            _slotsParent = foldersSavePanel != null ? foldersSavePanel : transform;
+            Debug.Log("[FixFoldersSaveMenu] ✅ Найден FoldersSavePanel: " + (_slotsParent != null ? _slotsParent.name : "null"));
+            
+            // Создаём LevelMenu — отдельный корневой GameObject
+            _levelMenu = new GameObject("LevelMenu");
+            _levelMenu.transform.SetParent(null, false);
+            _isInitialized = true;
+        }
+        
         Debug.Log("==========================================================");
         Debug.Log("[FixFoldersSaveMenu] 🔧 НАЧАЛО ИСПРАВЛЕНИЯ FoldersSaveMenu");
-        Debug.Log("[FixFoldersSaveMenu] Текущий localScale родителя: " + transform.localScale);
-        Debug.Log("[FixFoldersSaveMenu] Текущий childCount: " + transform.childCount);
+        Debug.Log("[FixFoldersSaveMenu] Текущий localScale родителя: " + _slotsParent.localScale);
+        Debug.Log("[FixFoldersSaveMenu] _slotsParent.childCount перед очисткой: " + _slotsParent.childCount);
 
         // 1. СБРОС МАСШТАБА РОДИТЕЛЯ
-        if (transform.localScale != Vector3.one)
+        if (_slotsParent.localScale != Vector3.one)
         {
-            transform.localScale = Vector3.one;
+            _slotsParent.localScale = Vector3.one;
             Debug.Log("[FixFoldersSaveMenu] ✅ Масштаб родителя сброшен до Vector3.one");
         }
         else
@@ -581,26 +885,17 @@ public class SaveSlotSystem : MonoBehaviour
             Debug.Log("[FixFoldersSaveMenu] ⚠️ Масштаб родителя уже Vector3.one");
         }
 
-        // 2. УДАЛЕНИЕ ВСЕХ ПОТОМКОВ (без исключений — чистый лист)
-        int oldCount = transform.childCount;
-        Debug.Log("[FixFoldersSaveMenu] 📋 Удаление " + oldCount + " потомков...");
-
-        for (int i = transform.childCount - 1; i >= 0; i--)
+        // 2. УДАЛЕНИЕ ТОЛЬКО СЛОТОВ (Folder 1-20), оставляем FoldersSavePanel и BackToMainMenu
+        Debug.Log("[FixFoldersSaveMenu] 📋 Очистка только слотов Folder 1-20...");
+        for (int i = _slotsParent.childCount - 1; i >= 0; i--)
         {
-            Transform child = transform.GetChild(i);
-            Debug.Log("[FixFoldersSaveMenu]   - Удаление: '" + child.name + "'");
-            DestroyImmediate(child.gameObject, true);
+            Transform child = _slotsParent.GetChild(i);
+            if (child.name.StartsWith("Folder ", System.StringComparison.OrdinalIgnoreCase))
+            {
+                DestroyImmediate(child.gameObject);
+            }
         }
-
-        if (transform.childCount != 0)
-        {
-            Debug.LogError("[FixFoldersSaveMenu] [ERROR] Ожидался childCount 0, но: " + transform.childCount);
-            return;
-        }
-        Debug.Log("[FixFoldersSaveMenu] ✅ Иерархия очищена. childCount = 0");
-
-        // 🔴 РАСЧЁТ РАЗМЕРА СЛОТОВ НА ОСНОВЕ РЕАЛЬНОГО РАЗМЕРА CANVAS
-        CalculateSlotSizeFromCanvas();
+        Debug.Log("[FixFoldersSaveMenu] ✅ Слоты удалены, FoldersSavePanel и BackToMainMenu сохранены");
 
         // 3. СОЗДАНИЕ 20 ФАЙЛОВ
         _slots.Clear();
@@ -612,20 +907,30 @@ public class SaveSlotSystem : MonoBehaviour
             string folderName = "Folder " + (i + 1);
 
             GameObject folderGO = new GameObject(folderName);
-            folderGO.transform.SetParent(transform, false);
+            folderGO.transform.SetParent(_slotsParent, true);
 
             // 🔴 ФИКСИРОВАННАЯ ПОЗИЦИЯ В СЕТКЕ 5x4
             int row = i / slotsPerRow;
             int col = i % slotsPerRow;
             
-            float totalGridWidth = slotsPerRow * slotSize.x + (slotsPerRow - 1) * slotSpacingX;
-            float totalGridHeight = rowsCount * slotSize.y + (rowsCount - 1) * slotSpacingY;
+            // 🔴 РАСЧЁТ РАЗМЕРА СЛОТОВ НА ОСНОВЕ РАЗМЕРА PARENT
+            RectTransform parentRT = _slotsParent as RectTransform;
+            float parentWidth = parentRT != null ? parentRT.rect.width : 800f;
+            float parentHeight = parentRT != null ? parentRT.rect.height : 600f;
             
-            float startX = -totalGridWidth / 2f;
-            float startY = totalGridHeight / 2f;
+            float slotWidth = (parentWidth - (slotsPerRow - 1) * slotSpacingX) / slotsPerRow;
+            float slotHeight = (parentHeight - (rowsCount - 1) * slotSpacingY) / rowsCount;
+            float currentSlotSizeX = Mathf.Min(Mathf.Max(slotWidth, 50f), 300f);
+            float currentSlotSizeY = Mathf.Min(Mathf.Max(slotHeight, 50f), 150f);
             
-            float posX = startX + col * (slotSize.x + slotSpacingX) + slotSize.x / 2f;
-            float posY = startY - row * (slotSize.y + slotSpacingY) - slotSize.y / 2f;
+            // Инвертируем row: 0 = верхний ряд, 3 = нижний ряд
+            int displayRow = rowsCount - 1 - row;
+            
+            float totalGridWidth = slotsPerRow * currentSlotSizeX + (slotsPerRow - 1) * slotSpacingX;
+            float totalGridHeight = rowsCount * currentSlotSizeY + (rowsCount - 1) * slotSpacingY;
+            
+            float centerX = -totalGridWidth / 2f + (col * (currentSlotSizeX + slotSpacingX) + currentSlotSizeX / 2f);
+            float centerY = totalGridHeight / 2f - (displayRow * (currentSlotSizeY + slotSpacingY) + currentSlotSizeY / 2f);
             
             folderGO.transform.localScale = Vector3.one;
             folderGO.transform.localRotation = Quaternion.identity;
@@ -633,10 +938,10 @@ public class SaveSlotSystem : MonoBehaviour
             // RectTransform для folderGO
             RectTransform folderRT = folderGO.GetComponent<RectTransform>();
             if (folderRT == null) folderRT = folderGO.AddComponent<RectTransform>();
-            folderRT.sizeDelta = slotSize;
+            folderRT.sizeDelta = new Vector2(currentSlotSizeX, currentSlotSizeY);
             folderRT.anchorMin = new Vector2(0.5f, 0.5f);
             folderRT.anchorMax = new Vector2(0.5f, 0.5f);
-            folderRT.anchoredPosition = new Vector2(posX, posY);
+            folderRT.anchoredPosition = new Vector2(centerX, -centerY);
 
             // Image (чёрный)
             Image img = folderGO.AddComponent<Image>();
@@ -657,6 +962,20 @@ public class SaveSlotSystem : MonoBehaviour
                 continue;
             }
             btn.enabled = true;
+            
+            // Принудительно включаем Image
+            Image imgComp2 = folderGO.GetComponent<Image>();
+            if (imgComp2 != null)
+            {
+                imgComp2.enabled = true;
+                imgComp2.raycastTarget = true;
+            }
+            
+            int fixSlotIndex = i;
+            btn.onClick.AddListener(() => {
+                Debug.Log($"[FixFoldersSaveMenu] 🖱️ Click slot {fixSlotIndex}");
+                OnSlotClicked(fixSlotIndex);
+            });
 
             // Текст
             GameObject textGO = new GameObject("FileNameText");
@@ -726,13 +1045,12 @@ public class SaveSlotSystem : MonoBehaviour
         // 4. ФИНАЛЬНАЯ ПРОВЕРКА
         Debug.Log("[FixFoldersSaveMenu] ============================================");
         Debug.Log("[FixFoldersSaveMenu] Финальная проверка:");
-        Debug.Log("[FixFoldersSaveMenu]   - childCount: " + transform.childCount);
+        Debug.Log("[FixFoldersSaveMenu]   - _slotsParent.childCount: " + _slotsParent.childCount);
         Debug.Log("[FixFoldersSaveMenu]   - _slots.Count: " + _slots.Count);
-        Debug.Log("[FixFoldersSaveMenu]   - parent localScale: " + transform.localScale);
+        Debug.Log("[FixFoldersSaveMenu]   - parent localScale: " + _slotsParent.localScale);
 
-        Debug.Assert(transform.childCount == 20, "Wrong file count!");
         Debug.Assert(_slots.Count == 20, "Slot list mismatch!");
-        Debug.Assert(transform.localScale == Vector3.one, "Parent scale broken!");
+        Debug.Assert(_slotsParent.localScale == Vector3.one, "Parent scale broken!");
 
         for (int i = 0; i < _slots.Count; i++)
         {
@@ -758,70 +1076,57 @@ public class SaveSlotSystem : MonoBehaviour
     [ContextMenu("🔥 Очистить и пересоздать слоты")]
     public void CleanupAndRespawnSlots()
     {
-        Debug.Log("[SaveSlotSystem] 🔥 НАЧАТО ОЧИЩЕНИЕ ИЕРАРХИИ...");
-        
-        // 1. УДАЛЕНИЕ ВСЕХ СТАРЫХ СЛОТОВ (сохраняем NumberOfFolder!)
-        int oldSlotsRemoved = 0;
-        Transform numberOfFolder = null;
-        
-        // Сначала находим NumberOfFolder
-        for (int i = 0; i < transform.childCount; i++)
+        // Автоинициализация если не сработал Awake()
+        if (!_isInitialized || _canvas == null || _slotsParent == null)
         {
-            Transform child = transform.GetChild(i);
-            if (child.name == "NumberOfFolder")
+            Debug.Log("[SaveSlotSystem] Автоинициализация в CleanupAndRespawnSlots...");
+            _canvas = FindFirstObjectByType<Canvas>();
+            if (_canvas == null)
             {
-                numberOfFolder = child;
-                Debug.Log($"[SaveSlotSystem] 🔒 Сохранён NumberOfFolder");
+                GameObject canvasGO = new GameObject("SaveSlotsCanvas");
+                _canvas = canvasGO.AddComponent<Canvas>();
+                _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                _canvas.worldCamera = null;
+                _canvas.overrideSorting = true;
+                _canvas.sortingOrder = 1000;
+                canvasGO.AddComponent<GraphicRaycaster>();
+                canvasGO.AddComponent<CanvasScaler>();
             }
-        }
-        
-        Debug.Log($"[SaveSlotSystem] 📋 Текущий childCount: {transform.childCount}");
-        
-        // Удаляем в ОБРАТНОМ порядке, чтобы индексы не сдвигались
-        for (int i = transform.childCount - 1; i >= 0; i--)
-        {
-            Transform child = transform.GetChild(i);
+            RectTransform canvasRT = _canvas.GetComponent<RectTransform>();
+            if (canvasRT != null)
+            {
+                canvasRT.anchorMin = Vector2.zero;
+                canvasRT.anchorMax = Vector2.one;
+                canvasRT.sizeDelta = Vector2.zero;
+                canvasRT.anchoredPosition = Vector2.zero;
+            }
             
-            // Пропускаем NumberOfFolder
-            if (child == numberOfFolder)
-                continue;
-                
-            Debug.Log($"[SaveSlotSystem] 🔍 Удаление объекта: '{child.name}'");
-            DestroyImmediate(child.gameObject, true);
-            oldSlotsRemoved++;
+            // Ищем FoldersSavePanel — ТОЧНО ТАК ЖЕ, КАК В Awake()
+            Transform foldersSavePanel = transform.Find("FoldersSavePanel");
+            if (foldersSavePanel == null)
+            {
+                foldersSavePanel = transform.root.Find("FoldersSavePanel");
+            }
+            if (foldersSavePanel == null)
+            {
+                Debug.LogError("[SaveSlotSystem] FoldersSavePanel НЕ НАЙДЕН в CleanupAndRespawnSlots!");
+            }
+            _slotsParent = foldersSavePanel != null ? foldersSavePanel : transform;
+            Debug.Log("[SaveSlotSystem] ✅ Найден FoldersSavePanel: " + (_slotsParent != null ? _slotsParent.name : "null"));
+            
+            // Создаём LevelMenu — отдельный корневой GameObject
+            _levelMenu = new GameObject("LevelMenu");
+            _levelMenu.transform.SetParent(null, false);
+            _isInitialized = true;
         }
         
-        Debug.Log($"[SaveSlotSystem] 🧹 Удалено {oldSlotsRemoved} старых объектов");
+        Debug.Log("[SaveSlotSystem] 🔥 НАЧАТО ПЕРЕСОЗДАНИЕ СЛОТОВ...");
         
-        // 2. ПРОВЕРКА: должен остаться только NumberOfFolder (если был)
-        if (numberOfFolder != null)
-        {
-            if (transform.childCount != 1)
-            {
-                Debug.LogError($"[SaveSlotSystem] [ERROR] Ожидался childCount 1 (NumberOfFolder), но получено: {transform.childCount}!");
-                return;
-            }
-            if (transform.GetChild(0) != numberOfFolder)
-            {
-                Debug.LogError("[SaveSlotSystem] [ERROR] NumberOfFolder потерян!");
-                return;
-            }
-            Debug.Log("[SaveSlotSystem] ✅ NumberOfFolder на месте");
-        }
-        else
-        {
-            if (transform.childCount != 0)
-            {
-                Debug.LogError($"[SaveSlotSystem] [ERROR] Ожидался childCount 0, но получено: {transform.childCount}!");
-                return;
-            }
-            Debug.Log("[SaveSlotSystem] ✅ Иерархия очищена");
-        }
+        // НЕ удаляем GameObject через DestroyImmediate — просто пересоздаём слоты заново
+        // Старые GameObject останутся, но мы будем использовать новые из _slots
+        Debug.Log($"[SaveSlotSystem] 📋 _slotsParent.childCount: {_slotsParent.childCount}");
         
-        // 🔴 РАСЧЁТ РАЗМЕРА СЛОТОВ НА ОСНОВЕ РЕАЛЬНОГО РАЗМЕРА CANVAS
-        CalculateSlotSizeFromCanvas();
-        
-        // 3. СОЗДАНИЕ 20 НОВЫХ ФАЙЛОВ
+        // 2. СОЗДАНИЕ 20 НОВЫХ СЛОТОВ
         Debug.Log("[SaveSlotSystem] 📦 СОЗДАНИЕ 20 НОВЫХ ФАЙЛОВ...");
         
         _slots.Clear();
@@ -833,22 +1138,30 @@ public class SaveSlotSystem : MonoBehaviour
             
             // Создаём GameObject
             GameObject folderGO = new GameObject(folderName);
-            folderGO.transform.SetParent(transform, false);
+            folderGO.transform.SetParent(_slotsParent, true);
             
-            // 🔴 ФИКСИРОВАННАЯ ПОЗИЦИЯ В СЕТКЕ 5x4
+            // 🔴 РАСЧЁТ РАЗМЕРА СЛОТОВ НА ОСНОВЕ РАЗМЕРА PARENT
+            RectTransform parentRT = _slotsParent as RectTransform;
+            float parentWidth = parentRT != null ? parentRT.rect.width : 800f;
+            float parentHeight = parentRT != null ? parentRT.rect.height : 600f;
+            
+            float slotWidth = (parentWidth - (slotsPerRow - 1) * slotSpacingX) / slotsPerRow;
+            float slotHeight = (parentHeight - (rowsCount - 1) * slotSpacingY) / rowsCount;
+            float currentSlotSizeX = Mathf.Min(Mathf.Max(slotWidth, 50f), 300f);
+            float currentSlotSizeY = Mathf.Min(Mathf.Max(slotHeight, 50f), 150f);
+            
+            // 🔴 ФИКСИРОВАННАЯ ПОЗИЦИЯ В СЕТКЕ 5x4 (сверху вниз по возрастанию)
             int row = i / slotsPerRow;
             int col = i % slotsPerRow;
             
-            float totalGridWidth = slotsPerRow * slotSize.x + (slotsPerRow - 1) * slotSpacingX;
-            float totalGridHeight = rowsCount * slotSize.y + (rowsCount - 1) * slotSpacingY;
+            // Инвертируем row: 0 = верхний ряд, 3 = нижний ряд
+            int displayRow = rowsCount - 1 - row;
             
-            float startX = -totalGridWidth / 2f;
-            float startY = totalGridHeight / 2f;
+            float totalGridWidth = slotsPerRow * currentSlotSizeX + (slotsPerRow - 1) * slotSpacingX;
+            float totalGridHeight = rowsCount * currentSlotSizeY + (rowsCount - 1) * slotSpacingY;
             
-            float posX = startX + col * (slotSize.x + slotSpacingX) + slotSize.x / 2f;
-            float posY = startY - row * (slotSize.y + slotSpacingY) - slotSize.y / 2f;
-            
-            folderGO.transform.localPosition = new Vector3(posX, posY, 0f);
+            float centerX = -totalGridWidth / 2f + (col * (currentSlotSizeX + slotSpacingX) + currentSlotSizeX / 2f);
+            float centerY = totalGridHeight / 2f - (displayRow * (currentSlotSizeY + slotSpacingY) + currentSlotSizeY / 2f);
             
             // 🔴 Масштаб 1, размеры через RectTransform
             folderGO.transform.localScale = Vector3.one;
@@ -857,10 +1170,10 @@ public class SaveSlotSystem : MonoBehaviour
             // RectTransform для folderGO
             RectTransform folderRT = folderGO.GetComponent<RectTransform>();
             if (folderRT == null) folderRT = folderGO.AddComponent<RectTransform>();
-            folderRT.sizeDelta = slotSize;
+            folderRT.sizeDelta = new Vector2(currentSlotSizeX, currentSlotSizeY);
             folderRT.anchorMin = new Vector2(0.5f, 0.5f);
             folderRT.anchorMax = new Vector2(0.5f, 0.5f);
-            folderRT.anchoredPosition = new Vector2(posX, posY);
+            folderRT.anchoredPosition = new Vector2(centerX, -centerY);
             
             // Добавляем Image для видимости (UISprite форма)
             Image img = folderGO.AddComponent<Image>();
@@ -883,6 +1196,20 @@ public class SaveSlotSystem : MonoBehaviour
             }
             
             btn.enabled = true;
+            
+            // Принудительно включаем Image
+            Image imgComp3 = folderGO.GetComponent<Image>();
+            if (imgComp3 != null)
+            {
+                imgComp3.enabled = true;
+                imgComp3.raycastTarget = true;
+            }
+            
+            int cleanupSlotIndex = i;
+            btn.onClick.AddListener(() => {
+                Debug.Log($"[SaveSlotSystem] 🖱️ Click slot {cleanupSlotIndex}");
+                OnSlotClicked(cleanupSlotIndex);
+            });
             
             // Добавляем текст
             GameObject textGO = new GameObject("FileNameText");
@@ -951,7 +1278,7 @@ public class SaveSlotSystem : MonoBehaviour
         Debug.Log("[SaveSlotSystem] 📊 ФИНАЛЬНЫЙ ОТЧЁТ:");
         Debug.Log($"[SaveSlotSystem] Total slots: {totalSlots}");
         Debug.Log($"[SaveSlotSystem] Created slots: {_slots.Count}");
-        Debug.Log($"[SaveSlotSystem] FoldersSaveMenu.childCount: {transform.childCount}");
+        Debug.Log($"[SaveSlotSystem] _slotsParent.childCount: {_slotsParent.childCount}");
         
         if (_slots.Count != totalSlots)
         {
@@ -965,8 +1292,8 @@ public class SaveSlotSystem : MonoBehaviour
             Debug.Log("[SaveSlotSystem] ✅ ВСЕ 20 СЛОТОВ УСПЕШНО СОЗДАНЫ!");
         }
         
-        // 🔴 Жёсткая валидация: childCount должен быть ровно 20
-        Debug.Assert(transform.childCount == 20, "Wrong file count!");
+        // Валидация: все слоты в списке
+        Debug.Assert(_slots.Count == 20, "Wrong slot count!");
         
         // 5. ВИЗУАЛИЗАЦИЯ GIZMOS
         Debug.Log("[SaveSlotSystem] 🎨 Визуализация Gizmos активирована");
