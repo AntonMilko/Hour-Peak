@@ -102,17 +102,18 @@ namespace HourPeak.Samples.Runtime
         
         Debug.Log($"🔄 Перезапуск уровня: Уровень {currentLevelNumber} Часть {currentPartIndex} | Попытка: {retryCount}");
         
-        // Сохраняем настройки сложности перед перезапуском
-        if (continueManager != null)
-        {
-            continueManager.SaveCurrentSettings();
-            Debug.Log("💾 Настройки сложности сохранены перед перезапуском.");
-        }
-        
-        // Автосохранение перед перезапуском
+        // Автосохранение перед перезапуском (особенно важно для финального уровня)
         if (autoSaveOnRetry)
         {
             SaveRetryProgress();
+            Debug.Log("💾 Автосохранение выполнено перед перезапуском.");
+        }
+        
+        // Для финального уровня 36 Part 2 — рестарт с 36.1
+        if (currentLevelNumber == 36 && currentPartIndex >= 2)
+        {
+            Debug.Log("🔄 Финальный уровень — рестарт с Part 1 (36.1)");
+            currentPartIndex = 1;
         }
         
         LoadCurrentLevel();

@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -53,6 +55,12 @@ namespace HourPeak
 
         [Tooltip("Оставаться в LevelMenu после StartMenu")]
         [SerializeField] private bool stayInLevelMenu = true;
+
+        [Tooltip("Текущий уровень (номер)")]
+        [SerializeField] private int currentLevelNumber = 1;
+
+        [Tooltip("Текущая часть уровня (1, 2)")]
+        [SerializeField] private int currentPartIndex = 1;
 
         #endregion
 
@@ -160,12 +168,16 @@ namespace HourPeak
         /// </summary>
         public void ExitToMainMenu()
         {
+            // Автосохранение перед выходом
             if (autoSaveOnExit && continuationManager != null)
             {
                 continuationManager.SaveCurrentSettings();
                 Debug.Log("💾 Настройки сохранены перед выходом");
             }
-
+            
+            // Автосохранение прогресса уровня
+            SaveLevelProgressBeforeExit();
+            
             if (goToStartMenu)
             {
                 Debug.Log("🚪 Переход в главное меню");
@@ -183,12 +195,16 @@ namespace HourPeak
         /// </summary>
         public void ExitToLevelMenu()
         {
+            // Автосохранение перед выходом
             if (autoSaveOnExit && continuationManager != null)
             {
                 continuationManager.SaveCurrentSettings();
                 Debug.Log("💾 Настройки сохранены перед выходом");
             }
-
+            
+            // Автосохранение прогресса уровня
+            SaveLevelProgressBeforeExit();
+            
             if (stayInLevelMenu)
             {
                 Debug.Log("🚪 Переход в меню выбора уровней");
@@ -198,6 +214,40 @@ namespace HourPeak
             {
                 Debug.Log("🚪 Переход в главное меню");
                 SceneManager.LoadScene(mainMenuScene);
+            }
+        }
+
+        /// <summary>
+        /// Сохраняет прогресс уровня перед выходом.
+        /// </summary>
+        private void SaveLevelProgressBeforeExit()
+        {
+            try
+            {
+                string savePath = Path.Combine(
+                    Application.persistentDataPath,
+                    "GameSaves",
+                    $"level_{currentLevelNumber:000}.json"
+                );
+                
+                var data = new GameData
+                {
+                    lastUnlockedLevel = 1,
+                    currentLevel = currentLevelNumber,
+                    currentPart = currentPartIndex,
+                    starsCollected = 0,
+                    remainingTime = 0,
+                    saveTimestamp = DateTime.Now.ToString("yyyy.MM.dd_HH:mm:ss")
+                };
+                
+                string json = JsonUtility.ToJson(data, true);
+                File.WriteAllText(savePath, json);
+                
+                Debug.Log($"💾 Автосохранение перед выходом: Уровень {currentLevelNumber} Часть {currentPartIndex}");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"❌ Ошибка автосохранения: {e.Message}");
             }
         }
 
@@ -267,4 +317,21 @@ namespace HourPeak
 
         #endregion
     }
+
+    #region Data Structures
+    /// <summary>
+    /// Данные сохранения уровня.
+    /// </summary>
+    [Serializable]
+    class GameData
+    {
+        public int lastUnlockedLevel;
+        public int currentLevel;
+        public int currentPart;
+        public int starsCollected;
+        public float remainingTime;
+        public string saveTimestamp;
+    }
+
+    #endregion
 }

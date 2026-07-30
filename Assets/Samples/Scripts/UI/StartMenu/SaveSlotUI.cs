@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// UI component for displaying and interacting with a save slot.
+/// UI component for displaying and interacting with a save slot (level button).
 /// Attach to each save slot button in the UI.
 /// </summary>
 public class SaveSlotUI : MonoBehaviour
@@ -14,6 +14,8 @@ public class SaveSlotUI : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private Button slotButton;
     [SerializeField] private TextMeshProUGUI slotDateText;
+    [SerializeField] private Image slotImage;          // Изображение уровня (превью)
+    [SerializeField] private GameObject lockOverlay;   // Оверлей замка (если есть)
 
     #endregion
 
@@ -22,6 +24,8 @@ public class SaveSlotUI : MonoBehaviour
     private int _slotIndex;
     private SaveData _currentSaveData;
     private Action<int> _onSlotSelected;
+    private bool _isLevelUnlocked = true;
+    private bool _isLevelCompleted = false;
 
     #endregion
 
@@ -41,6 +45,11 @@ public class SaveSlotUI : MonoBehaviour
     /// Whether this slot is empty.
     /// </summary>
     public bool IsEmpty => _currentSaveData == null;
+
+    /// <summary>
+    /// Whether the level is unlocked.
+    /// </summary>
+    public bool IsLevelUnlocked => _isLevelUnlocked;
 
     #endregion
 
@@ -105,18 +114,115 @@ public class SaveSlotUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Устанавливает статус разблокировки уровня и обновляет визуал.
+    /// </summary>
+    public void SetLevelUnlocked(bool unlocked)
+    {
+        _isLevelUnlocked = unlocked;
+        UpdateVisualState();
+    }
+
+    /// <summary>
+    /// Устанавливает статус прохождения уровня.
+    /// </summary>
+    public void SetLevelCompleted(bool completed)
+    {
+        _isLevelCompleted = completed;
+        UpdateVisualState();
+    }
+
+    /// <summary>
+    /// Устанавливает номер уровня (для отображения в кнопке).
+    /// </summary>
+    public void SetLevelNumber(int levelNumber)
+    {
+        if (slotDateText != null)
+        {
+            slotDateText.text = $"Ур. {levelNumber}";
+        }
+    }
+
+    /// <summary>
+    /// Устанавливает выделение слота.
+    /// </summary>
+    public void SetSelected(bool selected)
+    {
+        if (slotButton != null)
+        {
+            slotButton.interactable = _isLevelUnlocked;
+        }
+    }
+
+    /// <summary>
+    /// Применяет визуальное состояние (locked/unlocked/completed).
+    /// </summary>
+    private void UpdateVisualState()
+    {
+        // 1. Блокировка/разблокировка
+        if (slotButton != null)
+        {
+            slotButton.interactable = _isLevelUnlocked;
+        }
+
+        // 2. Затемнение изображения для заблокированных уровней
+        if (slotImage != null)
+        {
+            // Если уровень пройден — яркий, разблокирован — чуть темнее, заблокирован — тёмный
+            if (_isLevelCompleted)
+            {
+                slotImage.color = Color.white;
+            }
+            else if (_isLevelUnlocked)
+            {
+                // Разблокирован, но не пройден — чуть приглушённый
+                slotImage.color = new Color(0.85f, 0.85f, 0.85f);
+            }
+            else
+            {
+                // Заблокирован — сильно затемнён
+                slotImage.color = new Color(0.35f, 0.35f, 0.35f);
+            }
+        }
+
+        // 3. Оверлей замка
+        if (lockOverlay != null)
+        {
+            lockOverlay.SetActive(!_isLevelUnlocked);
+        }
+
+        // Текст устанавливается через SetLevelNumber() — не перезаписываем здесь
+    }
+
     #endregion
 
     #region Event Handlers
 
     private void OnSlotClicked()
     {
-        Debug.Log($"SaveSlotUI: Clicked slot index={_slotIndex}, saveData={_currentSaveData?.SaveName ?? "null"}");
+        Debug.Log($"SaveSlotUI: Clicked slot index={_slotIndex}, unlocked={_isLevelUnlocked}, saveData={_currentSaveData?.SaveName ?? "null"}");
         
+        if (!_isLevelUnlocked)
+        {
+            Debug.Log($"🔒 Уровень {_slotIndex + 1} заблокирован!");
+            return;
+        }
+
         if (_onSlotSelected != null)
         {
             _onSlotSelected(_slotIndex);
         }
+    }
+
+    #endregion
+
+    #region Utilities
+
+    private string RepeatChar(char c, int count)
+    {
+        char[] arr = new char[count];
+        for (int i = 0; i < count; i++) arr[i] = c;
+        return new string(arr);
     }
 
     #endregion

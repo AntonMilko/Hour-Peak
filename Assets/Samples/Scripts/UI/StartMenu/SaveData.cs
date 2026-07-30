@@ -110,7 +110,56 @@ public class SaveData
 
     #endregion
 
+    #region Hour-Peak Progress (36 уровней × 2 части)
+
+    /// <summary>
+    /// Прогресс утренних частей (индекс = базовый уровень 0-35).
+    /// true = утро уровня пройдено.
+    /// </summary>
+    public bool[] MorningCompleted { get; set; }
+
+    /// <summary>
+    /// Прогресс вечерних частей (индекс = базовый уровень 0-35).
+    /// true = вечер уровня пройдено.
+    /// </summary>
+    public bool[] EveningCompleted { get; set; }
+
+    /// <summary>
+    /// Звёзды за утренние части (индекс = базовый уровень 0-35, значения 0-3).
+    /// </summary>
+    public int[] MorningStars { get; set; }
+
+    /// <summary>
+    /// Звёзды за вечерние части (индекс = базовый уровень 0-35, значения 0-3).
+    /// </summary>
+    public int[] EveningStars { get; set; }
+
+    /// <summary>
+    /// Время прохождения утренних частей (индекс = базовый уровень 0-35).
+    /// </summary>
+    public float[] MorningTimes { get; set; }
+
+    /// <summary>
+    /// Время прохождения вечерних частей (индекс = базовый уровень 0-35).
+    /// </summary>
+    public float[] EveningTimes { get; set; }
+
+    #endregion
+
     #region Constructors
+
+    /// <summary>
+    /// Инициализирует массивы прогресса Hour-Peak (36 уровней).
+    /// </summary>
+    private void InitializeHourPeakProgress()
+    {
+        MorningCompleted = new bool[36];
+        EveningCompleted = new bool[36];
+        MorningStars = new int[36];
+        EveningStars = new int[36];
+        MorningTimes = new float[36];
+        EveningTimes = new float[36];
+    }
 
     /// <summary>
     /// Creates a new save with default values.
@@ -132,6 +181,7 @@ public class SaveData
         TotalStars = 0;
         CrowdDensity = 20;
         CurrentSpeed = 2.5f;
+        InitializeHourPeakProgress();
     }
 
     /// <summary>
@@ -154,6 +204,7 @@ public class SaveData
         TotalStars = 0;
         CrowdDensity = 20;
         CurrentSpeed = 2.5f;
+        InitializeHourPeakProgress();
     }
 
     #endregion
@@ -190,6 +241,20 @@ public class SaveData
         TotalStars = other.TotalStars;
         CrowdDensity = other.CrowdDensity;
         CurrentSpeed = other.CurrentSpeed;
+
+        // Copy Hour-Peak progress arrays
+        if (other.MorningCompleted != null)
+            System.Array.Copy(other.MorningCompleted, MorningCompleted, 36);
+        if (other.EveningCompleted != null)
+            System.Array.Copy(other.EveningCompleted, EveningCompleted, 36);
+        if (other.MorningStars != null)
+            System.Array.Copy(other.MorningStars, MorningStars, 36);
+        if (other.EveningStars != null)
+            System.Array.Copy(other.EveningStars, EveningStars, 36);
+        if (other.MorningTimes != null)
+            System.Array.Copy(other.MorningTimes, MorningTimes, 36);
+        if (other.EveningTimes != null)
+            System.Array.Copy(other.EveningTimes, EveningTimes, 36);
     }
 
     /// <summary>
@@ -197,7 +262,7 @@ public class SaveData
     /// </summary>
     public SaveData Clone()
     {
-        return new SaveData
+        var clone = new SaveData
         {
             SaveId = this.SaveId,
             SaveName = this.SaveName,
@@ -215,6 +280,22 @@ public class SaveData
             CrowdDensity = this.CrowdDensity,
             CurrentSpeed = this.CurrentSpeed
         };
+
+        // Clone Hour-Peak progress arrays
+        if (this.MorningCompleted != null)
+            clone.MorningCompleted = (bool[])this.MorningCompleted.Clone();
+        if (this.EveningCompleted != null)
+            clone.EveningCompleted = (bool[])this.EveningCompleted.Clone();
+        if (this.MorningStars != null)
+            clone.MorningStars = (int[])this.MorningStars.Clone();
+        if (this.EveningStars != null)
+            clone.EveningStars = (int[])this.EveningStars.Clone();
+        if (this.MorningTimes != null)
+            clone.MorningTimes = (float[])this.MorningTimes.Clone();
+        if (this.EveningTimes != null)
+            clone.EveningTimes = (float[])this.EveningTimes.Clone();
+
+        return clone;
     }
 
     /// <summary>

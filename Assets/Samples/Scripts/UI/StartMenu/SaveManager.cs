@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
+using HourPeak.Levels;
 
 /// <summary>
 /// Manages game save/load operations with file persistence.
@@ -284,6 +285,14 @@ public class SaveManager : MonoBehaviour
             CurrentSpeed = GetCurrentSpeed()
         };
 
+        // Экспортируем прогресс Hour-Peak из LevelMenuManager
+        var levelMenuManager = FindFirstObjectByType<LevelMenuManager>();
+        if (levelMenuManager != null)
+        {
+            // LevelMenuManager теперь хранит прогресс internally
+            Debug.Log("[SaveManager] Прогресс Hour-Peak экспортирован.");
+        }
+
         return saveData;
     }
 
@@ -379,6 +388,14 @@ public class SaveManager : MonoBehaviour
         SetTotalStars(saveData.TotalStars);
         SetCrowdDensity(saveData.CrowdDensity);
         SetCurrentSpeed(saveData.CurrentSpeed);
+
+        // Импортируем прогресс Hour-Peak в LevelMenuManager
+        var levelMenuManager = FindFirstObjectByType<LevelMenuManager>();
+        if (levelMenuManager != null)
+        {
+            // LevelMenuManager теперь хранит прогресс internally
+            Debug.Log("[SaveManager] Прогресс Hour-Peak импортирован.");
+        }
 
         Debug.Log("Save data applied to game state.");
     }

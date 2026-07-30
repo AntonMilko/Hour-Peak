@@ -579,20 +579,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 15685031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 3.1
-    DisplayName: Level 3.1
-    TimeOfDay: 0
-  - SceneName: Evening 3.2
-    DisplayName: Level 3.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 2
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 15685035}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 15685032}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1061826363}
+  starsPart2Template: {fileID: 547857923}
 --- !u!1 &19533512
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,20 +864,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 23092883}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 29.1
-    DisplayName: Level 29.1
-    TimeOfDay: 0
-  - SceneName: Evening 29.2
-    DisplayName: Level 29.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 28
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 23092887}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 23092884}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1680393167}
+  starsPart2Template: {fileID: 144455589}
 --- !u!1 &36726967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1693,20 +1691,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 61978034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 20.1
-    DisplayName: Level 20.1
-    TimeOfDay: 0
-  - SceneName: Evening 20.2
-    DisplayName: Level 20.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 19
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 61978038}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 61978035}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 130032519}
+  starsPart2Template: {fileID: 1042835349}
 --- !u!1 &66672413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2541,20 +2538,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 92348028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 19.1
-    DisplayName: Level 19.1
-    TimeOfDay: 0
-  - SceneName: Evening 19.3
-    DisplayName: Level 19.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 18
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 92348032}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 92348029}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1323716402}
+  starsPart2Template: {fileID: 176882399}
 --- !u!1 &94892297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2977,6 +2973,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &111576217
 GameObject:
   m_ObjectHideFlags: 0
@@ -3387,20 +3393,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 123592216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 22.1
-    DisplayName: Level 22.1
-    TimeOfDay: 0
-  - SceneName: Evening 22.2
-    DisplayName: Level 22.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 21
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 123592220}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 123592217}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 655121068}
+  starsPart2Template: {fileID: 1092892344}
 --- !u!1 &126499092
 GameObject:
   m_ObjectHideFlags: 0
@@ -3591,6 +3596,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &135529730
 GameObject:
   m_ObjectHideFlags: 0
@@ -3769,20 +3784,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 135529730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 35.1
-    DisplayName: Level 35.1
-    TimeOfDay: 0
-  - SceneName: Evening 35.2
-    DisplayName: Level 35.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 34
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 135529734}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 135529731}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1917095475}
+  starsPart2Template: {fileID: 1209033732}
 --- !u!1 &144455588
 GameObject:
   m_ObjectHideFlags: 0
@@ -3879,6 +3893,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &153398957
 GameObject:
   m_ObjectHideFlags: 0
@@ -4385,20 +4409,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 172905019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 17.1
-    DisplayName: Level 17.1
-    TimeOfDay: 0
-  - SceneName: Evening 17.2
-    DisplayName: Level 17.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 16
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 172905023}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 172905020}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1811927464}
+  starsPart2Template: {fileID: 839918813}
 --- !u!1 &176882398
 GameObject:
   m_ObjectHideFlags: 0
@@ -4495,6 +4518,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &180122408
 GameObject:
   m_ObjectHideFlags: 0
@@ -4969,6 +5002,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &193455498
 GameObject:
   m_ObjectHideFlags: 0
@@ -5147,20 +5190,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 193455498}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 5.1
-    DisplayName: Level 5.1
-    TimeOfDay: 0
-  - SceneName: Evening 5.2
-    DisplayName: Level 5.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 4
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 193455502}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 193455499}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1397715250}
+  starsPart2Template: {fileID: 103617867}
 --- !u!1 &194459216
 GameObject:
   m_ObjectHideFlags: 0
@@ -6270,6 +6312,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &267165689
 GameObject:
   m_ObjectHideFlags: 0
@@ -6787,6 +6839,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &289070420
 GameObject:
   m_ObjectHideFlags: 0
@@ -7166,6 +7228,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &302961716
 GameObject:
   m_ObjectHideFlags: 0
@@ -8044,6 +8116,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &339041517
 GameObject:
   m_ObjectHideFlags: 0
@@ -8222,20 +8304,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 339041517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 26.1
-    DisplayName: Level 26.1
-    TimeOfDay: 0
-  - SceneName: Evening 26.2
-    DisplayName: Level 26.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 25
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 339041521}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 339041518}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1817554341}
+  starsPart2Template: {fileID: 394955808}
 --- !u!1 &339262138
 GameObject:
   m_ObjectHideFlags: 0
@@ -8414,20 +8495,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 339262138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 4.1
-    DisplayName: Level 4.1
-    TimeOfDay: 0
-  - SceneName: Evening 4.2
-    DisplayName: Level 4.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 3
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 339262142}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 339262139}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 2035791214}
+  starsPart2Template: {fileID: 287912391}
 --- !u!1 &344529705
 GameObject:
   m_ObjectHideFlags: 0
@@ -8669,6 +8749,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &349912770
 GameObject:
   m_ObjectHideFlags: 0
@@ -9577,6 +9667,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &400246989
 GameObject:
   m_ObjectHideFlags: 0
@@ -9741,6 +9841,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &403142973
 GameObject:
   m_ObjectHideFlags: 0
@@ -10871,6 +10981,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &472522454
 GameObject:
   m_ObjectHideFlags: 0
@@ -10967,37 +11087,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
---- !u!1 &475810239
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 475810240}
-  m_Layer: 0
-  m_Name: LevelMenu
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &475810240
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 475810239}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &482033886
 GameObject:
   m_ObjectHideFlags: 0
@@ -11379,6 +11478,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &492814748
 GameObject:
   m_ObjectHideFlags: 0
@@ -11967,6 +12076,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &516182335
 GameObject:
   m_ObjectHideFlags: 0
@@ -12063,6 +12182,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &520221217
 GameObject:
   m_ObjectHideFlags: 0
@@ -12241,20 +12370,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 520221217}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 1.1
-    DisplayName: Level 1.1
-    TimeOfDay: 0
-  - SceneName: Evening 1.3
-    DisplayName: Level 1.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 0
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 520221221}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 520221218}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1899326448}
+  starsPart2Template: {fileID: 1470892717}
 --- !u!1 &525747237
 GameObject:
   m_ObjectHideFlags: 0
@@ -12716,20 +12844,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 527285702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 33.1
-    DisplayName: Level 33.1
-    TimeOfDay: 0
-  - SceneName: Evening 33.2
-    DisplayName: Level 33.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 32
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 527285706}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 527285703}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1036969536}
+  starsPart2Template: {fileID: 845682822}
 --- !u!1 &527740536
 GameObject:
   m_ObjectHideFlags: 0
@@ -13202,6 +13329,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &547857922
 GameObject:
   m_ObjectHideFlags: 0
@@ -13298,6 +13435,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &549949798
 GameObject:
   m_ObjectHideFlags: 0
@@ -14504,20 +14651,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 582193029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 23.1
-    DisplayName: Level 23.1
-    TimeOfDay: 0
-  - SceneName: Evening 23.2
-    DisplayName: Level 23.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 22
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 582193033}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 582193030}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1727394653}
+  starsPart2Template: {fileID: 541673318}
 --- !u!1 &583558666
 GameObject:
   m_ObjectHideFlags: 0
@@ -14614,6 +14760,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &589855518
 GameObject:
   m_ObjectHideFlags: 0
@@ -15122,20 +15278,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 610106393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 24.1
-    DisplayName: Level 24.1
-    TimeOfDay: 0
-  - SceneName: Evening 24.2
-    DisplayName: Level 24.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 23
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 610106397}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 610106394}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 2139291799}
+  starsPart2Template: {fileID: 2015745814}
 --- !u!1 &610976023
 GameObject:
   m_ObjectHideFlags: 0
@@ -15314,20 +15469,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 610976023}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 18.1
-    DisplayName: Level 18.1
-    TimeOfDay: 0
-  - SceneName: Evening 18.2
-    DisplayName: Level 18.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 17
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 610976027}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 610976024}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 192580933}
+  starsPart2Template: {fileID: 2144160047}
 --- !u!1 &627765135
 GameObject:
   m_ObjectHideFlags: 0
@@ -16305,6 +16459,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &660963806
 GameObject:
   m_ObjectHideFlags: 0
@@ -17474,6 +17638,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &724982569
 GameObject:
   m_ObjectHideFlags: 0
@@ -17570,6 +17744,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &727187185
 GameObject:
   m_ObjectHideFlags: 0
@@ -17761,6 +17945,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &730796059
 GameObject:
   m_ObjectHideFlags: 0
@@ -18034,20 +18228,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 742584986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 32.1
-    DisplayName: Level 32.1
-    TimeOfDay: 0
-  - SceneName: Evening 32.2
-    DisplayName: Level 32.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 31
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 742584990}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 742584987}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1795850756}
+  starsPart2Template: {fileID: 1406025320}
 --- !u!1 &743944126
 GameObject:
   m_ObjectHideFlags: 0
@@ -18512,20 +18705,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 755587391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 9.1
-    DisplayName: Level 9.1
-    TimeOfDay: 0
-  - SceneName: Evening 9.2
-    DisplayName: Level 9.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 8
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 755587395}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 755587392}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 337339941}
+  starsPart2Template: {fileID: 1546346085}
 --- !u!1 &757048699
 GameObject:
   m_ObjectHideFlags: 0
@@ -19019,6 +19211,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &782055228
 GameObject:
   m_ObjectHideFlags: 0
@@ -19115,6 +19317,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &787106538
 GameObject:
   m_ObjectHideFlags: 0
@@ -19962,6 +20174,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &839881797
 GameObject:
   m_ObjectHideFlags: 0
@@ -20217,6 +20439,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &845682821
 GameObject:
   m_ObjectHideFlags: 0
@@ -20313,6 +20545,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &875687777
 GameObject:
   m_ObjectHideFlags: 0
@@ -20777,6 +21019,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &918408437
 GameObject:
   m_ObjectHideFlags: 0
@@ -22249,6 +22501,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &958743013
 GameObject:
   m_ObjectHideFlags: 0
@@ -22808,20 +23070,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 969410503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 25.1
-    DisplayName: Level 25.1
-    TimeOfDay: 0
-  - SceneName: Evening 25.2
-    DisplayName: Level 25.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 24
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 969410507}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 969410504}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1321280852}
+  starsPart2Template: {fileID: 1502518466}
 --- !u!1 &970346278
 GameObject:
   m_ObjectHideFlags: 0
@@ -23709,6 +23970,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1007134358
 GameObject:
   m_ObjectHideFlags: 0
@@ -23805,6 +24076,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1007501801
 GameObject:
   m_ObjectHideFlags: 0
@@ -24228,6 +24509,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1036969535
 GameObject:
   m_ObjectHideFlags: 0
@@ -24324,6 +24615,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1038722126
 GameObject:
   m_ObjectHideFlags: 0
@@ -24420,6 +24721,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1040297524
 GameObject:
   m_ObjectHideFlags: 0
@@ -24631,6 +24942,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1047921307
 GameObject:
   m_ObjectHideFlags: 0
@@ -25054,6 +25375,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1067434958
 GameObject:
   m_ObjectHideFlags: 0
@@ -26029,6 +26360,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1093885106
 GameObject:
   m_ObjectHideFlags: 0
@@ -27084,6 +27425,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1149896506
 GameObject:
   m_ObjectHideFlags: 0
@@ -27262,20 +27613,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1149896506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 30.1
-    DisplayName: Level 30.1
-    TimeOfDay: 0
-  - SceneName: Evening 30.2
-    DisplayName: Level 30.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 29
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1149896510}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1149896507}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 782055229}
+  starsPart2Template: {fileID: 2002367284}
 --- !u!1 &1158538485
 GameObject:
   m_ObjectHideFlags: 0
@@ -28014,20 +28364,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1193660713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 8.1
-    DisplayName: Level 8.1
-    TimeOfDay: 0
-  - SceneName: Evening 8.2
-    DisplayName: Level 8.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 7
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1193660717}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1193660714}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 722482250}
+  starsPart2Template: {fileID: 583558667}
 --- !u!1 &1209033731
 GameObject:
   m_ObjectHideFlags: 0
@@ -28124,6 +28473,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1209214699
 GameObject:
   m_ObjectHideFlags: 0
@@ -29518,20 +29877,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1249511901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 6.1
-    DisplayName: Level 6.1
-    TimeOfDay: 0
-  - SceneName: Evening 6.2
-    DisplayName: Level 6.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 5
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1249511905}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1249511902}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 472522455}
+  starsPart2Template: {fileID: 1650287285}
 --- !u!1 &1256401350
 GameObject:
   m_ObjectHideFlags: 0
@@ -30220,6 +30578,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1285221785
 GameObject:
   m_ObjectHideFlags: 0
@@ -30682,20 +31050,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1310698136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 14.1
-    DisplayName: Level 14.1
-    TimeOfDay: 0
-  - SceneName: Evening 14.2
-    DisplayName: Level 14.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 13
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1310698140}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1310698137}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1317661151}
+  starsPart2Template: {fileID: 1001664231}
 --- !u!1 &1312224163
 GameObject:
   m_ObjectHideFlags: 0
@@ -30984,6 +31351,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1321280851
 GameObject:
   m_ObjectHideFlags: 0
@@ -31080,6 +31457,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1322580189
 GameObject:
   m_ObjectHideFlags: 0
@@ -31313,6 +31700,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1324399953
 GameObject:
   m_ObjectHideFlags: 0
@@ -32253,6 +32650,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1374822895
 GameObject:
   m_ObjectHideFlags: 0
@@ -32835,6 +33242,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1404820420
 GameObject:
   m_ObjectHideFlags: 0
@@ -33068,6 +33485,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1421167963
 GameObject:
   m_ObjectHideFlags: 0
@@ -33545,6 +33972,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1445078634
 GameObject:
   m_ObjectHideFlags: 0
@@ -33723,20 +34160,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1445078634}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 31.1
-    DisplayName: Level 31.1
-    TimeOfDay: 0
-  - SceneName: Evening 31.2
-    DisplayName: Level 31.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 30
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1445078638}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1445078635}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1038722127}
+  starsPart2Template: {fileID: 774807450}
 --- !u!1 &1454238371
 GameObject:
   m_ObjectHideFlags: 0
@@ -34120,6 +34556,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1473281803
 GameObject:
   m_ObjectHideFlags: 0
@@ -35020,6 +35466,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1503654359
 GameObject:
   m_ObjectHideFlags: 0
@@ -35575,20 +36031,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1512682817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 34.1
-    DisplayName: Level 34.1
-    TimeOfDay: 0
-  - SceneName: Evening 34.2
-    DisplayName: Level 34.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 33
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1512682821}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1512682818}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1736344365}
+  starsPart2Template: {fileID: 728591990}
 --- !u!1 &1527603154
 GameObject:
   m_ObjectHideFlags: 0
@@ -35685,6 +36140,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1528484708
 GameObject:
   m_ObjectHideFlags: 0
@@ -35959,20 +36424,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1529597382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 21.1
-    DisplayName: Level 21.1
-    TimeOfDay: 0
-  - SceneName: Evening 21.2
-    DisplayName: Level 21.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 20
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1529597386}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1529597383}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1612712101}
+  starsPart2Template: {fileID: 1129251723}
 --- !u!1 &1533967169
 GameObject:
   m_ObjectHideFlags: 0
@@ -36069,6 +36533,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1542698953
 GameObject:
   m_ObjectHideFlags: 0
@@ -36480,20 +36954,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1546067380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 16.1
-    DisplayName: Level 16.1
-    TimeOfDay: 0
-  - SceneName: Evening 16.2
-    DisplayName: Level 16.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 15
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1546067384}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1546067381}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1839534926}
+  starsPart2Template: {fileID: 1283322311}
 --- !u!1 &1546346084
 GameObject:
   m_ObjectHideFlags: 0
@@ -36590,6 +37063,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1555552695
 GameObject:
   m_ObjectHideFlags: 0
@@ -37052,20 +37535,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1565128451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 15.1
-    DisplayName: Level 15.1
-    TimeOfDay: 0
-  - SceneName: Evening 15.2
-    DisplayName: Level 15.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 14
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1565128455}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1565128452}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 298210832}
+  starsPart2Template: {fileID: 1991385029}
 --- !u!1 &1569045132
 GameObject:
   m_ObjectHideFlags: 0
@@ -38499,20 +38981,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1602131455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 10.1
-    DisplayName: Level 10.1
-    TimeOfDay: 0
-  - SceneName: Evening 10.2
-    DisplayName: Level 10.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 9
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1602131459}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1602131456}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1007134359}
+  starsPart2Template: {fileID: 951246365}
 --- !u!1 &1609735565
 GameObject:
   m_ObjectHideFlags: 0
@@ -38828,20 +39309,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1609920021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 12.1
-    DisplayName: Level 12.1
-    TimeOfDay: 0
-  - SceneName: Evening 12.2
-    DisplayName: Level 12.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 11
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1609920025}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1609920022}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 513025051}
+  starsPart2Template: {fileID: 1438138511}
 --- !u!1 &1610161667
 GameObject:
   m_ObjectHideFlags: 0
@@ -39169,6 +39649,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1614981811
 GameObject:
   m_ObjectHideFlags: 0
@@ -39347,20 +39837,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1614981811}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 7.1
-    DisplayName: Level 7.1
-    TimeOfDay: 0
-  - SceneName: Evening 7.2
-    DisplayName: Level 7.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 6
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1614981815}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1614981812}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 488126710}
+  starsPart2Template: {fileID: 261438163}
 --- !u!1 &1617393406
 GameObject:
   m_ObjectHideFlags: 0
@@ -39635,20 +40124,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1625772559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 36.1
-    DisplayName: Level 36.1
-    TimeOfDay: 0
-  - SceneName: Evening 36.2
-    DisplayName: Level 36.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 35
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1625772563}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1625772560}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 471421301}
+  starsPart2Template: {fileID: 400657922}
 --- !u!1 &1626564657
 GameObject:
   m_ObjectHideFlags: 0
@@ -40231,6 +40719,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1656687365
 GameObject:
   m_ObjectHideFlags: 0
@@ -40845,6 +41343,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1685892597
 GameObject:
   m_ObjectHideFlags: 0
@@ -41023,20 +41531,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1685892597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 28.1
-    DisplayName: Level 28.1
-    TimeOfDay: 0
-  - SceneName: Evening 28.2
-    DisplayName: Level 28.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 27
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1685892601}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1685892598}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1527603155}
+  starsPart2Template: {fileID: 903891319}
 --- !u!1 &1689982779
 GameObject:
   m_ObjectHideFlags: 0
@@ -42747,6 +43254,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1734502132
 GameObject:
   m_ObjectHideFlags: 0
@@ -42937,6 +43454,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1744922357
 GameObject:
   m_ObjectHideFlags: 0
@@ -44099,6 +44626,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1798251111
 GameObject:
   m_ObjectHideFlags: 0
@@ -44608,6 +45145,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1817554340
 GameObject:
   m_ObjectHideFlags: 0
@@ -44704,6 +45251,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1818267237
 GameObject:
   m_ObjectHideFlags: 0
@@ -45328,6 +45885,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1846842405
 GameObject:
   m_ObjectHideFlags: 0
@@ -45856,20 +46423,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1860277764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 13.1
-    DisplayName: 'Level 13.1 '
-    TimeOfDay: 0
-  - SceneName: Evening 13.2
-    DisplayName: Level 13.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 12
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1860277768}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1860277765}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1533967170}
+  starsPart2Template: {fileID: 348020873}
 --- !u!1 &1861916573
 GameObject:
   m_ObjectHideFlags: 0
@@ -46776,20 +47342,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1875062924}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 11.1
-    DisplayName: Level 11.1
-    TimeOfDay: 0
-  - SceneName: Evening 11.2
-    DisplayName: Level 11.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 10
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1875062928}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1875062925}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1036091370}
+  starsPart2Template: {fileID: 833652304}
 --- !u!1 &1878527459
 GameObject:
   m_ObjectHideFlags: 0
@@ -47076,6 +47641,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1906655030
 GameObject:
   m_ObjectHideFlags: 0
@@ -47350,20 +47925,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1909940772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 27.1
-    DisplayName: Level 27.1
-    TimeOfDay: 0
-  - SceneName: Evening 27.2
-    DisplayName: Level 27.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 26
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1909940776}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1909940773}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 724982570}
+  starsPart2Template: {fileID: 516182336}
 --- !u!1 &1916871744
 GameObject:
   m_ObjectHideFlags: 0
@@ -47556,6 +48130,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1924324346
 GameObject:
   m_ObjectHideFlags: 0
@@ -48409,20 +48993,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1956610610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e066685a1f37fb74eb49eb114fea9878, type: 3}
+  m_Script: {fileID: 11500000, guid: 420371a22342b4d40a49e78e119c6bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Levels.LevelManager
-  levels:
-  - SceneName: Morning 2.1
-    DisplayName: Level 2.1
-    TimeOfDay: 0
-  - SceneName: Evening 2.2
-    DisplayName: Level 2.2
-    TimeOfDay: 1
-  currentBaseLevelIndex: 1
-  currentLevelMorningPartIndex: 0
-  currentLevelEveningPartIndex: 1
-  levelBackgroundImage: {fileID: 1956610614}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelMenuManager
+  totalBaseLevels: 36
+  levelsTemplate: {fileID: 1956610611}
+  levelBackgroundUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  levelBackgroundLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  firstPartUnlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  firstPartLockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  secondPartUnlockedColor: {r: 0, g: 0, b: 0, a: 1}
+  secondPartLockedColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  starsPart1Template: {fileID: 1984719979}
+  starsPart2Template: {fileID: 1372836459}
 --- !u!1 &1958316948
 GameObject:
   m_ObjectHideFlags: 0
@@ -48654,37 +49237,6 @@ MonoBehaviour:
   colorPass: {r: 1, g: 0.8, b: 0, a: 1}
   colorFailMorning: {r: 0, g: 0, b: 0, a: 1}
   colorFailEvening: {r: 1, g: 1, b: 1, a: 1}
---- !u!1 &1964028193
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1964028194}
-  m_Layer: 0
-  m_Name: LevelMenu
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1964028194
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1964028193}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1984719978
 GameObject:
   m_ObjectHideFlags: 0
@@ -48859,6 +49411,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &1996072448
 GameObject:
   m_ObjectHideFlags: 0
@@ -49323,6 +49885,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &2009798794
 GameObject:
   m_ObjectHideFlags: 0
@@ -49884,6 +50456,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &2027422929
 GameObject:
   m_ObjectHideFlags: 0
@@ -50254,6 +50836,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &2042046947
 GameObject:
   m_ObjectHideFlags: 0
@@ -53217,6 +53809,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &2140131458
 GameObject:
   m_ObjectHideFlags: 0
@@ -53544,6 +54146,16 @@ MonoBehaviour:
   currentLevelMorningPartIndex: 0
   currentLevelEveningPartIndex: 1
   levelBackgroundImage: {fileID: 0}
+  _levelStartTime: 0
+  _isLevelActive: 0
+  _currentDifficultyTimes:
+    ExcellentTime: 0
+    GoodTime: 0
+    BasicTime: 0
+    TimeLimit: 0
+  _currentMorningCompletedLevel: -1
+  _pendingTimeOfDay: 0
+  _isSceneLoading: 0
 --- !u!1 &2145150930
 GameObject:
   m_ObjectHideFlags: 0
@@ -53848,5 +54460,3 @@ SceneRoots:
   - {fileID: 764430672}
   - {fileID: 1508946035}
   - {fileID: 757048702}
-  - {fileID: 1964028194}
-  - {fileID: 475810240}

@@ -547,8 +547,9 @@ public class SaveSlotSystem : MonoBehaviour
         SaveData saveData = saveManager.LoadGame(slotIndex);
         if (saveData == null)
         {
-            Debug.LogWarning($"[SaveSlotSystem] Нет сохранения в слоте {slotIndex}. Создаём новый уровень.");
-            // Если нет сохранения — просто переходим на уровень из сохранения
+            Debug.LogWarning($"[SaveSlotSystem] Нет сохранения в слоте {slotIndex}. Переходим на уровень {slotIndex + 1}.");
+            // Нет сохранения — переходим на уровень напрямую
+            LoadLevelByIndex(slotIndex);
             return;
         }
         
@@ -584,53 +585,22 @@ public class SaveSlotSystem : MonoBehaviour
             Debug.LogWarning("[SaveSlotSystem] GameSaveController не найден");
         }
         
-        // 3. Переходим на уровень через LevelManager
+        // 3. Переходим на уровень через LevelMenuManager
         int levelIndex = saveData.CurrentLevel;
         Debug.Log($"[SaveSlotSystem] 🚀 Переход на уровень {levelIndex + 1}...");
         
-        // Ищем LevelManager по имени GameObject
-        GameObject lmGO = UnityEngine.GameObject.Find("LevelManager");
-        if (lmGO == null)
-        {
-            lmGO = UnityEngine.GameObject.Find("LevelManager (Clone)");
-        }
+        // Ищем LevelMenuManager
+        var levelMenuManager = FindFirstObjectByType<LevelMenuManager>();
         
-        if (lmGO != null)
+        if (levelMenuManager != null)
         {
-            System.Type levelManagerType = lmGO.GetType();
-            Debug.Log($"[SaveSlotSystem] ✅ LevelManager найден: {lmGO.name}");
-            
-            // Пытаемся вызвать LoadLevelWithTime
-            var method = levelManagerType.GetMethod("LoadLevelWithTime");
-            if (method != null)
-            {
-                // Получаем компонент LevelManager
-                object lmComponent = lmGO.GetComponent(levelManagerType);
-                
-                // Создаём TimeOfDay.Morning через enum
-                System.Type timeOfDayType = method.GetParameters()[1].ParameterType;
-                object morningValue = System.Enum.Parse(timeOfDayType, "Morning");
-                
-                method.Invoke(lmComponent, new object[] { levelIndex, morningValue });
-                Debug.Log($"[SaveSlotSystem] ✅ Уровень {levelIndex + 1} загружается через LoadLevelWithTime (Morning)...");
-            }
-            else
-            {
-                var loadLevelMethod = levelManagerType.GetMethod("LoadLevel");
-                if (loadLevelMethod != null)
-                {
-                    loadLevelMethod.Invoke(lmGO.GetComponent(levelManagerType), new object[] { levelIndex });
-                    Debug.Log($"[SaveSlotSystem] ✅ Уровень {levelIndex + 1} загружается через LoadLevel...");
-                }
-                else
-                {
-                    Debug.LogError("[SaveSlotSystem] Не найден метод LoadLevel или LoadLevelWithTime!");
-                }
-            }
+            // Вызываем LoadLevelMorning
+            levelMenuManager.LoadLevelMorning(levelIndex);
+            Debug.Log($"[SaveSlotSystem] ✅ Уровень {levelIndex + 1} загружается через LoadLevelMorning...");
         }
         else
         {
-            Debug.LogError("[SaveSlotSystem] LevelManager не найден на сцене!");
+            Debug.LogError("[SaveSlotSystem] LevelMenuManager не найден на сцене!");
         }
     }
 
@@ -1298,4 +1268,49 @@ public class SaveSlotSystem : MonoBehaviour
         // 5. ВИЗУАЛИЗАЦИЯ GIZMOS
         Debug.Log("[SaveSlotSystem] 🎨 Визуализация Gizmos активирована");
     }
+
+    // ========================================================================
+    // ПЕРЕХОД К УРОВНЮ ПО ИНДЕКСУ (из меню уровней)
+    // ========================================================================
+
+    /// <summary>
+    /// Переходит на уровень по индексу через LevelMenuManager.
+    /// </summary>
+    public void StartLevelFromSave(int levelIndex)
+    {
+        Debug.Log($"[SaveSlotSystem] 🚀 Переход на уровень {levelIndex + 1} через LevelMenuManager...");
+        
+        // Ищем LevelMenuManager
+        var levelMenuManager = FindFirstObjectByType<LevelMenuManager>();
+        
+        if (levelMenuManager != null)
+        {
+            // Вызываем LoadLevelMorning
+            levelMenuManager.LoadLevelMorning(levelIndex);
+            Debug.Log($"[SaveSlotSystem] ✅ Уровень {levelIndex + 1} загружается через LoadLevelMorning...");
+        }
+        else
+        {
+            Debug.LogError("[SaveSlotSystem] LevelMenuManager не найден на сцене!");
+        }
+    }
+
+    /// <summary>
+    /// Загружает уровень по индексу.
+    /// </summary>
+    private void LoadLevelByIndex(int levelIndex)
+    {
+        Debug.Log($"[SaveSlotSystem] 🚀 Переход на уровень {levelIndex + 1}...");
+        
+        var levelMenuManager = FindFirstObjectByType<LevelMenuManager>();
+        if (levelMenuManager != null)
+        {
+            levelMenuManager.LoadLevelMorning(levelIndex);
+        }
+        else
+        {
+            Debug.LogError("[SaveSlotSystem] LevelMenuManager не найден!");
+        }
+    }
+
 }

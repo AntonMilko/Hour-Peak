@@ -233,6 +233,41 @@ namespace HourPeak.Samples.Runtime
         }
     }
 
+    private void LoadNextPart()
+    {
+        // Проверяем, последний ли это уровень и часть
+        bool isLastLevel = currentLevelNumber >= 36;
+        bool isPart2 = currentPartIndex >= 2;
+        
+        if (isLastLevel && isPart2)
+        {
+            // Финальная часть финального уровня — переход к сертификату
+            Debug.Log("🏆 Финальная часть пройдена! Переход к сертификату...");
+            
+            // Автосохранение перед переходом
+            SaveProgress();
+            
+            // Переход к сцене сертификата
+            if (!string.IsNullOrEmpty(nextLevelSceneName))
+            {
+                SceneManager.LoadScene(nextLevelSceneName);
+            }
+            else
+            {
+                // Если nextLevelSceneName не задана — используем стандартное имя
+                SceneManager.LoadScene("Game completion certificate");
+            }
+            return;
+        }
+        
+        currentPartIndex++;
+        
+        Debug.Log($"🔄 Переход на часть: Уровень {currentLevelNumber} Часть {currentPartIndex}");
+        
+        CreateSaveFilePath();
+        StartLevel();
+    }
+
     private void InitializeLevelState()
     {
         remainingTime = levelTimeLimit;
@@ -431,16 +466,6 @@ namespace HourPeak.Samples.Runtime
     #endregion
 
     #region Level Transition
-
-    private void LoadNextPart()
-    {
-        currentPartIndex++;
-        
-        Debug.Log($"🔄 Переход на часть: Уровень {currentLevelNumber} Часть {currentPartIndex}");
-        
-        CreateSaveFilePath();
-        StartLevel();
-    }
 
     private void LoadNextLevel()
     {

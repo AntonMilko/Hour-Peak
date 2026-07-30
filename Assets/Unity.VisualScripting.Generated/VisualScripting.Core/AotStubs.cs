@@ -759,18 +759,21 @@ namespace Unity.VisualScripting.Generated.Aot
 	// ExitMenu.op_Implicit
 	// ExitMenu.op_Equality
 	// ExitMenu.op_Inequality
+	// LevelMenuManager.op_Implicit
+	// LevelMenuManager.op_Equality
+	// LevelMenuManager.op_Inequality
 	// SaveManager.op_Implicit
 	// SaveManager.op_Equality
 	// SaveManager.op_Inequality
-	// SaveManagerUI.op_Implicit
-	// SaveManagerUI.op_Equality
-	// SaveManagerUI.op_Inequality
+	// SaveSlotSystem.op_Implicit
+	// SaveSlotSystem.op_Equality
+	// SaveSlotSystem.op_Inequality
 	// SaveSlotUI.op_Implicit
 	// SaveSlotUI.op_Equality
 	// SaveSlotUI.op_Inequality
-	// SetupSlotContainer.op_Implicit
-	// SetupSlotContainer.op_Equality
-	// SetupSlotContainer.op_Inequality
+	// StartMenu.op_Implicit
+	// StartMenu.op_Equality
+	// StartMenu.op_Inequality
 	// TheDisplayingOfStars.op_Implicit
 	// TheDisplayingOfStars.op_Equality
 	// TheDisplayingOfStars.op_Inequality
@@ -1059,9 +1062,6 @@ namespace Unity.VisualScripting.Generated.Aot
 	// HourPeak.Settings.UI.DifficultyUIController.op_Implicit
 	// HourPeak.Settings.UI.DifficultyUIController.op_Equality
 	// HourPeak.Settings.UI.DifficultyUIController.op_Inequality
-	// HourPeak.Levels.LevelManager.op_Implicit
-	// HourPeak.Levels.LevelManager.op_Equality
-	// HourPeak.Levels.LevelManager.op_Inequality
 	// HourPeak.Characters.CrowdSpawner.op_Implicit
 	// HourPeak.Characters.CrowdSpawner.op_Equality
 	// HourPeak.Characters.CrowdSpawner.op_Inequality
@@ -1077,6 +1077,9 @@ namespace Unity.VisualScripting.Generated.Aot
 	// CityPeople.CityPeople.op_Implicit
 	// CityPeople.CityPeople.op_Equality
 	// CityPeople.CityPeople.op_Inequality
+	// SaveSlotSystem.SlotGizmoDrawer.op_Implicit
+	// SaveSlotSystem.SlotGizmoDrawer.op_Equality
+	// SaveSlotSystem.SlotGizmoDrawer.op_Inequality
 	// TMPro.TMP_ColorGradient.op_Implicit
 	// TMPro.TMP_ColorGradient.op_Equality
 	// TMPro.TMP_ColorGradient.op_Inequality
@@ -10099,6 +10102,41 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
+		// LevelMenuManager.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void LevelMenuManager_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// LevelMenuManager.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void LevelMenuManager_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// LevelMenuManager.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void LevelMenuManager_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
 		// SaveManager.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void SaveManager_op_Implicit()
@@ -10134,9 +10172,9 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// SaveManagerUI.op_Implicit
+		// SaveSlotSystem.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void SaveManagerUI_op_Implicit()
+		public static void SaveSlotSystem_op_Implicit()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			bool conversion = ((bool)(arg0));
@@ -10145,9 +10183,9 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// SaveManagerUI.op_Equality
+		// SaveSlotSystem.op_Equality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void SaveManagerUI_op_Equality()
+		public static void SaveSlotSystem_op_Equality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
@@ -10157,9 +10195,9 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// SaveManagerUI.op_Inequality
+		// SaveSlotSystem.op_Inequality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void SaveManagerUI_op_Inequality()
+		public static void SaveSlotSystem_op_Inequality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
@@ -10204,9 +10242,9 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// SetupSlotContainer.op_Implicit
+		// StartMenu.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void SetupSlotContainer_op_Implicit()
+		public static void StartMenu_op_Implicit()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			bool conversion = ((bool)(arg0));
@@ -10215,9 +10253,9 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// SetupSlotContainer.op_Equality
+		// StartMenu.op_Equality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void SetupSlotContainer_op_Equality()
+		public static void StartMenu_op_Equality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
@@ -10227,9 +10265,9 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// SetupSlotContainer.op_Inequality
+		// StartMenu.op_Inequality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void SetupSlotContainer_op_Inequality()
+		public static void StartMenu_op_Inequality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
@@ -13599,41 +13637,6 @@ namespace Unity.VisualScripting.Generated.Aot
 			optimized.Invoke(default(object[]));
 		}
 		
-		// HourPeak.Levels.LevelManager.op_Implicit
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void HourPeak_Levels_LevelManager_op_Implicit()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			bool conversion = ((bool)(arg0));
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0);
-			optimized.Invoke(default(object[]));
-		}
-		
-		// HourPeak.Levels.LevelManager.op_Equality
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void HourPeak_Levels_LevelManager_op_Equality()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
-			bool @operator = (arg0 == arg1);
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0, arg1);
-			optimized.Invoke(default(object[]));
-		}
-		
-		// HourPeak.Levels.LevelManager.op_Inequality
-		[global::UnityEngine.Scripting.PreserveAttribute()]
-		public static void HourPeak_Levels_LevelManager_op_Inequality()
-		{
-			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
-			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
-			bool @operator = (arg0 != arg1);
-			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
-			optimized.Invoke(null, arg0, arg1);
-			optimized.Invoke(default(object[]));
-		}
-		
 		// HourPeak.Characters.CrowdSpawner.op_Implicit
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void HourPeak_Characters_CrowdSpawner_op_Implicit()
@@ -13800,6 +13803,41 @@ namespace Unity.VisualScripting.Generated.Aot
 		// CityPeople.CityPeople.op_Inequality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void CityPeople_CityPeople_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// SaveSlotSystem.SlotGizmoDrawer.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void SaveSlotSystem_SlotGizmoDrawer_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// SaveSlotSystem.SlotGizmoDrawer.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void SaveSlotSystem_SlotGizmoDrawer_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// SaveSlotSystem.SlotGizmoDrawer.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void SaveSlotSystem_SlotGizmoDrawer_op_Inequality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);

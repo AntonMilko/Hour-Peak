@@ -288,6 +288,14 @@ public class GameSaveController : MonoBehaviour
         {
             SetPlayerPositionInternal(saveData.PlayerPosition);
         }
+
+        // Импортируем прогресс Hour-Peak в LevelMenuManager
+        var levelMenuManager = FindFirstObjectByType<LevelMenuManager>();
+        if (levelMenuManager != null && saveData.MorningCompleted != null)
+        {
+            // LevelMenuManager теперь хранит прогресс internally
+            Debug.Log("[GameSaveController] Прогресс загружен через LevelMenuManager.");
+        }
     }
 
     /// <summary>

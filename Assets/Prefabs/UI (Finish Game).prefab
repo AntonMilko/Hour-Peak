@@ -994,6 +994,8 @@ MonoBehaviour:
   autoSaveOnExit: 1
   goToStartMenu: 0
   stayInLevelMenu: 1
+  currentLevelNumber: 36
+  currentPartIndex: 2
 --- !u!1 &2543199829556641205
 GameObject:
   m_ObjectHideFlags: 0
@@ -2431,6 +2433,8 @@ MonoBehaviour:
   autoSaveOnExit: 1
   goToStartMenu: 0
   stayInLevelMenu: 1
+  currentLevelNumber: 1
+  currentPartIndex: 1
 --- !u!1 &4187429500895429127
 GameObject:
   m_ObjectHideFlags: 0
