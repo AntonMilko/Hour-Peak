@@ -30,6 +30,7 @@ public class LevelMenuManager : MonoBehaviour
     [Header("Настройки")]
     [SerializeField] private int totalBaseLevels = 36; // 36 базовых уровней
     [SerializeField] private Transform levelsTemplate; // Родитель кнопок уровней (36 уровней по 2 элемента)
+    [SerializeField] private GameObject levelButtonPrefab; // Префаб кнопки уровня (опционально — если null, создаст автоматически)
 
     [Header("Цвета — Фон уровня")]
     [SerializeField] private Color levelBackgroundUnlockedColor = Color.white; // Фон уровня открыт — белый
@@ -115,6 +116,12 @@ public class LevelMenuManager : MonoBehaviour
 
     private void Start()
     {
+        // Синхронизируем прогресс с LevelProgressManager и ProgressManager
+        if (LevelProgressManager.Instance != null)
+        {
+            LevelProgressManager.Instance.SyncFromProgressManager();
+        }
+        
         CollectPartElements();
         UpdateAllPartsState();
     }
@@ -167,6 +174,7 @@ public class LevelMenuManager : MonoBehaviour
 
     /// <summary>
     /// Собирает все Image/Button компоненты из дочерних элементов.
+    /// Если элементов недостаточно — создаёт их динамически.
     /// Порядок: Part 0, Part 1, Part 2, ... Part 71
     /// Чётные (0, 2, 4...) — 1 часть (Утро), Нечётные (1, 3, 5...) — 2 часть (Вечер).
     /// </summary>
@@ -176,6 +184,18 @@ public class LevelMenuManager : MonoBehaviour
         _partButtons.Clear();
         _partObjects.Clear();
 
+        int totalParts = totalBaseLevels * 2;
+
+        // Если levelsTemplate не указан или в нём недостаточно элементов — создаём динамически
+        int currentChildrenCount = levelsTemplate != null ? levelsTemplate.childCount : 0;
+        
+        if (currentChildrenCount < totalParts)
+        {
+            Debug.Log($"[LevelMenuManager] Создано {totalParts} кнопок (было {currentChildrenCount})");
+            CreateLevelButtonsDynamically(totalParts);
+        }
+
+        // Собираем все Image/Button компоненты из дочерних элементов
         if (levelsTemplate != null)
         {
             foreach (Transform child in levelsTemplate)
@@ -189,13 +209,46 @@ public class LevelMenuManager : MonoBehaviour
                 _partObjects.Add(child.gameObject);
             }
         }
-        else
-        {
-            // levelsTemplate не указан — ошибка, нужно указать родительский объект
-            Debug.LogError("[LevelMenuManager] levelsTemplate не указан! Укажите родительский Transform с кнопками уровней.");
-        }
 
         Debug.Log($"[LevelMenuManager] Найдено {_partImages.Count} Image, {_partButtons.Count} Button, {_partObjects.Count} GameObject.");
+    }
+
+    /// <summary>
+    /// Динамически создаёт кнопки уровней.
+    /// </summary>
+    private void CreateLevelButtonsDynamically(int count)
+    {
+        if (levelsTemplate == null)
+        {
+            Debug.LogError("[LevelMenuManager] levelsTemplate не указан! Невозможно создать кнопки.");
+            return;
+        }
+
+        for (int i = 0; i < count; i++)
+        {
+            GameObject buttonGO;
+            
+            if (levelButtonPrefab != null)
+            {
+                buttonGO = Instantiate(levelButtonPrefab, levelsTemplate);
+            }
+            else
+            {
+                // Создаём простой GameObject с Image и Button
+                buttonGO = new GameObject($"LevelButton_{i}");
+                buttonGO.transform.SetParent(levelsTemplate, false);
+                
+                Image img = buttonGO.AddComponent<Image>();
+                img.color = i % 2 == 0 ? Color.white : Color.black;
+                
+                Button btn = buttonGO.AddComponent<Button>();
+                btn.onClick.AddListener(() => OnPartClicked(i));
+                
+                _partImages.Add(img);
+                _partButtons.Add(btn);
+                _partObjects.Add(buttonGO);
+            }
+        }
     }
 
     #endregion
@@ -214,6 +267,13 @@ public class LevelMenuManager : MonoBehaviour
 
         for (int i = 0; i < totalParts; i++)
         {
+            // Проверяем, что элемент существует
+            if (i >= _partObjects.Count)
+            {
+                Debug.LogWarning($"[LevelMenuManager] Элемент {i} не найден. Пропускаем.");
+                continue;
+            }
+
             int baseLevelIndex = i / 2; // 0,0->0; 1,1->1; 2,2->2; ...
             bool isSecondPart = i % 2 != 0; // 0->false (1 часть), 1->true (2 часть), 2->false, ...
             TimeOfDay timeOfDay = isSecondPart ? TimeOfDay.Evening : TimeOfDay.Morning;
@@ -245,6 +305,7 @@ public class LevelMenuManager : MonoBehaviour
 
     /// <summary>
     /// Проверяет доступность базового уровня.
+    /// Использует LevelProgressManager для определения статуса.
     /// </summary>
     public bool IsLevelUnlocked(int baseLevelIndex)
     {
@@ -254,6 +315,13 @@ public class LevelMenuManager : MonoBehaviour
         if (baseLevelIndex == 0)
             return true;
 
+        // Используем LevelProgressManager
+        if (LevelProgressManager.Instance != null)
+        {
+            return LevelProgressManager.Instance.IsLevelUnlocked(baseLevelIndex);
+        }
+
+        // Fallback на внутреннюю логику
         return IsLevelFullyCompleted(baseLevelIndex - 1);
     }
 
@@ -326,36 +394,60 @@ public class LevelMenuManager : MonoBehaviour
 
     /// <summary>
     /// Проверяет завершение утренней версии.
+    /// Использует LevelProgressManager.
     /// </summary>
     public bool IsMorningCompleted(int baseLevelIndex)
     {
+        if (LevelProgressManager.Instance != null)
+        {
+            return LevelProgressManager.Instance.IsMorningCompleted(baseLevelIndex);
+        }
+        
         if (!levelProgress.ContainsKey(baseLevelIndex)) return false;
         return levelProgress[baseLevelIndex].MorningCompleted;
     }
 
     /// <summary>
     /// Проверяет завершение вечерней версии.
+    /// Использует LevelProgressManager.
     /// </summary>
     public bool IsEveningCompleted(int baseLevelIndex)
     {
+        if (LevelProgressManager.Instance != null)
+        {
+            return LevelProgressManager.Instance.IsEveningCompleted(baseLevelIndex);
+        }
+        
         if (!levelProgress.ContainsKey(baseLevelIndex)) return false;
         return levelProgress[baseLevelIndex].EveningCompleted;
     }
 
     /// <summary>
     /// Получает звёзды за утро.
+    /// Использует LevelProgressManager.
     /// </summary>
     public int GetMorningStars(int baseLevelIndex)
     {
+        if (LevelProgressManager.Instance != null)
+        {
+            return LevelProgressManager.Instance.GetMorningStars(baseLevelIndex);
+        }
+        
         if (!levelProgress.ContainsKey(baseLevelIndex)) return 0;
         return levelProgress[baseLevelIndex].MorningStars;
     }
 
     /// <summary>
     /// Получает звёзды за вечер.
+    /// Использует LevelProgressManager.
     /// </summary>
     public int GetEveningStars(int baseLevelIndex)
     {
+        if (LevelProgressManager.Instance != null)
+        {
+            return LevelProgressManager.Instance.GetEveningStars(baseLevelIndex);
+        }
+        
         if (!levelProgress.ContainsKey(baseLevelIndex)) return 0;
         return levelProgress[baseLevelIndex].EveningStars;
     }
@@ -374,6 +466,7 @@ public class LevelMenuManager : MonoBehaviour
 
     /// <summary>
     /// Сохраняет прогресс уровня.
+    /// Использует ProgressManager для сохранения сцены.
     /// </summary>
     public void SaveProgress(int baseLevelIndex, TimeOfDay timeOfDay, int stars, float time, bool perfectTiming)
     {
@@ -396,6 +489,19 @@ public class LevelMenuManager : MonoBehaviour
             progress.EveningCompleted = true;
             progress.EveningStars = calculatedStars;
             progress.EveningTime = time;
+        }
+
+        // Сохраняем через ProgressManager (148 сцен)
+        string sceneName = GetSceneName(baseLevelIndex, timeOfDay, GetMaxParts(baseLevelIndex));
+        if (ProgressManager.Instance != null)
+        {
+            ProgressManager.Instance.SaveSceneCompletion(sceneName, calculatedStars, time);
+        }
+
+        // Обновляем LevelProgressManager
+        if (LevelProgressManager.Instance != null)
+        {
+            LevelProgressManager.Instance.UpdateLevelProgress(baseLevelIndex, sceneName, calculatedStars, time);
         }
 
         // Проверяем полное завершение уровня и разблокируем следующий
@@ -447,6 +553,16 @@ public class LevelMenuManager : MonoBehaviour
     /// Текущее время суток.
     /// </summary>
     public TimeOfDay CurrentTimeOfDay => _currentTimeOfDay;
+
+    /// <summary>
+    /// Получает максимальное количество частей для уровня.
+    /// Уровни 1 и 19 имеют 3 части, остальные — 2.
+    /// </summary>
+    private int GetMaxParts(int baseLevelIndex)
+    {
+        int level = baseLevelIndex + 1;
+        return (level == 1 || level == 19) ? 3 : 2;
+    }
 
     /// <summary>
     /// Загружает утреннюю версию базового уровня.
@@ -641,6 +757,13 @@ public class LevelMenuManager : MonoBehaviour
     /// </summary>
     private void ApplyPartState(int partIndex, bool isLevelUnlocked, bool isPartUnlocked, bool isCompleted, int stars, bool isSecondPart)
     {
+        // Проверяем, что элемент существует
+        if (partIndex >= _partObjects.Count)
+        {
+            Debug.LogWarning($"[LevelMenuManager] Элемент {partIndex} не найден. Пропускаем.");
+            return;
+        }
+
         Image partImage = null;
         Button partButton = null;
 

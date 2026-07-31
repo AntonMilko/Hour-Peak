@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using HourPeak;
 
 public class EndManager2 : MonoBehaviour
 {
@@ -77,6 +78,47 @@ public class EndManager2 : MonoBehaviour
 
     public void OpenGameCertificate()
     {
+        // Сохраняем прогресс текущей сцены через ProgressManager
+        if (ProgressManager.Instance != null)
+        {
+            // Определяем текущую сцену из имени
+            string currentScene = SceneManager.GetActiveScene().name;
+            Debug.Log($"💾 Сохраняем прогресс сцены: {currentScene}");
+            
+            // Сохраняем прогресс (звёзды и время)
+            int stars = timeRatio <= 0.25f ? 3 : (timeRatio <= 0.5f ? 3 : (timeRatio <= 0.75f ? 2 : 1));
+            ProgressManager.Instance.SaveSceneCompletion(currentScene, stars, elapsedTime);
+        }
+
+        // Проверяем, все ли 148 сцен пройдены
+        if (ProgressManager.Instance != null)
+        {
+            var stats = ProgressManager.Instance.GetCompletionStats();
+            if (stats.completed == stats.total)
+            {
+                Debug.Log("🏆 Все 148 сцен пройдены! Переход к сертификату...");
+                if (!string.IsNullOrEmpty(sceneGameCertificate))
+                    SceneManager.LoadScene(sceneGameCertificate);
+                return;
+            }
+            else
+            {
+                // Переходим к следующей сцене
+                string nextScene = ProgressManager.Instance.GetNextScene();
+                if (!string.IsNullOrEmpty(nextScene))
+                {
+                    Debug.Log($"📺 Переход к следующей сцене: {nextScene}");
+                    SceneManager.LoadScene(nextScene);
+                }
+                else
+                {
+                    Debug.LogWarning("⚠️ Следующая сцена не найдена!");
+                }
+                return;
+            }
+        }
+
+        // Fallback на старый метод
         if (!string.IsNullOrEmpty(sceneGameCertificate))
             SceneManager.LoadScene(sceneGameCertificate);
     }
