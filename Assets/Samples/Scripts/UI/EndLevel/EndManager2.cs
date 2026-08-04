@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 using HourPeak;
 
 public class EndManager2 : MonoBehaviour
@@ -16,9 +17,7 @@ public class EndManager2 : MonoBehaviour
     public TextMeshProUGUI timeText;
     
     [Header("Scene Names")]
-    public string sceneGameCertificate;
     public string sceneAgainLevel;
-    public string scenePartMainMenu;
     public string sceneMainMenu;
 
     private float elapsedTime;
@@ -28,7 +27,7 @@ public class EndManager2 : MonoBehaviour
     private void Awake()
     {
         if (nextButton != null)
-            nextButton.onClick.AddListener(OpenGameCertificate);
+            nextButton.onClick.AddListener(OnNextClicked);
         
         if (againButton != null)
             againButton.onClick.AddListener(AgainLevel);
@@ -76,69 +75,82 @@ public class EndManager2 : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void OpenGameCertificate()
+    /// <summary>
+    /// Кнопка "Далее" — сохраняет прогресс и переходит к следующей части уровня.
+    /// </summary>
+    public void OnNextClicked()
     {
-        // Сохраняем прогресс текущей сцены через ProgressManager
-        if (ProgressManager.Instance != null)
+        // Определяем номер уровня и части из имени сцены
+        string currentScene = SceneManager.GetActiveScene().name;
+        int levelIndex = 0;
+        int partIndex = 0;
+        
+        if (currentScene.Contains("Morning"))
         {
-            // Определяем текущую сцену из имени
-            string currentScene = SceneManager.GetActiveScene().name;
-            Debug.Log($"💾 Сохраняем прогресс сцены: {currentScene}");
-            
-            // Сохраняем прогресс (звёзды и время)
-            int stars = timeRatio <= 0.25f ? 3 : (timeRatio <= 0.5f ? 3 : (timeRatio <= 0.75f ? 2 : 1));
-            ProgressManager.Instance.SaveSceneCompletion(currentScene, stars, elapsedTime);
+            levelIndex = ExtractLevelFromScene(currentScene, true);
+            partIndex = 0; // Morning
         }
-
-        // Проверяем, все ли 148 сцен пройдены
-        if (ProgressManager.Instance != null)
+        else if (currentScene.Contains("Evening"))
         {
-            var stats = ProgressManager.Instance.GetCompletionStats();
-            if (stats.completed == stats.total)
-            {
-                Debug.Log("🏆 Все 148 сцен пройдены! Переход к сертификату...");
-                if (!string.IsNullOrEmpty(sceneGameCertificate))
-                    SceneManager.LoadScene(sceneGameCertificate);
-                return;
-            }
-            else
-            {
-                // Переходим к следующей сцене
-                string nextScene = ProgressManager.Instance.GetNextScene();
-                if (!string.IsNullOrEmpty(nextScene))
-                {
-                    Debug.Log($"📺 Переход к следующей сцене: {nextScene}");
-                    SceneManager.LoadScene(nextScene);
-                }
-                else
-                {
-                    Debug.LogWarning("⚠️ Следующая сцена не найдена!");
-                }
-                return;
-            }
+            levelIndex = ExtractLevelFromScene(currentScene, false);
+            partIndex = 1; // Evening
         }
+        
+        // Вычисляем звёзды
+        int stars = timeRatio <= 0.25f ? 3 : (timeRatio <= 0.5f ? 3 : (timeRatio <= 0.75f ? 2 : 1));
+        
+// Сохраняем прогресс статически (работает без экземпляра LevelMenuManager)
+        LevelMenuManager.SaveProgressStatic(levelIndex, partIndex, stars);
+        Debug.Log($"💾 Сохранён прогресс: Уровень {levelIndex + 1}, Часть {partIndex + 1}, Звёзды: {stars}");
 
-        // Fallback на старый метод
-        if (!string.IsNullOrEmpty(sceneGameCertificate))
-            SceneManager.LoadScene(sceneGameCertificate);
+        // Восстанавливаем время перед загрузкой новой сцены
+        Time.timeScale = 1f;
+
+        // Переход к следующей части уровня
+        StartCoroutine(LevelMenuManager.LoadNextLevelPartStatic());
     }
 
-    public void OpenPartMainMenu()
+    /// <summary>
+    /// Извлекает номер уровня из имени сцены.
+    /// </summary>
+    private int ExtractLevelFromScene(string sceneName, bool isMorning)
     {
-        if (!string.IsNullOrEmpty(scenePartMainMenu))
-            SceneManager.LoadScene(scenePartMainMenu);
+        int level = 1;
+        
+        for (int i = 0; i < sceneName.Length; i++)
+        {
+            if (sceneName[i] >= '0' && sceneName[i] <= '9')
+            {
+                int start = i;
+                while (i < sceneName.Length && sceneName[i] >= '0' && sceneName[i] <= '9')
+                {
+                    i++;
+                }
+                string numStr = sceneName.Substring(start, i - start);
+                if (int.TryParse(numStr, out int parsedNum) && parsedNum > 0 && parsedNum <= 36)
+                {
+                    level = parsedNum - 1; // 0-based
+                    break;
+                }
+            }
+        }
+        
+        return level;
     }
 
     public void AgainLevel()
     {
+        Time.timeScale = 1f;
         if (!string.IsNullOrEmpty(sceneAgainLevel))
             SceneManager.LoadScene(sceneAgainLevel);
+        else
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ExitLevel()
     {
-        if (!string.IsNullOrEmpty(sceneMainMenu))
-            SceneManager.LoadScene(sceneMainMenu);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("StartMenu");
     }
 
     private static string FormatTime(float time)
@@ -151,7 +163,7 @@ public class EndManager2 : MonoBehaviour
     private void OnDestroy()
     {
         if (nextButton != null)
-            nextButton.onClick.RemoveListener(OpenGameCertificate);
+            nextButton.onClick.RemoveListener(OnNextClicked);
         
         if (againButton != null)
             againButton.onClick.RemoveListener(AgainLevel);

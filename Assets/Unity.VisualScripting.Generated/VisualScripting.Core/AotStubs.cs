@@ -768,6 +768,9 @@ namespace Unity.VisualScripting.Generated.Aot
 	// LevelMenuManager.op_Implicit
 	// LevelMenuManager.op_Equality
 	// LevelMenuManager.op_Inequality
+	// PartButtonVisual.op_Implicit
+	// PartButtonVisual.op_Equality
+	// PartButtonVisual.op_Inequality
 	// SaveManager.op_Implicit
 	// SaveManager.op_Equality
 	// SaveManager.op_Inequality
@@ -10204,6 +10207,41 @@ namespace Unity.VisualScripting.Generated.Aot
 		// LevelMenuManager.op_Inequality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void LevelMenuManager_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// PartButtonVisual.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void PartButtonVisual_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// PartButtonVisual.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void PartButtonVisual_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Unity.VisualScripting.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// PartButtonVisual.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void PartButtonVisual_op_Inequality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);

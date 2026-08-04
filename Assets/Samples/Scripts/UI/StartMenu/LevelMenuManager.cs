@@ -1,109 +1,80 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
-using HourPeak.Levels;
 
 /// <summary>
-/// Управляет меню выбора 72 частей уровней (36 базовых × 2: Утро и Вечер).
+/// Управляет меню выбора 36 уровней (по 2 части: Утро и Вечер).
+/// Создаёт кнопки программно, как SaveSlotSystem.
 /// 
-/// Логика открытия:
-/// - Уровень 1-Утро открыт с самого начала
+/// Логика:
+/// - Уровень 1-Утро открыт с начала
 /// - После прохождения Утро X → открывается Вечер X
 /// - После прохождения Вечер X → открывается Утро (X+1)
 /// 
-/// Part 1 = Morning (Утро)
-/// Part 2 = Evening (Вечер)
-/// 
-/// Цвета:
-/// - Уровень и 1 часть открыты: белые
-/// - Уровень и 1 часть закрыты: серая тень
-/// - 2 часть открыта: чёрная
-/// - 2 часть закрыта: тёмная тень
+/// Визуал:
+/// - Morning: белый Image с чёрными звёздами
+/// - Evening: чёрный Image с белыми звёздами
+/// - Тени (CanvasGroup.alpha): Locked = 0.4, Unlocked = 1.0
 /// </summary>
 public class LevelMenuManager : MonoBehaviour
 {
-    #region Configuration
+    #region Singleton
 
-    [Header("Настройки")]
-    [SerializeField] private int totalBaseLevels = 36; // 36 базовых уровней
-    [SerializeField] private Transform levelsTemplate; // Родитель кнопок уровней (36 уровней по 2 элемента)
-    [SerializeField] private GameObject levelButtonPrefab; // Префаб кнопки уровня (опционально — если null, создаст автоматически)
+    public static LevelMenuManager Instance { get; private set; }
 
-    [Header("Цвета — Фон уровня")]
-    [SerializeField] private Color levelBackgroundUnlockedColor = Color.white; // Фон уровня открыт — белый
-    [SerializeField] private Color levelBackgroundLockedColor = new Color(0.5f, 0.5f, 0.5f); // Фон уровня закрыт — серая тень
-
-    [Header("Цвета — 1 часть (Утро)")]
-    [SerializeField] private Color firstPartUnlockedColor = Color.white; // 1 часть открыта — белая
-    [SerializeField] private Color firstPartLockedColor = new Color(0.5f, 0.5f, 0.5f); // 1 часть закрыта — серая тень
-
-    [Header("Цвета — 2 часть (Вечер)")]
-    [SerializeField] private Color secondPartUnlockedColor = Color.black; // 2 часть открыта — чёрная
-    [SerializeField] private Color secondPartLockedColor = new Color(0.25f, 0.25f, 0.25f); // 2 часть закрыта — тёмная тень
-
-    [Header("UI элементы статуса")]
-    [Tooltip("Шаблон для звёзд Part 1 (Утро)")]
-    [SerializeField] private Transform starsPart1Template; // Шаблоный объект с 3 Image звёзд
-    
-    [Tooltip("Шаблон для звёзд Part 2 (Вечер)")]
-    [SerializeField] private Transform starsPart2Template; // Шаблоный объект с 3 Image звёзд
+    // Статический прогресс — живёт между сценами
+    private static Dictionary<int, Dictionary<int, int>> _sharedProgress = new Dictionary<int, Dictionary<int, int>>();
 
     #endregion
 
-    #region Data Structures
+    #region Configuration
 
-    /// <summary>
-    /// Прогресс прохождения уровня (утро + вечер).
-    /// </summary>
-    [Serializable]
-    public class LevelProgress
-    {
-        [Tooltip("Пройдена ли утренняя версия")]
-        public bool MorningCompleted;
+    [Header("Настройки")]
+    [SerializeField] private int totalBaseLevels = 36;
+    [SerializeField] private int gridColumns = 6;
+    [SerializeField] private int gridRows = 6;
+    [SerializeField] private float cellWidth = 100f;
+    [SerializeField] private float cellHeight = 80f;
+    [SerializeField] private float spacingX = 40f;
+    [SerializeField] private float spacingY = 40f;
 
-        [Tooltip("Звёзды за утро (0-3)")]
-        public int MorningStars;
+    [Header("Цвета")]
+    [SerializeField] private Color morningLockedColor = new Color(0.5f, 0.5f, 0.5f);
+    [SerializeField] private Color eveningLockedColor = new Color(0.25f, 0.25f, 0.25f);
 
-        [Tooltip("Время прохождения утра")]
-        public float MorningTime;
+    [Header("Цвета Спрайтов")]
+    [SerializeField] private Sprite starSprite;
+    [SerializeField] private Sprite star2Sprite;
+    [SerializeField] private Color eveningImage = Color.black;
+    [SerializeField] private Color morningImage = Color.white;
 
-        [Tooltip("Пройдена ли вечерняя версия")]
-        public bool EveningCompleted;
-
-        [Tooltip("Звёзды за вечер (0-3)")]
-        public int EveningStars;
-
-        [Tooltip("Время прохождения вечера")]
-        public float EveningTime;
-
-        public LevelProgress()
-        {
-            MorningCompleted = false;
-            MorningStars = 0;
-            MorningTime = 0f;
-            EveningCompleted = false;
-            EveningStars = 0;
-            EveningTime = 0f;
-        }
-    }
+    [Header("Прозрачность теней")]
+    [SerializeField] private float lockedAlpha = 0.4f;
+    [SerializeField] private float unlockedAlpha = 1.0f;
 
     #endregion
 
     #region Private Fields
 
-    private List<Image> _partImages = new List<Image>();
-    private List<Button> _partButtons = new List<Button>();
-    private List<GameObject> _partObjects = new List<GameObject>();
-    private int _completedPartsCount;
-    private int _totalStarsCount;
+    private List<GameObject> _levelButtons = new List<GameObject>();
+    private List<Image> _morningImages = new List<Image>();
+    private List<Image> _eveningImages = new List<Image>();
+    private List<List<Image>> _morningStars = new List<List<Image>>();
+    private List<List<Image>> _eveningStars = new List<List<Image>>();
+    private List<TextMeshProUGUI> _levelNumbers = new List<TextMeshProUGUI>();
+    private List<CanvasGroup> _morningCanvasGroups = new List<CanvasGroup>();
+    private List<CanvasGroup> _eveningCanvasGroups = new List<CanvasGroup>();
+    private List<TheDisplayingOfStars> _morningStarDisplay = new List<TheDisplayingOfStars>();
+    private List<TheDisplayingOfStars> _eveningStarDisplay = new List<TheDisplayingOfStars>();
 
-    /// <summary>
-    /// Прогресс для всех базовых уровней.
-    /// </summary>
-    [SerializeField] private Dictionary<int, LevelProgress> levelProgress = new Dictionary<int, LevelProgress>();
+    private Transform _levelPanel;
+
+    // Прогресс: [levelIndex][partIndex] = stars (0-3) — ссылка на статические данные
+    private Dictionary<int, Dictionary<int, int>> _progress;
 
     #endregion
 
@@ -111,35 +82,32 @@ public class LevelMenuManager : MonoBehaviour
 
     private void Awake()
     {
+        // Singleton — если уже есть экземпляр, уничтожаем этот
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning($"[LevelMenuManager] Найден дубликат LevelMenuManager! Уничтожаем {gameObject.name}");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        
+        Debug.Log($"[LevelMenuManager] Awake: {gameObject.name}");
+        
+        // Используем статический прогресс (сохраняется между сценами)
+        _progress = _sharedProgress;
         InitializeProgress();
+        FindLevelPanel();
     }
 
     private void Start()
     {
-        // Синхронизируем прогресс с LevelProgressManager и ProgressManager
-        if (LevelProgressManager.Instance != null)
-        {
-            LevelProgressManager.Instance.SyncFromProgressManager();
-        }
-        
-        CollectPartElements();
-        UpdateAllPartsState();
+        StartCoroutine(SpawnAllButtonsCoroutine());
     }
 
-    /// <summary>
-    /// Получает суффикс сцены для текущего уровня и части.
-    /// </summary>
-    private int GetScenePartSuffix(int baseLevelIndex, bool isPart2)
+    private System.Collections.IEnumerator SpawnAllButtonsCoroutine()
     {
-        // Part 1 — всегда Morning .1
-        if (!isPart2)
-            return 1;
-        
-        // Part 2 — Evening: .3 для уровней 1 и 19, .2 для остальных
-        if (baseLevelIndex == 0 || baseLevelIndex == 18)
-            return 3;
-        
-        return 2;
+        yield return null; // Ждём один кадр, чтобы Layout обновился
+        SpawnAllButtons();
     }
 
     /// <summary>
@@ -147,12 +115,13 @@ public class LevelMenuManager : MonoBehaviour
     /// </summary>
     private void InitializeProgress()
     {
-        // Создаём прогресс для каждого базового уровня
         for (int i = 0; i < totalBaseLevels; i++)
         {
-            if (!levelProgress.ContainsKey(i))
+            if (!_progress.ContainsKey(i))
             {
-                levelProgress[i] = new LevelProgress();
+                _progress[i] = new Dictionary<int, int>();
+                _progress[i][0] = 0; // Morning
+                _progress[i][1] = 0; // Evening
             }
         }
 
@@ -160,93 +129,421 @@ public class LevelMenuManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Ищет LevelPanel в иерархии.
+    /// </summary>
+    private void FindLevelPanel()
+    {
+        _levelPanel = transform.root.Find("LevelMenu/LevelPanel");
+        if (_levelPanel == null)
+        {
+            _levelPanel = transform.root.Find("LevelPanel");
+        }
+        if (_levelPanel == null)
+        {
+            Debug.LogError("[LevelMenuManager] LevelPanel не найден!");
+            return;
+        }
+        
+        Debug.Log($"[LevelMenuManager] Найден LevelPanel: {_levelPanel.name}");
+    }
+
+    /// <summary>
     /// Вызывается извне для обновления состояния (например, после возврата из игры).
     /// </summary>
     public void Refresh()
     {
-        CollectPartElements();
         UpdateAllPartsState();
     }
 
     #endregion
 
-    #region Collection
+    #region Spawn All Buttons
 
-    /// <summary>
-    /// Собирает все Image/Button компоненты из дочерних элементов.
-    /// Если элементов недостаточно — создаёт их динамически.
-    /// Порядок: Part 0, Part 1, Part 2, ... Part 71
-    /// Чётные (0, 2, 4...) — 1 часть (Утро), Нечётные (1, 3, 5...) — 2 часть (Вечер).
-    /// </summary>
-    private void CollectPartElements()
+    // ========================================================================
+    // ГЛАВНЫЙ МЕТОД: СОЗДАНИЕ ВСЕХ 36 КНОПОК УРОВНЕЙ
+    // ========================================================================
+
+    [ContextMenu("🔥 Spawn All Buttons")]
+    public void SpawnAllButtons()
     {
-        _partImages.Clear();
-        _partButtons.Clear();
-        _partObjects.Clear();
-
-        int totalParts = totalBaseLevels * 2;
-
-        // Если levelsTemplate не указан или в нём недостаточно элементов — создаём динамически
-        int currentChildrenCount = levelsTemplate != null ? levelsTemplate.childCount : 0;
-        
-        if (currentChildrenCount < totalParts)
+        // LevelPanel уже найден в Awake()
+        if (_levelPanel == null)
         {
-            Debug.Log($"[LevelMenuManager] Создано {totalParts} кнопок (было {currentChildrenCount})");
-            CreateLevelButtonsDynamically(totalParts);
-        }
-
-        // Собираем все Image/Button компоненты из дочерних элементов
-        if (levelsTemplate != null)
-        {
-            foreach (Transform child in levelsTemplate)
-            {
-                Image img = child.GetComponent<Image>();
-                Button btn = child.GetComponent<Button>();
-
-                if (img != null) _partImages.Add(img);
-                if (btn != null) _partButtons.Add(btn);
-
-                _partObjects.Add(child.gameObject);
-            }
-        }
-
-        Debug.Log($"[LevelMenuManager] Найдено {_partImages.Count} Image, {_partButtons.Count} Button, {_partObjects.Count} GameObject.");
-    }
-
-    /// <summary>
-    /// Динамически создаёт кнопки уровней.
-    /// </summary>
-    private void CreateLevelButtonsDynamically(int count)
-    {
-        if (levelsTemplate == null)
-        {
-            Debug.LogError("[LevelMenuManager] levelsTemplate не указан! Невозможно создать кнопки.");
+            Debug.LogError("[LevelMenuManager] LevelPanel не найден! Вызови FindLevelPanel() сначала.");
             return;
         }
+        
+        Debug.Log($"[LevelMenuManager] LevelPanel: {_levelPanel.name}");
 
-        for (int i = 0; i < count; i++)
+        _levelButtons.Clear();
+        _morningImages.Clear();
+        _eveningImages.Clear();
+        _morningStars.Clear();
+        _eveningStars.Clear();
+        _levelNumbers.Clear();
+        _morningCanvasGroups.Clear();
+        _eveningCanvasGroups.Clear();
+        _morningStarDisplay.Clear();
+        _eveningStarDisplay.Clear();
+
+        // Удаляем старые кнопки из LevelPanel (собираем в список, потом удаляем)
+        List<GameObject> toDelete = new List<GameObject>();
+        foreach (Transform child in _levelPanel)
         {
-            GameObject buttonGO;
-            
-            if (levelButtonPrefab != null)
+            if (child.name.StartsWith("Level ", System.StringComparison.OrdinalIgnoreCase))
             {
-                buttonGO = Instantiate(levelButtonPrefab, levelsTemplate);
+                toDelete.Add(child.gameObject);
+            }
+        }
+        foreach (GameObject go in toDelete)
+        {
+            DestroyImmediate(go);
+        }
+
+        // НЕ удаляем GameObject — просто пересоздаём кнопки заново
+        // Старые GameObject останутся, но мы будем использовать новые из _levelButtons
+        Debug.Log($"[LevelMenuManager] Пересоздание {totalBaseLevels} КНОПОК...");
+        int createdCount = 0;
+        int failedCount = 0;
+
+        for (int i = 0; i < totalBaseLevels; i++)
+        {
+            bool success = CreateSingleLevel(i);
+            
+            if (success)
+            {
+                createdCount++;
             }
             else
             {
-                // Создаём простой GameObject с Image и Button
-                buttonGO = new GameObject($"LevelButton_{i}");
-                buttonGO.transform.SetParent(levelsTemplate, false);
+                failedCount++;
+            }
+        }
+
+        // 📊 ОТЧЁТ ПО СТАТУСУ
+        Debug.Log($"[LevelMenuManager] ========================================");
+        Debug.Log($"[LevelMenuManager] Total levels: {totalBaseLevels}");
+        Debug.Log($"[LevelMenuManager] Created levels: {createdCount}");
+        Debug.Log($"[LevelMenuManager] Failed levels: {failedCount}");
+        Debug.Log($"[LevelMenuManager] Render check: {(failedCount == 0 ? "PASSED" : "FAILED")}");
+        Debug.Log($"[LevelMenuManager] ========================================");
+
+        // Если есть ошибки — делаем скриншот
+        if (failedCount > 0)
+        {
+            Debug.LogError($"[LevelMenuManager] КРИТИЧЕСКАЯ ОШИБКА: {failedCount} кнопок не созданы!");
+#if UNITY_EDITOR
+            ScreenCapture.CaptureScreenshot("level_button_error.png");
+#endif
+            throw new System.Exception($"Failed to create {failedCount} out of {totalBaseLevels} level buttons!");
+        }
+
+        // 💥 УСИЛЕННАЯ ЛОГИКА: финальная проверка
+        Debug.Assert(_levelButtons.Count == totalBaseLevels, "Critical failure: level button count mismatch!");
+        
+        // Валидация: все кнопки в списке
+        Debug.Assert(_levelButtons.Count == 36, "Wrong level button count!");
+        
+        // Ждём один кадр, чтобы Layout обновился, затем размещаем кнопки в сетке
+        StartCoroutine(ArrangeAfterDelay());
+    }
+
+    private System.Collections.IEnumerator ArrangeAfterDelay()
+    {
+        yield return new WaitForEndOfFrame();
+        ArrangeButtonsInGrid();
+        UpdateAllPartsState();
+        Debug.Log($"[LevelMenuManager] Итого {_levelButtons.Count} объектов, {_morningImages.Count} Morning Image, {_eveningImages.Count} Evening Image");
+    }
+
+    // ========================================================================
+    // СОЗДАНИЕ ОДНОЙ КНОПКИ УРОВНЯ С ПОЛНОЙ ВАЛИДАЦИЕЙ
+    // ========================================================================
+
+    private bool CreateSingleLevel(int index)
+    {
+        string levelName = $"Level {index + 1}";
+        
+        // Создаём GameObject
+        GameObject levelGO = new GameObject(levelName);
+        
+        // Проверяем, что объект создан
+        if (levelGO == null)
+        {
+            Debug.LogError($"[LevelMenuManager] [ERROR] Level {index} не создан!");
+            return false;
+        }
+
+        // Добавляем в иерархию — прямой ребёнок LevelPanel
+        levelGO.transform.SetParent(_levelPanel, false);
+        levelGO.transform.localScale = Vector3.one;
+        levelGO.transform.localRotation = Quaternion.identity;
+        levelGO.SetActive(true);
+        
+        Debug.Log($"[CreateSingleLevel] Кнопка #{index} создана. Родитель: {_levelPanel.name}, childCount родителя: {_levelPanel.childCount}");
+
+        // Получаем или создаём RectTransform для levelGO
+        RectTransform levelRT = levelGO.GetComponent<RectTransform>();
+        if (levelRT == null)
+        {
+            levelRT = levelGO.AddComponent<RectTransform>();
+        }
+        levelRT.anchorMin = new Vector2(0.5f, 0.5f);
+        levelRT.anchorMax = new Vector2(0.5f, 0.5f);
+        levelRT.pivot = new Vector2(0.5f, 0.5f);
+        levelRT.sizeDelta = new Vector2(cellWidth, cellHeight);
+
+        // Morning Image (белый)
+        GameObject morningGO = new GameObject("Morning");
+        morningGO.transform.SetParent(levelGO.transform, false);
+        RectTransform morningRT = morningGO.GetComponent<RectTransform>();
+        if (morningRT == null)
+        {
+            morningRT = morningGO.AddComponent<RectTransform>();
+        }
+        morningRT.anchorMin = new Vector2(0f, 0.5f);
+        morningRT.anchorMax = new Vector2(1f, 1f);
+        morningRT.offsetMin = new Vector2(2f, 2f);
+        morningRT.offsetMax = new Vector2(-2f, -2f);
+
+        // CanvasGroup для Morning — тени
+        CanvasGroup morningCanvasGroup = morningGO.GetComponent<CanvasGroup>();
+        if (morningCanvasGroup == null)
+        {
+            morningCanvasGroup = morningGO.AddComponent<CanvasGroup>();
+        }
+        morningCanvasGroup.alpha = lockedAlpha;
+        morningCanvasGroup.blocksRaycasts = true;
+        _morningCanvasGroups.Add(morningCanvasGroup);
+
+        Image morningImg = morningGO.GetComponent<Image>();
+        if (morningImg == null)
+        {
+            morningImg = morningGO.AddComponent<Image>();
+        }
+        morningImg.sprite = null;
+        morningImg.color = morningImage;
+        morningImg.raycastTarget = true;
+        _morningImages.Add(morningImg);
+
+        // Button на Morning — обработка клика
+        Button morningBtn = morningGO.GetComponent<Button>();
+        if (morningBtn == null) morningBtn = morningGO.AddComponent<Button>();
+        morningBtn.targetGraphic = morningImg;
+        int morningLevelIndex = index;
+        morningBtn.onClick.AddListener(() => OnMorningClicked(morningLevelIndex));
+
+// Morning Stars (3 чёрные) — с TheDisplayingOfStars
+        List<Image> morningStars = new List<Image>();
+        GameObject morningStarsParent = new GameObject("Stars");
+        morningStarsParent.transform.SetParent(morningGO.transform, false);
+        RectTransform morningStarsRT = morningStarsParent.GetComponent<RectTransform>();
+        if (morningStarsRT == null) morningStarsRT = morningStarsParent.AddComponent<RectTransform>();
+        morningStarsRT.anchorMin = new Vector2(0.5f, 0.5f);
+        morningStarsRT.anchorMax = new Vector2(0.5f, 0.5f);
+        morningStarsRT.pivot = new Vector2(0.5f, 0.5f);
+        morningStarsRT.sizeDelta = new Vector2(80f, 20f);
+        morningStarsRT.anchoredPosition = Vector2.zero;
+
+        for (int s = 0; s < 3; s++)
+        {
+            GameObject starGO = new GameObject($"Star{s}");
+            starGO.transform.SetParent(morningStarsParent.transform, false);
+            RectTransform starRT = starGO.GetComponent<RectTransform>();
+            if (starRT == null) starRT = starGO.AddComponent<RectTransform>();
+            starRT.anchorMin = new Vector2(0.5f, 0.5f);
+            starRT.anchorMax = new Vector2(0.5f, 0.5f);
+            starRT.pivot = new Vector2(0.5f, 0.5f);
+            starRT.sizeDelta = new Vector2(16f, 16f);
+            starRT.anchoredPosition = new Vector2((s - 1) * 20f, 0f);
+
+            Image starImg = starGO.GetComponent<Image>();
+            if (starImg == null) starImg = starGO.AddComponent<Image>();
+            starImg.sprite = starSprite;
+            starImg.color = Color.black;
+            starImg.raycastTarget = false;
+            morningStars.Add(starImg);
+        }
+
+        TheDisplayingOfStars morningDisplay = morningStarsParent.GetComponent<TheDisplayingOfStars>();
+        if (morningDisplay == null) morningDisplay = morningStarsParent.AddComponent<TheDisplayingOfStars>();
+        morningDisplay.starImages = morningStars.ToArray();
+        morningDisplay.isMorning = true;
+        morningDisplay.colorPass = Color.yellow;
+        morningDisplay.colorFailMorning = Color.black;
+        morningDisplay.colorFailEvening = Color.white;
+        _morningStarDisplay.Add(morningDisplay);
+        _morningStars.Add(morningStars);
+
+        // Evening Image (чёрный)
+        GameObject eveningGO = new GameObject("Evening");
+        eveningGO.transform.SetParent(levelGO.transform, false);
+        RectTransform eveningRT = eveningGO.GetComponent<RectTransform>();
+        if (eveningRT == null)
+        {
+            eveningRT = eveningGO.AddComponent<RectTransform>();
+        }
+        eveningRT.anchorMin = new Vector2(0f, 0f);
+        eveningRT.anchorMax = new Vector2(1f, 0.5f);
+        eveningRT.offsetMin = new Vector2(2f, 2f);
+        eveningRT.offsetMax = new Vector2(-2f, -2f);
+
+        // CanvasGroup для Evening — тени
+        CanvasGroup eveningCanvasGroup = eveningGO.GetComponent<CanvasGroup>();
+        if (eveningCanvasGroup == null)
+        {
+            eveningCanvasGroup = eveningGO.AddComponent<CanvasGroup>();
+        }
+        eveningCanvasGroup.alpha = lockedAlpha;
+        eveningCanvasGroup.blocksRaycasts = true;
+        _eveningCanvasGroups.Add(eveningCanvasGroup);
+
+        Image eveningImg = eveningGO.GetComponent<Image>();
+        if (eveningImg == null)
+        {
+            eveningImg = eveningGO.AddComponent<Image>();
+        }
+        eveningImg.sprite = null;
+        eveningImg.color = eveningImage;
+        eveningImg.raycastTarget = true;
+        _eveningImages.Add(eveningImg);
+
+        // Button на Evening — обработка клика
+        Button eveningBtn = eveningGO.GetComponent<Button>();
+        if (eveningBtn == null) eveningBtn = eveningGO.AddComponent<Button>();
+        eveningBtn.targetGraphic = eveningImg;
+        int eveningLevelIndex = index;
+        eveningBtn.onClick.AddListener(() => OnEveningClicked(eveningLevelIndex));
+
+// Evening Stars (3 белые) — с TheDisplayingOfStars
+        List<Image> eveningStars = new List<Image>();
+        GameObject eveningStarsParent = new GameObject("Stars");
+        eveningStarsParent.transform.SetParent(eveningGO.transform, false);
+        RectTransform eveningStarsRT = eveningStarsParent.GetComponent<RectTransform>();
+        if (eveningStarsRT == null) eveningStarsRT = eveningStarsParent.AddComponent<RectTransform>();
+        eveningStarsRT.anchorMin = new Vector2(0.5f, 0.5f);
+        eveningStarsRT.anchorMax = new Vector2(0.5f, 0.5f);
+        eveningStarsRT.pivot = new Vector2(0.5f, 0.5f);
+        eveningStarsRT.sizeDelta = new Vector2(80f, 20f);
+        eveningStarsRT.anchoredPosition = Vector2.zero;
+
+        for (int s = 0; s < 3; s++)
+        {
+            GameObject starGO = new GameObject($"Star{s}");
+            starGO.transform.SetParent(eveningStarsParent.transform, false);
+            RectTransform starRT = starGO.GetComponent<RectTransform>();
+            if (starRT == null) starRT = starGO.AddComponent<RectTransform>();
+            starRT.anchorMin = new Vector2(0.5f, 0.5f);
+            starRT.anchorMax = new Vector2(0.5f, 0.5f);
+            starRT.pivot = new Vector2(0.5f, 0.5f);
+            starRT.sizeDelta = new Vector2(16f, 16f);
+            starRT.anchoredPosition = new Vector2((s - 1) * 20f, 0f);
+
+            Image starImg = starGO.GetComponent<Image>();
+            if (starImg == null) starImg = starGO.AddComponent<Image>();
+            starImg.sprite = star2Sprite;
+            starImg.color = Color.white;
+            starImg.raycastTarget = false;
+            eveningStars.Add(starImg);
+        }
+
+        TheDisplayingOfStars eveningDisplay = eveningStarsParent.GetComponent<TheDisplayingOfStars>();
+        if (eveningDisplay == null) eveningDisplay = eveningStarsParent.AddComponent<TheDisplayingOfStars>();
+        eveningDisplay.starImages = eveningStars.ToArray();
+        eveningDisplay.isMorning = false;
+        eveningDisplay.colorPass = Color.yellow;
+        eveningDisplay.colorFailMorning = Color.black;
+        eveningDisplay.colorFailEvening = Color.white;
+        _eveningStarDisplay.Add(eveningDisplay);
+        _eveningStars.Add(eveningStars);
+
+        // Номер уровня — текст сверху (поверх всех дочерних элементов)
+        GameObject levelNumberGO = new GameObject("LevelNumber");
+        levelNumberGO.transform.SetParent(levelGO.transform, false);
+        RectTransform levelNumberRT = levelNumberGO.GetComponent<RectTransform>();
+        if (levelNumberRT == null)
+        {
+            levelNumberRT = levelNumberGO.AddComponent<RectTransform>();
+        }
+        levelNumberRT.anchorMin = new Vector2(0.5f, 1f);
+        levelNumberRT.anchorMax = new Vector2(0.5f, 1f);
+        levelNumberRT.anchoredPosition = new Vector2(0, -5f);
+        levelNumberRT.sizeDelta = new Vector2(cellWidth - 10f, 20f);
+
+        TextMeshProUGUI levelNumberText = levelNumberGO.GetComponent<TextMeshProUGUI>();
+        if (levelNumberText == null)
+        {
+            levelNumberText = levelNumberGO.AddComponent<TextMeshProUGUI>();
+        }
+        levelNumberText.text = $"{index + 1}";
+        levelNumberText.fontSize = 14;
+        levelNumberText.fontStyle = FontStyles.Bold;
+        levelNumberText.alignment = TextAlignmentOptions.Center;
+        levelNumberText.color = Color.black;
+        _levelNumbers.Add(levelNumberText);
+
+        _levelButtons.Add(levelGO);
+        return true;
+    }
+
+    // ========================================================================
+    // РАЗМЕЩЕНИЕ КНОПОК В СЕТКЕ
+    // ========================================================================
+
+    /// <summary>
+    /// Размещает все кнопки уровней в сетке.
+    /// </summary>
+    private void ArrangeButtonsInGrid()
+    {
+        // Получаем размер родителя
+        RectTransform parentRT = _levelPanel.GetComponent<RectTransform>();
+        if (parentRT == null)
+        {
+            Debug.LogError("[LevelMenuManager] У LevelPanel нет RectTransform!");
+            return;
+        }
+
+        float parentWidth = parentRT.rect.width;
+        float parentHeight = parentRT.rect.height;
+
+        // Рассчитываем позицию относительно центра родителя
+        float totalWidth = gridColumns * cellWidth + (gridColumns - 1) * spacingX;
+        float totalHeight = gridRows * cellHeight + (gridRows - 1) * spacingY;
+
+        // Отступ снизу, чтобы не накладывалось на кнопку "Вернуться"
+        float bottomOffset = 60f;
+
+        Debug.Log($"[LevelMenuManager] Parent size: {parentWidth:F1}x{parentHeight:F1}");
+        Debug.Log($"[LevelMenuManager] Grid size: {totalWidth:F1}x{totalHeight:F1}");
+        Debug.Log($"[LevelMenuManager] Размещаю {_levelButtons.Count} кнопок в сетке {gridColumns}x{gridRows}");
+
+        for (int i = 0; i < _levelButtons.Count; i++)
+        {
+            GameObject obj = _levelButtons[i];
+            RectTransform rt = obj.GetComponent<RectTransform>();
+            if (rt != null)
+            {
+                int col = i % gridColumns;
+                int row = i / gridColumns;
+
+                // Позиция: сверху-вниз, слева-направо
+                // row 0 = верхняя строка, row 5 = нижняя
+                float x = -totalWidth / 2f + col * (cellWidth + spacingX) + cellWidth / 2f;
+                float y = totalHeight / 2f - row * (cellHeight + spacingY) - cellHeight / 2f;
                 
-                Image img = buttonGO.AddComponent<Image>();
-                img.color = i % 2 == 0 ? Color.white : Color.black;
-                
-                Button btn = buttonGO.AddComponent<Button>();
-                btn.onClick.AddListener(() => OnPartClicked(i));
-                
-                _partImages.Add(img);
-                _partButtons.Add(btn);
-                _partObjects.Add(buttonGO);
+                // Сдвигаем всю сетку вверх на bottomOffset/2
+                y += bottomOffset / 2f;
+
+                rt.anchorMin = new Vector2(0.5f, 0.5f);
+                rt.anchorMax = new Vector2(0.5f, 0.5f);
+                rt.pivot = new Vector2(0.5f, 0.5f);
+                rt.anchoredPosition = new Vector2(x, y);
+                rt.sizeDelta = new Vector2(cellWidth, cellHeight);
+
+                // Явно задаём порядок в иерархии
+                obj.transform.SetSiblingIndex(i);
+
+                Debug.Log($"[LevelMenuManager] Кнопка {i + 1}: {obj.name} -> pos = ({x:F1}, {y:F1}), sibling = {obj.transform.GetSiblingIndex()}");
             }
         }
     }
@@ -256,57 +553,68 @@ public class LevelMenuManager : MonoBehaviour
     #region State Update
 
     /// <summary>
-    /// Обновляет состояние всех 72 частей уровней.
+    /// Обновляет визуальное состояние всех кнопок уровней.
     /// </summary>
     public void UpdateAllPartsState()
     {
-        _completedPartsCount = 0;
-        _totalStarsCount = 0;
-
-        int totalParts = totalBaseLevels * 2;
-
-        for (int i = 0; i < totalParts; i++)
+        for (int i = 0; i < _levelButtons.Count && i < totalBaseLevels; i++)
         {
-            // Проверяем, что элемент существует
-            if (i >= _partObjects.Count)
-            {
-                Debug.LogWarning($"[LevelMenuManager] Элемент {i} не найден. Пропускаем.");
-                continue;
-            }
+            UpdateLevelState(i);
+        }
+        Debug.Log($"[LevelMenuManager] Обновлены {_levelButtons.Count} уровней");
+    }
 
-            int baseLevelIndex = i / 2; // 0,0->0; 1,1->1; 2,2->2; ...
-            bool isSecondPart = i % 2 != 0; // 0->false (1 часть), 1->true (2 часть), 2->false, ...
-            TimeOfDay timeOfDay = isSecondPart ? TimeOfDay.Evening : TimeOfDay.Morning;
+    /// <summary>
+    /// Применяет визуальное состояние к Morning или Evening внутри кнопки уровня.
+    /// </summary>
+    private void UpdateLevelState(int levelIndex)
+    {
+        bool isMorningUnlocked = IsMorningUnlocked(levelIndex);
+        bool isEveningUnlocked = IsEveningUnlocked(levelIndex);
+        int morningStars = GetPartStars(levelIndex, 0);
+        int eveningStars = GetPartStars(levelIndex, 1);
 
-            // Проверяем, разблокирован ли уровень целиком
-            bool isLevelUnlocked = IsLevelUnlocked(baseLevelIndex);
-            bool isPartUnlocked = isLevelUnlocked && !isSecondPart || isSecondPart && IsMorningCompleted(baseLevelIndex);
-            bool isCompleted = isSecondPart
-                ? IsEveningCompleted(baseLevelIndex)
-                : IsMorningCompleted(baseLevelIndex);
-
-            int stars = isSecondPart
-                ? GetEveningStars(baseLevelIndex)
-                : GetMorningStars(baseLevelIndex);
-
-            if (isCompleted) _completedPartsCount++;
-            _totalStarsCount += stars;
-
-            ApplyPartState(i, isLevelUnlocked, isPartUnlocked, isCompleted, stars, isSecondPart);
+        // Morning
+        if (levelIndex < _morningImages.Count)
+        {
+            _morningImages[levelIndex].color = isMorningUnlocked ? morningImage : morningLockedColor;
+        }
+        if (levelIndex < _morningCanvasGroups.Count)
+        {
+            _morningCanvasGroups[levelIndex].alpha = isMorningUnlocked ? unlockedAlpha : lockedAlpha;
+            _morningCanvasGroups[levelIndex].blocksRaycasts = isMorningUnlocked;
+        }
+        // Morning Stars — через TheDisplayingOfStars
+        if (levelIndex < _morningStarDisplay.Count && _morningStarDisplay[levelIndex] != null)
+        {
+            bool morningPassed = morningStars > 0;
+            _morningStarDisplay[levelIndex].SetBackgroundMode(true);
+            _morningStarDisplay[levelIndex].SetLevelResult(morningPassed, morningStars);
         }
 
-        UpdateProgressUI();
-        Debug.Log($"[LevelMenuManager] Обновлены состояния {totalParts} частей. Пройдено: {_completedPartsCount}/{totalParts}, Звёзды: {_totalStarsCount}/{totalParts * 3}");
+        // Evening
+        if (levelIndex < _eveningImages.Count)
+        {
+            _eveningImages[levelIndex].color = isEveningUnlocked ? eveningImage : eveningLockedColor;
+        }
+        if (levelIndex < _eveningCanvasGroups.Count)
+        {
+            _eveningCanvasGroups[levelIndex].alpha = isEveningUnlocked ? unlockedAlpha : lockedAlpha;
+            _eveningCanvasGroups[levelIndex].blocksRaycasts = isEveningUnlocked;
+        }
+        // Evening Stars — через TheDisplayingOfStars
+        if (levelIndex < _eveningStarDisplay.Count && _eveningStarDisplay[levelIndex] != null)
+        {
+            bool eveningPassed = eveningStars > 0;
+            _eveningStarDisplay[levelIndex].SetBackgroundMode(false);
+            _eveningStarDisplay[levelIndex].SetLevelResult(eveningPassed, eveningStars);
+        }
     }
 
     #endregion
 
     #region Progress Checking
 
-    /// <summary>
-    /// Проверяет доступность базового уровня.
-    /// Использует LevelProgressManager для определения статуса.
-    /// </summary>
     public bool IsLevelUnlocked(int baseLevelIndex)
     {
         if (baseLevelIndex < 0 || baseLevelIndex >= totalBaseLevels)
@@ -315,358 +623,202 @@ public class LevelMenuManager : MonoBehaviour
         if (baseLevelIndex == 0)
             return true;
 
-        // Используем LevelProgressManager
-        if (LevelProgressManager.Instance != null)
-        {
-            return LevelProgressManager.Instance.IsLevelUnlocked(baseLevelIndex);
-        }
+        return IsPartCompleted(baseLevelIndex - 1, 1); // Вечер предыдущего уровня
+    }
 
-        // Fallback на внутреннюю логику
-        return IsLevelFullyCompleted(baseLevelIndex - 1);
+    private bool IsMorningUnlocked(int levelIndex)
+    {
+        return IsLevelUnlocked(levelIndex);
+    }
+
+    private bool IsEveningUnlocked(int levelIndex)
+    {
+        return IsPartCompleted(levelIndex, 0); // Утро текущего уровня
+    }
+
+    public bool IsPartCompleted(int levelIndex, int partIndex)
+    {
+        if (_progress.ContainsKey(levelIndex) && _progress[levelIndex].ContainsKey(partIndex))
+        {
+            return _progress[levelIndex][partIndex] > 0;
+        }
+        return false;
+    }
+
+    public int GetPartStars(int levelIndex, int partIndex)
+    {
+        if (_progress.ContainsKey(levelIndex) && _progress[levelIndex].ContainsKey(partIndex))
+        {
+            return _progress[levelIndex][partIndex];
+        }
+        return 0;
     }
 
     /// <summary>
-    /// Асинхронная загрузка следующей части уровня.
-    /// Part 1: Morning .1 (1→2→...→36)
-    /// Part 2: Evening (1.3→2.2→...→18.2→19.3→20.2→...→36.2)
-    /// После Part 2 уровня 36 → сертификат
+    /// Статический метод получения звёзд — работает без экземпляра.
     /// </summary>
-    public System.Collections.IEnumerator LoadNextLevelPartAsync()
+    public static int GetStarsStatic(int levelIndex, int partIndex)
     {
-        bool isPart2 = _currentPartIndex >= 2;
-        int nextPartIndex = isPart2 ? _currentPartIndex + 1 : 2;
-        
-        bool isLastLevel = _currentBaseLevelIndex >= totalBaseLevels - 1;
-        
-        if (isPart2 && isLastLevel)
+        if (_sharedProgress.ContainsKey(levelIndex) && _sharedProgress[levelIndex].ContainsKey(partIndex))
         {
-            Debug.Log("🏆 Все уровни пройдены! Переход к сертификату...");
-            LoadCertificateScene();
-            yield break;
+            return _sharedProgress[levelIndex][partIndex];
         }
-        
-        int nextBaseLevel;
-        
-        if (isPart2)
+        return 0;
+    }
+
+    public void SaveProgress(int levelIndex, int partIndex, int stars)
+    {
+        if (!_progress.ContainsKey(levelIndex))
         {
-            nextBaseLevel = _currentBaseLevelIndex + 1;
-            if (nextBaseLevel >= totalBaseLevels)
-            {
-                Debug.Log("🏆 Все уровни пройдены! Переход к сертификату...");
-                LoadCertificateScene();
-                yield break;
-            }
-            
-            _currentPartIndex = 1;
-            int suffix = GetScenePartSuffix(nextBaseLevel, false);
-            Debug.Log($"🔄 Переход: Уровень {nextBaseLevel + 1} Part 1 (сцена .{suffix})");
-            LoadLevelWithTime(nextBaseLevel, TimeOfDay.Morning, suffix);
+            _progress[levelIndex] = new Dictionary<int, int>();
         }
-        else
-        {
-            nextBaseLevel = _currentBaseLevelIndex;
-            _currentPartIndex = 2;
-            int suffix = GetScenePartSuffix(nextBaseLevel, true);
-            Debug.Log($"🔄 Переход: Уровень {nextBaseLevel + 1} Part 2 (сцена .{suffix})");
-            LoadLevelWithTime(nextBaseLevel, TimeOfDay.Evening, suffix);
-        }
+        _progress[levelIndex][partIndex] = Mathf.Clamp(stars, 0, 3);
+        if (Instance != null) Instance.UpdateAllPartsState();
+        Debug.Log($"[LevelMenuManager] Сохранён прогресс: Уровень {levelIndex + 1}, Часть {partIndex + 1}, Звёзды: {stars}");
     }
 
     /// <summary>
-    /// Проверяет доступность базового уровня (альяс).
+    /// Статическое сохранение прогресса — работает без экземпляра.
     /// </summary>
-    public bool CanAccessBaseLevel(int baseLevelIndex)
+    public static void SaveProgressStatic(int levelIndex, int partIndex, int stars)
     {
-        return IsLevelUnlocked(baseLevelIndex);
-    }
-
-    /// <summary>
-    /// Проверяет полное завершение базового уровня (утро + вечер).
-    /// </summary>
-    public bool IsLevelFullyCompleted(int baseLevelIndex)
-    {
-        if (!levelProgress.ContainsKey(baseLevelIndex))
-            return false;
-
-        var progress = levelProgress[baseLevelIndex];
-        return progress.MorningCompleted && progress.EveningCompleted;
-    }
-
-    /// <summary>
-    /// Проверяет завершение утренней версии.
-    /// Использует LevelProgressManager.
-    /// </summary>
-    public bool IsMorningCompleted(int baseLevelIndex)
-    {
-        if (LevelProgressManager.Instance != null)
+        if (!_sharedProgress.ContainsKey(levelIndex))
         {
-            return LevelProgressManager.Instance.IsMorningCompleted(baseLevelIndex);
+            _sharedProgress[levelIndex] = new Dictionary<int, int>();
         }
-        
-        if (!levelProgress.ContainsKey(baseLevelIndex)) return false;
-        return levelProgress[baseLevelIndex].MorningCompleted;
-    }
-
-    /// <summary>
-    /// Проверяет завершение вечерней версии.
-    /// Использует LevelProgressManager.
-    /// </summary>
-    public bool IsEveningCompleted(int baseLevelIndex)
-    {
-        if (LevelProgressManager.Instance != null)
-        {
-            return LevelProgressManager.Instance.IsEveningCompleted(baseLevelIndex);
-        }
-        
-        if (!levelProgress.ContainsKey(baseLevelIndex)) return false;
-        return levelProgress[baseLevelIndex].EveningCompleted;
-    }
-
-    /// <summary>
-    /// Получает звёзды за утро.
-    /// Использует LevelProgressManager.
-    /// </summary>
-    public int GetMorningStars(int baseLevelIndex)
-    {
-        if (LevelProgressManager.Instance != null)
-        {
-            return LevelProgressManager.Instance.GetMorningStars(baseLevelIndex);
-        }
-        
-        if (!levelProgress.ContainsKey(baseLevelIndex)) return 0;
-        return levelProgress[baseLevelIndex].MorningStars;
-    }
-
-    /// <summary>
-    /// Получает звёзды за вечер.
-    /// Использует LevelProgressManager.
-    /// </summary>
-    public int GetEveningStars(int baseLevelIndex)
-    {
-        if (LevelProgressManager.Instance != null)
-        {
-            return LevelProgressManager.Instance.GetEveningStars(baseLevelIndex);
-        }
-        
-        if (!levelProgress.ContainsKey(baseLevelIndex)) return 0;
-        return levelProgress[baseLevelIndex].EveningStars;
-    }
-
-    /// <summary>
-    /// Получает общее количество звёзд.
-    /// </summary>
-    public int GetTotalStars(int baseLevelIndex)
-    {
-        return GetMorningStars(baseLevelIndex) + GetEveningStars(baseLevelIndex);
+        _sharedProgress[levelIndex][partIndex] = Mathf.Clamp(stars, 0, 3);
+        Debug.Log($"[LevelMenuManager] Статическое сохранение: Уровень {levelIndex + 1}, Часть {partIndex + 1}, Звёзды: {stars}");
     }
 
     #endregion
 
-    #region Save/Load Progress
+#region Level Loading
 
-    /// <summary>
-    /// Сохраняет прогресс уровня.
-    /// Использует ProgressManager для сохранения сцены.
-    /// </summary>
-    public void SaveProgress(int baseLevelIndex, TimeOfDay timeOfDay, int stars, float time, bool perfectTiming)
-    {
-        if (!levelProgress.ContainsKey(baseLevelIndex))
-        {
-            levelProgress[baseLevelIndex] = new LevelProgress();
-        }
+    private static int _currentBaseLevelIndex = 0;
+    private static int _currentPartIndex = 1; // 1 = Morning, 2 = Evening
+    private static int _currentSceneIndex = 1;
 
-        var progress = levelProgress[baseLevelIndex];
-        int calculatedStars = Mathf.Clamp(stars, 0, 3);
-
-        if (timeOfDay == TimeOfDay.Morning)
-        {
-            progress.MorningCompleted = true;
-            progress.MorningStars = calculatedStars;
-            progress.MorningTime = time;
-        }
-        else
-        {
-            progress.EveningCompleted = true;
-            progress.EveningStars = calculatedStars;
-            progress.EveningTime = time;
-        }
-
-        // Сохраняем через ProgressManager (148 сцен)
-        string sceneName = GetSceneName(baseLevelIndex, timeOfDay, GetMaxParts(baseLevelIndex));
-        if (ProgressManager.Instance != null)
-        {
-            ProgressManager.Instance.SaveSceneCompletion(sceneName, calculatedStars, time);
-        }
-
-        // Обновляем LevelProgressManager
-        if (LevelProgressManager.Instance != null)
-        {
-            LevelProgressManager.Instance.UpdateLevelProgress(baseLevelIndex, sceneName, calculatedStars, time);
-        }
-
-        // Проверяем полное завершение уровня и разблокируем следующий
-        if (IsLevelFullyCompleted(baseLevelIndex))
-        {
-            UnlockNextBaseLevel(baseLevelIndex);
-        }
-    }
-
-    /// <summary>
-    /// Разблокирует следующий базовый уровень.
-    /// </summary>
-    private void UnlockNextBaseLevel(int completedBaseLevelIndex)
-    {
-        int nextBaseLevel = completedBaseLevelIndex + 1;
-        if (nextBaseLevel < totalBaseLevels)
-        {
-            Debug.Log($"🎉 Уровень {completedBaseLevelIndex + 1} завершён! Уровень {nextBaseLevel + 1} разблокирован!");
-        }
-    }
-
-    /// <summary>
-    /// Завершает уровень.
-    /// </summary>
-    public void CompleteLevel(bool success, int stars, bool perfectTiming, TimeOfDay timeOfDay, int baseLevelIndex, float elapsedTime)
-    {
-        if (!success) return;
-
-        SaveProgress(baseLevelIndex, timeOfDay, stars, elapsedTime, perfectTiming);
-
-        string partName = timeOfDay == TimeOfDay.Morning ? "Утро" : "Вечер";
-        Debug.Log($"{(success ? "✅" : "❌")} Уровень {baseLevelIndex + 1} ({partName}) | {stars}/3 ★ | {elapsedTime:F0}s");
-    }
-
-    #endregion
-
-    #region Level Loading
-
-    private int _currentBaseLevelIndex = 0;
-    private TimeOfDay _currentTimeOfDay = TimeOfDay.Morning;
-    private int _currentPartIndex = 1;
-
-    /// <summary>
-    /// Текущий базовый уровень (0-based).
-    /// </summary>
     public int CurrentBaseLevelIndex => _currentBaseLevelIndex;
 
     /// <summary>
-    /// Текущее время суток.
+    /// Возвращает количество сцен для уровня (1 и 19 → 3, остальные → 2).
     /// </summary>
-    public TimeOfDay CurrentTimeOfDay => _currentTimeOfDay;
-
-    /// <summary>
-    /// Получает максимальное количество частей для уровня.
-    /// Уровни 1 и 19 имеют 3 части, остальные — 2.
-    /// </summary>
-    private int GetMaxParts(int baseLevelIndex)
+    private static int GetMaxScenes(int baseLevelIndex)
     {
         int level = baseLevelIndex + 1;
         return (level == 1 || level == 19) ? 3 : 2;
     }
 
+/// <summary>
+    /// Возвращает имя сцены для уровня, части и номера сцены.
+    /// </summary>
+    private static string GetSceneName(int baseLevelIndex, bool isEvening, int sceneIndex)
+    {
+        int level = baseLevelIndex + 1;
+        string part = isEvening ? "Evening" : "Morning";
+        return $"{part} {level}.{sceneIndex}";
+    }
+
     /// <summary>
-    /// Загружает утреннюю версию базового уровня.
+    /// Загружает Утро текущего уровня (первая сцена).
     /// </summary>
     public bool LoadLevelMorning(int baseLevelIndex)
     {
-        return LoadLevelWithTime(baseLevelIndex, TimeOfDay.Morning, GetRandomPartIndex(baseLevelIndex, TimeOfDay.Morning));
-    }
+        Debug.Log($"[LevelMenuManager] >>> LoadLevelMorning: Уровень {baseLevelIndex + 1}");
 
-    /// <summary>
-    /// Загружает вечернюю версию базового уровня.
-    /// </summary>
-    public bool LoadLevelEvening(int baseLevelIndex)
-    {
-        return LoadLevelWithTime(baseLevelIndex, TimeOfDay.Evening, GetRandomPartIndex(baseLevelIndex, TimeOfDay.Evening));
-    }
-
-    /// <summary>
-    /// Загружает базовый уровень с указанным временем суток и частью.
-    /// </summary>
-    public bool LoadLevelWithTime(int baseLevelIndex, TimeOfDay timeOfDay, int partIndex)
-    {
-        // Проверка доступа к уровню
-        if (!CanAccessBaseLevel(baseLevelIndex))
-        {
-            Debug.LogWarning($"🔒 Уровень {baseLevelIndex + 1} закрыт!");
-            return false;
-        }
-
-        // Проверка валидности индекса
-        if (baseLevelIndex < 0 || baseLevelIndex >= totalBaseLevels)
-        {
-            Debug.LogError($"❌ Уровень {baseLevelIndex} не найден!");
-            return false;
-        }
-
-        // Обновляем текущий уровень
         _currentBaseLevelIndex = baseLevelIndex;
-        _currentTimeOfDay = timeOfDay;
-        _currentPartIndex = partIndex;
+        _currentPartIndex = 1;
+        _currentSceneIndex = 1;
 
-        string partName = timeOfDay == TimeOfDay.Morning ? "Утро" : "Вечер";
-        Debug.Log($"🎮 Уровень {baseLevelIndex + 1} ({partName}, часть {partIndex}) начат");
-
-        // Генерируем имя сцены и загружаем
-        string sceneName = GetSceneName(baseLevelIndex, timeOfDay, partIndex);
-        Debug.Log($"📺 Загрузка сцены: {sceneName}");
-        SceneManager.LoadScene(sceneName);
-
+        LoadLevelScene(baseLevelIndex, false, 1);
         return true;
     }
 
     /// <summary>
-    /// Получает случайную доступную часть уровня (1, 2 или 3).
+    /// Загружает Вечер текущего уровня (последняя сцена, т.к. вечер идёт в обратном порядке).
     /// </summary>
-    private int GetRandomPartIndex(int baseLevelIndex, TimeOfDay timeOfDay)
+    public bool LoadLevelEvening(int baseLevelIndex)
     {
-        // Проверяем, есть ли сохранение для этого уровня
-        string savePath = System.IO.Path.Combine(Application.persistentDataPath, "GameSaves", $"level_{baseLevelIndex + 1:000}.json");
-        if (System.IO.File.Exists(savePath))
+        Debug.Log($"[LevelMenuManager] >>> LoadLevelEvening: Уровень {baseLevelIndex + 1}");
+
+        _currentBaseLevelIndex = baseLevelIndex;
+        _currentPartIndex = 2;
+        _currentSceneIndex = GetMaxScenes(baseLevelIndex);
+
+        LoadLevelScene(baseLevelIndex, true, _currentSceneIndex);
+        return true;
+    }
+
+    /// <summary>
+    /// Загружает сцену уровня по имени.
+    /// </summary>
+    private static void LoadLevelScene(int baseLevelIndex, bool isEvening, int sceneIndex)
+    {
+        Time.timeScale = 1f;
+
+        string sceneName = GetSceneName(baseLevelIndex, isEvening, sceneIndex);
+        Debug.Log($"[LevelMenuManager] >>> SceneManager.LoadScene('{sceneName}')");
+
+        SceneManager.LoadScene(sceneName);
+    }
+
+    /// <summary>
+    /// Статический метод перехода к следующей сцене/части/уровню.
+    /// Вызывается из EndManager2 после сохранения прогресса.
+    /// </summary>
+    public static IEnumerator LoadNextLevelPartStatic()
+    {
+        Time.timeScale = 1f;
+
+        bool isEvening = _currentPartIndex >= 2;
+        int maxScenes = GetMaxScenes(_currentBaseLevelIndex);
+
+        // Для Evening последняя сцена — когда _currentSceneIndex <= 1
+        bool isLastSceneInPart = isEvening
+            ? _currentSceneIndex <= 1
+            : _currentSceneIndex >= maxScenes;
+
+        bool isLastLevel = _currentBaseLevelIndex >= 35; // 36 уровней (0-based)
+
+        // Случай 4: Evening уровня 36 завершён → сертификат
+        if (isEvening && isLastSceneInPart && isLastLevel)
         {
-            try
-            {
-                string json = System.IO.File.ReadAllText(savePath);
-                var data = JsonUtility.FromJson<LevelSaveData>(json);
-                // Возвращаем часть из сохранения, если она существует
-                if (data.partIndex >= 1 && data.partIndex <= 3)
-                {
-                    Debug.Log($"💾 Загружена часть {data.partIndex} из сохранения для уровня {baseLevelIndex + 1}");
-                    return data.partIndex;
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.LogWarning($"⚠️ Ошибка загрузки сохранения: {e.Message}");
-            }
+            Debug.Log("🏆 Все уровни пройдены! Переход к сертификату...");
+            SceneManager.LoadSceneAsync("Game completion certificate");
+            yield break;
         }
 
-        // Если сохранения нет или часть не найдена — выбираем случайную (1-3)
-        int randomPart = UnityEngine.Random.Range(1, 4);
-        Debug.Log($"🎲 Выбрана случайная часть {randomPart} для уровня {baseLevelIndex + 1}");
-        return randomPart;
-    }
+        // Случай 3: Evening завершён (не последний уровень) → Morning следующего уровня
+        if (isEvening && isLastSceneInPart)
+        {
+            int nextLevel = _currentBaseLevelIndex + 1;
+            _currentBaseLevelIndex = nextLevel;
+            _currentPartIndex = 1;
+            _currentSceneIndex = 1;
+            string sceneName = GetSceneName(nextLevel, false, 1);
+            Debug.Log($"🔄 Переход: Уровень {nextLevel + 1} Morning → {sceneName}");
+            SceneManager.LoadSceneAsync(sceneName);
+            yield break;
+        }
 
-    /// <summary>
-    /// Генерирует имя сцены на основе индекса уровня, времени суток и части.
-    /// Формат: "Level {N}/{TimeOfDay}/TimeOfDay {N}.{partIndex}"
-    /// Пример: "Level 1/Morning/Morning 1.1"
-    /// </summary>
-    private string GetSceneName(int baseLevelIndex, TimeOfDay timeOfDay, int partIndex)
-    {
-        string levelName = $"Level {baseLevelIndex + 1}";
-        string folder = timeOfDay == TimeOfDay.Morning ? "Morning" : "Evening";
-        string sceneFile = $"{(timeOfDay == TimeOfDay.Morning ? "Morning" : "Evening")} {baseLevelIndex + 1}.{partIndex}";
-        return $"{levelName}/{folder}/{sceneFile}";
-    }
+        // Случай 2: Morning завершена (последняя сцена) → Evening того же уровня
+        if (!isEvening && isLastSceneInPart)
+        {
+            _currentPartIndex = 2;
+            _currentSceneIndex = maxScenes;
+            string sceneName = GetSceneName(_currentBaseLevelIndex, true, _currentSceneIndex);
+            Debug.Log($"🔄 Переход: Уровень {_currentBaseLevelIndex + 1} Evening → {sceneName}");
+            SceneManager.LoadSceneAsync(sceneName);
+            yield break;
+        }
 
-    /// <summary>
-    /// Данные сохранения для уровня.
-    /// </summary>
-    [Serializable]
-    private class LevelSaveData
-    {
-        public int partIndex;
+        // Случай 1: Следующая сцена в той же части
+        // Для Evening — уменьшаем (обратный порядок), для Morning — увеличиваем
+        _currentSceneIndex += isEvening ? -1 : 1;
+        string partName = isEvening ? "Evening" : "Morning";
+        string nextScene = GetSceneName(_currentBaseLevelIndex, isEvening, _currentSceneIndex);
+        Debug.Log($"🔄 Переход: Уровень {_currentBaseLevelIndex + 1} {partName} сцена {_currentSceneIndex}");
+        SceneManager.LoadSceneAsync(nextScene);
     }
 
     /// <summary>
@@ -674,8 +826,9 @@ public class LevelMenuManager : MonoBehaviour
     /// </summary>
     public void LoadCertificateScene()
     {
-        Debug.Log($"📺 Загрузка сцены сертификата: Game completion certificate");
-        SceneManager.LoadScene("Game completion certificate");
+        Debug.Log("🏆 Загрузка сертификата: Game completion certificate");
+        Time.timeScale = 1f;
+        SceneManager.LoadSceneAsync("Game completion certificate");
     }
 
     /// <summary>
@@ -683,295 +836,42 @@ public class LevelMenuManager : MonoBehaviour
     /// </summary>
     public void LoadStartMenuScene()
     {
-        Debug.Log($"📺 Загрузка сцены StartMenu");
-        SceneManager.LoadScene("StartMenu");
+        Debug.Log("📺 Загрузка StartMenu");
+        Time.timeScale = 1f;
+        SceneManager.LoadSceneAsync("StartMenu");
     }
 
     /// <summary>
-    /// Асинхронная загрузка уровня с указанным временем суток.
+    /// Вызывается при клике на Morning части уровня.
     /// </summary>
-    public System.Collections.IEnumerator LoadLevelWithTimeAsync(int baseLevelIndex, TimeOfDay timeOfDay)
+    public void OnMorningClicked(int baseLevelIndex)
     {
-        int partIndex = GetRandomPartIndex(baseLevelIndex, timeOfDay);
-        LoadLevelWithTime(baseLevelIndex, timeOfDay, partIndex);
-        yield return null;
+        Debug.Log($"[LevelMenuManager] >>> КЛИК Morning: Уровень {baseLevelIndex + 1}");
+        LoadLevelMorning(baseLevelIndex);
     }
 
     /// <summary>
-    /// Асинхронная загрузка уровня с автоматическим временем суток.
+    /// Вызывается при клике на Evening части уровня.
     /// </summary>
-    public System.Collections.IEnumerator LoadLevelAsync(int baseLevelIndex)
+    public void OnEveningClicked(int baseLevelIndex)
     {
-        yield return LoadLevelWithTimeAsync(baseLevelIndex, _currentTimeOfDay);
-    }
-
-    #endregion
-
-    #region Reset Progress
-
-    /// <summary>
-    /// Сбрасывает прогресс базового уровня.
-    /// </summary>
-    public void ResetLevelProgress(int baseLevelIndex)
-    {
-        if (levelProgress.ContainsKey(baseLevelIndex))
-            levelProgress[baseLevelIndex] = new LevelProgress();
-
-        Debug.Log($"🔄 Прогресс уровня {baseLevelIndex + 1} сброшен");
+        Debug.Log($"[LevelMenuManager] >>> КЛИК Evening: Уровень {baseLevelIndex + 1}");
+        LoadLevelEvening(baseLevelIndex);
     }
 
     /// <summary>
-    /// Сбрасывает прогресс для конкретного времени суток.
+    /// Вызывается при клике на кнопку уровня.
     /// </summary>
-    public void ResetVariantProgress(int baseLevelIndex, TimeOfDay timeOfDay)
+    public void OnLevelClicked(int levelIndex)
     {
-        if (!levelProgress.ContainsKey(baseLevelIndex)) return;
-
-        var progress = levelProgress[baseLevelIndex];
-        if (timeOfDay == TimeOfDay.Morning)
-        {
-            progress.MorningCompleted = false;
-            progress.MorningStars = 0;
-            progress.MorningTime = 0f;
-        }
-        else
-        {
-            progress.EveningCompleted = false;
-            progress.EveningStars = 0;
-            progress.EveningTime = 0f;
-        }
-
-        Debug.Log($"🔄 {timeOfDay.GetDisplayName()} сброшен для уровня {baseLevelIndex + 1}");
-    }
-
-    #endregion
-
-    #region Part State
-
-    /// <summary>
-    /// Применяет визуальное состояние к части уровня.
-    /// Цвета:
-    /// - Фон уровня открыт: белый, закрыт: серая тень
-    /// - 1 часть открыта: белая, закрыта: серая тень
-    /// - 2 часть открыта: чёрная, закрыта: тёмная тень
-    /// </summary>
-    private void ApplyPartState(int partIndex, bool isLevelUnlocked, bool isPartUnlocked, bool isCompleted, int stars, bool isSecondPart)
-    {
-        // Проверяем, что элемент существует
-        if (partIndex >= _partObjects.Count)
-        {
-            Debug.LogWarning($"[LevelMenuManager] Элемент {partIndex} не найден. Пропускаем.");
-            return;
-        }
-
-        Image partImage = null;
-        Button partButton = null;
-
-        if (partIndex < _partImages.Count) partImage = _partImages[partIndex];
-        if (partIndex < _partButtons.Count) partButton = _partButtons[partIndex];
-
-        // Определяем цвет
-        Color targetColor;
-
-        if (isSecondPart)
-        {
-            // 2 часть: чёрная (если 1 часть пройдена) / тёмная тень (если 1 часть не пройдена)
-            targetColor = isCompleted ? secondPartUnlockedColor : secondPartLockedColor;
-        }
-        else
-        {
-            // 1 часть: белая (если уровень открыт) / серая тень (если уровень закрыт)
-            targetColor = isLevelUnlocked ? firstPartUnlockedColor : firstPartLockedColor;
-        }
-
-        // Применяем Image
-        if (partImage != null)
-        {
-            partImage.color = targetColor;
-        }
-
-        // Применяем Button
-        if (partButton != null)
-        {
-            partButton.interactable = isPartUnlocked && !isCompleted;
-        }
-
-        // Обновляем фон уровня (первый дочерний элемент — фон уровня)
-        UpdateLevelBackground(_partObjects[partIndex], isLevelUnlocked);
-
-        // Обновляем звёзды и метки на GameObject части
-        UpdatePartLabels(_partObjects[partIndex], isCompleted, stars, isSecondPart);
-    }
-
-    /// <summary>
-    /// Обновляет цвет фона уровня (первый Image на GameObject).
-    /// </summary>
-    private void UpdateLevelBackground(GameObject partGO, bool isLevelUnlocked)
-    {
-        if (partGO == null) return;
-
-        // Ищем Image фона уровня (обычно первый child с компонентом Image)
-        Image[] images = partGO.GetComponentsInChildren<Image>();
-        if (images.Length > 0)
-        {
-            // Первый Image — это фон уровня
-            Color bgColor = isLevelUnlocked ? levelBackgroundUnlockedColor : levelBackgroundLockedColor;
-            images[0].color = bgColor;
-        }
-    }
-
-    #endregion
-
-    #region Part Labels
-
-    /// <summary>
-    /// Обновляет метки (1 часть / 2 часть) и звёзды на GameObject части.
-    /// Звёзды: все изначально неактивны, активируются первые N штук (N = starsCollected).
-    /// Цвета управляются скриптом TheDisplayingOfStars.
-    /// </summary>
-    private void UpdatePartLabels(GameObject partGO, bool isCompleted, int stars, bool isSecondPart)
-    {
-        if (partGO == null) return;
-
-        // Определяем "фон" части: false = белый (1 часть), true = чёрный (2 часть)
-        bool isDarkBackground = isSecondPart;
-
-        // Ищем TextMeshPro для метки части
-        var existingLabels = partGO.GetComponentsInChildren<TextMeshProUGUI>();
-        TextMeshProUGUI partLabel = null;
-
-        foreach (var text in existingLabels)
-        {
-            if (text.name.Contains("PartLabel") || text.name.Contains("Label"))
-                partLabel = text;
-        }
-
-        // Обновляем текст метки части
-        if (partLabel != null)
-        {
-            partLabel.text = isSecondPart ? "Part 2" : "Part 1";
-            partLabel.gameObject.SetActive(true);
-        }
-
-        // Обновляем звёзды (Image спрайты)
-        UpdateStarImages(partGO, isCompleted, stars, isDarkBackground);
-    }
-
-    /// <summary>
-    /// Обновляет видимость звёзд на GameObject части.
-    /// Все звёзды изначально неактивны. Активируются первые N звёзд (N = starsCollected).
-    /// Цвета управляются скриптом TheDisplayingOfStars.
-    /// </summary>
-    private void UpdateStarImages(GameObject partGO, bool isCompleted, int stars, bool isSecondPart)
-    {
-        // Определяем шаблон в зависимости от части
-        Transform starsTemplate = isSecondPart ? starsPart2Template : starsPart1Template;
-
-        if (partGO == null) return;
-
-        // Ищем существующие GameObject звёзд (Star0, Star1, Star2)
-        GameObject[] starGOs = new GameObject[3];
-        for (int i = 0; i < 3; i++)
-        {
-            string starName = $"Star{i}";
-            var children = partGO.GetComponentsInChildren<Transform>();
-            foreach (var child in children)
-            {
-                if (child.name.Contains(starName))
-                {
-                    starGOs[i] = child.gameObject;
-                    break;
-                }
-            }
-        }
-
-        // Создаём звёзды, если их нет
-        bool needsCreation = starGOs[0] == null;
-        if (needsCreation && starsTemplate != null)
-        {
-            // Создаём 3 звезды из шаблона
-            for (int i = 0; i < 3; i++)
-            {
-                GameObject starGO = Instantiate(starsTemplate.GetChild(i).gameObject, partGO.transform, false);
-                starGO.name = $"Star{i}";
-                starGO.SetActive(false); // Изначально все неактивны
-
-                starGOs[i] = starGO;
-            }
-        }
-
-        // Активируем первые N звёзд (N = starsCollected)
-        for (int i = 0; i < 3; i++)
-        {
-            if (starGOs[i] != null)
-            {
-                // Показываем звезду, если уровень пройден и индекс меньше количества звёзд
-                starGOs[i].SetActive(isCompleted && i < stars);
-            }
-        }
-    }
-
-    #endregion
-
-    #region Progress UI
-
-    /// <summary>
-    /// Обновляет тексты прогресса.
-    /// </summary>
-    private void UpdateProgressUI()
-    {
-        // Текст прогресса теперь управляется вручную или через внешнюю UI систему
-    }
-
-    #endregion
-
-    #region Part Actions
-
-    /// <summary>
-    /// Вызывается при нажатии на кнопку части уровня.
-    /// Запускает нужную часть (1 или 2) нужного уровня.
-    /// </summary>
-    public void OnPartClicked(int partIndex)
-    {
-        int baseLevelIndex = partIndex / 2;
-        bool isSecondPart = partIndex % 2 != 0;
-        TimeOfDay timeOfDay = isSecondPart ? TimeOfDay.Evening : TimeOfDay.Morning;
-
-        // Проверяем, разблокирована ли часть
-        bool isLevelUnlocked = IsLevelUnlocked(baseLevelIndex);
-        bool isPartUnlocked = !isSecondPart && isLevelUnlocked || isSecondPart && IsMorningCompleted(baseLevelIndex);
-        if (!isPartUnlocked)
-        {
-            Debug.LogWarning($"[LevelMenuManager] Часть {partIndex} (Уровень {baseLevelIndex + 1}, {timeOfDay}) заблокирована!");
-            return;
-        }
-
-        // Проверяем, не пройдена ли уже (если пройдена — можно запустить для перезаказа звёзд)
-        bool isCompleted = isSecondPart
-            ? IsEveningCompleted(baseLevelIndex)
-            : IsMorningCompleted(baseLevelIndex);
-
-        string partName = isSecondPart ? "2 часть" : "1 часть";
-        Debug.Log($"[LevelMenuManager] Запуск: Уровень {baseLevelIndex + 1} — {partName} (partIndex={partIndex}, completed={isCompleted})");
-
-        // Загружаем часть уровня
-        if (!isSecondPart)
-        {
-            LoadLevelMorning(baseLevelIndex);
-        }
-        else
-        {
-            LoadLevelEvening(baseLevelIndex);
-        }
+        Debug.Log($"[LevelMenuManager] Нажат уровень {levelIndex + 1}");
+        LoadLevelMorning(levelIndex);
     }
 
     #endregion
 
     #region Debug
 
-    /// <summary>
-    /// Выводит детальную информацию о состоянии всех частей в консоль.
-    /// </summary>
     public void LogAllPartsState()
     {
         Debug.Log("═══════════════════════════════════════");
@@ -985,15 +885,14 @@ public class LevelMenuManager : MonoBehaviour
             bool isSecondPart = i % 2 != 0;
             string partName = isSecondPart ? "2 часть" : "1 часть";
 
-            // Проверяем, разблокирована ли часть
             bool isLevelUnlocked = IsLevelUnlocked(baseLevelIndex);
-            bool isPartUnlocked = !isSecondPart && isLevelUnlocked || isSecondPart && IsMorningCompleted(baseLevelIndex);
+            bool isPartUnlocked = !isSecondPart && isLevelUnlocked || isSecondPart && IsPartCompleted(baseLevelIndex, 0);
             bool completed = isSecondPart
-                ? IsEveningCompleted(baseLevelIndex)
-                : IsMorningCompleted(baseLevelIndex);
+                ? IsPartCompleted(baseLevelIndex, 1)
+                : IsPartCompleted(baseLevelIndex, 0);
             int stars = isSecondPart
-                ? GetEveningStars(baseLevelIndex)
-                : GetMorningStars(baseLevelIndex);
+                ? GetPartStars(baseLevelIndex, 1)
+                : GetPartStars(baseLevelIndex, 0);
 
             string status = isPartUnlocked
                 ? (completed ? $"✅ {stars}/3" : "🔓")
@@ -1002,8 +901,7 @@ public class LevelMenuManager : MonoBehaviour
             Debug.Log($"  Ч. {i,2} | Уровень {baseLevelIndex + 1,2} {partName,-7} | {status}");
         }
 
-        Debug.Log($"═══════════════════════════════════════");
-        Debug.Log($"Итого пройдено: {_completedPartsCount}/{totalParts} | Звёзды: {_totalStarsCount}/{totalParts * 3}");
+        Debug.Log("═══════════════════════════════════════");
         Debug.Log("═══════════════════════════════════════");
     }
 

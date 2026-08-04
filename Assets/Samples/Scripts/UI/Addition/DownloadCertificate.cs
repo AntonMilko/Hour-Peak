@@ -47,6 +47,9 @@ public class DownloadCertificate : MonoBehaviour
 
     private IEnumerator DownloadAndReturnToMenu()
     {
+        // Гарантируем, что время не остановлено
+        Time.timeScale = 1f;
+
         Debug.Log("📜 Подготовка сертификата...");
 
         // 1. Захватываем скриншот сертификата с камеры
@@ -63,8 +66,8 @@ public class DownloadCertificate : MonoBehaviour
             {
                 Debug.Log("✅ Сертификат сохранён. Переход в меню...");
                 
-                // Небольшая задержка для завершения операции записи
-                yield return new WaitForSeconds(0.3f);
+                // Небольшая задержка для завершения операции записи (realtime — не зависит от timeScale)
+                yield return new WaitForSecondsRealtime(0.3f);
 
                 // 3. Переходим в сцену StartMenu
                 SceneManager.LoadScene(startMenuSceneName);
@@ -72,14 +75,14 @@ public class DownloadCertificate : MonoBehaviour
             else
             {
                 Debug.LogError("❌ Ошибка сохранения сертификата на устройство.");
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSecondsRealtime(2f);
                 SceneManager.LoadScene(startMenuSceneName);
             }
         }
         else
         {
             Debug.LogError("❌ Ошибка захвата сертификата.");
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSecondsRealtime(2f);
             SceneManager.LoadScene(startMenuSceneName);
         }
     }

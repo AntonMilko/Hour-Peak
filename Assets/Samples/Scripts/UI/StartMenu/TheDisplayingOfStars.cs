@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 /// <summary>
 /// Скрипт отображения звёзд в зависимости от результата уровня.
-/// Логика цветов:
-/// - Успех: Жёлтые.
-/// - Провал (Утро/Белый фон): Чёрные.
-/// - Провал (Вечер/Чёрный фон): Белые.
+/// Все звёзды всегда видимы — состояние отображается цветом:
+/// - Заработанные: цвет успеха (жёлтый).
+/// - Незаработанные (Утро/Белый фон): чёрные.
+/// - Незаработанные (Вечер/Чёрный фон): белые.
 /// </summary>
 public class TheDisplayingOfStars : MonoBehaviour
 {
@@ -14,21 +14,21 @@ public class TheDisplayingOfStars : MonoBehaviour
 
     [Header("UI References")]
     [Tooltip("Массив изображений звёзд (Image). Должно быть 3 элемента.")]
-    [SerializeField] private Image[] starImages;
+    public Image[] starImages;
 
     [Header("Settings")]
     [Tooltip("Текущее состояние фона: true = Утро (Белый), false = Вечер (Чёрный)")]
-    [SerializeField] private bool isMorning = true;
+    public bool isMorning = true;
 
     [Header("Colors")]
     [Tooltip("Цвет звёзд при успешном прохождении")]
-    [SerializeField] private Color colorPass = Color.yellow;
+    public Color colorPass = Color.yellow;
     
     [Tooltip("Цвет звёзд при проигрыше (используется, если isMorning = true)")]
-    [SerializeField] private Color colorFailMorning = Color.black;
+    public Color colorFailMorning = Color.black;
     
     [Tooltip("Цвет звёзд при проигрыше (используется, если isMorning = false)")]
-    [SerializeField] private Color colorFailEvening = Color.white;
+    public Color colorFailEvening = Color.white;
 
     #endregion
 
@@ -86,7 +86,8 @@ public class TheDisplayingOfStars : MonoBehaviour
     #region Private Methods
 
     /// <summary>
-    /// Обновляет видимость звёзд (показывает только первые 'starsCollected' штук).
+    /// Обновляет видимость звёзд.
+    /// Все звёзды всегда видимы — состояние отображается цветом, а не скрытием.
     /// </summary>
     private void UpdateStarVisibility()
     {
@@ -94,39 +95,39 @@ public class TheDisplayingOfStars : MonoBehaviour
 
         for (int i = 0; i < starImages.Length; i++)
         {
-            // Показываем звезду, если её индекс меньше количества собранных звёзд
-            starImages[i].gameObject.SetActive(i < starsCollected);
+            if (starImages[i] != null)
+            {
+                starImages[i].gameObject.SetActive(true);
+            }
         }
     }
 
     /// <summary>
     /// Устанавливает правильный цвет звёзд в зависимости от фона и результата.
+    /// Заработанные звёзды — цвет успеха, остальные — цвет фона.
     /// </summary>
     private void UpdateStarColors()
     {
         if (starImages == null) return;
 
-        Color targetColor = Color.clear;
+        for (int i = 0; i < starImages.Length; i++)
+        {
+            if (starImages[i] == null) continue;
 
-        // Логика выбора цвета
-        if (isLevelPassed)
-        {
-            // Если уровень пройден — всегда жёлтый
-            targetColor = colorPass;
-        }
-        else
-        {
-            // Если уровень провален — цвет зависит от фона
-            targetColor = isMorning ? colorFailMorning : colorFailEvening;
-        }
+            Color targetColor;
 
-        // Применяем цвет ко всем звёздам (даже неактивным, чтобы при появлении они были нужного цвета)
-        foreach (Image star in starImages)
-        {
-            if (star != null)
+            if (isLevelPassed && i < starsCollected)
             {
-                star.color = targetColor;
+                // Заработанная звезда — цвет успеха
+                targetColor = colorPass;
             }
+            else
+            {
+                // Незаработанная звезда — цвет зависит от фона
+                targetColor = isMorning ? colorFailMorning : colorFailEvening;
+            }
+
+            starImages[i].color = targetColor;
         }
     }
 

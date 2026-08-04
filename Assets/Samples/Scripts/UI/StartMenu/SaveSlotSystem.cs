@@ -1,7 +1,10 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using TMPro;
 
 /// <summary>
 /// Создаёт и управляет 20 слотами сохранений на GameObject FoldersSaveMenu.
@@ -22,10 +25,16 @@ public class SaveSlotSystem : MonoBehaviour
     private List<GameObject> _slots = new List<GameObject>();
     private List<TextMeshProUGUI> _dateTimeTexts = new List<TextMeshProUGUI>();
     private Canvas _canvas;
-    private GameObject _levelMenu;
     private Transform _slotsParent; // FoldersSavePanel - родитель для слотов
     private Dictionary<int, Vector2> _slotPositions = new Dictionary<int, Vector2>(); // Сохраняем позиции слотов
     private bool _isInitialized = false;
+
+    // 🔥 КЭШИРОВАННЫЕ ССЫЛКИ — чтобы не искать каждый раз
+    private SaveManager _saveManager;
+    private GameSaveController _gameController;
+    private LevelMenuManager _levelMenuManager;
+    private GameObject _foldersSaveMenu;
+    private Transform _rootTransform; // Кэш root
 
     // ========================================================================
     // UNITY LIFECYCLE
@@ -33,79 +42,17 @@ public class SaveSlotSystem : MonoBehaviour
 
     private void Awake()
     {
-        // Ищем Canvas на сцене (не в детях этого объекта!)
-        _canvas = FindFirstObjectByType<Canvas>();
+        // 🔥 Сохраняем root (MainMenuUI)
+        _rootTransform = transform.root;
         
-        // Если Canvas нет — создаём
-        if (_canvas == null)
-        {
-            GameObject canvasGO = new GameObject("SaveSlotsCanvas");
-            _canvas = canvasGO.AddComponent<Canvas>();
-            _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            _canvas.worldCamera = null;
-            _canvas.overrideSorting = true;
-            _canvas.sortingOrder = 1000;
-            canvasGO.AddComponent<GraphicRaycaster>();
-            canvasGO.AddComponent<CanvasScaler>();
-            
-            Debug.Log($"[SaveSlotSystem] Создан новый Canvas: {_canvas.name}");
-        }
-        
-        // Растягиваем Canvas на весь экран
-        RectTransform canvasRT = _canvas.GetComponent<RectTransform>();
-        if (canvasRT != null)
-        {
-            canvasRT.anchorMin = Vector2.zero;
-            canvasRT.anchorMax = Vector2.one;
-            canvasRT.sizeDelta = Vector2.zero;
-            canvasRT.anchoredPosition = Vector2.zero;
-        }
-        
-        // Ищем FoldersSavePanel — ИЩЕМ ПРЯМО В МЕНЮ, а не через root
-        Transform foldersSavePanel = transform.Find("FoldersSavePanel");
-        if (foldersSavePanel == null)
-        {
-            foldersSavePanel = transform.root.Find("FoldersSavePanel");
-        }
-        
-        if (foldersSavePanel != null)
-        {
-            RectTransform panelRT = foldersSavePanel.GetComponent<RectTransform>();
-            if (panelRT != null)
-            {
-                panelRT.offsetMin = Vector2.zero;
-                panelRT.offsetMax = Vector2.zero;
-                panelRT.anchorMin = Vector2.zero;
-                panelRT.anchorMax = Vector2.one;
-                panelRT.anchoredPosition = Vector2.zero;
-                panelRT.sizeDelta = Vector2.zero;
-            }
-            _slotsParent = foldersSavePanel;
-            Debug.Log($"[SaveSlotSystem] ✅ Найден FoldersSavePanel: {_slotsParent.name}");
-        }
-        else
-        {
-            Debug.LogError("[SaveSlotSystem] FoldersSavePanel НЕ НАЙДЕН!");
-            _slotsParent = transform;
-        }
-        
-        // LevelMenu — отдельный корневой GameObject (не ребёнок FoldersSaveMenu)
-        _levelMenu = new GameObject("LevelMenu");
-        _levelMenu.transform.SetParent(null, false);
+        _foldersSaveMenu = GameObject.Find("FoldersSaveMenu");
+        if (_foldersSaveMenu == null) _foldersSaveMenu = _rootTransform.gameObject;
         
         _isInitialized = true;
-        Debug.Log($"[SaveSlotSystem] Инициализация завершена. Canvas: {_canvas?.name ?? "null"}, Parent: {_slotsParent.name}");
     }
 
     private void Start()
     {
-        // 🔴 Убедимся что родитель в правильном состоянии
-        if (_slotsParent.localScale != Vector3.one)
-        {
-            _slotsParent.localScale = Vector3.one;
-            _slotsParent.localRotation = Quaternion.identity;
-        }
-        
         SpawnAllSlots();
     }
 
@@ -116,96 +63,19 @@ public class SaveSlotSystem : MonoBehaviour
     [ContextMenu("🔥 Spawn All Slots")]
     public void SpawnAllSlots()
     {
-        // 🔴 КАЖДЫЙ РАЗ ЗАНОВО ИЩЕМ FOLDERSSAVE PANEL — без проверки _isInitialized
-        Debug.Log("[SaveSlotSystem] 🔍 Поиск FoldersSavePanel...");
-        Debug.Log("[SaveSlotSystem] transform.name = " + transform.name);
-        Debug.Log("[SaveSlotSystem] transform.root.name = " + (transform.root != null ? transform.root.name : "null"));
-        
-        // Лог всех имён детей корня
-        if (transform.root != null)
+        // 🔥 Ищем FoldersSavePanel только один раз
+        _slotsParent = transform.Find("FoldersSavePanel");
+        if (_slotsParent == null && transform.root != null)
         {
-            Debug.Log("[SaveSlotSystem] === ДЕТІ КОРНЯ (" + transform.root.childCount + "):");
-            for (int i = 0; i < transform.root.childCount; i++)
-            {
-                Debug.Log("[SaveSlotSystem]   [" + i + "] " + transform.root.GetChild(i).name);
-            }
+            _slotsParent = transform.root.Find("FoldersSavePanel");
         }
         
-        // Ищем FoldersSavePanel через всех детей корня
-        Transform foldersSavePanel = null;
-        Transform[] allChildren = transform.root.GetComponentsInChildren<Transform>(true);
-        foreach (Transform child in allChildren)
+        if (_slotsParent == null)
         {
-            if (child.name == "FoldersSavePanel" && child != transform)
-            {
-                foldersSavePanel = child;
-                break;
-            }
-        }
-        
-        if (foldersSavePanel != null)
-        {
-            RectTransform panelRT = foldersSavePanel.GetComponent<RectTransform>();
-            if (panelRT != null)
-            {
-                panelRT.offsetMin = Vector2.zero;
-                panelRT.offsetMax = Vector2.zero;
-                panelRT.anchorMin = Vector2.zero;
-                panelRT.anchorMax = Vector2.one;
-                panelRT.anchoredPosition = Vector2.zero;
-                panelRT.sizeDelta = Vector2.zero;
-            }
-            _slotsParent = foldersSavePanel;
-            Debug.Log($"[SaveSlotSystem] ✅ Найден FoldersSavePanel: {_slotsParent.name}");
-        }
-        else
-        {
-            Debug.LogError("[SaveSlotSystem] FoldersSavePanel НЕ НАЙДЕН! Использую transform как fallback.");
             _slotsParent = transform;
         }
         
-        // Ищем Canvas
-        _canvas = FindFirstObjectByType<Canvas>();
-        if (_canvas == null)
-        {
-            GameObject canvasGO = new GameObject("SaveSlotsCanvas");
-            _canvas = canvasGO.AddComponent<Canvas>();
-            _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            _canvas.worldCamera = null;
-            _canvas.overrideSorting = true;
-            _canvas.sortingOrder = 1000;
-            canvasGO.AddComponent<GraphicRaycaster>();
-            canvasGO.AddComponent<CanvasScaler>();
-        }
-        RectTransform canvasRT = _canvas.GetComponent<RectTransform>();
-        if (canvasRT != null)
-        {
-            canvasRT.anchorMin = Vector2.zero;
-            canvasRT.anchorMax = Vector2.one;
-            canvasRT.sizeDelta = Vector2.zero;
-            canvasRT.anchoredPosition = Vector2.zero;
-        }
-        
-        // LevelMenu
-        if (_levelMenu == null)
-        {
-            _levelMenu = new GameObject("LevelMenu");
-            _levelMenu.transform.SetParent(null, false);
-        }
-        
         _isInitialized = true;
-        Debug.Log("[SaveSlotSystem] ✅ Инициализация завершена. Parent: " + _slotsParent.name);
-
-        // Останавливаем все корутины перед новым запуском
-        StopAllCoroutines();
-
-        // 🔴 СБРОС МАСШТАБА РОДИТЕЛЯ — критически важно!
-        if (_slotsParent.localScale != Vector3.one)
-        {
-            Debug.LogWarning($"[SaveSlotSystem] Сброс localScale родителя: {_slotsParent.localScale} -> Vector3.one");
-            _slotsParent.localScale = Vector3.one;
-            _slotsParent.localRotation = Quaternion.identity;
-        }
 
         _slots.Clear();
         _dateTimeTexts.Clear();
@@ -479,131 +349,22 @@ public class SaveSlotSystem : MonoBehaviour
     /// <param name="slotIndex">Индекс слота (0-19).</param>
     public void OnSlotClicked(int slotIndex)
     {
-        if (slotIndex < 0 || slotIndex >= _slots.Count)
-        {
-            Debug.LogError($"[SaveSlotSystem] Неверный индекс слота: {slotIndex}");
-            return;
-        }
+        if (slotIndex < 0 || slotIndex >= _slots.Count) return;
         
         GameObject slot = _slots[slotIndex];
-        if (!Object.Equals(slot, null))
+        if (slot != null) slot.SetActive(false);
+        
+        if (_foldersSaveMenu != null) _foldersSaveMenu.SetActive(false);
+        
+        if (_rootTransform != null)
         {
-            // Проверяем, где сейчас слот
-            if (slot.transform.parent == _slotsParent)
+            Transform levelTransform = _rootTransform.Find("LevelMenu");
+            if (levelTransform != null)
             {
-                // Сохраняем текущую позицию перед перемещением
-                RectTransform slotRT = slot.GetComponent<RectTransform>();
-                if (slotRT != null)
-                {
-                    _slotPositions[slotIndex] = slotRT.anchoredPosition;
-                }
-                
-                // Перемещаем в LevelMenu
-                slot.transform.SetParent(_levelMenu.transform, true);
-                Debug.Log($"[SaveSlotSystem] 📦 Слот #{slotIndex} перемещён в LevelMenu");
-                
-                // 🔴 ЗАГРУЗКА СОХРАНЕНИЯ ИЗ СЛОТА
-                LoadAndStartGame(slotIndex);
+                levelTransform.gameObject.SetActive(true);
             }
-            else
-            {
-                // Возвращаем на FoldersSaveMenu
-                slot.transform.SetParent(_slotsParent, true);
-                
-                // Восстанавливаем оригинальную позицию
-                if (_slotPositions.TryGetValue(slotIndex, out Vector2 originalPos))
-                {
-                    RectTransform slotRT = slot.GetComponent<RectTransform>();
-                    if (slotRT != null)
-                    {
-                        slotRT.anchoredPosition = originalPos;
-                    }
-                }
-                
-                Debug.Log($"[SaveSlotSystem] 📤 Слот #{slotIndex} возвращён на FoldersSaveMenu");
-            }
-        }
-        else
-        {
-            Debug.LogWarning($"[SaveSlotSystem] Слот #{slotIndex} уничтожен!");
         }
     }
-    
-    /// <summary>
-    /// Загружает сохранение из слота и переходит на уровень.
-    /// </summary>
-    private void LoadAndStartGame(int slotIndex)
-    {
-        Debug.Log($"[SaveSlotSystem] 🔵 Загрузка сохранения из слота {slotIndex}...");
-        
-        // 1. Загружаем данные через SaveManager
-        var saveManager = FindFirstObjectByType<SaveManager>();
-        if (saveManager == null)
-        {
-            Debug.LogError("[SaveSlotSystem] SaveManager не найден!");
-            return;
-        }
-        
-        SaveData saveData = saveManager.LoadGame(slotIndex);
-        if (saveData == null)
-        {
-            Debug.LogWarning($"[SaveSlotSystem] Нет сохранения в слоте {slotIndex}. Переходим на уровень {slotIndex + 1}.");
-            // Нет сохранения — переходим на уровень напрямую
-            LoadLevelByIndex(slotIndex);
-            return;
-        }
-        
-        Debug.Log($"[SaveSlotSystem] ✅ Загружено: {saveData.SaveName}, уровень = {saveData.CurrentLevel}");
-        
-        // 2. Применяем данные через GameSaveController
-        var gameController = FindFirstObjectByType<GameSaveController>();
-        if (gameController != null)
-        {
-            System.Type gcType = gameController.GetType();
-            
-            // Устанавливаем свойства с сеттерами
-            gcType.GetProperty("CurrentLevel")?.SetValue(gameController, saveData.CurrentLevel);
-            gcType.GetProperty("DifficultyLevel")?.SetValue(gameController, saveData.DifficultyLevel);
-            
-            // Устанавливаем приватные поля (read-only свойства)
-            gcType.GetField("_currentLevelTime", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.SetValue(gameController, saveData.LevelTime);
-            gcType.GetField("_totalPlaytime", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.SetValue(gameController, saveData.TotalPlaytime);
-            gcType.GetField("_levelCompleted", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.SetValue(gameController, saveData.IsLevelCompleted);
-            gcType.GetField("_currentLevelStars", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.SetValue(gameController, saveData.LevelStars);
-            gcType.GetField("_totalStars", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.SetValue(gameController, saveData.TotalStars);
-            
-            // Устанавливаем позицию игрока через публичный метод
-            if (saveData.PlayerPosition != Vector3.zero)
-            {
-                gcType.GetMethod("SetPlayerPosition")?.Invoke(gameController, new object[] { saveData.PlayerPosition });
-            }
-            
-            Debug.Log($"[SaveSlotSystem] ✅ Данные GameSaveController применены (уровень={saveData.CurrentLevel})");
-        }
-        else
-        {
-            Debug.LogWarning("[SaveSlotSystem] GameSaveController не найден");
-        }
-        
-        // 3. Переходим на уровень через LevelMenuManager
-        int levelIndex = saveData.CurrentLevel;
-        Debug.Log($"[SaveSlotSystem] 🚀 Переход на уровень {levelIndex + 1}...");
-        
-        // Ищем LevelMenuManager
-        var levelMenuManager = FindFirstObjectByType<LevelMenuManager>();
-        
-        if (levelMenuManager != null)
-        {
-            // Вызываем LoadLevelMorning
-            levelMenuManager.LoadLevelMorning(levelIndex);
-            Debug.Log($"[SaveSlotSystem] ✅ Уровень {levelIndex + 1} загружается через LoadLevelMorning...");
-        }
-        else
-        {
-            Debug.LogError("[SaveSlotSystem] LevelMenuManager не найден на сцене!");
-        }
-    }
-
     // ========================================================================
     // ON DRAW GIZMOS: ВИЗУАЛИЗАЦИЯ В РЕДАКТОРЕ
     // ========================================================================
@@ -833,9 +594,6 @@ public class SaveSlotSystem : MonoBehaviour
             _slotsParent = foldersSavePanel != null ? foldersSavePanel : transform;
             Debug.Log("[FixFoldersSaveMenu] ✅ Найден FoldersSavePanel: " + (_slotsParent != null ? _slotsParent.name : "null"));
             
-            // Создаём LevelMenu — отдельный корневой GameObject
-            _levelMenu = new GameObject("LevelMenu");
-            _levelMenu.transform.SetParent(null, false);
             _isInitialized = true;
         }
         
@@ -1084,9 +842,6 @@ public class SaveSlotSystem : MonoBehaviour
             _slotsParent = foldersSavePanel != null ? foldersSavePanel : transform;
             Debug.Log("[SaveSlotSystem] ✅ Найден FoldersSavePanel: " + (_slotsParent != null ? _slotsParent.name : "null"));
             
-            // Создаём LevelMenu — отдельный корневой GameObject
-            _levelMenu = new GameObject("LevelMenu");
-            _levelMenu.transform.SetParent(null, false);
             _isInitialized = true;
         }
         
@@ -1285,9 +1040,9 @@ public class SaveSlotSystem : MonoBehaviour
         
         if (levelMenuManager != null)
         {
-            // Вызываем LoadLevelMorning
-            levelMenuManager.LoadLevelMorning(levelIndex);
-            Debug.Log($"[SaveSlotSystem] ✅ Уровень {levelIndex + 1} загружается через LoadLevelMorning...");
+            // Вызываем OnLevelClicked
+            levelMenuManager.OnLevelClicked(levelIndex);
+            Debug.Log($"[SaveSlotSystem] ✅ Уровень {levelIndex + 1} загружается через OnLevelClicked...");
         }
         else
         {
@@ -1298,19 +1053,4 @@ public class SaveSlotSystem : MonoBehaviour
     /// <summary>
     /// Загружает уровень по индексу.
     /// </summary>
-    private void LoadLevelByIndex(int levelIndex)
-    {
-        Debug.Log($"[SaveSlotSystem] 🚀 Переход на уровень {levelIndex + 1}...");
-        
-        var levelMenuManager = FindFirstObjectByType<LevelMenuManager>();
-        if (levelMenuManager != null)
-        {
-            levelMenuManager.LoadLevelMorning(levelIndex);
-        }
-        else
-        {
-            Debug.LogError("[SaveSlotSystem] LevelMenuManager не найден!");
-        }
-    }
-
 }

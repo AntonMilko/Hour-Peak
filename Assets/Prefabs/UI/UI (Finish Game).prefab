@@ -4052,8 +4052,8 @@ MonoBehaviour:
   autoStart: 1
   currentDifficulty: 0
   targetIndicators: 5
-  indicatorPrefab: {fileID: 0}
-  indicatorParent: {fileID: 0}
+  indicatorPrefab: {fileID: 5238511212955141503}
+  indicatorParent: {fileID: 4805129840418780567}
 --- !u!1 &5352826762840266236
 GameObject:
   m_ObjectHideFlags: 0
