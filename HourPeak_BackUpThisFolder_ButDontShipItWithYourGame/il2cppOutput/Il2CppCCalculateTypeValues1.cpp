@@ -42855,7 +42855,7 @@ struct OnDropdownValueChanged_tD2C08278506B47E548C79CAF3BB32943BE9C3E51  : publi
 struct OnEnable_tC21DBCE6B17FA52E83D398A575FE975D5DEAA280  : public MachineEventUnit_1_tFEE27A934FA6DC5A5AD38ECCF06892F801EDC8C2
 {
 };
-struct OnGUI_tC53FECA408A9E5BB460EA266B267F2F3434A3EF2  : public GlobalEventUnit_1_t66E72C84191E1B4F9B08D0CEA8B0AAFAC1EDD681
+struct tC53FECA408A9E5BB460EA266B267F2F3434A3EF2  : public GlobalEventUnit_1_t66E72C84191E1B4F9B08D0CEA8B0AAFAC1EDD681
 {
 };
 struct OnInputFieldEndEdit_t5DEC4C624E7429E137989668B17EA18BBD3708CF  : public GameObjectEventUnit_1_t022D7079716B8677BAEB2CD251456BC6586D7F5B
@@ -60946,7 +60946,7 @@ const Il2CppTypeDefinitionSizes g_typeDefinitionSize10447 = { sizeof(OnDropdownV
 IL2CPP_EXTERN_C_CONST Il2CppTypeDefinitionSizes g_typeDefinitionSize10448;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize10448 = { sizeof(OnEndDrag_t13DC180C4FA0C3A49DBB49546DB0AC03648E4BC9), -1, 0, 0 };
 IL2CPP_EXTERN_C_CONST Il2CppTypeDefinitionSizes g_typeDefinitionSize10449;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize10449 = { sizeof(OnGUI_tC53FECA408A9E5BB460EA266B267F2F3434A3EF2), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize10449 = { sizeof(tC53FECA408A9E5BB460EA266B267F2F3434A3EF2), -1, 0, 0 };
 IL2CPP_EXTERN_C_CONST Il2CppTypeDefinitionSizes g_typeDefinitionSize10450;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize10450 = { sizeof(OnInputFieldEndEdit_t5DEC4C624E7429E137989668B17EA18BBD3708CF), -1, 0, 0 };
 IL2CPP_EXTERN_C_CONST Il2CppTypeDefinitionSizes g_typeDefinitionSize10451;

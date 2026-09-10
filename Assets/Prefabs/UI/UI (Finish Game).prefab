@@ -112,6 +112,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &9127574000928196696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +299,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &5820560463231285338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,7 +456,6 @@ GameObject:
   - component: {fileID: 856325187748698627}
   - component: {fileID: 8881564653921258491}
   - component: {fileID: 2262521771724258685}
-  - component: {fileID: 1314506125187578484}
   m_Layer: 0
   m_Name: ExitFromBusButton (Finish Game)
   m_TagString: Untagged
@@ -515,6 +520,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &2262521771724258685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,23 +566,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8881564653921258491}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1314506125187578484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1539291841820409258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 264c3d5f5fa28aa47a53020527360fcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BusExitButton
-  exitButtonPanel: {fileID: 1539291841820409258}
-  hiddenButtonPanel: {fileID: 1539291841820409258}
-  playerController: {fileID: 0}
-  autoCheckVisibility: 1
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &1807123981595851301
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +591,6 @@ GameObject:
   - component: {fileID: 3128991137475109510}
   - component: {fileID: 4200651866178722981}
   - component: {fileID: 885140279218384377}
-  - component: {fileID: 588583815525460808}
   m_Layer: 0
   m_Name: JumpButton (Finish Game)
   m_TagString: Untagged
@@ -652,6 +655,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &885140279218384377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,24 +701,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4200651866178722981}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &588583815525460808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807123981595851301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4127abcbaedf27c4f8308e1f99abc3a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Jump
-  playerController: {fileID: 0}
-  jumpButton: {fileID: 885140279218384377}
-  useKeyboardFallback: 1
-  useHoldToJumpHigher: 1
-  holdJumpMultiplier: 1.5
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &2062991202310960092
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,7 +726,6 @@ GameObject:
   - component: {fileID: 4902750221406684375}
   - component: {fileID: 3493759325186333777}
   - component: {fileID: 6945900134594831608}
-  - component: {fileID: 5039128895564811248}
   m_Layer: 5
   m_Name: PauseButton (Finish Game)
   m_TagString: Untagged
@@ -790,6 +790,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &6945900134594831608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,24 +836,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3493759325186333777}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &5039128895564811248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2062991202310960092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45d0b4fc07cafd14282d9108b0e5b562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseManager
-  pauseMenu: {fileID: 1468409635152815607}
-  gameUI: {fileID: 570169299785850644}
-  pauseButton: {fileID: 2062991202310960092}
-  autoCreateUI: 1
-  startPaused: 0
+      m_Calls:
+      - m_Target: {fileID: 570169299785850644}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1468409635152815607}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!1 &2358869778217977423
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,6 +939,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &8053878495123598959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -988,7 +1001,7 @@ MonoBehaviour:
   exitToMainMenuButton: {fileID: 8053878495123598959}
   exitToMainMenuButtonFail: {fileID: 8053878495123598959}
   pauseMenuExitButton: {fileID: 0}
-  continuationManager: {fileID: 3029113390662344136}
+  gameContinuationManager: {fileID: 0}
   mainMenuScene: StartMenu
   partMainMenuScene: LevelMenu
   autoSaveOnExit: 1
@@ -1210,6 +1223,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &2504655751776212912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1315,6 +1331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 390248316633126708}
   - component: {fileID: 3416658127071948434}
+  - component: {fileID: 7942993004364528442}
   m_Layer: 0
   m_Name: Stars For EndMenu (Finish Game)
   m_TagString: Untagged
@@ -1352,6 +1369,48 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &7942993004364528442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876438093977210663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f2ad6c7bb731f48853f68fd34e2a49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.TheAppearanceOfStars
+  starObject: {fileID: 2876438093977210663}
+  starCanvasGroup: {fileID: 3416658127071948434}
+  continuationManager: {fileID: 3029113390662344136}
+  starObject1: {fileID: 4701946486324708498}
+  starObject2: {fileID: 6918029382257986874}
+  starObject3: {fileID: 4084410805458821670}
+  starImage1: {fileID: 2042198436099833490}
+  starImage2: {fileID: 6901152794696304745}
+  starImage3: {fileID: 1863057168326483550}
+  yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  blackColor: {r: 0, g: 0, b: 0, a: 1}
+  beginnerTimings:
+    allYellowTime: 0
+    star2AppearTime: 30
+    star1AppearTime: 60
+    star1AppearOnTime: 120
+    allBlackTime: 240
+  professionalTimings:
+    allYellowTime: 0
+    star2AppearTime: 15
+    star1AppearTime: 30
+    star1AppearOnTime: 60
+    allBlackTime: 120
+  extremalTimings:
+    allYellowTime: 0
+    star2AppearTime: 7.5
+    star1AppearTime: 15
+    star1AppearOnTime: 30
+    allBlackTime: 60
+  autoStart: 1
 --- !u!1 &3202564593836112806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,6 +1489,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &9082169855669996867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1573,6 +1635,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &2391572292894729689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1713,6 +1778,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &9758837709167992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1761,31 +1829,7 @@ MonoBehaviour:
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8252056146033438798}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 1
-      - m_Target: {fileID: 3300369634336269077}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &874355326042396282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1810,10 +1854,7 @@ MonoBehaviour:
   failColor: {r: 0, g: 0, b: 0, a: 1}
   trailColor: {r: 0, g: 0, b: 0, a: 1}
   currentDifficulty: 0
-  targetIndicators: 10
   autoStart: 1
-  indicatorPrefab: {fileID: 3300369634336269077}
-  indicatorParent: {fileID: 4679523883205250717}
 --- !u!1 &3344726955184822497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1892,6 +1933,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &5270180842950189212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2034,6 +2078,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!1 &3815419671907429000
 GameObject:
   m_ObjectHideFlags: 0
@@ -2111,6 +2158,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &2884498967166561161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2183,7 +2233,6 @@ GameObject:
   - component: {fileID: 1459989360368051438}
   - component: {fileID: 5591896636419707162}
   - component: {fileID: 1863057168326483550}
-  - component: {fileID: 3791489687392072448}
   m_Layer: 0
   m_Name: Star 3 (Finish Game)
   m_TagString: Untagged
@@ -2248,48 +2297,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3791489687392072448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4084410805458821670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f2ad6c7bb731f48853f68fd34e2a49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TheAppearanceOfStarsForEndMenu
-  starObject: {fileID: 2876438093977210663}
-  starCanvasGroup: {fileID: 3416658127071948434}
-  continuationManager: {fileID: 3029113390662344136}
-  starObject1: {fileID: 4701946486324708498}
-  starObject2: {fileID: 6918029382257986874}
-  starObject3: {fileID: 4084410805458821670}
-  starImage1: {fileID: 2042198436099833490}
-  starImage2: {fileID: 6901152794696304745}
-  starImage3: {fileID: 1863057168326483550}
-  yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  blackColor: {r: 0, g: 0, b: 0, a: 1}
-  beginnerTimings:
-    allYellowTime: 0
-    star2AppearTime: 30
-    star1AppearTime: 60
-    star1AppearOnTime: 120
-    allBlackTime: 240
-  professionalTimings:
-    allYellowTime: 0
-    star2AppearTime: 15
-    star1AppearTime: 30
-    star1AppearOnTime: 60
-    allBlackTime: 120
-  extremalTimings:
-    allYellowTime: 0
-    star2AppearTime: 7.5
-    star1AppearTime: 15
-    star1AppearOnTime: 30
-    allBlackTime: 60
-  autoStart: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!1 &4100015425440641009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2368,6 +2378,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &813996221763893129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2427,7 +2440,7 @@ MonoBehaviour:
   exitToMainMenuButton: {fileID: 0}
   exitToMainMenuButtonFail: {fileID: 0}
   pauseMenuExitButton: {fileID: 813996221763893129}
-  continuationManager: {fileID: 3029113390662344136}
+  gameContinuationManager: {fileID: 0}
   mainMenuScene: StartMenu
   partMainMenuScene: LevelMenu
   autoSaveOnExit: 1
@@ -2975,6 +2988,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &865797077067134692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3061,7 +3077,6 @@ GameObject:
   - component: {fileID: 6134672148129636181}
   - component: {fileID: 7790797517812973778}
   - component: {fileID: 7385925373799775500}
-  - component: {fileID: 1148728160170270006}
   m_Layer: 0
   m_Name: Star 1 (Finish Game)
   m_TagString: Untagged
@@ -3126,6 +3141,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!65 &3132355104594343688
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3297,48 +3315,6 @@ WheelCollider:
   m_LayerOverridePriority: 0
   m_Enabled: 1
   m_ProvidesContacts: 0
---- !u!114 &1148728160170270006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4439779881440324427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4566875d6107e3e4fb28b83369860419, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TheAppearanceAndDisappearanceOfStars
-  starObject: {fileID: 8514958230848966576}
-  starCanvasGroup: {fileID: 6521010415686958743}
-  continuationManager: {fileID: 3029113390662344136}
-  starObject1: {fileID: 4439779881440324427}
-  starObject2: {fileID: 0}
-  starObject3: {fileID: 0}
-  starImage1: {fileID: 4189279489896806463}
-  starImage2: {fileID: 0}
-  starImage3: {fileID: 0}
-  yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  blackColor: {r: 0, g: 0, b: 0, a: 1}
-  beginnerTimings:
-    allYellowTime: 0
-    star3DisappearTime: 30
-    star2DisappearTime: 60
-    star1BlinkTime: 120
-    allBlackTime: 240
-  professionalTimings:
-    allYellowTime: 0
-    star3DisappearTime: 15
-    star2DisappearTime: 30
-    star1BlinkTime: 60
-    allBlackTime: 120
-  extremalTimings:
-    allYellowTime: 0
-    star3DisappearTime: 7.5
-    star2DisappearTime: 15
-    star1BlinkTime: 30
-    allBlackTime: 60
-  autoStart: 1
 --- !u!1 &4701946486324708498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3350,7 +3326,6 @@ GameObject:
   - component: {fileID: 35310662842573008}
   - component: {fileID: 2295722219283103500}
   - component: {fileID: 2042198436099833490}
-  - component: {fileID: 2876871293222606748}
   m_Layer: 0
   m_Name: Star 1 (Finish Game)
   m_TagString: Untagged
@@ -3415,48 +3390,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2876871293222606748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4701946486324708498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f2ad6c7bb731f48853f68fd34e2a49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StarRatingSystem
-  starObject: {fileID: 2876438093977210663}
-  starCanvasGroup: {fileID: 3416658127071948434}
-  continuationManager: {fileID: 3029113390662344136}
-  starObject1: {fileID: 4701946486324708498}
-  starObject2: {fileID: 0}
-  starObject3: {fileID: 0}
-  starImage1: {fileID: 2042198436099833490}
-  starImage2: {fileID: 0}
-  starImage3: {fileID: 0}
-  yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  blackColor: {r: 0, g: 0, b: 0, a: 1}
-  beginnerTimings:
-    allYellowTime: 0
-    star2AppearTime: 30
-    star1AppearTime: 60
-    star1AppearOnTime: 120
-    allBlackTime: 240
-  professionalTimings:
-    allYellowTime: 0
-    star2AppearTime: 15
-    star1AppearTime: 30
-    star1AppearOnTime: 60
-    allBlackTime: 120
-  extremalTimings:
-    allYellowTime: 0
-    star2AppearTime: 7.5
-    star1AppearTime: 15
-    star1AppearOnTime: 30
-    allBlackTime: 60
-  autoStart: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!1 &4898747569031091737
 GameObject:
   m_ObjectHideFlags: 0
@@ -3511,7 +3447,6 @@ GameObject:
   - component: {fileID: 6597233583874951962}
   - component: {fileID: 4580405140325151321}
   - component: {fileID: 3456204670933374249}
-  - component: {fileID: 2507795675222083043}
   m_Layer: 0
   m_Name: Star 3 (Finish Game)
   m_TagString: Untagged
@@ -3576,6 +3511,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!65 &3129575664500976125
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3747,48 +3685,6 @@ WheelCollider:
   m_LayerOverridePriority: 0
   m_Enabled: 1
   m_ProvidesContacts: 0
---- !u!114 &2507795675222083043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4913685882155034381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4566875d6107e3e4fb28b83369860419, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TheAppearanceAndDisappearanceOfStars
-  starObject: {fileID: 8514958230848966576}
-  starCanvasGroup: {fileID: 6521010415686958743}
-  continuationManager: {fileID: 3029113390662344136}
-  starObject1: {fileID: 0}
-  starObject2: {fileID: 0}
-  starObject3: {fileID: 4913685882155034381}
-  starImage1: {fileID: 0}
-  starImage2: {fileID: 0}
-  starImage3: {fileID: 2674249966349979764}
-  yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  blackColor: {r: 0, g: 0, b: 0, a: 1}
-  beginnerTimings:
-    allYellowTime: 0
-    star3DisappearTime: 30
-    star2DisappearTime: 60
-    star1BlinkTime: 120
-    allBlackTime: 240
-  professionalTimings:
-    allYellowTime: 0
-    star3DisappearTime: 15
-    star2DisappearTime: 30
-    star1BlinkTime: 60
-    allBlackTime: 120
-  extremalTimings:
-    allYellowTime: 0
-    star3DisappearTime: 7.5
-    star2DisappearTime: 15
-    star1BlinkTime: 30
-    allBlackTime: 60
-  autoStart: 1
 --- !u!1 &5029127089208211307
 GameObject:
   m_ObjectHideFlags: 0
@@ -3868,6 +3764,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!1 &5196820157811695438
 GameObject:
   m_ObjectHideFlags: 0
@@ -3980,6 +3879,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &8419935180979705303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4052,8 +3954,6 @@ MonoBehaviour:
   autoStart: 1
   currentDifficulty: 0
   targetIndicators: 5
-  indicatorPrefab: {fileID: 5238511212955141503}
-  indicatorParent: {fileID: 4805129840418780567}
 --- !u!1 &5352826762840266236
 GameObject:
   m_ObjectHideFlags: 0
@@ -4132,6 +4032,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &3313168554304080268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4404,6 +4307,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!1 &5510166133717759553
 GameObject:
   m_ObjectHideFlags: 0
@@ -4587,6 +4493,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &5675252724879107393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5073,6 +4982,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &4002394093345924309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5146,7 +5058,6 @@ GameObject:
   - component: {fileID: 3422686823622816063}
   - component: {fileID: 7256183571256917049}
   - component: {fileID: 934857129552831602}
-  - component: {fileID: 5716837704033410749}
   - component: {fileID: 1007625264289621871}
   m_Layer: 5
   m_Name: MapUI (Finish Game)
@@ -5245,26 +5156,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5716837704033410749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5879014597393440310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e65044bc18f13c4d8b3a3796fc4e0e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraSwitcher
-  playerCamera: {fileID: 0}
-  mapCamera: {fileID: 4684395336573652070}
-  mapButton: {fileID: 8319274604992381343}
-  mapPanel: {fileID: 5879014597393440310}
-  closeButton: {fileID: 7741491863416743067}
-  autoCreateUI: 1
-  startWithMapOpen: 0
-  closeMapOnMove: 1
 --- !u!114 &1007625264289621871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5290,7 +5181,6 @@ GameObject:
   - component: {fileID: 2992266215421400386}
   - component: {fileID: 6021173164084724831}
   - component: {fileID: 4947997614700342799}
-  - component: {fileID: 4798899414709385703}
   m_Layer: 0
   m_Name: RunningButton (Finish Game)
   m_TagString: Untagged
@@ -5355,6 +5245,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &4947997614700342799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5398,24 +5291,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6021173164084724831}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &4798899414709385703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6179648099907839504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5fe29bb9a58b734183905cb57980a44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Running
-  playerController: {fileID: 0}
-  runButton: {fileID: 4947997614700342799}
-  useKeyboardFallback: 1
-  pressedColor: {r: 1, g: 0.8, b: 0, a: 1}
-  normalColor: {r: 1, g: 1, b: 1, a: 0.5}
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &6329163192121487951
 GameObject:
   m_ObjectHideFlags: 0
@@ -5646,6 +5534,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!1 &6793238881611841524
 GameObject:
   m_ObjectHideFlags: 0
@@ -6113,6 +6004,7 @@ MonoBehaviour:
   mapButton: {fileID: 8319274604992381343}
   mapPanel: {fileID: 5879014597393440310}
   closeButton: {fileID: 7741491863416743067}
+  cameraHeight: 50
   autoCreateUI: 1
   startWithMapOpen: 0
   closeMapOnMove: 1
@@ -6127,7 +6019,6 @@ GameObject:
   - component: {fileID: 7100840677617034699}
   - component: {fileID: 1897877008238631288}
   - component: {fileID: 6901152794696304745}
-  - component: {fileID: 757105957461456362}
   m_Layer: 0
   m_Name: Star 2 (Finish Game)
   m_TagString: Untagged
@@ -6192,48 +6083,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &757105957461456362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6918029382257986874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f2ad6c7bb731f48853f68fd34e2a49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TheAppearanceOfStarsForEndMenu
-  starObject: {fileID: 2876438093977210663}
-  starCanvasGroup: {fileID: 3416658127071948434}
-  continuationManager: {fileID: 3029113390662344136}
-  starObject1: {fileID: 4701946486324708498}
-  starObject2: {fileID: 6918029382257986874}
-  starObject3: {fileID: 0}
-  starImage1: {fileID: 2042198436099833490}
-  starImage2: {fileID: 6901152794696304745}
-  starImage3: {fileID: 0}
-  yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  blackColor: {r: 0, g: 0, b: 0, a: 1}
-  beginnerTimings:
-    allYellowTime: 0
-    star2AppearTime: 30
-    star1AppearTime: 60
-    star1AppearOnTime: 120
-    allBlackTime: 240
-  professionalTimings:
-    allYellowTime: 0
-    star2AppearTime: 15
-    star1AppearTime: 30
-    star1AppearOnTime: 60
-    allBlackTime: 120
-  extremalTimings:
-    allYellowTime: 0
-    star2AppearTime: 7.5
-    star1AppearTime: 15
-    star1AppearOnTime: 30
-    allBlackTime: 60
-  autoStart: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!1 &6938798822920705209
 GameObject:
   m_ObjectHideFlags: 0
@@ -6309,6 +6161,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!1 &6999544899631362563
 GameObject:
   m_ObjectHideFlags: 0
@@ -6384,6 +6239,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!1 &7021237178672979852
 GameObject:
   m_ObjectHideFlags: 0
@@ -6635,6 +6493,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!1 &7098695463181124253
 GameObject:
   m_ObjectHideFlags: 0
@@ -6850,6 +6711,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &1079143585592454071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6990,6 +6854,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!1 &7395785593772691126
 GameObject:
   m_ObjectHideFlags: 0
@@ -7204,6 +7071,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &2956563957908502077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7277,7 +7147,6 @@ GameObject:
   - component: {fileID: 3527904266385552452}
   - component: {fileID: 8283119621667302733}
   - component: {fileID: 7274892346373281797}
-  - component: {fileID: 7692109929527735142}
   m_Layer: 5
   m_Name: BackToGame (Finish Game)
   m_TagString: Untagged
@@ -7343,6 +7212,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &7274892346373281797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7386,23 +7258,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8283119621667302733}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &7692109929527735142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7741491863416743067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be43bdfc798e86747b4ad207e87e5aec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BackToGame
-  mapPanel: {fileID: 5879014597393440310}
-  gameUI: {fileID: 570169299785850644}
-  mapButton: {fileID: 8319274604992381343}
-  resetMapToHome: 1
+      m_Calls:
+      - m_Target: {fileID: 5879014597393440310}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 570169299785850644}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!1 &8252056146033438798
 GameObject:
   m_ObjectHideFlags: 0
@@ -7478,6 +7358,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!1 &8319274604992381343
 GameObject:
   m_ObjectHideFlags: 0
@@ -7490,8 +7373,6 @@ GameObject:
   - component: {fileID: 3758286476193186176}
   - component: {fileID: 4129637731921213097}
   - component: {fileID: 6487281098091299656}
-  - component: {fileID: 7135661839423014805}
-  - component: {fileID: 1830214499957683907}
   m_Layer: 5
   m_Name: MapButton (Finish Game)
   m_TagString: Untagged
@@ -7556,6 +7437,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &6487281098091299656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7599,46 +7483,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4129637731921213097}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &7135661839423014805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8319274604992381343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f8c46e7560aec444b8f6b0c85dc21f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MapManager
-  mapCamera: {fileID: 4684395336573652070}
-  mapButton: {fileID: 6487281098091299656}
-  mapUIPanel: {fileID: 5879014597393440310}
-  closeButton: {fileID: 7741491863416743067}
-  cameraHeight: 50
-  autoCreateUI: 1
-  closeMapOnMove: 1
---- !u!114 &1830214499957683907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8319274604992381343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e65044bc18f13c4d8b3a3796fc4e0e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraSwitcher
-  playerCamera: {fileID: 0}
-  mapCamera: {fileID: 4684395336573652070}
-  mapButton: {fileID: 8319274604992381343}
-  mapPanel: {fileID: 5879014597393440310}
-  closeButton: {fileID: 7741491863416743067}
-  autoCreateUI: 1
-  startWithMapOpen: 0
-  closeMapOnMove: 1
+      m_Calls:
+      - m_Target: {fileID: 570169299785850644}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 5879014597393440310}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!1 &8457568174097006036
 GameObject:
   m_ObjectHideFlags: 0
@@ -7717,6 +7586,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!114 &8639016640521852918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7810,6 +7682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3304801361185659753}
   - component: {fileID: 6521010415686958743}
+  - component: {fileID: 3674807804575095541}
   m_Layer: 0
   m_Name: Stars For Gameplay (Finish Game)
   m_TagString: Untagged
@@ -7847,6 +7720,48 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3674807804575095541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8514958230848966576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4566875d6107e3e4fb28b83369860419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.TheDisappearanceOfStars
+  starObject: {fileID: 8514958230848966576}
+  starCanvasGroup: {fileID: 6521010415686958743}
+  continuationManager: {fileID: 3029113390662344136}
+  starObject1: {fileID: 4439779881440324427}
+  starObject2: {fileID: 8875350395298897693}
+  starObject3: {fileID: 4913685882155034381}
+  starImage1: {fileID: 4189279489896806463}
+  starImage2: {fileID: 1734758292980281146}
+  starImage3: {fileID: 2674249966349979764}
+  yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  blackColor: {r: 0, g: 0, b: 0, a: 1}
+  beginnerTimings:
+    allYellowTime: 0
+    star3DisappearTime: 30
+    star2DisappearTime: 60
+    star1BlinkTime: 120
+    allBlackTime: 240
+  professionalTimings:
+    allYellowTime: 0
+    star3DisappearTime: 15
+    star2DisappearTime: 30
+    star1BlinkTime: 60
+    allBlackTime: 120
+  extremalTimings:
+    allYellowTime: 0
+    star3DisappearTime: 7.5
+    star2DisappearTime: 15
+    star1BlinkTime: 30
+    allBlackTime: 60
+  autoStart: 1
 --- !u!1 &8620224143024557693
 GameObject:
   m_ObjectHideFlags: 0
@@ -7911,7 +7826,6 @@ GameObject:
   - component: {fileID: 7323528657412693150}
   - component: {fileID: 5405055331538610282}
   - component: {fileID: 2688748901732793401}
-  - component: {fileID: 918571012774831130}
   m_Layer: 0
   m_Name: Star 2 (Finish Game)
   m_TagString: Untagged
@@ -7976,6 +7890,9 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+  alpha: 0
+  blocksRaycasts: 0
+  interactable: 0
 --- !u!65 &6190161429557782390
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8147,48 +8064,6 @@ WheelCollider:
   m_LayerOverridePriority: 0
   m_Enabled: 1
   m_ProvidesContacts: 0
---- !u!114 &918571012774831130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8875350395298897693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4566875d6107e3e4fb28b83369860419, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TheAppearanceAndDisappearanceOfStars
-  starObject: {fileID: 8514958230848966576}
-  starCanvasGroup: {fileID: 6521010415686958743}
-  continuationManager: {fileID: 3029113390662344136}
-  starObject1: {fileID: 0}
-  starObject2: {fileID: 8875350395298897693}
-  starObject3: {fileID: 0}
-  starImage1: {fileID: 0}
-  starImage2: {fileID: 1734758292980281146}
-  starImage3: {fileID: 0}
-  yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  blackColor: {r: 0, g: 0, b: 0, a: 1}
-  beginnerTimings:
-    allYellowTime: 0
-    star3DisappearTime: 30
-    star2DisappearTime: 60
-    star1BlinkTime: 120
-    allBlackTime: 240
-  professionalTimings:
-    allYellowTime: 0
-    star3DisappearTime: 15
-    star2DisappearTime: 30
-    star1BlinkTime: 60
-    allBlackTime: 120
-  extremalTimings:
-    allYellowTime: 0
-    star3DisappearTime: 7.5
-    star2DisappearTime: 15
-    star1BlinkTime: 30
-    allBlackTime: 60
-  autoStart: 1
 --- !u!1 &9092056943406858929
 GameObject:
   m_ObjectHideFlags: 0
@@ -8393,6 +8268,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8135886326569738825, guid: 56fae09712773584fb63896d473a98ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3083084253811079165}
+    - targetCorrespondingSourceObject: {fileID: 8135886326569738825, guid: 56fae09712773584fb63896d473a98ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3974650950454582006}
     - targetCorrespondingSourceObject: {fileID: 8135886327784587632, guid: 56fae09712773584fb63896d473a98ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7165975559169167353}
@@ -8400,6 +8278,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3645448953005971678}
   m_SourcePrefab: {fileID: 100100000, guid: 56fae09712773584fb63896d473a98ee, type: 3}
+--- !u!114 &3907803431932656134 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 662188730274814196, guid: 56fae09712773584fb63896d473a98ee, type: 3}
+  m_PrefabInstance: {fileID: 4542970527927100146}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5756627413703082171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FixedJoystick
 --- !u!224 &5756627413703082164 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8135886326569738822, guid: 56fae09712773584fb63896d473a98ee, type: 3}
@@ -8425,6 +8314,24 @@ MonoBehaviour:
   playerController: {fileID: 0}
   joystickName: Movement
   useKeyboardFallback: 1
+--- !u!114 &3974650950454582006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5756627413703082171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052881e3d9e9a484a89a9c2482b5e136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MobileInputSystem
+  player: {fileID: 0}
+  movementJoystick: {fileID: 3907803431932656134}
+  lookJoystick: {fileID: 0}
+  cameraTransform: {fileID: 0}
+  sensitivityX: 50
+  sensitivityY: 50
 --- !u!1 &5756627415726498690 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8135886327784587632, guid: 56fae09712773584fb63896d473a98ee, type: 3}
@@ -8600,6 +8507,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8135886326569738825, guid: 56fae09712773584fb63896d473a98ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 528670830394039160}
+    - targetCorrespondingSourceObject: {fileID: 8135886326569738825, guid: 56fae09712773584fb63896d473a98ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3087297381339421410}
     - targetCorrespondingSourceObject: {fileID: 8135886327784587632, guid: 56fae09712773584fb63896d473a98ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3121822582076456117}
@@ -8673,3 +8583,32 @@ MonoBehaviour:
   verticalSensitivity: 120
   minLookAngle: -45
   maxLookAngle: 45
+--- !u!114 &3087297381339421410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315435786431747547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052881e3d9e9a484a89a9c2482b5e136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MobileInputSystem
+  player: {fileID: 0}
+  movementJoystick: {fileID: 0}
+  lookJoystick: {fileID: 7753427547918987110}
+  cameraTransform: {fileID: 0}
+  sensitivityX: 50
+  sensitivityY: 50
+--- !u!114 &7753427547918987110 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 662188730274814196, guid: 56fae09712773584fb63896d473a98ee, type: 3}
+  m_PrefabInstance: {fileID: 7109253493516171154}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315435786431747547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FixedJoystick

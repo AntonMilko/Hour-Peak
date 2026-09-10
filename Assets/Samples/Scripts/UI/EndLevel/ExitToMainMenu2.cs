@@ -36,9 +36,9 @@ namespace HourPeak
         [Tooltip("Кнопка выхода из PauseMenu (показывается во время прохождения)")]
         [SerializeField] private Button pauseMenuExitButton;
 
-        [Header("Continue Manager")]
+        [Header("Game Continue Manager")]
         [Tooltip("Менеджер, который хранит настройки сложности")]
-        [SerializeField] private Continue continuationManager;
+        [SerializeField] private Continue gameContinuationManager;
 
         [Header("Settings")]
         [Tooltip("Сцена главного меню")]
@@ -169,9 +169,9 @@ namespace HourPeak
         public void ExitToMainMenu()
         {
             // Автосохранение перед выходом
-            if (autoSaveOnExit && continuationManager != null)
+            if (autoSaveOnExit && gameContinuationManager != null)
             {
-                continuationManager.SaveCurrentSettings();
+                gameContinuationManager.SaveCurrentSettings();
                 Debug.Log("💾 Настройки сохранены перед выходом");
             }
             
@@ -196,9 +196,9 @@ namespace HourPeak
         public void ExitToLevelMenu()
         {
             // Автосохранение перед выходом
-            if (autoSaveOnExit && continuationManager != null)
+            if (autoSaveOnExit && gameContinuationManager != null)
             {
-                continuationManager.SaveCurrentSettings();
+                gameContinuationManager.SaveCurrentSettings();
                 Debug.Log("💾 Настройки сохранены перед выходом");
             }
             

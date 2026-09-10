@@ -58029,7 +58029,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3214090353871450901, guid: 33da5642490e0ff499bcfa4ac4aba100, type: 3}
       propertyPath: m_Name
-      value: NPC Prefab
+      value: CrowdSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 6804910158211810510, guid: 33da5642490e0ff499bcfa4ac4aba100, type: 3}
       propertyPath: m_LocalPosition.x

@@ -311,47 +311,4 @@ public class Down : MonoBehaviour
     }
 
     #endregion
-
-    #region Debug
-
-#if UNITY_EDITOR
-    private void OnGUI()
-    {
-        if (!Application.isPlaying)
-            return;
-
-        GUILayout.BeginArea(new Rect(10, 340, 280, 180));
-        GUILayout.BeginVertical("box");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label("⬇️ Down Map Debug");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label($"Масштаб: {CurrentScale:F2}");
-        GUILayout.Label($"Порог: {scaleThreshold:F2}");
-        GUILayout.Label($"Позиция: ({mapRectTransform?.anchoredPosition.x:F1}, {mapRectTransform?.anchoredPosition.y:F1})");
-        GUILayout.Label($"Можно перемещать: {CanMove()}");
-        GUILayout.Label($"Движение: {(isMoving ? "🟢 В процессе" : "⏹ Остановлено")}");
-        GUILayout.Label("═══════════════════════════════");
-
-        GUILayout.BeginHorizontal();
-        GUILayout.Label("Направления:");
-        GUILayout.EndHorizontal();
-
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("⬆️")) MoveMapUp();
-        if (GUILayout.Button("⬇️")) MoveMapDown();
-        GUILayout.EndHorizontal();
-
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("⬅️")) MoveMapLeft();
-        if (GUILayout.Button("➡️")) MoveMapRight();
-        GUILayout.EndHorizontal();
-
-        if (GUILayout.Button("🔄 Сброс")) ResetPosition();
-
-        GUILayout.EndVertical();
-        GUILayout.EndArea();
-    }
-#endif
-
-    #endregion
 }

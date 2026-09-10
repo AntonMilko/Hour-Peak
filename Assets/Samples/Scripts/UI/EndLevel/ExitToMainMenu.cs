@@ -1,14 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using HourPeak.Samples.Runtime;
 
-namespace HourPeak.Samples.Runtime
+namespace Samples.Scripts.UI.StartMenu
 {
-    /// <summary>
-    /// Скрипт для кнопки выхода в главное меню.
-    /// Переходит в раздел LevelMenu и сохраняет настройки сложности.
-    /// </summary>
     public class ExitToMainMenu : MonoBehaviour
     {
         #region Fields
@@ -22,7 +18,7 @@ namespace HourPeak.Samples.Runtime
 
         [Header("References")]
         [Tooltip("Менеджер настроек сложности (GameContinuationManager)")]
-        [SerializeField] private Continue continuationManager;
+        [SerializeField] private Continue gameContinuationManager;
 
         [Header("Settings")]
         [Tooltip("Сцена LevelMenu (раздел выбора уровней)")]
@@ -70,6 +66,39 @@ namespace HourPeak.Samples.Runtime
             {
                 _levelFinished = value;
                 UpdateExitButtonsVisibility();
+            }
+        }
+
+        #endregion
+
+        #region Unity Editor Validation
+
+        internal class Continue
+        {
+            internal void SaveCurrentSettings()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        internal class ContinueButton
+        {
+            internal void SaveCurrentSettings()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        internal class continuationManager
+        {
+            internal void SaveCurrentSettings()
+            {
+                throw new NotImplementedException();
+            }
+
+            internal void LoadSavedSettings()
+            {
+                throw new NotImplementedException();
             }
         }
 
@@ -134,9 +163,9 @@ namespace HourPeak.Samples.Runtime
             // 1️⃣ АВТОСОХРАНЕНИЕ НАСТРОЕК СЛОЖНОСТИ
             if (autoSaveOnExit)
             {
-                if (continuationManager != null)
+                if (gameContinuationManager != null)
                 {
-                    continuationManager.SaveCurrentSettings();
+                    gameContinuationManager.SaveCurrentSettings();
                     Debug.Log("💾 Настройки сложности сохранены перед выходом.");
                 }
                 else

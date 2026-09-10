@@ -13,14 +13,20 @@ public class TheDisplayingOfStars : MonoBehaviour
     #region Serialized Fields
 
     [Header("UI References")]
-    [Tooltip("Массив изображений звёзд (Image). Должно быть 3 элемента.")]
-    public Image[] starImages;
+    [Tooltip("Ссылки на звезды")]
+    [SerializeField] private Image star1;
+    [SerializeField] private Image star2;
+    [SerializeField] private Image star3;
+
 
     [Header("Settings")]
     [Tooltip("Текущее состояние фона: true = Утро (Белый), false = Вечер (Чёрный)")]
     public bool isMorning = true;
 
     [Header("Colors")]
+    [Tooltip("Если true - скрипт перекрашивает звезды. Если false - оставляет цвета из спрайтов (РЕКОМЕНДУЕТСЯ)")]
+    [SerializeField] private bool forceRecolorStars = false;
+
     [Tooltip("Цвет звёзд при успешном прохождении")]
     public Color colorPass = Color.yellow;
     
@@ -42,15 +48,9 @@ public class TheDisplayingOfStars : MonoBehaviour
     #region Unity Lifecycle
 
     private void Awake()
-    {
-        // Проверка на наличие звёзд
-        if (starImages == null || starImages.Length == 0)
-        {
-            Debug.LogWarning($"[{GetType().Name}] Массив starImages пуст!", this);
-        }
-        
+    {        
         // Начальное обновление цветов при старте
-        UpdateStarColors();
+        SetStars(0);
     }
 
     #endregion
@@ -64,11 +64,9 @@ public class TheDisplayingOfStars : MonoBehaviour
     /// <param name="count">Количество собранных звёзд (0-3).</param>
     public void SetLevelResult(bool passed, int count)
     {
-        isLevelPassed = passed;
         starsCollected = count;
-        
-        UpdateStarVisibility();
-        UpdateStarColors();
+        isLevelPassed = passed;
+        SetStars(count);
     }
 
     /// <summary>
@@ -78,57 +76,68 @@ public class TheDisplayingOfStars : MonoBehaviour
     public void SetBackgroundMode(bool morning)
     {
         isMorning = morning;
-        UpdateStarColors();
+        ShowSpecificCount(starsCollected);
     }
 
     #endregion
 
     #region Private Methods
 
-    /// <summary>
-    /// Обновляет видимость звёзд.
-    /// Все звёзды всегда видимы — состояние отображается цветом, а не скрытием.
-    /// </summary>
-    private void UpdateStarVisibility()
+    public void SetStars(int index)
     {
-        if (starImages == null) return;
+        int count = 0;
 
-        for (int i = 0; i < starImages.Length; i++)
+        switch (index)
         {
-            if (starImages[i] != null)
-            {
-                starImages[i].gameObject.SetActive(true);
-            }
+            case 1: count = 3; break; // Превосходно
+            case 2: count = 2; break; // Супер
+            case 3: count = 1; break; // Отлично
+            case 4: count = 0; break; // Не пройден
+            default: count = 0; break;
         }
+
+        ShowSpecificCount(count);
     }
 
-    /// <summary>
-    /// Устанавливает правильный цвет звёзд в зависимости от фона и результата.
-    /// Заработанные звёзды — цвет успеха, остальные — цвет фона.
-    /// </summary>
-    private void UpdateStarColors()
+    private void ShowSpecificCount(int count)
     {
-        if (starImages == null) return;
+        bool show1 = count >= 1;
+        bool show2 = count >= 2;
+        bool show3 = count >= 3;
 
-        for (int i = 0; i < starImages.Length; i++)
+        ApplyStarState(star1, show1);
+        ApplyStarState(star2, show2);
+        ApplyStarState(star3, show3);
+    }
+
+    private void ApplyStarState(Image starImage, bool isVisible)
+    {
+        if (starImage == null) return;
+
+        starImage.gameObject.SetActive(isVisible);
+
+        if (forceRecolorStars)
         {
-            if (starImages[i] == null) continue;
-
-            Color targetColor;
-
-            if (isLevelPassed && i < starsCollected)
+            if (isVisible)
             {
-                // Заработанная звезда — цвет успеха
-                targetColor = colorPass;
+                starImage.color = colorPass;
             }
             else
             {
-                // Незаработанная звезда — цвет зависит от фона
-                targetColor = isMorning ? colorFailMorning : colorFailEvening;
+                if (isMorning)
+                    starImage.color = colorFailMorning;
+                else
+                    starImage.color = colorFailEvening;
             }
 
-            starImages[i].color = targetColor;
         }
+        // Если forceRecolorStars = false, цвет не меняется (берется из спрайта)
+    }
+
+
+    public void HideStars()
+    {
+        ShowSpecificCount(0);
     }
 
     #endregion

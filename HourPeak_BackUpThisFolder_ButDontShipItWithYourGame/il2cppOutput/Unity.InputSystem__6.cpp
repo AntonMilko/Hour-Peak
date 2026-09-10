@@ -20890,7 +20890,7 @@ IL_0051:
 	}
 }
 // Method Definition Index: 32732
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ActionEvent__ctor_mDC984584668F162677A5C9C002F0EAAAD875CBE4 (ActionEvent_tE8243CB316743CFAB409A1D5AE4DDBC2C3727F0D* __this, Guid_t ___0_actionGUID, String_t* ___1_name, const RuntimeMethod* method) 
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ActionEvent__ctor_mDC984584668F162677A5C9C002F0EAAAD875CBE4 (ActionEvent_tE8243CB316743CFAB409A1D5AE4DDBC2C3727F0D* __this, Guid_t ___0_action, String_t* ___1_name, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
@@ -20903,7 +20903,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ActionEvent__ctor_mDC984584668F162677A5C
 		UnityEvent_1__ctor_m33EAADD33BFD79C3AD2CE169AB72BA63EB82D6BF(__this, UnityEvent_1__ctor_m33EAADD33BFD79C3AD2CE169AB72BA63EB82D6BF_RuntimeMethod_var);
 		//<source_info:./Library/PackageCache/com.unity.inputsystem@57d0e36f6123/InputSystem/Plugins/PlayerInput/PlayerInput.cs:2260>
 		String_t* L_0;
-		L_0 = Guid_ToString_m2BFFD5FA726E03FA707AAFCCF065896C46D5290C((&___0_actionGUID), NULL);
+		L_0 = Guid_ToString_m2BFFD5FA726E03FA707AAFCCF065896C46D5290C((&___0_action), NULL);
 		__this->___m_ActionId = L_0;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___m_ActionId), (void*)L_0);
 		//<source_info:./Library/PackageCache/com.unity.inputsystem@57d0e36f6123/InputSystem/Plugins/PlayerInput/PlayerInput.cs:2261>

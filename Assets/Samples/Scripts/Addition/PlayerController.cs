@@ -33,6 +33,7 @@ namespace HourPeak.Addition
         private Vector3 lookDirection;
         private bool isMoving;
         private Vector2 joystickInput;
+        private bool isMobileSprinting = false;
 
         public enum TransportMode { Walking, Bus, Train }
         private TransportMode currentMode = TransportMode.Walking;
@@ -115,7 +116,7 @@ namespace HourPeak.Addition
             }
 
             currentSpeed = walkSpeed;
-            if (Input.GetKey(KeyCode.LeftShift)) currentSpeed = sprintSpeed;
+            if (Input.GetKey(KeyCode.LeftShift) || isMobileSprinting) currentSpeed = sprintSpeed;
             else if (Input.GetKey(KeyCode.LeftControl)) currentSpeed = runSpeed;
 
             Vector3 moveVector = isMoving ? lookDirection * currentSpeed : Vector3.zero;
@@ -325,33 +326,9 @@ namespace HourPeak.Addition
             };
         }
 
-        private void OnDrawGizmosSelected()
+        public void ToggleSprint()
         {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, transportInteractDistance);
-
-            if (currentTransport != null)
-            {
-                Gizmos.color = Color.green;
-                Gizmos.DrawWireSphere(currentTransport.position, 1f);
-            }
+            isMobileSprinting = !isMobileSprinting;
         }
-
-        #region Editor Helpers
-
-        private void OnGUI()
-        {
-            // Отладочная информация (можно отключить в релизе)
-            #if UNITY_EDITOR
-            GUILayout.BeginArea(new Rect(10, 10, 200, 150));
-            GUILayout.Label($"Speed: {currentSpeed:F2}");
-            GUILayout.Label($"Mode: {currentMode}");
-            GUILayout.Label($"Moving: {isMoving}");
-            GUILayout.Label($"Grounded: {isGrounded}");
-            GUILayout.EndArea();
-            #endif
-        }
-
-        #endregion
     }
 }

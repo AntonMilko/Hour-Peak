@@ -14,6 +14,7 @@
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="Unity.Collections.csproj" />
   <Project Path="UnityEngine.UI.csproj" />
+  <Project Path="Unity.Cinemachine.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.2D.Runtime.csproj" />
   <Project Path="Unity.VisualScripting.Core.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Editor.csproj" />
@@ -35,6 +36,7 @@
   <Project Path="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
   <Project Path="Unity.Services.Core.Editor.csproj" />
   <Project Path="Unity.Burst.CodeGen.csproj" />
+  <Project Path="Unity.Cinemachine.csproj" />
   <Project Path="Unity.Services.Core.csproj" />
   <Project Path="Unity.Purchasing.Stores.csproj" />
   <Project Path="Unity.VisualScripting.Flow.csproj" />

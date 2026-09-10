@@ -142,19 +142,13 @@ public class ExitMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Возвращает в Главное Меню (первая сцена в Build Settings).
+    /// Возвращает в Главное Меню (сцена StartMenu).
     /// </summary>
     public void ReturnToMainMenu()
     {
-        if (SceneManager.sceneCountInBuildSettings > 0)
-        {
-            SceneManager.LoadScene(0);
-            Debug.Log($"📺 Загружена сцена 0 (Главное Меню)");
-        }
-        else
-        {
-            Debug.LogWarning("⚠️ Нет сцен в Build Settings! Сцена 0 не найдена");
-        }
+        Debug.Log("📺 Возврат в Главное Меню (сцена StartMenu)...");
+        SceneManager.LoadScene("StartMenu");
+        Debug.Log("✅ Запущена загрузка сцены StartMenu");
     }
 
     #endregion

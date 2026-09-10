@@ -47,12 +47,8 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private DifficultyLevel currentDifficulty = DifficultyLevel.Beginner;
-    [SerializeField] private int targetIndicators = 5;
     [SerializeField] private bool autoStart = true;
 
-    [Header("Prefab References")]
-    [SerializeField] private GameObject indicatorPrefab;
-    [SerializeField] private Transform indicatorParent;
 
     #endregion
 
@@ -75,14 +71,6 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
     #endregion
 
     #region Unity Lifecycle
-
-    private void Awake()
-    {
-        if (indicatorParent == null)
-        {
-            indicatorParent = transform;
-        }
-    }
 
     private void Start()
     {
@@ -111,12 +99,8 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
         collectedIndicators = 0;
         currentLevelTime = 0f;
         isLevelActive = true;
-        
-        ClearIndicators();
-        SpawnIndicators();
+
         UpdateUI();
-        
-        Debug.Log($"🎮 Уровень запущен: {GetDifficultyName()} | Цель: {targetIndicators} индикаторов");
     }
 
     public void CollectIndicator(GameObject indicator)
@@ -132,19 +116,6 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
         activeIndicators.Remove(indicatorData);
         Destroy(indicator);
         UpdateUI();
-        
-        Debug.Log($"✅ Собран индикатор! {collectedIndicators}/{targetIndicators}");
-        
-        if (collectedIndicators >= targetIndicators)
-        {
-            LevelCompleted();
-        }
-    }
-
-    public void SetDifficulty(DifficultyLevel difficulty)
-    {
-        currentDifficulty = difficulty;
-        StartLevel();
     }
 
     public void ResetLevel()
@@ -191,7 +162,6 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
     private void UpdateLevel()
     {
         currentLevelTime += Time.deltaTime;
-        UpdateIndicators();
         UpdateUI();
         
         if (currentLevelTime >= levelTimeLimit)
@@ -227,63 +197,6 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
 
     #endregion
 
-    #region Indicators
-
-    private void ClearIndicators()
-    {
-        foreach (var indicatorData in activeIndicators)
-        {
-            if (indicatorData.indicator != null)
-            {
-                Destroy(indicatorData.indicator);
-            }
-        }
-        activeIndicators.Clear();
-    }
-
-    private void SpawnIndicators()
-    {
-        if (indicatorPrefab == null)
-        {
-            Debug.LogWarning("⚠️ indicatorPrefab не назначен!");
-            return;
-        }
-
-        int indicatorsToSpawn = Mathf.Max(2, targetIndicators / 3);
-        
-        for (int i = 0; i < indicatorsToSpawn; i++)
-        {
-            CreateIndicator();
-        }
-    }
-
-    private void CreateIndicator()
-    {
-        if (indicatorPrefab == null)
-            return;
-
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-        GameObject newIndicator = Instantiate(indicatorPrefab, spawnPosition, Quaternion.identity);
-        newIndicator.transform.SetParent(indicatorParent);
-
-        IndicatorData indicatorData = new IndicatorData
-        {
-            indicator = newIndicator,
-            createdTime = Time.time,
-            lifetime = Random.Range(5f, 10f)
-        };
-
-        activeIndicators.Add(indicatorData);
-    }
-
-    private void UpdateIndicators()
-    {
-        foreach (var indicatorData in activeIndicators)
-        {
-            UpdateIndicatorColor(indicatorData);
-        }
-    }
-
     private void UpdateIndicatorColor(IndicatorData indicatorData)
     {
         if (indicatorData.indicator == null)
@@ -308,8 +221,6 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
         );
     }
 
-    #endregion
-
     #region UI Update
 
     private void UpdateUI()
@@ -323,14 +234,14 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
 
         if (progressFill != null)
         {
-            float progress = (float)collectedIndicators / targetIndicators;
+            float progress = (float)collectedIndicators;
             progressFill.rectTransform.anchorMax = new Vector2(progress, 1f);
             progressFill.rectTransform.anchorMin = new Vector2(0f, 0f);
         }
 
         if (sliderBackground != null && sliderFill != null)
         {
-            float progress = (float)collectedIndicators / targetIndicators;
+            float progress = (float)collectedIndicators;
             sliderFill.rectTransform.anchorMax = new Vector2(progress, 1f);
             sliderFill.rectTransform.anchorMin = new Vector2(0f, 0f);
             sliderBackground.color = trailColor;
@@ -344,7 +255,7 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
 
         if (sliderHandle != null)
         {
-            float progress = (float)collectedIndicators / targetIndicators;
+            float progress = (float)collectedIndicators;
             sliderHandle.anchorMax = new Vector2(progress, 1f);
             sliderHandle.anchorMin = new Vector2(progress, 0f);
         }
@@ -431,39 +342,6 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
         public GameObject indicator;
         public float createdTime;
         public float lifetime;
-    }
-
-    #endregion
-
-    #region Debug
-
-    private void OnGUI()
-    {
-#if UNITY_EDITOR
-        if (!Application.isPlaying)
-            return;
-
-        GUILayout.BeginArea(new Rect(10, 250, 300, 200));
-        GUILayout.BeginVertical("box");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label("🎯 IndicatorSuccess Debug");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label($"Собрано: {collectedIndicators}/{targetIndicators}");
-        GUILayout.Label($"Время: {FormatTime(currentLevelTime)}/{FormatTime(levelTimeLimit)}");
-        GUILayout.Label($"Доля: {(levelTimeLimit > 0 ? (currentLevelTime / levelTimeLimit * 100f) : 0f):F1}%");
-        GUILayout.Label($"Сложность: {GetDifficultyName()}");
-        GUILayout.Label($"Активен: {isLevelActive}");
-        GUILayout.Label("═══════════════════════════════");
-        
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Старт")) StartLevel();
-        if (GUILayout.Button("Сбор")) collectedIndicators++;
-        if (GUILayout.Button("Сброс")) ResetLevel();
-        GUILayout.EndHorizontal();
-        
-        GUILayout.EndVertical();
-        GUILayout.EndArea();
-#endif
     }
 
     #endregion

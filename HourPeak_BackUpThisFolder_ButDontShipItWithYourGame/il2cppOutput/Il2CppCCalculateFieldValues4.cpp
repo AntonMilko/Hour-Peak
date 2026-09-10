@@ -18175,7 +18175,7 @@ struct ContactFilter2D_t54A8515C326BF7DA16E5DE97EA7D3CD9B2F77F14_StaticFields
 };
 struct Event_tEBC6F24B56CE22B9C9AD1AC6C24A6B83BC3860CB_StaticFields
 {
-	bool ___s_AllowOutsideOnGUI;
+	bool ___s_AllowOutside;
 	Event_tEBC6F24B56CE22B9C9AD1AC6C24A6B83BC3860CB* ___s_Current;
 	Event_tEBC6F24B56CE22B9C9AD1AC6C24A6B83BC3860CB* ___s_MasterEvent;
 };
@@ -19528,7 +19528,7 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable12443[2] =
 	static_cast<int32_t>(offsetof(U3CPrivateImplementationDetailsU3E_t73F5CF850C316773EAB2F3CAFED396FC078382FE_StaticFields, ___1932368AF3AA648D7B47953632C696DBAB3B49E7A78C61FCBD5302526F63EB92)),static_cast<int32_t>(offsetof(U3CPrivateImplementationDetailsU3E_t73F5CF850C316773EAB2F3CAFED396FC078382FE_StaticFields, ___AB83FA3DDDD7B13D446D25D0DD86D5FDCCC0ACF114CCB7B659687FACB467538E)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable12446[5] = 
 {
-	static_cast<int32_t>(offsetof(Event_tEBC6F24B56CE22B9C9AD1AC6C24A6B83BC3860CB, ___m_Ptr)),0,static_cast<int32_t>(offsetof(Event_tEBC6F24B56CE22B9C9AD1AC6C24A6B83BC3860CB_StaticFields, ___s_AllowOutsideOnGUI)),static_cast<int32_t>(offsetof(Event_tEBC6F24B56CE22B9C9AD1AC6C24A6B83BC3860CB_StaticFields, ___s_Current)),static_cast<int32_t>(offsetof(Event_tEBC6F24B56CE22B9C9AD1AC6C24A6B83BC3860CB_StaticFields, ___s_MasterEvent)),};
+	static_cast<int32_t>(offsetof(Event_tEBC6F24B56CE22B9C9AD1AC6C24A6B83BC3860CB, ___m_Ptr)),0,static_cast<int32_t>(offsetof(Event_tEBC6F24B56CE22B9C9AD1AC6C24A6B83BC3860CB_StaticFields, ___s_AllowOutside)),static_cast<int32_t>(offsetof(Event_tEBC6F24B56CE22B9C9AD1AC6C24A6B83BC3860CB_StaticFields, ___s_Current)),static_cast<int32_t>(offsetof(Event_tEBC6F24B56CE22B9C9AD1AC6C24A6B83BC3860CB_StaticFields, ___s_MasterEvent)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable12447[39] = 
 {
 	static_cast<int32_t>(sizeof(RuntimeObject)),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,};

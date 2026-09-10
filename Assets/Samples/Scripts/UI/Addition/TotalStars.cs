@@ -25,7 +25,8 @@ private int CalculateTotalEarnedStars()
         {
             for (int partIndex = 0; partIndex < 2; partIndex++)
             {
-                total += LevelMenuManager.GetStarsStatic(levelIndex, partIndex);
+                int stars = PlayerPrefs.GetInt("TotalStarsCount", 0); 
+                Debug.Log($"Звезд найдено в памяти: {stars}");
             }
         }
         return total;

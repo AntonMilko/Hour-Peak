@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6804910158211810510}
-  - component: {fileID: 5354064372949949492}
+  - component: {fileID: 768697618028685215}
   m_Layer: 0
-  m_Name: NPC Prefab
+  m_Name: CrowdSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5354064372949949492
+--- !u!114 &768697618028685215
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
   minZ: -10
   maxZ: 10
   spawnY: 0
-  baseCrowdNPC: 100000
+  baseCrowdNPC: 100
   beginnerCrowdPercentage: 0.2
   professionalCrowdPercentage: 0.5
   extremalCrowdPercentage: 0.8

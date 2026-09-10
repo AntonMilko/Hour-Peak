@@ -520,46 +520,5 @@ namespace HourPeak.Samples.Runtime
     }
 
     #endregion
-
-    #region Debug
-
-    private void OnGUI()
-    {
-#if UNITY_EDITOR
-        if (!Application.isPlaying)
-            return;
-
-        GUILayout.BeginArea(new Rect(10, 350, 300, 280));
-        GUILayout.BeginVertical("box");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label("🎯 NextLevel Debug");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label($"Уровень: {currentLevelNumber} Часть: {currentPartIndex}");
-        GUILayout.Label($"Время: {FormatTime(remainingTime)}/{FormatTime(levelTimeLimit)}");
-        GUILayout.Label($"Звёзд: {starsCollected}/{requiredStars}");
-        GUILayout.Label($"Активен: {isLevelActive}");
-        GUILayout.Label($"Пункт Б: {reachedDestination}");
-        GUILayout.Label($"Успех: {levelSuccess}");
-        GUILayout.Label($"Авто-сохранение: {autoSaveOnTransition}");
-        GUILayout.Label("═══════════════════════════════");
-        
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Старт")) StartLevel();
-        if (GUILayout.Button("Звезда")) OnStarCollected();
-        if (GUILayout.Button("Пункт Б")) OnReachDestination();
-        GUILayout.EndHorizontal();
-        
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("След. часть")) OnNextPart();
-        if (GUILayout.Button("Далее")) OnNextLevelButtonClick();
-        if (GUILayout.Button("Сброс")) ResetLevel();
-        GUILayout.EndHorizontal();
-        
-        GUILayout.EndVertical();
-        GUILayout.EndArea();
-#endif
-    }
-
-    #endregion
     }
 }

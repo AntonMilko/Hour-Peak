@@ -378,37 +378,5 @@ namespace HourPeak.Samples.Runtime
     }
 
     #endregion
-
-    #region Debug
-
-    private void OnGUI()
-    {
-#if UNITY_EDITOR
-        if (!Application.isPlaying)
-            return;
-
-        GUILayout.BeginArea(new Rect(10, 400, 300, 150));
-        GUILayout.BeginVertical("box");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label("🔄 AgainLevel2 Debug");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label($"Уровень: {currentLevelNumber} Часть: {currentPartIndex}");
-        GUILayout.Label($"Попыток: {retryCount}");
-        GUILayout.Label($"Авто-сохранение: {autoSaveOnRetry}");
-        GUILayout.Label("═══════════════════════════════");
-        
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Заново")) OnAgainButtonClick();
-        if (GUILayout.Button("Показать UI")) ShowFailureUI();
-        if (GUILayout.Button("Показать успех")) ShowSuccessUI();
-        if (GUILayout.Button("Сохранить")) SaveRetryProgress();
-        GUILayout.EndHorizontal();
-        
-        GUILayout.EndVertical();
-        GUILayout.EndArea();
-#endif
-    }
-
-    #endregion
     }
 }

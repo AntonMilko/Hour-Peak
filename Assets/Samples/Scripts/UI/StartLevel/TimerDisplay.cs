@@ -145,7 +145,7 @@ public class TimerDisplay : MonoBehaviour
         // Получаем настройки времени для текущего уровня сложности
         LoadDifficultySettings();
         
-        remainingTime = totalTime;
+        remainingTime = 0;
         isRunning = true;
         isTimeUp = false;
         
@@ -158,7 +158,7 @@ public class TimerDisplay : MonoBehaviour
         
         UpdateDisplay();
         
-        Debug.Log($"⏱️ Таймер запущен: {FormatTime(totalTime)} ({GetDifficultyName()})");
+        Debug.Log($"⏱️ Таймер запущен: {FormatTime(0)} ({GetDifficultyName()})");
     }
 
     /// <summary>
@@ -220,8 +220,8 @@ public class TimerDisplay : MonoBehaviour
     {
         if (!isTimeUp)
         {
-            remainingTime = Mathf.Max(0, remainingTime - seconds);
-            Debug.Log($"-{seconds}с от времени. Осталось: {FormatTime(remainingTime)}");
+            remainingTime = Mathf.Max(totalTime + seconds);
+            Debug.Log($"+{seconds}с от времени. Осталось: {FormatTime(remainingTime)}");
         }
     }
 
@@ -230,8 +230,8 @@ public class TimerDisplay : MonoBehaviour
     /// </summary>
     public void SetTime(float seconds)
     {
-        remainingTime = Mathf.Max(0, seconds);
-        if (remainingTime == 0 && isRunning)
+        remainingTime = Mathf.Max(totalTime, seconds);
+        if (remainingTime == totalTime && isRunning)
         {
             TimeUp();
         }
@@ -284,11 +284,11 @@ public class TimerDisplay : MonoBehaviour
     /// </summary>
     private void UpdateTimer()
     {
-        remainingTime -= Time.deltaTime;
+        remainingTime += Time.deltaTime;
         
-        if (remainingTime <= 0)
+        if (remainingTime >= totalTime)
         {
-            remainingTime = 0;
+            remainingTime = totalTime;
             TimeUp();
         }
         
@@ -363,8 +363,8 @@ public class TimerDisplay : MonoBehaviour
         (float warningStart, float dangerStart, float lastChanceStart, float maxTime) = GetThresholds();
         
         // Вычисляем прошедшее время (elapsedTime — это по сумме remainingTime в обратном отсчёте,
-        // но нам нужно время от 0, поэтому elapsed = maxTime - remainingTime)
-        float elapsedTime = totalTime - remainingTime;
+        // но нам нужно время от 0, поэтому elapsed = 0 + remainingTime)
+        float elapsedTime = 0 + remainingTime;
         
         // Определяем цвет на основе прошедшего времени
         if (elapsedTime < warningStart)
@@ -454,41 +454,6 @@ public class TimerDisplay : MonoBehaviour
             DifficultyLevel.Extremal => "Экстремал",
             _ => "Неизвестно"
         };
-    }
-
-    #endregion
-
-    #region Debug
-
-    private void OnGUI()
-    {
-#if UNITY_EDITOR
-        if (!Application.isPlaying)
-            return;
-
-        GUILayout.BeginArea(new Rect(10, 200, 300, 200));
-        GUILayout.BeginVertical("box");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label("⏱️ TimerDisplay Debug");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label($"Осталось: {FormatTime(remainingTime)}");
-        GUILayout.Label($"Всего: {FormatTime(totalTime)}");
-        GUILayout.Label($"Доля: {(totalTime > 0 ? (remainingTime / totalTime * 100f): 0f):F1}%");
-        GUILayout.Label($"Сложность: {GetDifficultyName()}");
-        GUILayout.Label($"Запущен: {isRunning}");
-        GUILayout.Label($"Время вышло: {isTimeUp}");
-        GUILayout.Label($"Цвет: {timerText?.color ?? Color.white}");
-        GUILayout.Label("═══════════════════════════════");
-        
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Старт")) StartTimer();
-        if (GUILayout.Button("Стоп")) StopTimer();
-        if (GUILayout.Button("Рестарт")) ResetTimer();
-        GUILayout.EndHorizontal();
-        
-        GUILayout.EndVertical();
-        GUILayout.EndArea();
-#endif
     }
 
     #endregion

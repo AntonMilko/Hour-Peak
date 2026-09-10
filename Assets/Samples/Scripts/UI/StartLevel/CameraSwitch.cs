@@ -36,6 +36,9 @@ public class CameraSwitch : MonoBehaviour
     [SerializeField] private GameObject closeButton;
 
     [Header("Settings")]
+    [Tooltip("Высота камеры карты")]
+    [SerializeField] private float cameraHeight = 50f;
+
     [Tooltip("Включить авто-создание UI")]
     [SerializeField] private bool autoCreateUI = true;
     
@@ -177,6 +180,13 @@ public class CameraSwitch : MonoBehaviour
         // 6. Останавливаем время (игра на паузе)
         Time.timeScale = 0f;
 
+        // Устанавливаем камеру в фиксированную позицию
+        if (mapCamera != null)
+        {
+            mapCamera.transform.position = new Vector3(0, cameraHeight, 0);
+            mapCamera.transform.rotation = Quaternion.Euler(-90, 0, 0);
+        }
+
         isMapOpen = true;
     }
 
@@ -307,7 +317,7 @@ public class CameraSwitch : MonoBehaviour
         mapCam.farClipPlane = 1000f;
         
         // Позиция сверху
-        mapCameraObj.transform.position = new Vector3(0, 50, 0);
+        mapCameraObj.transform.position = new Vector3(0, cameraHeight, 0);
         mapCameraObj.transform.rotation = Quaternion.Euler(-90, 0, 0);
         
         // Culling Mask - только слой карты
@@ -598,34 +608,6 @@ public class CameraSwitch : MonoBehaviour
         #else
             return Application.platform.ToString();
         #endif
-    }
-
-    #endregion
-
-    #region Debug
-
-    private void OnGUI()
-    {
-#if UNITY_EDITOR
-        if (!Application.isPlaying) return;
-
-        GUILayout.BeginArea(new Rect(10, 160, 250, 150));
-        GUILayout.BeginVertical("box");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label("🗺️ CameraSwitcher Debug");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label($"IsMapOpen: {isMapOpen}");
-        GUILayout.Label($"TimeScale: {Time.timeScale}");
-        GUILayout.Label($"PlayerCamera: {(playerCamera != null ? "✅" : "❌")}");
-        GUILayout.Label($"MapCamera: {(mapCamera != null ? "✅" : "❌")}");
-        GUILayout.Label("═══════════════════════════════");
-        if (GUILayout.Button("Toggle Map"))
-        {
-            ToggleMap();
-        }
-        GUILayout.EndVertical();
-        GUILayout.EndArea();
-#endif
     }
 
     #endregion

@@ -94,10 +94,6 @@ public class LookJoystick : MonoBehaviour
             enabled = false;
             return;
         }
-
-        UpdateReferences();
-        ReadInput();
-        ApplyRotation();
     }
 
     #endregion

@@ -20,7 +20,7 @@ namespace HourPeak.Characters
         /// <summary>
         /// Базовое количество NPC-прохожих (до применения множителя).
         /// </summary>
-        private const int BaseNPCCount = 100000;
+        private const int BaseNPCCount = 100;
 
         #endregion
 

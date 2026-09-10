@@ -215,36 +215,4 @@ public class Reset : MonoBehaviour
     }
 
     #endregion
-
-    #region Debug
-
-#if UNITY_EDITOR
-    private void OnGUI()
-    {
-        if (!Application.isPlaying)
-            return;
-
-        GUILayout.BeginArea(new Rect(600, 10, 250, 150));
-        GUILayout.BeginVertical("box");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label("🔄 Reset Debug");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label($"Текущий зум: {CurrentScale:F2}");
-        GUILayout.Label($"Целевой зум: {currentTargetScale:F2}");
-        GUILayout.Label($"Масштаб по умолчанию: {defaultScale:F2}");
-        GUILayout.Label($"Можно сбросить: {CanReset}");
-        GUILayout.Label($"Анимация: {(isAnimating ? "🟢 В процессе" : "⏹ Остановлено")}");
-        GUILayout.Label("═══════════════════════════════");
-
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Сброс")) ResetMapZoom();
-        if (GUILayout.Button("Мгновенный сброс")) InstantReset();
-        GUILayout.EndHorizontal();
-
-        GUILayout.EndVertical();
-        GUILayout.EndArea();
-    }
-#endif
-
-    #endregion
 }

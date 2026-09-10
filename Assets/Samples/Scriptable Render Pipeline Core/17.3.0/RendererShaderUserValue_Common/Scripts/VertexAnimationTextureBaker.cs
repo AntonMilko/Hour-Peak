@@ -19,29 +19,6 @@ public class VertexAnimationTextureBaker : EditorWindow
         GetWindow<VertexAnimationTextureBaker>("Vertex Animation Texture Baker");
     }
 
-    void OnGUI()
-    {
-        GUILayout.Label("Vertex Animation Texture Baker", EditorStyles.boldLabel);
-        sceneObject = (GameObject)EditorGUILayout.ObjectField("Scene Object", sceneObject, typeof(GameObject), true);
-        sampleRate = EditorGUILayout.IntField("Sample Rate (FPS)", sampleRate);
-
-        // Draw the list of clips
-        SerializedObject so = new SerializedObject(this);
-        SerializedProperty prop = so.FindProperty("clipsToBake");
-        EditorGUILayout.PropertyField(prop, true);
-        so.ApplyModifiedProperties();
-
-        if (GUILayout.Button("Bake VAT Array"))
-        {
-            if (sceneObject == null || clipsToBake.Count == 0)
-            {
-                Debug.LogError("Assign a scene object and at least one AnimationClip.");
-                return;
-            }
-            BakeVATArray(sceneObject, clipsToBake, sampleRate);
-        }
-    }
-
     void BakeVATArray(GameObject target, List<AnimationClip> clips, int fps)
     {
         Animator animator = target.GetComponent<Animator>();

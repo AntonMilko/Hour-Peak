@@ -146,7 +146,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.1.2
+  bundleVersion: 0.1.3
   preloadedAssets:
   - {fileID: 11400000, guid: 9aba829dd65291045bb91c60ad4b1827, type: 2}
   - {fileID: -944628639613478452, guid: 81dbc299c027c514d82d150229f991c6, type: 3}
@@ -280,7 +280,7 @@ PlayerSettings:
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 2800000, guid: ee448c9e7aa8db348a5457440051dacf, type: 3}
   AndroidKeystoreName: '{inproject}: user.keystore'
-  AndroidKeyaliasName: antonmilko2
+  AndroidKeyaliasName: antonmilko01062002
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidEnableArm64MTE: 0
   AndroidBuildApkPerCpuArchitecture: 0
@@ -963,7 +963,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 1
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: 8887f9f6-66fd-4f4e-baf3-f1bd93e736b3
   framebufferDepthMemorylessMode: 0

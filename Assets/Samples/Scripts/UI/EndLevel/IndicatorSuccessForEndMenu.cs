@@ -51,13 +51,6 @@ namespace HourPeak.Samples.Runtime
     
     [Tooltip("Целевое количество индикаторов")]
     [SerializeField] private int targetIndicators = 5;
-    
-    [Header("Indicator References")]
-    [Tooltip("Префаб индикатора для создания")]
-    [SerializeField] private GameObject indicatorPrefab;
-    
-    [Tooltip("Родительский объект для созданных индикаторов")]
-    [SerializeField] private Transform indicatorParent;
 
     #endregion
 
@@ -79,7 +72,6 @@ namespace HourPeak.Samples.Runtime
     public bool IsFinished => isFinished;
     public float ElapsedTime => elapsedTime;
     public DifficultyLevel CurrentDifficulty => currentDifficulty;
-    public int TargetIndicators => targetIndicators;
 
     #endregion
 
@@ -131,8 +123,7 @@ namespace HourPeak.Samples.Runtime
         isRunning = true;
         isFinished = false;
         currentProgress = 0f;
-        
-        CreateIndicators();
+
         ResetUI();
         
         Debug.Log($"🏁 Запуск индикатора: Сложность: {GetDifficultyName()} | Лимит: {levelTimeLimit:F1}с | Индикаторов: {targetIndicators}");
@@ -161,47 +152,6 @@ namespace HourPeak.Samples.Runtime
         UpdateIndicatorColor(resultColor);
         
         Debug.Log($"🏆 Результат: Время {elapsedTime:F2}с | Цвет: {ColorToString(resultColor)}");
-    }
-
-    /// <summary>
-    /// Устанавливает сложность и перезапускает анимацию.
-    /// </summary>
-    public void SetDifficulty(DifficultyLevel difficulty)
-    {
-        currentDifficulty = difficulty;
-        StartAnimation();
-    }
-
-    /// <summary>
-    /// Создаёт индикаторы на основе префаба.
-    /// </summary>
-    private void CreateIndicators()
-    {
-        if (indicatorPrefab == null || indicatorParent == null)
-        {
-            Debug.LogWarning("⚠️ indicatorPrefab или indicatorParent не назначены!");
-            return;
-        }
-
-        // Очищаем старые индикаторы
-        if (createdIndicators != null)
-        {
-            foreach (var indicator in createdIndicators)
-            {
-                if (indicator != null)
-                    Destroy(indicator);
-            }
-        }
-
-        // Создаём новые индикаторы
-        createdIndicators = new GameObject[targetIndicators];
-        for (int i = 0; i < targetIndicators; i++)
-        {
-            createdIndicators[i] = Instantiate(indicatorPrefab, indicatorParent);
-            createdIndicators[i].name = $"Indicator_{i + 1}";
-        }
-
-        Debug.Log($"📋 Создано индикаторов: {targetIndicators}");
     }
 
     /// <summary>
@@ -404,39 +354,6 @@ namespace HourPeak.Samples.Runtime
     {
         return $"R:{color.r:F2} G:{color.g:F2} B:{color.b:F2}";
     }
-
-    #endregion
-
-    #region Debug
-
-#if UNITY_EDITOR
-    private void OnGUI()
-    {
-        if (!Application.isPlaying)
-            return;
-
-        GUILayout.BeginArea(new Rect(10, 300, 300, 200));
-        GUILayout.BeginVertical("box");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label("🏁 IndicatorSuccess EndMenu");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label($"Сложность: {GetDifficultyName()}");
-        GUILayout.Label($"Индикаторов: {targetIndicators}");
-        GUILayout.Label($"Время: {elapsedTime:F2}с / {levelTimeLimit:F1}с");
-        GUILayout.Label($"Прогресс: {currentProgress * 100:F1}%");
-        GUILayout.Label($"Статус: {(isRunning ? "🟢 В процессе" : isFinished ? "🏁 Завершено" : "⏸ Остановлено")}");
-        GUILayout.Label("═══════════════════════════════");
-        
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Старт")) StartAnimation();
-        if (GUILayout.Button("Финиш")) FinishRun();
-        if (GUILayout.Button("Сброс")) ResetIndicator();
-        GUILayout.EndHorizontal();
-        
-        GUILayout.EndVertical();
-        GUILayout.EndArea();
-    }
-#endif
 
     #endregion
     }

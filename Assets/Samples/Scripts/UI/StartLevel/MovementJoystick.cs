@@ -72,9 +72,6 @@ public class MovementJoystick : MonoBehaviour
             enabled = false;
             return;
         }
-
-        UpdateReferences();
-        SendInputToPlayer();
     }
 
     #endregion

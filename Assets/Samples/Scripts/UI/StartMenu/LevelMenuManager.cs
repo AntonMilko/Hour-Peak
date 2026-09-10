@@ -367,7 +367,6 @@ public class LevelMenuManager : MonoBehaviour
 
         TheDisplayingOfStars morningDisplay = morningStarsParent.GetComponent<TheDisplayingOfStars>();
         if (morningDisplay == null) morningDisplay = morningStarsParent.AddComponent<TheDisplayingOfStars>();
-        morningDisplay.starImages = morningStars.ToArray();
         morningDisplay.isMorning = true;
         morningDisplay.colorPass = Color.yellow;
         morningDisplay.colorFailMorning = Color.black;
@@ -449,7 +448,6 @@ public class LevelMenuManager : MonoBehaviour
 
         TheDisplayingOfStars eveningDisplay = eveningStarsParent.GetComponent<TheDisplayingOfStars>();
         if (eveningDisplay == null) eveningDisplay = eveningStarsParent.AddComponent<TheDisplayingOfStars>();
-        eveningDisplay.starImages = eveningStars.ToArray();
         eveningDisplay.isMorning = false;
         eveningDisplay.colorPass = Color.yellow;
         eveningDisplay.colorFailMorning = Color.black;

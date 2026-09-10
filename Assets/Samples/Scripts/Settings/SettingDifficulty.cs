@@ -156,14 +156,6 @@ namespace HourPeak.Settings
             }
         }
 
-        private void OnDestroy()
-        {
-            if (Instance == this)
-            {
-                Instance = null;
-            }
-        }
-
         #endregion
 
         #region Initialization
@@ -347,6 +339,11 @@ namespace HourPeak.Settings
         private void CycleDifficulty()
         {
             SetDifficultyChange();
+        }
+
+        internal int GetDifficultyMode()
+        {
+            throw new NotImplementedException();
         }
 #endif
 

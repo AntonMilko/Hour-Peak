@@ -267,37 +267,4 @@ public class ZoomIn : MonoBehaviour
     }
 
     #endregion
-
-    #region Debug
-
-#if UNITY_EDITOR
-    private void OnGUI()
-    {
-        if (!Application.isPlaying)
-            return;
-
-        GUILayout.BeginArea(new Rect(10, 10, 250, 150));
-        GUILayout.BeginVertical("box");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label("🔍 ZoomIn Debug");
-        GUILayout.Label("═══════════════════════════════");
-        GUILayout.Label($"Текущий зум: {CurrentScale:F2}");
-        GUILayout.Label($"Целевой зум: {currentTargetScale:F2}");
-        GUILayout.Label($"Диапазон: {minScale:F2} - {maxScale:F2}");
-        GUILayout.Label($"Можно увеличить: {CanZoomIn()}");
-        GUILayout.Label($"Можно уменьшить: {CanZoomOut()}");
-        GUILayout.Label("═══════════════════════════════");
-
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("+")) MapZoomIn();
-        if (GUILayout.Button("-")) MapZoomOut();
-        if (GUILayout.Button("Сброс")) ResetZoom();
-        GUILayout.EndHorizontal();
-
-        GUILayout.EndVertical();
-        GUILayout.EndArea();
-    }
-#endif
-
-    #endregion
 }

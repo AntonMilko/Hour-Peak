@@ -308,36 +308,5 @@ namespace HourPeak.Transport
         }
 
         #endregion
-
-        #region Debug
-
-        private void OnGUI()
-        {
-#if UNITY_EDITOR
-            if (!Application.isPlaying) return;
-
-            GUILayout.BeginArea(new Rect(10, 500, 280, 90));
-            GUILayout.BeginVertical("box");
-            GUILayout.Label($"рџљ¶ Pedestrian Light");
-            GUILayout.Label($"РЎРёРіРЅР°Р»: {LightTrafficController.GetSignalName(_currentSignal)}");
-            GUILayout.Label($"РћСЃС‚Р°Р»РѕСЃСЊ: {_timer:F1}s");
-            GUILayout.Label($"Р—Р°РїСѓС‰РµРЅ: {_isRunning}");
-            GUILayout.EndVertical();
-            GUILayout.EndArea();
-#endif
-        }
-
-#if UNITY_EDITOR
-        [ContextMenu("Start Cycle")]
-        private void DebugStart() => StartCycle();
-
-        [ContextMenu("Stop Cycle")]
-        private void DebugStop() => StopCycle();
-
-        [ContextMenu("Force Next Signal")]
-        private void DebugNext() => ForceNextSignal();
-#endif
-
-        #endregion
     }
 }

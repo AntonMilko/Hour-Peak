@@ -30,15 +30,6 @@ namespace HourPeak.Transport
     }
 
     /// <summary>
-    /// Ссылка на конфигурационное значение.
-    /// </summary>
-    [Serializable]
-    public class ConfigValueReference<T>
-    {
-        public T Value;
-    }
-
-    /// <summary>
     /// Конфигурация одного транспортного сигнала.
     /// </summary>
     [Serializable]
@@ -100,16 +91,6 @@ namespace HourPeak.Transport
                 _ => Color.black
             };
         }
-
-        public Vector3 GetDirectionVector()
-        {
-            TrafficDirection dir = direction;
-            if ((dir & TrafficDirection.North) == TrafficDirection.North) return Vector3.forward;
-            if ((dir & TrafficDirection.South) == TrafficDirection.South) return -Vector3.forward;
-            if ((dir & TrafficDirection.East) == TrafficDirection.East) return Vector3.right;
-            if ((dir & TrafficDirection.West) == TrafficDirection.West) return -Vector3.right;
-            return Vector3.forward;
-        }
     }
 
     /// <summary>
@@ -119,15 +100,6 @@ namespace HourPeak.Transport
     /// </summary>
     public class LightTrafficController : MonoBehaviour
     {
-        #region Nested Classes
-
-        [Serializable]
-        private class ConfigValueReference<T>
-        {
-            public T Value;
-        }
-
-        #endregion
         #region Constants
 
         private const float DefaultGreenDuration = 5f;
@@ -161,30 +133,6 @@ namespace HourPeak.Transport
         private float _timer;
         private bool _isRunning;
         private Coroutine _coroutine;
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Текущий сигнал (Red/Yellow/Green).
-        /// </summary>
-        public TrafficSignalType CurrentSignal => _currentSignal;
-
-        /// <summary>
-        /// Осталось времени до переключения (сек).
-        /// </summary>
-        public float TimeRemaining => _isRunning ? _timer : 0f;
-
-        /// <summary>
-        /// Количество настроенных сигналов.
-        /// </summary>
-        public int SignalCount => signalConfigs.Count;
-
-        /// <summary>
-        /// Запущен ли контроллер.
-        /// </summary>
-        public bool IsRunning => _isRunning;
 
         #endregion
 
@@ -233,8 +181,6 @@ namespace HourPeak.Transport
             // Синхронизация с пешеходными светофорами
             SyncPedestrianLights(signal);
 
-            OnSignalChanged?.Invoke(signal);
-
             if (logSwitches)
             {
                 Debug.Log($"🚦 Сигнал: {GetSignalName(signal)}");
@@ -247,7 +193,6 @@ namespace HourPeak.Transport
         /// </summary>
         public void ForceNextSignal()
         {
-            _timer = 0f;
             TrafficSignalType next = _currentSignal switch
             {
                 TrafficSignalType.Green => TrafficSignalType.Yellow,
@@ -275,11 +220,6 @@ namespace HourPeak.Transport
         #endregion
 
         #region Events
-
-        /// <summary>
-        /// Вызывается при смене сигнала.
-        /// </summary>
-        public event Action<TrafficSignalType> OnSignalChanged;
 
         /// <summary>
         /// Вызывается при каждом обновлении таймера.
@@ -311,16 +251,14 @@ namespace HourPeak.Transport
         {
             while (_isRunning)
             {
-                TrafficSignalType signal = _currentSignal;
-
                 while (_timer > 0f && _isRunning)
                 {
                     _timer -= Time.deltaTime;
-                    OnTimerUpdate?.Invoke(Mathf.Max(0, _timer));
                     yield return null;
                 }
 
                 ForceNextSignal();
+                _timer = 5f;
             }
         }
 
@@ -335,11 +273,6 @@ namespace HourPeak.Transport
         /// </summary>
         private void SyncPedestrianLights(TrafficSignalType carSignal)
         {
-            foreach (var config in signalConfigs)
-            {
-                config.SetSignal(carSignal);
-            }
-
             // Синхронизация пешеходных сигналов
             TrafficSignalType pedestrianSignal = carSignal switch
             {
@@ -353,29 +286,9 @@ namespace HourPeak.Transport
             {
                 config.SetSignal(pedestrianSignal);
             }
-
-            OnSignalChanged?.Invoke(carSignal);
         }
 
         #endregion
-
-        #region Debug
-
-        private void OnGUI()
-        {
-#if UNITY_EDITOR
-            if (!Application.isPlaying) return;
-
-            GUILayout.BeginArea(new Rect(10, 350, 280, 90));
-            GUILayout.BeginVertical("box");
-            GUILayout.Label($"🚦 Traffic Light");
-            GUILayout.Label($"Сигнал: {GetSignalName(_currentSignal)}");
-            GUILayout.Label($"Осталось: {_timer:F1}s");
-            GUILayout.Label($"Запущен: {_isRunning}");
-            GUILayout.EndVertical();
-            GUILayout.EndArea();
-#endif
-        }
 
 #if UNITY_EDITOR
         [ContextMenu("Start Cycle")]
@@ -387,7 +300,5 @@ namespace HourPeak.Transport
         [ContextMenu("Force Next Signal")]
         private void DebugNext() => ForceNextSignal();
 #endif
-
-        #endregion
     }
 }

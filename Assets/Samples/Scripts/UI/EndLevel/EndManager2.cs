@@ -1,174 +1,126 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections;
-using HourPeak;
+using UnityEngine.SceneManagement;
 
 public class EndManager2 : MonoBehaviour
 {
     [Header("UI References")]
     public GameObject endMenuPanel;
-    public Button nextButton;
-    public Button againButton;
-    public Button exitButton;
     
+    // --- ГРУППА УСПЕХА ---
+    public Button nextButton; 
+    public Button againButton; 
+    public Button exitButton; 
+
+    // --- ГРУППА НЕУДАЧИ ---
+    public Button nextFailedButton; 
+    public Button againFailedButton; 
+    public Button exitFailedButton; 
+
     [Header("Time Evaluation")]
     public TextMeshProUGUI timeText;
-    
+
     [Header("Scene Names")]
-    public string sceneAgainLevel;
-    public string sceneMainMenu;
+    public string sceneAgainLevel;      
+    public string sceneMainMenuLevel;   
 
-    private float elapsedTime;
-    private float timeLimit;
-    private float timeRatio;
-
-    private void Awake()
+    void Start()
     {
-        if (nextButton != null)
-            nextButton.onClick.AddListener(OnNextClicked);
-        
-        if (againButton != null)
-            againButton.onClick.AddListener(AgainLevel);
-        
-        if (exitButton != null)
-            exitButton.onClick.AddListener(ExitLevel);
+        if (endMenuPanel != null) 
+            endMenuPanel.SetActive(false);
     }
 
     /// <summary>
-    /// Вызывается при достижении финиша для инициализации меню.
+    /// ВЫЗЫВАТЬ ПРИ ПОБЕДЕ НА ФИНАЛЬНОМ УРОВНЕ.
+    /// ПРАВИЛО: Горит ТОЛЬКО nextButton. Все остальные скрыты.
     /// </summary>
-    public void Initialize(float passedTime, float limit)
+    public void ShowFinalSuccessScreen()
     {
-        elapsedTime = passedTime;
-        timeLimit = limit;
-        timeRatio = limit > 0 ? elapsedTime / limit : 1f;
+        Debug.Log("[END] ФИНАЛ ПРОЙДЕН!");
         
-        EvaluateAndShowResult();
-    }
+        HideAllButtons();
 
-    private void EvaluateAndShowResult()
-    {
-        Color color;
-
-        if (timeRatio <= 0.25f)
-            color = new Color(0f, 0.8f, 0f);
-        else if (timeRatio <= 0.5f)
-            color = new Color(0f, 0.5f, 1f);
-        else if (timeRatio <= 0.75f)
-            color = new Color(1f, 0.8f, 0f);
-        else if (timeRatio <= 1f)
-            color = new Color(1f, 0.3f, 0f);
-        else
-            color = Color.black;
-
-        if (timeText != null)
+        if (nextButton != null)
         {
-            timeText.text = $"Время: {FormatTime(elapsedTime)} / {FormatTime(timeLimit)}";
-            timeText.color = color;
+            nextButton.gameObject.SetActive(true);
+            SetupNextButtonLogic();
+        }
+        else
+        {
+            Debug.LogError("[ERROR] Не назначена кнопка 'nextButton'!");
         }
 
-        if (endMenuPanel != null)
+        if (timeText != null) 
+            timeText.text = "Время: Отлично! Уровень пройден.";
+
+        if (endMenuPanel != null) 
             endMenuPanel.SetActive(true);
-        
-        Time.timeScale = 0f;
     }
 
     /// <summary>
-    /// Кнопка "Далее" — сохраняет прогресс и переходит к следующей части уровня.
+    /// ВЫЗЫВАТЬ ПРИ ПРОИГРЫШЕ НА ФИНАЛЬНОМ УРОВНЕ.
+    /// ПРАВИЛО: Горят ТОЛЬКО againFailedButton и exitFailedButton.
     /// </summary>
-    public void OnNextClicked()
+    public void ShowFailureScreen()
     {
-        // Определяем номер уровня и части из имени сцены
-        string currentScene = SceneManager.GetActiveScene().name;
-        int levelIndex = 0;
-        int partIndex = 0;
-        
-        if (currentScene.Contains("Morning"))
-        {
-            levelIndex = ExtractLevelFromScene(currentScene, true);
-            partIndex = 0; // Morning
-        }
-        else if (currentScene.Contains("Evening"))
-        {
-            levelIndex = ExtractLevelFromScene(currentScene, false);
-            partIndex = 1; // Evening
-        }
-        
-        // Вычисляем звёзды
-        int stars = timeRatio <= 0.25f ? 3 : (timeRatio <= 0.5f ? 3 : (timeRatio <= 0.75f ? 2 : 1));
-        
-// Сохраняем прогресс статически (работает без экземпляра LevelMenuManager)
-        LevelMenuManager.SaveProgressStatic(levelIndex, partIndex, stars);
-        Debug.Log($"💾 Сохранён прогресс: Уровень {levelIndex + 1}, Часть {partIndex + 1}, Звёзды: {stars}");
+        Debug.Log("[END] УРОВЕНЬ НЕ ПРОЙДЕН.");
 
-        // Восстанавливаем время перед загрузкой новой сцены
-        Time.timeScale = 1f;
+        HideAllButtons();
 
-        // Переход к следующей части уровня
-        StartCoroutine(LevelMenuManager.LoadNextLevelPartStatic());
+        if (againFailedButton != null)
+        {
+            againFailedButton.gameObject.SetActive(true);
+            againFailedButton.onClick.RemoveAllListeners();
+            againFailedButton.onClick.AddListener(RestartLevel);
+        }
+
+        if (exitFailedButton != null)
+        {
+            exitFailedButton.gameObject.SetActive(true);
+            exitFailedButton.onClick.RemoveAllListeners();
+            exitFailedButton.onClick.AddListener(ExitToMenu);
+        }
+
+        if (endMenuPanel != null) 
+            endMenuPanel.SetActive(true);
     }
 
-    /// <summary>
-    /// Извлекает номер уровня из имени сцены.
-    /// </summary>
-    private int ExtractLevelFromScene(string sceneName, bool isMorning)
+    private void SetupNextButtonLogic()
     {
-        int level = 1;
-        
-        for (int i = 0; i < sceneName.Length; i++)
+        nextButton.onClick.RemoveAllListeners();
+        nextButton.onClick.AddListener(() =>
         {
-            if (sceneName[i] >= '0' && sceneName[i] <= '9')
-            {
-                int start = i;
-                while (i < sceneName.Length && sceneName[i] >= '0' && sceneName[i] <= '9')
-                {
-                    i++;
-                }
-                string numStr = sceneName.Substring(start, i - start);
-                if (int.TryParse(numStr, out int parsedNum) && parsedNum > 0 && parsedNum <= 36)
-                {
-                    level = parsedNum - 1; // 0-based
-                    break;
-                }
-            }
-        }
-        
-        return level;
+            Debug.Log("[TRANSITION] Переход на сертификат...");
+            
+            // ТОЛЬКО стандартная загрузка сцены. Никаких контроллеров.
+            SceneManager.LoadScene("Game completion certificate");
+        });
     }
 
-    public void AgainLevel()
+    public void RestartLevel()
     {
-        Time.timeScale = 1f;
         if (!string.IsNullOrEmpty(sceneAgainLevel))
+        {
             SceneManager.LoadScene(sceneAgainLevel);
-        else
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
-    public void ExitLevel()
+    public void ExitToMenu()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("StartMenu");
+        if (!string.IsNullOrEmpty(sceneMainMenuLevel))
+        {
+            SceneManager.LoadScene(sceneMainMenuLevel);
+        }
     }
 
-    private static string FormatTime(float time)
+    private void HideAllButtons()
     {
-        int minutes = Mathf.FloorToInt(time / 60);
-        int seconds = Mathf.FloorToInt(time % 60);
-        return $"{minutes}:{seconds:00}";
-    }
-
-    private void OnDestroy()
-    {
-        if (nextButton != null)
-            nextButton.onClick.RemoveListener(OnNextClicked);
-        
-        if (againButton != null)
-            againButton.onClick.RemoveListener(AgainLevel);
-        
-        if (exitButton != null)
-            exitButton.onClick.RemoveListener(ExitLevel);
+        if (nextButton != null) nextButton.gameObject.SetActive(false);
+        if (nextFailedButton != null) nextFailedButton.gameObject.SetActive(false); 
+        if (againButton != null) againButton.gameObject.SetActive(false);
+        if (againFailedButton != null) againFailedButton.gameObject.SetActive(false);
+        if (exitButton != null) exitButton.gameObject.SetActive(false);
+        if (exitFailedButton != null) exitFailedButton.gameObject.SetActive(false);
     }
 }

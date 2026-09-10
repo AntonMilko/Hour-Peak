@@ -7946,7 +7946,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3214090353871450901, guid: 33da5642490e0ff499bcfa4ac4aba100, type: 3}
       propertyPath: m_Name
-      value: NPC Prefab
+      value: CrowdSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 6804910158211810510, guid: 33da5642490e0ff499bcfa4ac4aba100, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14145,11 +14145,12 @@ MonoBehaviour:
   nextButton: {fileID: 1790065653}
   againButton: {fileID: 1790065652}
   exitButton: {fileID: 1790065651}
+  nextFailedButton: {fileID: 0}
+  againFailedButton: {fileID: 0}
+  exitFailedButton: {fileID: 0}
   timeText: {fileID: 1790065655}
-  sceneGameCertificate: Game completion certificate
   sceneAgainLevel: Evening 36.2
-  scenePartMainMenu: LevelMenu
-  sceneMainMenu: StartMenu
+  sceneMainMenuLevel: 
 --- !u!1 &1542014571
 GameObject:
   m_ObjectHideFlags: 0
