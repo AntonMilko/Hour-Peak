@@ -4,13 +4,6 @@ using HourPeak.Settings;
 
 namespace HourPeak.Samples.Runtime
 {
-    /// <summary>
-    /// Индикатор успеха для финального меню.
-    /// Отображает результат прохождения части уровня с цветовой индикацией в зависимости от времени.
-    /// Ползунок двигается слева направо, оставляя за собой цветной след.
-    /// Цвет результата зависит от того, за сколько времени был пройден уровень.
-    /// </summary>
-    [RequireComponent(typeof(Scrollbar))]
     public class IndicatorSuccessForEndMenu : MonoBehaviour
     {
     #region Constants
@@ -22,9 +15,8 @@ namespace HourPeak.Samples.Runtime
     #region Fields
 
     [Header("UI References")]
-    [SerializeField] private Scrollbar resultScrollbar;
-    [SerializeField] private Image handleImage;
-    [SerializeField] private Image trackBackground;
+    [SerializeField] private Slider resultSlider;
+    [SerializeField] private Image progressFill;
     
     [Header("Colors")]
     [Tooltip("Превосходно (шустро) - зелёный")]
@@ -43,26 +35,20 @@ namespace HourPeak.Samples.Runtime
     [SerializeField] private Color failColor = Color.black;
     
     [Header("Settings")]
-    [Tooltip("Автоматически запускать анимацию при старте")]
-    [SerializeField] private bool autoStart = true;
-    
     [Tooltip("Текущая сложность")]
     [SerializeField] private DifficultyLevel currentDifficulty = DifficultyLevel.Beginner;
-    
-    [Tooltip("Целевое количество индикаторов")]
-    [SerializeField] private int targetIndicators = 5;
 
     #endregion
 
     #region Private State
 
+    private float resultTime;
     private float startTime;
     private float elapsedTime;
     private float levelTimeLimit;
     private bool isRunning;
     private bool isFinished;
     private float currentProgress;
-    private GameObject[] createdIndicators;
 
     #endregion
 
@@ -80,22 +66,14 @@ namespace HourPeak.Samples.Runtime
     private void Awake()
     {
         // Автоматически получаем компоненты, если не назначены
-        if (resultScrollbar == null)
-            resultScrollbar = GetComponent<Scrollbar>();
+        if (resultSlider == null)
+            resultSlider = GetComponent<Slider>();
         
-        if (trackBackground == null && resultScrollbar != null)
+        if (progressFill == null && resultSlider != null)
         {
-            Transform fillArea = resultScrollbar.transform.Find("Sliding Area");
+            Transform fillArea = resultSlider.transform.Find("Sliding Area");
             if (fillArea != null)
-                trackBackground = fillArea.GetComponent<Image>();
-        }
-    }
-        
-    private void Start()
-    {
-        if (autoStart)
-        {
-            StartAnimation();
+                progressFill = fillArea.GetComponent<Image>();
         }
     }
 
@@ -114,10 +92,11 @@ namespace HourPeak.Samples.Runtime
     /// <summary>
     /// Запускает анимацию индикатора.
     /// </summary>
-    public void StartAnimation()
+    public void StartAnimation(float _resultTime)
     {
         LoadDifficultySettings();
         
+        resultTime = _resultTime;
         startTime = Time.time;
         elapsedTime = 0f;
         isRunning = true;
@@ -125,8 +104,6 @@ namespace HourPeak.Samples.Runtime
         currentProgress = 0f;
 
         ResetUI();
-        
-        Debug.Log($"🏁 Запуск индикатора: Сложность: {GetDifficultyName()} | Лимит: {levelTimeLimit:F1}с | Индикаторов: {targetIndicators}");
     }
 
     /// <summary>
@@ -145,7 +122,7 @@ namespace HourPeak.Samples.Runtime
         
         // Устанавливаем финальный прогресс (1.0 = 100%)
         currentProgress = 1f;
-        UpdateScrollbarUI();
+        UpdateSliderUI();
         
         // Устанавливаем цвет в зависимости от времени
         Color resultColor = GetColorForElapsedTime();
@@ -174,10 +151,18 @@ namespace HourPeak.Samples.Runtime
     {
         elapsedTime = Time.time - startTime;
         
+        float timeRatio = resultTime / levelTimeLimit;
+            if (timeRatio < 0.25f)
+               timeRatio = timeRatio * 2;
+            else if (timeRatio < 0.5f)
+                timeRatio = timeRatio + 0.25f;
+            else 
+                timeRatio = timeRatio / 2 + 0.5f;
+
         // Двигаем ползунок слева направо
-        currentProgress = Mathf.Clamp01(elapsedTime / levelTimeLimit);
+        currentProgress = Mathf.Clamp(elapsedTime / 2f, 0f, timeRatio);
         
-        UpdateScrollbarUI();
+        UpdateSliderUI();
         
         // Проверяем, достигли ли финиша
         if (currentProgress >= 1f)
@@ -186,25 +171,25 @@ namespace HourPeak.Samples.Runtime
         }
     }
 
-    private void UpdateScrollbarUI()
+    private void UpdateSliderUI()
     {
-        if (resultScrollbar == null)
+        if (resultSlider == null)
             return;
 
         // Устанавливаем значение скроллбара (0 = слева, 1 = справа)
-        resultScrollbar.value = currentProgress;
+        resultSlider.value = currentProgress;
         
         // Обновляем цвет фона трека (след)
-        if (trackBackground != null)
+        if (progressFill != null)
         {
             // Если финиш достигнут — цвет зависит от результата, иначе — серый
             if (isFinished)
             {
-                trackBackground.color = GetColorForElapsedTime();
+                progressFill.color = GetColorForElapsedTime();
             }
             else
             {
-                trackBackground.color = new Color(0.3f, 0.3f, 0.3f);
+                progressFill.color = new Color(0.3f, 0.3f, 0.3f);
             }
         }
     }
@@ -246,19 +231,19 @@ namespace HourPeak.Samples.Runtime
     private void UpdateIndicatorColor(Color color)
     {
         // Применяем цвет ко всем элементам UI
-        if (handleImage != null)
-            handleImage.color = color;
+        if (progressFill != null)
+            progressFill.color = color;
         
-        if (trackBackground != null)
-            trackBackground.color = color;
+        if (progressFill != null)
+            progressFill.color = color;
         
-        if (resultScrollbar != null)
-            resultScrollbar.colors = SetColorBlock(color);
+        if (resultSlider != null)
+            resultSlider.colors = SetColorBlock(color);
     }
 
     private ColorBlock SetColorBlock(Color color)
     {
-        ColorBlock colors = resultScrollbar.colors;
+        ColorBlock colors = resultSlider.colors;
         colors.normalColor = color;
         colors.highlightedColor = color;
         colors.pressedColor = color;
@@ -333,20 +318,20 @@ namespace HourPeak.Samples.Runtime
 
     private void ResetUI()
     {
-        if (resultScrollbar != null)
+        if (resultSlider != null)
         {
-            resultScrollbar.value = 0f;
-            resultScrollbar.colors = ColorBlock.defaultColorBlock;
+            resultSlider.value = 0f;
+            resultSlider.colors = ColorBlock.defaultColorBlock;
         }
         
-        if (trackBackground != null)
+        if (progressFill != null)
         {
-            trackBackground.color = new Color(0.3f, 0.3f, 0.3f);
+            progressFill.color = new Color(0.3f, 0.3f, 0.3f);
         }
         
-        if (handleImage != null)
+        if (progressFill != null)
         {
-            handleImage.color = Color.white;
+            progressFill.color = Color.white;
         }
     }
 

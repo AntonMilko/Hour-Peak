@@ -14,7 +14,6 @@ namespace HourPeak.Addition
         [Header("Движение пешком")]
         [SerializeField] private float walkSpeed = 3f;
         [SerializeField] private float runSpeed = 6f;
-        [SerializeField] private float sprintSpeed = 9f;
         [SerializeField] private float gravity = -15f;
         [SerializeField] private float jumpSpeed = 5f;
 
@@ -24,31 +23,19 @@ namespace HourPeak.Addition
         [SerializeField] private LayerMask transportLayer;
         [SerializeField] private float transportInteractDistance = 3f;
 
-        [Header("Анимация")]
-        [SerializeField] private int upperBodyLayerIndex = 1;
-
         private Vector3 velocity;
         private bool isGrounded;
         private float currentSpeed;
         private Vector3 lookDirection;
         private bool isMoving;
         private Vector2 joystickInput;
-        private bool isMobileSprinting = false;
+        public bool isRunning = false;
 
         public enum TransportMode { Walking, Bus, Train }
         private TransportMode currentMode = TransportMode.Walking;
         private bool isEntering = false;
         private bool isExiting = false;
         private Transform currentTransport;
-
-        private static readonly int Speed = Animator.StringToHash("Speed");
-        private static readonly int IsMoving = Animator.StringToHash("IsMoving");
-        private static readonly int MoveX = Animator.StringToHash("MoveX");
-        private static readonly int MoveZ = Animator.StringToHash("MoveZ");
-        private static readonly int IsLookingForRoute = Animator.StringToHash("IsLookingForRoute");
-        private static readonly int TransportModeHash = Animator.StringToHash("TransportMode");
-        private static readonly int IsEnteringHash = Animator.StringToHash("IsEntering");
-        private static readonly int IsExitingHash = Animator.StringToHash("IsExiting");
 
         public event Action<TransportMode> OnTransportModeChanged;
         public event Action OnTransportEnter;
@@ -58,14 +45,7 @@ namespace HourPeak.Addition
         private void Awake()
         {
             rb ??= GetComponent<Rigidbody>();
-            animator ??= GetComponent<Animator>();
             if (Camera.main != null) cameraTransform = Camera.main.transform;
-        }
-
-        private void Start()
-        {
-            if (animator != null && upperBodyLayerIndex < animator.layerCount)
-                animator.SetLayerWeight(upperBodyLayerIndex, 0f);
         }
 
         private void Update()
@@ -74,12 +54,10 @@ namespace HourPeak.Addition
 
             HandleGroundCheck();
             HandleTransportInteraction();
-            
-            if (currentMode == TransportMode.Walking)
-            {
-                HandleWalking();
-            }
+        }
 
+        private void FixedUpdate()
+        {
             UpdateAnimation();
         }
 
@@ -90,38 +68,54 @@ namespace HourPeak.Addition
             if (isGrounded && velocity.y < 0) velocity.y = -0.01f;
         }
 
-        private void HandleWalking()
+        public void Move(Vector2 moveInput)
         {
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
-
             if (cameraTransform != null)
             {
                 Vector3 forward = cameraTransform.forward;
                 Vector3 right = cameraTransform.right;
                 forward.y = 0f; right.y = 0f;
                 forward.Normalize(); right.Normalize();
-                Vector3 target = (forward * vertical + right * horizontal);
-                
-                if (target.sqrMagnitude > 0.01f)
-                {
-                    target.Normalize();
-                    lookDirection = target;
-                    isMoving = true;
-                }
-                else
-                {
-                    isMoving = false;
-                }
+                Vector3 target = forward * moveInput.y + right * moveInput.x;
+
+                target.Normalize();
+                lookDirection = target;
             }
 
             currentSpeed = walkSpeed;
-            if (Input.GetKey(KeyCode.LeftShift) || isMobileSprinting) currentSpeed = sprintSpeed;
-            else if (Input.GetKey(KeyCode.LeftControl)) currentSpeed = runSpeed;
+            if (isRunning) currentSpeed = runSpeed;
 
-            Vector3 moveVector = isMoving ? lookDirection * currentSpeed : Vector3.zero;
+            Vector3 moveVector = lookDirection * currentSpeed;
             rb.MovePosition(rb.position + moveVector * Time.deltaTime);
+            Debug.Log(moveVector);
             HandleGravity();
+
+            isMoving = true;
+        }
+
+        private void UpdateAnimation()
+        {
+            if (isMoving)
+            {
+                if (isRunning)
+                {
+                    animator.SetBool ("IsRunning", true);
+                    animator.SetBool ("IsWalking", false);
+                }
+                else
+                {
+                    animator.SetBool ("IsRunning", false);
+                    animator.SetBool ("IsWalking", true);
+                }
+            }
+
+            else
+            {
+                animator.SetBool ("IsRunning", false);
+                animator.SetBool ("IsWalking", false);
+            }
+
+            isMoving = false;
         }
 
         private void HandleGravity()
@@ -150,7 +144,7 @@ namespace HourPeak.Addition
 
             OnNearTransport?.Invoke(nearestTransport);
 
-            if (nearestTransport != null && Input.GetKeyDown(KeyCode.E))
+            if (nearestTransport != null)
             {
                 TryEnterTransport(nearestTransport);
             }
@@ -169,14 +163,12 @@ namespace HourPeak.Addition
         private System.Collections.IEnumerator EnterTransport(TransportMode mode, Transform transportTransform)
         {
             isEntering = true;
-            animator?.SetBool(IsEnteringHash, true);
 
             yield return new WaitForSeconds(enterExitTime);
 
             currentMode = mode;
             currentTransport = transportTransform;
             isEntering = false;
-            animator?.SetBool(IsEnteringHash, false);
 
             OnTransportEnter?.Invoke();
             OnTransportModeChanged?.Invoke(currentMode);
@@ -185,7 +177,7 @@ namespace HourPeak.Addition
         public void TryExitTransport()
         {
             if (currentMode == TransportMode.Walking) return;
-            if (isExiting) return;
+            if (isExiting || isEntering) return;
 
             StartCoroutine(ExitTransport());
         }
@@ -193,7 +185,6 @@ namespace HourPeak.Addition
         private System.Collections.IEnumerator ExitTransport()
         {
             isExiting = true;
-            animator?.SetBool(IsExitingHash, true);
 
             Vector3 exitPosition = currentTransport.position + currentTransport.forward * 3f;
             Vector3 exitRotation = currentTransport.forward;
@@ -206,72 +197,9 @@ namespace HourPeak.Addition
             currentMode = TransportMode.Walking;
             currentTransport = null;
             isExiting = false;
-            animator?.SetBool(IsExitingHash, false);
 
             OnTransportExit?.Invoke();
             OnTransportModeChanged?.Invoke(currentMode);
-        }
-
-        private void UpdateAnimation()
-        {
-            if (animator == null) return;
-
-            float normalizedSpeed = Mathf.InverseLerp(walkSpeed, sprintSpeed, currentSpeed);
-            
-            animator.SetFloat(Speed, isMoving ? normalizedSpeed : 0f);
-            animator.SetBool(IsMoving, isMoving);
-            animator.SetFloat(MoveX, isMoving ? lookDirection.x : 0f);
-            animator.SetFloat(MoveZ, isMoving ? lookDirection.z : 0f);
-
-            int modeValue = (int)currentMode;
-            animator.SetInteger(TransportModeHash, modeValue);
-        }
-
-        public void StartLookingForRoute()
-        {
-            if (animator == null) return;
-            animator.SetBool(IsLookingForRoute, true);
-            if (upperBodyLayerIndex < animator.layerCount)
-                animator.SetLayerWeight(upperBodyLayerIndex, 1f);
-            currentSpeed = walkSpeed * 0.5f;
-        }
-
-        public void StopLookingForRoute()
-        {
-            if (animator == null) return;
-            animator.SetBool(IsLookingForRoute, false);
-            if (upperBodyLayerIndex < animator.layerCount)
-                animator.SetLayerWeight(upperBodyLayerIndex, 0f);
-            currentSpeed = walkSpeed;
-        }
-
-        public void TriggerInteractAnimation() => animator?.SetTrigger("Interact");
-        public void TriggerWaitAnimation() => animator?.SetTrigger("Wait");
-
-        public TransportMode GetCurrentMode() => currentMode;
-        public bool IsInTransport() => currentMode != TransportMode.Walking;
-        public bool IsOnBus() => currentMode == TransportMode.Bus;
-        public bool IsOnTrain() => currentMode == TransportMode.Train;
-
-        /// <summary>
-        /// Ввод джойстика движения (для мобильного управления)
-        /// </summary>
-        public Vector2 JoystickMoveInput
-        {
-            get => joystickInput;
-            set
-            {
-                joystickInput = value;
-                if (value.sqrMagnitude > 0.01f)
-                {
-                    lookDirection = new Vector3(value.x, 0f, value.y).normalized;
-                    isMoving = true;
-                }
-                else
-                {
-                    isMoving = false;
-                }
-            }
         }
 
         /// <summary>
@@ -308,27 +236,6 @@ namespace HourPeak.Addition
         {
             if (currentMode != TransportMode.Bus) return;
             TryExitTransport();
-        }
-
-        public void SetTransportMode(TransportMode mode)
-        {
-            if (currentMode == mode) return;
-            currentMode = mode;
-            OnTransportModeChanged?.Invoke(currentMode);
-        }
-
-        public float GetTransportSpeed()
-        {
-            return currentMode switch
-            {
-                TransportMode.Bus => busSpeed,
-                _ => walkSpeed
-            };
-        }
-
-        public void ToggleSprint()
-        {
-            isMobileSprinting = !isMobileSprinting;
         }
     }
 }

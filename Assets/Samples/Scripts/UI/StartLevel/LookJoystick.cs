@@ -31,13 +31,6 @@ public class LookJoystick : MonoBehaviour
     [Tooltip("Ссылка на PlayerController (автоматически найдётся по тегу Player)")]
     [SerializeField] private PlayerController playerController;
 
-    [Header("Look Settings")]
-    [Tooltip("Имя джойстика для поиска (должно совпадать с ClickTracker.buttonName)")]
-    [SerializeField] private string joystickName = "Look";
-    
-    [Tooltip("Включить переключение на мышь, если джойстик не найден")]
-    [SerializeField] private bool useMouseFallback = true;
-
     [Header("Rotation Settings")]
     [Tooltip("Скорость вращения камеры по горизонтали (градусов в секунду)")]
     [SerializeField] private float horizontalSensitivity = 120f;
@@ -51,6 +44,13 @@ public class LookJoystick : MonoBehaviour
     [Tooltip("Максимальный угол наклона камеры (вниз)")]
     [SerializeField] private float maxLookAngle = 45f;
 
+    [Header("Rotation Speed")]
+    [Tooltip("Скорость вращения камеры (градусов в секунду)")]
+    [SerializeField] private float rotationSpeed = 5f;
+
+    [Tooltip("Ссылка на Joystick (автоматически найдётся по тегу Player)")]
+    [SerializeField] private Joystick virtualJoystick;
+
     #endregion
 
     #region Private State
@@ -62,6 +62,7 @@ public class LookJoystick : MonoBehaviour
     
     private float currentVerticalAngle;
     private Vector2 lookInput;
+    private Vector2 inputDirection;
 
     #endregion
 
@@ -69,63 +70,71 @@ public class LookJoystick : MonoBehaviour
 
     private void Awake()
     {
-        if (!IsMobilePlatform())
-        {
-            Debug.Log($"⏹️ LookJoystick: отключён ({GetCurrentPlatformName()} - не мобильная платформа)");
-            enabled = false;
-            return;
-        }
-
-        Debug.Log($"✅ LookJoystick: активен на {GetCurrentPlatformName()}");
         ResolvePlayerController();
         ResolveCamera();
     }
 
     private void Start()
     {
-        ResolveLookStick();
+        if (playerController == null)
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+            if (playerObj != null)
+            {
+                playerController = playerObj.GetComponent<PlayerController>();
+                
+                if (playerController == null)
+                {
+                    Debug.LogError("[LookJoystick] Объект с тегом 'Player' найден, но на нем нет скрипта PlayerController!");
+                }
+            }
+            else
+            {
+                Debug.LogError("[LookJoystick] Не удалось найти на сцене объект с тегом 'Player'!");
+            }
+        }
+
+        if (playerCamera == null)
+        {
+            playerCamera = Camera.main;
+
+            if (playerCamera == null)
+            {
+                Debug.LogError("[LookJoystick] На сцене не найдена камера с тегом 'MainCamera'!");
+            }
+        }
+
         InitializeLookAngle();
     }
 
     private void Update()
     {
-        if (!IsMobilePlatform())
+        ReadInput();
+    }
+
+    private void FixedUpdate()
+    {
+        ApplyInput();
+    }
+
+    private void ReadInput()
+    {
+        inputDirection = virtualJoystick.Direction; 
+    }
+
+    private void ApplyInput()
+    {
+        // Поварачиваем камеру на основе считанных данных
+        Vector3 look = new Vector3(inputDirection.x, 0, inputDirection.y) * rotationSpeed * Time.fixedDeltaTime;
+        transform.Translate(look);
+    }
+
+    private void ResolveLookJoystick()
+    {
+        if (lookStickResolved) 
         {
-            enabled = false;
-            return;
+            Debug.Log("Джойстик взгляда успешно инициализирован!");
         }
-    }
-
-    #endregion
-
-    #region Platform Check
-
-    /// <summary>
-    /// Проверяет, является ли текущая платформа мобильной.
-    /// </summary>
-    private bool IsMobilePlatform()
-    {
-        #if UNITY_IOS || UNITY_ANDROID
-            return Application.isMobilePlatform;
-        #else
-            return false;
-        #endif
-    }
-
-    /// <summary>
-    /// Получает имя текущей платформы для отладки.
-    /// </summary>
-    private string GetCurrentPlatformName()
-    {
-        #if UNITY_IOS
-            return "iOS";
-        #elif UNITY_ANDROID
-            return "Android";
-        #elif UNITY_EDITOR
-            return "Editor";
-        #else
-            return Application.platform.ToString();
-        #endif
     }
 
     #endregion
@@ -212,43 +221,12 @@ public class LookJoystick : MonoBehaviour
     }
 
     /// <summary>
-    /// Находит джойстик вращения среди всех ClickTracker.
-    /// </summary>
-    private void ResolveLookStick()
-    {
-        if (lookStick != null)
-        {
-            lookStickResolved = true;
-            return;
-        }
-
-        ClickTracker[] allTrackers = FindObjectsByType<ClickTracker>(FindObjectsSortMode.None);
-        
-        for (int i = 0; i < allTrackers.Length; i++)
-        {
-            ClickTracker tracker = allTrackers[i];
-            if (tracker.isJoystick && tracker.buttonName == joystickName)
-            {
-                lookStick = tracker;
-                lookStickResolved = true;
-                Debug.Log($"✅ Джойстик '{joystickName}' найден: {tracker.gameObject.name}");
-                return;
-            }
-        }
-
-        Debug.LogWarning($"⚠️ Джойстик '{joystickName}' не найден! Будет использоваться мышь.");
-    }
-
-    /// <summary>
     /// Обновляет ссылки если они ещё не найдены.
     /// </summary>
     private void UpdateReferences()
     {
         if (!playerControllerResolved)
             ResolvePlayerController();
-
-        if (!lookStickResolved)
-            ResolveLookStick();
 
         if (!cameraResolved)
             ResolveCamera();
@@ -271,14 +249,6 @@ public class LookJoystick : MonoBehaviour
     }
 
     /// <summary>
-    /// Читает ввод с джойстика или мыши.
-    /// </summary>
-    private void ReadInput()
-    {
-        lookInput = GetLookInput();
-    }
-
-    /// <summary>
     /// Получает ввод для вращения.
     /// </summary>
     private Vector2 GetLookInput()
@@ -289,25 +259,6 @@ public class LookJoystick : MonoBehaviour
             Vector2 stickInput = lookStick.GetInputAxis();
             if (stickInput.sqrMagnitude > INPUT_THRESHOLD)
                 return stickInput;
-        }
-
-        // Способ 2: Через MobileControls (если есть)
-        if (MobileControls.instance != null)
-        {
-            Vector2 mobileInput = MobileControls.instance.GetJoystick(joystickName);
-            if (mobileInput.sqrMagnitude > INPUT_THRESHOLD)
-                return mobileInput;
-        }
-
-        // Способ 3: Мышь (если включено)
-        if (useMouseFallback)
-        {
-            Vector2 mouseInput = new Vector2(
-                Input.GetAxisRaw("Mouse X"),
-                Input.GetAxisRaw("Mouse Y")
-            );
-            if (mouseInput.sqrMagnitude > INPUT_THRESHOLD)
-                return mouseInput;
         }
 
         return Vector2.zero;

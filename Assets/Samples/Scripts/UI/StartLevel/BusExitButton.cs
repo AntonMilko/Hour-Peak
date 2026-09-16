@@ -22,19 +22,21 @@ public class BusExitButton : MonoBehaviour
     #region Fields
 
     [Header("UI References")]
-    [Tooltip("Панель кнопки выхода (отображается)")]
+    [Tooltip("Отображение кнопки при входе и выходе из автобуса")]
+    [SerializeField] private bool autoCheckVisibility = true;
+    
+    [Tooltip("Панель кнопки, которая отвечает за вход/выход из автобуса")]
     [SerializeField] private GameObject exitButtonPanel;
     
-    [Tooltip("Панель скрытой кнопки (опционально)")]
+    [Tooltip("Отображение кнопки во время управления персонажем")]
+    [SerializeField] private bool showDuringPlayerControl = false;
+
+    [Tooltip("Панель кнопки, которая видна во время ходьбы/управления персонажем")]
     [SerializeField] private GameObject hiddenButtonPanel;
 
     [Header("References")]
     [Tooltip("Ссылка на PlayerController (автоматически найдётся по тегу Player)")]
     [SerializeField] private PlayerController playerController;
-
-    [Header("Settings")]
-    [Tooltip("Включить автопроверку видимости")]
-    [SerializeField] private bool autoCheckVisibility = true;
 
     #endregion
 
@@ -50,36 +52,24 @@ public class BusExitButton : MonoBehaviour
 
     private void Awake()
     {
-        if (!IsMobilePlatform())
-        {
-            Debug.Log($"⏹️ BusExitButton: отключён ({GetCurrentPlatformName()} - не мобильная платформа)");
-            enabled = false;
-            return;
-        }
-
-        Debug.Log($"✅ BusExitButton: активен на {GetCurrentPlatformName()}");
         ResolveReferences();
     }
 
     private void Start()
     {
-        InitializeButton();
+        ApplyVisibilitySettings();
     }
 
-    private void Update()
+    private void ApplyVisibilitySettings()
     {
-        if (!IsMobilePlatform())
+        if (exitButtonPanel != null)
         {
-            enabled = false;
-            return;
+            exitButtonPanel.SetActive(autoCheckVisibility);
         }
 
-        UpdateReferences();
-
-        if (autoCheckVisibility && Time.time >= nextCheckTime)
+        if (hiddenButtonPanel != null)
         {
-            UpdateButtonVisibility();
-            nextCheckTime = Time.time + VISIBILITY_CHECK_INTERVAL;
+            hiddenButtonPanel.SetActive(showDuringPlayerControl);
         }
     }
 
@@ -127,12 +117,6 @@ public class BusExitButton : MonoBehaviour
         if (playerController == null)
         {
             Debug.LogWarning("⚠️ PlayerController не найден!");
-            return;
-        }
-
-        if (!playerController.IsOnBus())
-        {
-            Debug.LogWarning("⚠️ Игрок не находится в автобусе!");
             return;
         }
 
@@ -242,38 +226,6 @@ public class BusExitButton : MonoBehaviour
 
         if (hiddenButtonPanel != null && hiddenButtonPanel != exitButtonPanel)
             hiddenButtonPanel.SetActive(!visible);
-    }
-
-    #endregion
-
-    #region Platform Check
-
-    /// <summary>
-    /// Проверяет, является ли текущая платформа мобильной.
-    /// </summary>
-    private bool IsMobilePlatform()
-    {
-        #if UNITY_IOS || UNITY_ANDROID
-            return Application.isMobilePlatform;
-        #else
-            return false;
-        #endif
-    }
-
-    /// <summary>
-    /// Получает имя текущей платформы для отладки.
-    /// </summary>
-    private string GetCurrentPlatformName()
-    {
-        #if UNITY_IOS
-            return "iOS";
-        #elif UNITY_ANDROID
-            return "Android";
-        #elif UNITY_EDITOR
-            return "Editor";
-        #else
-            return Application.platform.ToString();
-        #endif
     }
 
     #endregion

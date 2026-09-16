@@ -20,11 +20,8 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
     #region Fields
 
     [Header("UI References")]
-    [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private Image progressFill;
-    [SerializeField] private Image sliderBackground;
-    [SerializeField] private Image sliderFill;
-    [SerializeField] private RectTransform sliderHandle;
+    [SerializeField] private Slider sliderFill;
 
     [Header("Colors")]
     [Tooltip("Превосходно (шустро) - зелёный")]
@@ -41,32 +38,18 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
     
     [Tooltip("Провал (опоздал) - чёрный")]
     [SerializeField] private Color failColor = Color.black;
-    
-    [Tooltip("След ползунка (чёрный)")]
-    [SerializeField] private Color trailColor = Color.black;
 
     [Header("Settings")]
     [SerializeField] private DifficultyLevel currentDifficulty = DifficultyLevel.Beginner;
     [SerializeField] private bool autoStart = true;
 
-
     #endregion
 
     #region Private State
 
-    private int collectedIndicators;
     private float currentLevelTime;
     private float levelTimeLimit;
     private bool isLevelActive;
-    private List<IndicatorData> activeIndicators = new List<IndicatorData>();
-
-    #endregion
-
-    #region Properties
-
-    public int CollectedIndicators => collectedIndicators;
-    public float RemainingTime => levelTimeLimit - currentLevelTime;
-    public bool IsLevelActive => isLevelActive;
 
     #endregion
 
@@ -95,26 +78,10 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
     public void StartLevel()
     {
         LoadDifficultySettings();
-        
-        collectedIndicators = 0;
+
         currentLevelTime = 0f;
         isLevelActive = true;
 
-        UpdateUI();
-    }
-
-    public void CollectIndicator(GameObject indicator)
-    {
-        if (!isLevelActive || indicator == null)
-            return;
-
-        IndicatorData indicatorData = activeIndicators.Find(data => data.indicator == indicator);
-        if (indicatorData == null)
-            return;
-
-        collectedIndicators++;
-        activeIndicators.Remove(indicatorData);
-        Destroy(indicator);
         UpdateUI();
     }
 
@@ -174,12 +141,6 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
     {
         isLevelActive = false;
         Debug.Log("⏰ Время вышло! Провал.");
-        
-        if (sliderFill != null)
-            sliderFill.color = failColor;
-        
-        if (timerText != null)
-            timerText.color = failColor;
     }
 
     private void LevelCompleted()
@@ -189,75 +150,26 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
         float timeRatio = currentLevelTime / levelTimeLimit;
         Color resultColor = GetColorForTimeRatio(timeRatio);
         
-        if (sliderFill != null)
-            sliderFill.color = resultColor;
-        
         Debug.Log($"🎉 Уровень пройден! Время: {FormatTime(currentLevelTime)} | Цвет: {resultColor}");
     }
 
     #endregion
 
-    private void UpdateIndicatorColor(IndicatorData indicatorData)
-    {
-        if (indicatorData.indicator == null)
-            return;
-
-        float timeRatio = currentLevelTime / levelTimeLimit;
-        Color color = GetColorForTimeRatio(timeRatio);
-        
-        Renderer renderer = indicatorData.indicator.GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            renderer.material.color = color;
-        }
-    }
-
-    private Vector3 GetRandomSpawnPosition()
-    {
-        return new Vector3(
-            Random.Range(-25f, 25f),
-            0.5f,
-            Random.Range(-25f, 25f)
-        );
-    }
-
     #region UI Update
 
     private void UpdateUI()
     {
-        if (timerText != null)
-        {
-            float remainingTime = levelTimeLimit - currentLevelTime;
-            timerText.text = FormatTime(remainingTime);
-            timerText.color = GetColorForRemainingTime(remainingTime);
-        }
-
         if (progressFill != null)
         {
-            float progress = (float)collectedIndicators;
-            progressFill.rectTransform.anchorMax = new Vector2(progress, 1f);
-            progressFill.rectTransform.anchorMin = new Vector2(0f, 0f);
-        }
-
-        if (sliderBackground != null && sliderFill != null)
-        {
-            float progress = (float)collectedIndicators;
-            sliderFill.rectTransform.anchorMax = new Vector2(progress, 1f);
-            sliderFill.rectTransform.anchorMin = new Vector2(0f, 0f);
-            sliderBackground.color = trailColor;
-        }
-
-        if (sliderFill != null)
-        {
             float timeRatio = currentLevelTime / levelTimeLimit;
-            sliderFill.color = GetColorForTimeRatio(timeRatio);
-        }
-
-        if (sliderHandle != null)
-        {
-            float progress = (float)collectedIndicators;
-            sliderHandle.anchorMax = new Vector2(progress, 1f);
-            sliderHandle.anchorMin = new Vector2(progress, 0f);
+            if (timeRatio < 0.25f)
+               timeRatio = timeRatio * 2;
+            else if (timeRatio < 0.5f)
+                timeRatio = timeRatio + 0.25f;
+            else 
+                timeRatio = timeRatio / 2 + 0.5f;
+            sliderFill.value = 1 - timeRatio;
+            progressFill.color = GetColorForTimeRatio(timeRatio);
         }
     }
 
@@ -276,32 +188,6 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
             return excellentColor;
         }
         else if (timeRatio < 1f)
-        {
-            return onTimeColor;
-        }
-        else
-        {
-            return failColor;
-        }
-    }
-
-    private Color GetColorForRemainingTime(float remainingTime)
-    {
-        float timeRatio = remainingTime / levelTimeLimit;
-        
-        if (timeRatio > 0.75f)
-        {
-            return perfectColor;
-        }
-        else if (timeRatio > 0.5f)
-        {
-            return superColor;
-        }
-        else if (timeRatio > 0.25f)
-        {
-            return excellentColor;
-        }
-        else if (timeRatio > 0)
         {
             return onTimeColor;
         }
@@ -331,17 +217,6 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
             DifficultyLevel.Extremal => "Экстремал",
             _ => "Неизвестно"
         };
-    }
-
-    #endregion
-
-    #region Nested Classes
-
-    private sealed class IndicatorData
-    {
-        public GameObject indicator;
-        public float createdTime;
-        public float lifetime;
     }
 
     #endregion

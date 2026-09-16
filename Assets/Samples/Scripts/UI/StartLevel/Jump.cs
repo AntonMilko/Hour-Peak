@@ -28,14 +28,14 @@ public class Jump : MonoBehaviour
     [Tooltip("UI кнопка для прыжка (опционально)")]
     [SerializeField] private Button jumpButton;
     
-    [Tooltip("Включить переключение на пробел, если кнопка не найдена")]
-    [SerializeField] private bool useKeyboardFallback = true;
-
     [Header("Jump Settings")]
-    [Tooltip("Включить удержание кнопки для дополнительного прыжка")]
-    [SerializeField] private bool useHoldToJumpHigher = true;
+    [Tooltip("Скорость падения (м/с)")]
+    [SerializeField] private float fallSpeed = 10f;
     
-    [Tooltip("Скорость подёма при удержании (дополнительная сила)")]
+    [Tooltip("Ссылка на Button (автоматически найдётся по тегу Player)")]
+    [SerializeField] private Button jumpButtonReference;
+
+    [Tooltip("Множитель силы прыжка при удержании кнопки")]
     [SerializeField] private float holdJumpMultiplier = 1.5f;
 
     #endregion
@@ -51,40 +51,86 @@ public class Jump : MonoBehaviour
 
     #region Unity Lifecycle
 
-    private void Awake()
-    {
-        if (!IsMobilePlatform())
-        {
-            Debug.Log($"⏹️ Jump: отключён ({GetCurrentPlatformName()} - не мобильная платформа)");
-            enabled = false;
-            return;
-        }
-
-        Debug.Log($"✅ Jump: активен на {GetCurrentPlatformName()}");
-        ResolvePlayerController();
-    }
-
     private void Start()
     {
-        SubscribeToJumpButton();
+        FindJumpButton();
     }
 
     private void Update()
     {
-        if (!IsMobilePlatform())
+        if (!isGrounded) 
         {
-            enabled = false;
-            return;
+            if (TryGetComponent<Rigidbody>(out Rigidbody rigidbodyComponent))
+            {
+                rigidbodyComponent.linearVelocity = new Vector3(rigidbodyComponent.linearVelocity.x, -fallSpeed, rigidbodyComponent.linearVelocity.z);
+            }
         }
-
-        UpdateReferences();
-        ReadInput();
-        HandleJump();
     }
 
+    private void FindJumpButton()
+    {
+        // Если ссылка уже перетащена вручную в инспекторе, ничего не делаем
+        if (jumpButtonReference != null) return;
+
+        // Находим объект с тегом Player
+        GameObject playerObj = GameObject.FindWithTag("Player");
+
+        if (playerObj != null)
+        {
+            // Ищем компонент Button в дочерних объектах игрока (или на самом Canvas, если скрипт висит там)
+            jumpButtonReference = playerObj.GetComponentInChildren<Button>();
+
+            // Если кнопка не внутри игрока, а лежит отдельно на Canvas:
+            if (jumpButtonReference == null)
+            {
+                // Ищем любую кнопку на сцене с именем, содержащим "Jump" (альтернативный безопасный вариант)
+                Button[] allButtons = FindObjectsByType<Button>(FindObjectsSortMode.None);
+                foreach (Button btn in allButtons)
+                {
+                    if (btn.gameObject.name.ToLower().Contains("jump"))
+                    {
+                        jumpButtonReference = btn;
+                        break;
+                    }
+                }
+            }
+
+            // Подписываемся на событие нажатия кнопки, если она успешно найдена
+            if (jumpButtonReference != null)
+            {
+                jumpButtonReference.onClick.AddListener(OnJumpButtonPressed);
+                Debug.Log($"[Jump.cs] Кнопка прыжка '{jumpButtonReference.gameObject.name}' успешно найдена и привязана!");
+            }
+            else
+            {
+                Debug.LogWarning("[Jump.cs] Объект Player найден, но у него или на UI не обнаружена Button прыжка.");
+            }
+        }
+        else
+        {
+            Debug.LogError("[Jump.cs] Не удалось найти объект с тегом 'Player'! Проверьте теги в Unity.");
+        }
+    }
+
+    private void OnJumpButtonPressed()
+    {
+        Debug.Log("Кнопка прыжка нажата! Выполняем прыжок...");
+        // Вставьте сюда вашу логику прыжка (например, rigidbody.AddForce или characterController.Move)
+    }
+
+    private void ApplyFallSpeed()
+    {
+        // Использование переменной fallSpeed (например, симуляция кастомной гравитации)
+        // transform.Translate(Vector3.down * fallSpeed * Time.deltaTime);
+    }
+
+    // Отписываемся от события при уничтожении объекта, чтобы избежать утечек памяти
     private void OnDestroy()
     {
-        UnsubscribeFromJumpButton();
+        if (jumpButtonReference != null)
+        {
+            jumpButtonReference.onClick.RemoveListener(OnJumpButtonPressed);
+        }
     }
 
     #endregion
@@ -99,24 +145,6 @@ public class Jump : MonoBehaviour
         playerController = null;
         playerControllerResolved = false;
         Debug.Log("🔄 Jump: ссылки сброшены");
-    }
-
-    /// <summary>
-    /// Вызывается при нажатии UI кнопки прыжка.
-    /// </summary>
-    public void OnJumpButtonPressed()
-    {
-        isJumpButtonPressed = true;
-        jumpHoldTimer = 0f;
-    }
-
-    /// <summary>
-    /// Вызывается при отпускании UI кнопки прыжка.
-    /// </summary>
-    public void OnJumpButtonReleased()
-    {
-        isJumpButtonPressed = false;
-        jumpHoldTimer = 0f;
     }
 
     #endregion
@@ -190,22 +218,6 @@ public class Jump : MonoBehaviour
     #region Input Processing
 
     /// <summary>
-    /// Читает ввод для прыжка.
-    /// </summary>
-    private void ReadInput()
-    {
-        // Проверяем клавиатуру (для отладки)
-        if (useKeyboardFallback && Input.GetButtonDown("Jump"))
-        {
-            isJumpButtonPressed = true;
-        }
-        if (useKeyboardFallback && Input.GetButtonUp("Jump"))
-        {
-            isJumpButtonPressed = false;
-        }
-    }
-
-    /// <summary>
     /// Обрабатывает прыжок.
     /// </summary>
     private void HandleJump()
@@ -219,14 +231,6 @@ public class Jump : MonoBehaviour
         // Вычисляем силу прыжка
         float jumpForce = CalculateJumpForce();
         
-        // Вызываем RequestJump с информацией о силе
-        // (если PlayerController поддерживает)
-        if (useHoldToJumpHigher)
-        {
-            // Увеличиваем время удержания для более высокого прыжка
-            jumpHoldTimer += Time.deltaTime;
-        }
-
         // Запрашиваем прыжок
         playerController.RequestJump();
         
@@ -240,9 +244,6 @@ public class Jump : MonoBehaviour
     /// </summary>
     private float CalculateJumpForce()
     {
-        if (!useHoldToJumpHigher)
-            return 1f;
-
         // Ограничиваем время удержания для баланса
         float normalizedHoldTime = Mathf.Clamp01(jumpHoldTimer / 0.3f);
         return 1f + (normalizedHoldTime * (holdJumpMultiplier - 1f));

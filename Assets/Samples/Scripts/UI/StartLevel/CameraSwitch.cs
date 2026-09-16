@@ -77,15 +77,6 @@ public class CameraSwitch : MonoBehaviour
 
     private void Awake()
     {
-        if (!IsMobilePlatform())
-        {
-            Debug.Log($"⏹️ CameraSwitcher: отключён ({GetCurrentPlatformName()} - не мобильная платформа)");
-            enabled = false;
-            return;
-        }
-
-        Debug.Log($"✅ CameraSwitcher: активен на {GetCurrentPlatformName()}");
-        
         // Находим основные камеры
         ResolveCameras();
         
@@ -576,38 +567,6 @@ public class CameraSwitch : MonoBehaviour
         {
             Debug.Log("📂 Состояние карты загружено: карта открыта");
         }
-    }
-
-    #endregion
-
-    #region Platform Check
-
-    /// <summary>
-    /// Проверяет, является ли текущая платформа мобильной.
-    /// </summary>
-    private bool IsMobilePlatform()
-    {
-        #if UNITY_IOS || UNITY_ANDROID
-            return Application.isMobilePlatform;
-        #else
-            return false;
-        #endif
-    }
-
-    /// <summary>
-    /// Получает имя текущей платформы для отладки.
-    /// </summary>
-    private string GetCurrentPlatformName()
-    {
-        #if UNITY_IOS
-            return "iOS";
-        #elif UNITY_ANDROID
-            return "Android";
-        #elif UNITY_EDITOR
-            return "Editor";
-        #else
-            return Application.platform.ToString();
-        #endif
     }
 
     #endregion

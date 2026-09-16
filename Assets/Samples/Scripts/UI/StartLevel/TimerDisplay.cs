@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using HourPeak.Settings;
+using HourPeak.Samples.Runtime;
 
 /// <summary>
 /// Отображение таймера с цветовой индикацией в зависимости от оставшегося времени.
@@ -29,6 +30,9 @@ public class TimerDisplay : MonoBehaviour
     
     [Tooltip("Меню конца игры (показывается когда время вышло)")]
     [SerializeField] private GameObject endMenu;
+
+    [Tooltip("Меню конца игры (показывается когда время вышло)")]
+    [SerializeField] private IndicatorSuccessForEndMenu indicatorSuccessForEndMenu;
 
     [Header("Colors")]
     [Tooltip("Безопасное время (спокойствие) - белый")]
@@ -329,6 +333,7 @@ public class TimerDisplay : MonoBehaviour
         if (endMenu != null)
             endMenu.SetActive(true);
         
+        indicatorSuccessForEndMenu.StartAnimation(remainingTime);
         Debug.Log("🏁 EndMenu показан");
     }
 
