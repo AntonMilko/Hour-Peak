@@ -10093,7 +10093,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4, y: 2, z: 1.4}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &193474270
 MeshRenderer:
@@ -10165,9 +10165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 29.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 193474273}
 --- !u!54 &193474273
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26204,7 +26201,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4, y: 2, z: 1.4}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &501197527
 MeshRenderer:
@@ -26276,9 +26273,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 29.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 501197530}
 --- !u!54 &501197530
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -50088,7 +50082,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4, y: 2, z: 1.4}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &903285075
 MeshRenderer:
@@ -50160,9 +50154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 29.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 903285078}
 --- !u!54 &903285078
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -53638,6 +53629,22 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1408576439}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1408576439}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HourPeak.Addition.PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1314506125187578484, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerController
       value: 
@@ -53646,6 +53653,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1408576438}
+    - target: {fileID: 2225645972757172861, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1408576439}
     - target: {fileID: 2765683170109115865, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentPartIndex
       value: 2
@@ -53682,6 +53693,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1408576438}
+    - target: {fileID: 3327144589328605238, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1408576438}
     - target: {fileID: 3460399121704988072, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelSceneName
       value: Evening 17.2
@@ -53706,6 +53721,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1408576438}
+    - target: {fileID: 5831109031509269462, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1408576439}
     - target: {fileID: 6323624345635879403, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentPartIndex
       value: 1
@@ -63703,7 +63722,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4, y: 2, z: 1.4}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1125629089
 MeshRenderer:
@@ -63775,9 +63794,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 29.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1125629092}
 --- !u!54 &1125629092
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -82588,6 +82604,7 @@ MonoBehaviour:
   mapButton: {fileID: 962140268}
   mapPanel: {fileID: 962140270}
   closeButton: {fileID: 962140267}
+  cameraHeight: 50
   autoCreateUI: 1
   startWithMapOpen: 0
   closeMapOnMove: 1
@@ -90448,7 +90465,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4, y: 2, z: 1.4}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1629284493
 MeshRenderer:
@@ -90520,9 +90537,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 29.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1629284496}
 --- !u!54 &1629284496
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -101125,7 +101139,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4, y: 2, z: 1.4}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1806496538
 MeshRenderer:
@@ -101197,9 +101211,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 29.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1806496541}
 --- !u!54 &1806496541
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -101504,7 +101515,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4, y: 2, z: 1.4}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1812486613
 MeshRenderer:
@@ -101576,9 +101587,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 29.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1812486616}
 --- !u!54 &1812486616
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -110007,7 +110015,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4, y: 2, z: 1.4}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1963294843
 MeshRenderer:
@@ -110079,9 +110087,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 29.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1963294846}
 --- !u!54 &1963294846
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -114382,7 +114387,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4, y: 2, z: 1.4}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2042487175
 MeshRenderer:
@@ -114454,9 +114459,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 29.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 2042487178}
 --- !u!54 &2042487178
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -115032,7 +115034,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4, y: 2, z: 1.4}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2049909785
 MeshRenderer:
@@ -115104,9 +115106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 29.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 2049909788}
 --- !u!54 &2049909788
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -119754,7 +119753,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4, y: 2, z: 1.4}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2145586820
 MeshRenderer:
@@ -119826,9 +119825,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 29.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 2145586823}
 --- !u!54 &2145586823
 Rigidbody:
   m_ObjectHideFlags: 0

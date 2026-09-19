@@ -4610,6 +4610,22 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1497383179}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1497383179}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HourPeak.Addition.PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1314506125187578484, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerController
       value: 
@@ -4618,6 +4634,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1497383178}
+    - target: {fileID: 2225645972757172861, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1497383179}
     - target: {fileID: 2765683170109115865, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentPartIndex
       value: 2
@@ -4654,6 +4674,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1497383178}
+    - target: {fileID: 3327144589328605238, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1497383178}
     - target: {fileID: 3460399121704988072, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelSceneName
       value: Evening 16.2
@@ -4678,6 +4702,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1497383178}
+    - target: {fileID: 5831109031509269462, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1497383179}
     - target: {fileID: 6323624345635879403, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentPartIndex
       value: 1
@@ -62914,7 +62942,6 @@ GameObject:
   - component: {fileID: 1249843324}
   - component: {fileID: 1249843323}
   - component: {fileID: 1249843322}
-  - component: {fileID: 1249843326}
   - component: {fileID: 1249843325}
   m_Layer: 0
   m_Name: Exit 4
@@ -62957,8 +62984,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.48, y: 1.78, z: 1.57}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.0398033, y: 1.1961099, z: 1.1461843}
+  m_Center: {x: -0.0040249764, y: 0.049494572, z: -0.011853837}
 --- !u!23 &1249843323
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63029,36 +63056,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 27.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1249843326}
---- !u!54 &1249843326
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249843320}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1249876223
 GameObject:
   m_ObjectHideFlags: 0
@@ -63348,6 +63345,7 @@ MonoBehaviour:
   mapButton: {fileID: 89536785}
   mapPanel: {fileID: 89536787}
   closeButton: {fileID: 89536784}
+  cameraHeight: 50
   autoCreateUI: 1
   startWithMapOpen: 0
   closeMapOnMove: 1
@@ -73840,7 +73838,6 @@ GameObject:
   - component: {fileID: 1466396956}
   - component: {fileID: 1466396955}
   - component: {fileID: 1466396954}
-  - component: {fileID: 1466396958}
   - component: {fileID: 1466396957}
   m_Layer: 0
   m_Name: Exit 1
@@ -73883,8 +73880,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.48, y: 1.78, z: 1.57}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.1866016, y: 1.061669, z: 1.1394451}
+  m_Center: {x: -0.0016792717, y: 0.057418082, z: -0.017739847}
 --- !u!23 &1466396955
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73955,36 +73952,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 27.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1466396958}
---- !u!54 &1466396958
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1466396952}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1466543911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75049,7 +75016,6 @@ GameObject:
   - component: {fileID: 1486274743}
   - component: {fileID: 1486274742}
   - component: {fileID: 1486274741}
-  - component: {fileID: 1486274745}
   - component: {fileID: 1486274744}
   m_Layer: 0
   m_Name: Exit 3
@@ -75092,8 +75058,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.48, y: 1.78, z: 1.57}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.0547796, y: 1.061669, z: 1.1394451}
+  m_Center: {x: 0.00038038587, y: 0, z: 0}
 --- !u!23 &1486274742
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -75164,36 +75130,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 27.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1486274745}
---- !u!54 &1486274745
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486274739}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1488440419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -87327,7 +87263,6 @@ GameObject:
   - component: {fileID: 1709772632}
   - component: {fileID: 1709772631}
   - component: {fileID: 1709772630}
-  - component: {fileID: 1709772634}
   - component: {fileID: 1709772633}
   m_Layer: 0
   m_Name: Exit 2
@@ -87370,7 +87305,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.48, y: 1.78, z: 1.57}
+  m_Size: {x: 1.1866016, y: 1.061669, z: 1.1394451}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1709772631
 MeshRenderer:
@@ -87442,36 +87377,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 27.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1709772634}
---- !u!54 &1709772634
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709772628}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1710467596
 PrefabInstance:
   m_ObjectHideFlags: 0

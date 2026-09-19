@@ -7,33 +7,12 @@ public class MetroTransitionController : MonoBehaviour
 {
     [SerializeField] 
     private string targetSceneName;
-    [SerializeField] 
-    private string MessageOnEnter;
-    [SerializeField] 
-    private float DelayBeforeTransition;
-    [SerializeField] 
-    private Rigidbody Rigidbody;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("Player"))
-        {
-            if (!string.IsNullOrEmpty(targetSceneName))
-            {
-                Debug.Log(MessageOnEnter);
-            }
-            Invoke("TransitionToTarget", DelayBeforeTransition);
-        }
-    }
-    private void TransitionToTarget() 
-    {
-        if (!string.IsNullOrEmpty(targetSceneName))
+        if (other.gameObject.CompareTag("Player"))
         {
             SceneManager.LoadScene(targetSceneName);
-        }
-        else 
-        {
-            Debug.LogError("SceneEmpty");      
         }
     }
 }

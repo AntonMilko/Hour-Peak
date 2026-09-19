@@ -5785,6 +5785,7 @@ MonoBehaviour:
   mapButton: {fileID: 782524995}
   mapPanel: {fileID: 782524994}
   closeButton: {fileID: 782524993}
+  cameraHeight: 50
   autoCreateUI: 1
   startWithMapOpen: 0
   closeMapOnMove: 1
@@ -18295,7 +18296,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 4, y: 3, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &768686345
 PrefabInstance:
@@ -18641,6 +18642,26 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1135412264}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1135412264}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HourPeak.Addition.PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1314506125187578484, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerController
       value: 
@@ -18649,6 +18670,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1135412265}
+    - target: {fileID: 2225645972757172861, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1135412264}
     - target: {fileID: 2765683170109115865, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelNumber
       value: 26
@@ -18681,6 +18706,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1135412265}
+    - target: {fileID: 3327144589328605238, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1135412265}
     - target: {fileID: 3460399121704988072, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelSceneName
       value: Morning 19.1
@@ -18705,6 +18734,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1135412265}
+    - target: {fileID: 5831109031509269462, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1135412264}
     - target: {fileID: 6323624345635879403, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelNumber
       value: 26
@@ -23791,7 +23824,6 @@ GameObject:
   - component: {fileID: 1020485303}
   - component: {fileID: 1020485302}
   - component: {fileID: 1020485301}
-  - component: {fileID: 1020485305}
   - component: {fileID: 1020485304}
   m_Layer: 0
   m_Name: Exit 5
@@ -23834,7 +23866,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.51, y: 1.88, z: 1.51}
+  m_Size: {x: 1.1866016, y: 1.061669, z: 1.1394451}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1020485302
 MeshRenderer:
@@ -23906,36 +23938,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Morning 26.2
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1020485305}
---- !u!54 &1020485305
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1020485299}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1022637703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29048,7 +29050,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 4, y: 3, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1 &1218821886
 GameObject:
@@ -31709,7 +31711,6 @@ GameObject:
   - component: {fileID: 1342543991}
   - component: {fileID: 1342543990}
   - component: {fileID: 1342543989}
-  - component: {fileID: 1342543993}
   - component: {fileID: 1342543992}
   m_Layer: 0
   m_Name: Exit 7
@@ -31752,7 +31753,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.51, y: 1.88, z: 1.51}
+  m_Size: {x: 1.1866016, y: 1.061669, z: 1.1394451}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1342543990
 MeshRenderer:
@@ -31824,36 +31825,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Morning 26.2
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1342543993}
---- !u!54 &1342543993
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1342543987}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1343733922
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31967,7 +31938,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 4, y: 3, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &1345729161
 PrefabInstance:
@@ -43492,7 +43463,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 4, y: 3, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &1937252697
 PrefabInstance:
@@ -47222,7 +47193,7 @@ PrefabInstance:
     - target: {fileID: 1385296203547644949, guid: 5b2a2a4fda8d3d1479b32bb7c34f2cde, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 4a9ed1141741fc841bf7863760e3433c, type: 2}
+      objectReference: {fileID: 23800000, guid: b3c1f519902491540928e75bf1492315, type: 2}
     - target: {fileID: 5164445107423282112, guid: 5b2a2a4fda8d3d1479b32bb7c34f2cde, type: 3}
       propertyPath: m_LocalPosition.x
       value: -80.876

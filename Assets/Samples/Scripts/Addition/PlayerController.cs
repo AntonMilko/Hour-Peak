@@ -29,6 +29,7 @@ namespace HourPeak.Addition
         private Vector3 lookDirection;
         private bool isMoving;
         private Vector2 joystickInput;
+        private bool isJumping = false;
         public bool isRunning = false;
 
         public enum TransportMode { Walking, Bus, Train }
@@ -210,7 +211,7 @@ namespace HourPeak.Addition
             if (isGrounded)
             {
                 velocity.y = jumpSpeed;
-                animator?.SetTrigger("Jump");
+                animator?.SetTrigger("IsJumping");
             }
         }
 

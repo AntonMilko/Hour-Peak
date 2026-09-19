@@ -341,6 +341,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrowdSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 3214090353871450901, guid: 33da5642490e0ff499bcfa4ac4aba100, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6804910158211810510, guid: 33da5642490e0ff499bcfa4ac4aba100, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1264.8
@@ -1436,7 +1440,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1 &195938196
 GameObject:
@@ -2921,6 +2925,7 @@ MonoBehaviour:
   mapButton: {fileID: 675899582}
   mapPanel: {fileID: 1026636760}
   closeButton: {fileID: 1026636759}
+  cameraHeight: 50
   autoCreateUI: 1
   startWithMapOpen: 0
   closeMapOnMove: 1
@@ -8081,7 +8086,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &815656859
 PrefabInstance:
@@ -9674,7 +9679,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &986553896
 PrefabInstance:
@@ -9873,6 +9878,22 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1861329951}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1861329951}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HourPeak.Addition.PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1314506125187578484, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerController
       value: 
@@ -9881,6 +9902,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1861329952}
+    - target: {fileID: 2225645972757172861, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1861329951}
     - target: {fileID: 2765683170109115865, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelNumber
       value: 21
@@ -9897,6 +9922,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1861329952}
+    - target: {fileID: 3327144589328605238, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1861329952}
     - target: {fileID: 3460399121704988072, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelSceneName
       value: Morning 8.1
@@ -9909,6 +9938,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1861329952}
+    - target: {fileID: 5831109031509269462, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1861329951}
     - target: {fileID: 6323624345635879403, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelNumber
       value: 21
@@ -13391,7 +13424,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &1428548580
 PrefabInstance:
@@ -18986,9 +19019,6 @@ PrefabInstance:
       addedObject: {fileID: 2022394668}
     - targetCorrespondingSourceObject: {fileID: 100000, guid: c3e95e72d6dba334594c3c5c37fcf18a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2022394667}
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: c3e95e72d6dba334594c3c5c37fcf18a, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2022394665}
   m_SourcePrefab: {fileID: 100100000, guid: c3e95e72d6dba334594c3c5c37fcf18a, type: 3}
 --- !u!4 &2022394663 stripped
@@ -19022,33 +19052,6 @@ MonoBehaviour:
   sceneAgainLevel: Morning 21.1
   scenePartMainMenu: LevelMenu
   sceneMainMenu: StartMenu
---- !u!54 &2022394667
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2022394664}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &2022394668
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19068,8 +19071,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 24.4, y: 10, z: 15.24}
-  m_Center: {x: -0.47326565, y: 3.7887337, z: 0.8263674}
+  m_Size: {x: 23.495026, y: 7.9349494, z: 12.21553}
+  m_Center: {x: -0.02077567, y: 4.0104384, z: -0.11636847}
 --- !u!1001 &2025275921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20189,6 +20192,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8008138020237589728, guid: 597d6f8711740284189ce1af82a52c07, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: ad4c4aaf4b143104aa3727b515e3aea0, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

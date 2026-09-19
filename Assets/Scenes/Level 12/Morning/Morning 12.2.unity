@@ -1247,6 +1247,7 @@ MonoBehaviour:
   mapButton: {fileID: 549265901}
   mapPanel: {fileID: 549265899}
   closeButton: {fileID: 549265898}
+  cameraHeight: 50
   autoCreateUI: 1
   startWithMapOpen: 0
   closeMapOnMove: 1
@@ -5360,7 +5361,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 4, y: 3, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &178331369
 PrefabInstance:
@@ -5931,7 +5932,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 4, y: 3, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &204184765
 PrefabInstance:
@@ -7375,7 +7376,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 4, y: 3, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &236879425
 PrefabInstance:
@@ -17618,7 +17619,7 @@ PrefabInstance:
     - target: {fileID: 528670830394039160, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1513889932}
     - target: {fileID: 588583815525460808, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: rb
       value: 
@@ -17639,6 +17640,22 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1513889932}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HourPeak.Addition.PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1314506125187578484, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerController
       value: 
@@ -17647,6 +17664,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1513889929}
+    - target: {fileID: 2225645972757172861, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1513889932}
     - target: {fileID: 2765683170109115865, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelNumber
       value: 12
@@ -17674,9 +17695,13 @@ PrefabInstance:
     - target: {fileID: 3083084253811079165, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1513889932}
     - target: {fileID: 3150226253692973688, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 1513889929}
+    - target: {fileID: 3327144589328605238, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1513889929}
     - target: {fileID: 3460399121704988072, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
@@ -17703,6 +17728,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1513889929}
+    - target: {fileID: 5831109031509269462, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1513889932}
     - target: {fileID: 6323624345635879403, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelNumber
       value: 12
@@ -33693,7 +33722,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 4, y: 3, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &1113579176
 PrefabInstance:
@@ -42298,9 +42327,6 @@ PrefabInstance:
       addedObject: {fileID: 1381808098}
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 694e1313d3f12e84aaf959ff6960ddaf, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1381808097}
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: 694e1313d3f12e84aaf959ff6960ddaf, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1381808095}
   m_SourcePrefab: {fileID: 100100000, guid: 694e1313d3f12e84aaf959ff6960ddaf, type: 3}
 --- !u!4 &1381808093 stripped
@@ -42334,33 +42360,6 @@ MonoBehaviour:
   sceneAgainLevel: Morning 12.1
   scenePartMainMenu: LevelMenu
   sceneMainMenu: StartMenu
---- !u!54 &1381808097
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1381808094}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1381808098
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42380,8 +42379,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 14.6, y: 27.7, z: 37.6}
-  m_Center: {x: -0.0000023841862, y: 12.400922, z: 0.12454012}
+  m_Size: {x: 14.080504, y: 24.97844, z: 16.361403}
+  m_Center: {x: -0.013488788, y: 13.076841, z: 0.01889931}
 --- !u!1001 &1382581239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46191,6 +46190,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 122471033898397753, guid: d74c5cb6d07f5b742855bcdb155a719b, type: 3}
   m_PrefabInstance: {fileID: 1513889927}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1513889932 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5043770071314779605, guid: d74c5cb6d07f5b742855bcdb155a719b, type: 3}
+  m_PrefabInstance: {fileID: 1513889927}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29b7e780b580c446901520e7ab87419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Addition.PlayerController
 --- !u!54 &1513889933 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 755118808960902977, guid: d74c5cb6d07f5b742855bcdb155a719b, type: 3}

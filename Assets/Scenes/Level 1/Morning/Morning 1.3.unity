@@ -314,7 +314,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1 &14331027
 GameObject:
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &15029050
 PrefabInstance:
@@ -505,9 +505,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: cc0981408e7c8db4f9f80a57938fd5e3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 25308864}
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: cc0981408e7c8db4f9f80a57938fd5e3, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 25308863}
     - targetCorrespondingSourceObject: {fileID: 100000, guid: cc0981408e7c8db4f9f80a57938fd5e3, type: 3}
       insertIndex: -1
@@ -563,35 +560,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 15.01, y: 19.9, z: 19.3}
-  m_Center: {x: 0.000024316923, y: 8.464441, z: 0.4756322}
---- !u!54 &25308864
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25308860}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Size: {x: 15.01, y: 18.018715, z: 12.5694275}
+  m_Center: {x: 0.00002433328, y: 8.464442, z: -0.44354534}
 --- !u!1001 &28572128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1942,7 +1912,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 4, y: 3, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!4 &107461326
 Transform:
@@ -2925,7 +2895,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &194759389
 PrefabInstance:
@@ -5505,6 +5475,22 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 2112720261}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2112720261}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HourPeak.Addition.PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1314506125187578484, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerController
       value: 
@@ -5513,6 +5499,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 2112720260}
+    - target: {fileID: 2225645972757172861, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 2112720261}
     - target: {fileID: 2765683170109115865, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelSceneName
       value: Morning 1.1
@@ -5545,6 +5535,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3327144589328605238, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 2112720260}
     - target: {fileID: 3460399121704988072, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelSceneName
       value: Morning 1.1
@@ -5601,6 +5595,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 2112720260}
+    - target: {fileID: 5831109031509269462, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 2112720261}
     - target: {fileID: 6306875431320392792, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6818,6 +6816,7 @@ MonoBehaviour:
   mapButton: {fileID: 396715726}
   mapPanel: {fileID: 396715728}
   closeButton: {fileID: 396715725}
+  cameraHeight: 50
   autoCreateUI: 1
   startWithMapOpen: 0
   closeMapOnMove: 1
@@ -10685,7 +10684,7 @@ Transform:
   m_GameObject: {fileID: 755360765}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7078878, z: -0, w: 0.70632493}
-  m_LocalPosition: {x: -267.61, y: 60, z: -118.54587}
+  m_LocalPosition: {x: -267.61, y: 60, z: -117.53}
   m_LocalScale: {x: 0.68518, y: 1, z: 0.5815469}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10706,7 +10705,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!4 &757679102 stripped
 Transform:
@@ -11160,7 +11159,7 @@ Transform:
   m_GameObject: {fileID: 788124658}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7089845, z: -0, w: 0.7052242}
-  m_LocalPosition: {x: -289.3, y: 59.987686, z: -103.21}
+  m_LocalPosition: {x: -289.3, y: 59.987686, z: -103.93}
   m_LocalScale: {x: 0.65096, y: 1, z: 0.5553225}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11181,7 +11180,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!4 &791236855 stripped
 Transform:
@@ -11539,7 +11538,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &839254764
 PrefabInstance:
@@ -23413,7 +23412,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &1682501208
 PrefabInstance:
@@ -23647,7 +23646,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -753.75574, y: 502.5, z: -146.79}
-  m_LocalScale: {x: 3.1501737, y: 1, z: 25.603819}
+  m_LocalScale: {x: 2.382164, y: 1, z: 25.603819}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 232584953}
@@ -23952,7 +23951,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!4 &1715230289 stripped
 Transform:
@@ -27777,8 +27776,8 @@ Transform:
   m_GameObject: {fileID: 1901809987}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -655.89, y: 502.43, z: -145.80469}
-  m_LocalScale: {x: 3.037259, y: 1, z: 8.343286}
+  m_LocalPosition: {x: -655.89, y: 502.43, z: -146.71}
+  m_LocalScale: {x: 2.382164, y: 1, z: 8.343286}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 232584953}
@@ -31050,6 +31049,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3603594257891463556, guid: 4a90e7bd24b02a24da0e07aacefe2bca, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: edc8d9b98e780994580b7b67151e13e4, type: 2}
     - target: {fileID: 5821269763478994655, guid: 4a90e7bd24b02a24da0e07aacefe2bca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 73.42236

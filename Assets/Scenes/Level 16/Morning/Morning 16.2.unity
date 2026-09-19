@@ -63976,6 +63976,7 @@ MonoBehaviour:
   mapButton: {fileID: 1553108185}
   mapPanel: {fileID: 1553108187}
   closeButton: {fileID: 1553108184}
+  cameraHeight: 50
   autoCreateUI: 1
   startWithMapOpen: 0
   closeMapOnMove: 1
@@ -78981,6 +78982,22 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1436404658}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1436404658}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HourPeak.Addition.PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1314506125187578484, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerController
       value: 
@@ -78997,6 +79014,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1436404657}
+    - target: {fileID: 2225645972757172861, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1436404658}
     - target: {fileID: 2765683170109115865, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelNumber
       value: 16
@@ -79027,6 +79048,10 @@ PrefabInstance:
       objectReference: {fileID: 1436404658}
     - target: {fileID: 3150226253692973688, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 1436404657}
+    - target: {fileID: 3327144589328605238, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1436404657}
     - target: {fileID: 3460399121704988072, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
@@ -79065,6 +79090,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1436404657}
+    - target: {fileID: 5831109031509269462, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1436404658}
     - target: {fileID: 6323624345635879403, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelNumber
       value: 16
@@ -79316,17 +79345,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1553108192 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7021237178672979852, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
-  m_PrefabInstance: {fileID: 1553108183}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1553108193 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6827454477217542423, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
   m_PrefabInstance: {fileID: 1553108183}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553108192}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -91560,13 +91584,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: c3e95e72d6dba334594c3c5c37fcf18a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1787378488}
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: c3e95e72d6dba334594c3c5c37fcf18a, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1787378487}
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: c3e95e72d6dba334594c3c5c37fcf18a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1787378486}
     - targetCorrespondingSourceObject: {fileID: 100000, guid: c3e95e72d6dba334594c3c5c37fcf18a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1787378485}
@@ -91602,26 +91620,6 @@ MonoBehaviour:
   sceneAgainLevel: Morning 16.1
   scenePartMainMenu: LevelMenu
   sceneMainMenu: StartMenu
---- !u!114 &1787378486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787378484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4f5aa1fa22ddaf47a9f75e37ad4b3eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EndMenu
-  nextButton: {fileID: 1553108191}
-  againButton: {fileID: 1553108190}
-  exitButton: {fileID: 1553108189}
-  sceneNextLevel: Evening 16.2
-  sceneAgainLevel: Morning 16.1
-  sceneLevelSelection: LevelMenu
-  sceneMainMenu: StartMenu
-  timerDisplay: {fileID: 1553108192}
 --- !u!65 &1787378487
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -91641,35 +91639,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 23.752508, y: 7.5784717, z: 9.96}
-  m_Center: {x: -0.47326672, y: 3.7887332, z: 0.82636946}
---- !u!54 &1787378488
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787378484}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Size: {x: 22.997019, y: 7.724163, z: 12.165286}
+  m_Center: {x: -0.09552159, y: 4.128083, z: 0.07871916}
 --- !u!1001 &1788723041
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -22,8 +22,10 @@ public class EndManager2 : MonoBehaviour
     public TextMeshProUGUI timeText;
 
     [Header("Scene Names")]
+    public string sceneCertificate;
     public string sceneAgainLevel;      
-    public string sceneMainMenuLevel;   
+    public string scenePartMainMenu;
+    public string sceneMainMenu;
 
     void Start()
     {
@@ -108,9 +110,9 @@ public class EndManager2 : MonoBehaviour
 
     public void ExitToMenu()
     {
-        if (!string.IsNullOrEmpty(sceneMainMenuLevel))
+        if (!string.IsNullOrEmpty(sceneMainMenu))
         {
-            SceneManager.LoadScene(sceneMainMenuLevel);
+            SceneManager.LoadScene(scenePartMainMenu);
         }
     }
 

@@ -2190,7 +2190,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1 &217099469
 GameObject:
@@ -5754,7 +5754,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1 &648939352
 GameObject:
@@ -5860,7 +5860,6 @@ GameObject:
   - component: {fileID: 669598802}
   - component: {fileID: 669598805}
   - component: {fileID: 669598804}
-  - component: {fileID: 669598808}
   - component: {fileID: 669598807}
   - component: {fileID: 669598806}
   m_Layer: 0
@@ -5955,9 +5954,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Morning 1.2
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 669598808}
 --- !u!65 &669598807
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5977,35 +5973,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6, y: 2.05, z: 2.2}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0.0000009536743, y: -0.000000059604645, z: 0.0000019073486}
---- !u!54 &669598808
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 669598801}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!4 &672975573 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 3da5840b5d838524cb0128fbccf00053, type: 3}
@@ -9147,7 +9116,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1 &931486683
 GameObject:
@@ -9705,6 +9674,7 @@ PrefabInstance:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
+    - {fileID: 5855568083758907570, guid: d74c5cb6d07f5b742855bcdb155a719b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9941,7 +9911,6 @@ GameObject:
   - component: {fileID: 1046491845}
   - component: {fileID: 1046491848}
   - component: {fileID: 1046491847}
-  - component: {fileID: 1046491851}
   - component: {fileID: 1046491850}
   - component: {fileID: 1046491849}
   m_Layer: 0
@@ -10036,9 +10005,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Morning 1.2
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1046491851}
 --- !u!65 &1046491850
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10058,35 +10024,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6, y: 2.05, z: 2.2}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0.0000019073486, y: -0.000000059604645, z: 0}
---- !u!54 &1046491851
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1046491844}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!4 &1048061031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 4f32dfddb033d3e40b5841bc53cc1689, type: 3}
@@ -10610,7 +10549,6 @@ GameObject:
   - component: {fileID: 1151816165}
   - component: {fileID: 1151816168}
   - component: {fileID: 1151816167}
-  - component: {fileID: 1151816171}
   - component: {fileID: 1151816170}
   - component: {fileID: 1151816169}
   m_Layer: 0
@@ -10705,9 +10643,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Morning 1.2
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1151816171}
 --- !u!65 &1151816170
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10727,35 +10662,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6, y: 2.05, z: 2.2}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: -0.0000009536743, y: 0, z: -0.0000019073486}
---- !u!54 &1151816171
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1151816164}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1152460934
 GameObject:
   m_ObjectHideFlags: 0
@@ -11405,7 +11313,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &1242270077
 PrefabInstance:
@@ -11645,7 +11553,6 @@ GameObject:
   - component: {fileID: 1258820625}
   - component: {fileID: 1258820628}
   - component: {fileID: 1258820627}
-  - component: {fileID: 1258820631}
   - component: {fileID: 1258820630}
   - component: {fileID: 1258820629}
   m_Layer: 0
@@ -11740,9 +11647,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Morning 1.2
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1258820631}
 --- !u!65 &1258820630
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11762,35 +11666,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6, y: 2.05, z: 2.2}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0, y: -0.000000059604645, z: 0}
---- !u!54 &1258820631
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258820624}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!4 &1259354712 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 4f32dfddb033d3e40b5841bc53cc1689, type: 3}
@@ -13822,7 +13699,6 @@ GameObject:
   - component: {fileID: 1471659139}
   - component: {fileID: 1471659142}
   - component: {fileID: 1471659141}
-  - component: {fileID: 1471659145}
   - component: {fileID: 1471659144}
   - component: {fileID: 1471659143}
   m_Layer: 0
@@ -13917,9 +13793,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Morning 1.2
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1471659145}
 --- !u!65 &1471659144
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13939,35 +13812,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6, y: 2.05, z: 2.2}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0.0000019073486, y: 0.00000023841858, z: -0.00000047683716}
---- !u!54 &1471659145
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1471659138}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1484772932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14548,7 +14394,7 @@ PrefabInstance:
       objectReference: {fileID: 980813627}
     - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -18886,7 +18732,6 @@ GameObject:
   - component: {fileID: 1805051829}
   - component: {fileID: 1805051832}
   - component: {fileID: 1805051831}
-  - component: {fileID: 1805051835}
   - component: {fileID: 1805051834}
   - component: {fileID: 1805051833}
   m_Layer: 0
@@ -18981,9 +18826,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Morning 1.2
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1805051835}
 --- !u!65 &1805051834
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19003,35 +18845,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6, y: 2.05, z: 2.2}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0, y: 0.00000017881393, z: 0}
---- !u!54 &1805051835
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805051828}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1849873028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19284,7 +19099,6 @@ GameObject:
   - component: {fileID: 1852636431}
   - component: {fileID: 1852636434}
   - component: {fileID: 1852636433}
-  - component: {fileID: 1852636437}
   - component: {fileID: 1852636436}
   - component: {fileID: 1852636435}
   m_Layer: 0
@@ -19379,9 +19193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Morning 1.2
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1852636437}
 --- !u!65 &1852636436
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19401,35 +19212,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6, y: 2.05, z: 2.2}
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
   m_Center: {x: 0, y: 0.00000017881393, z: 0}
---- !u!54 &1852636437
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852636430}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1857489893
 GameObject:
   m_ObjectHideFlags: 0
@@ -22043,7 +21827,6 @@ GameObject:
   - component: {fileID: 2118364959}
   - component: {fileID: 2118364962}
   - component: {fileID: 2118364961}
-  - component: {fileID: 2118364965}
   - component: {fileID: 2118364964}
   - component: {fileID: 2118364963}
   m_Layer: 0
@@ -22138,9 +21921,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Morning 1.2
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 2118364965}
 --- !u!65 &2118364964
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22160,35 +21940,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6, y: 2.05, z: 2.2}
-  m_Center: {x: -0.0000009536743, y: -0.00000011920929, z: 0.00000047683716}
---- !u!54 &2118364965
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118364958}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Size: {x: 1.1071438, y: 1.1888605, z: 1.24475}
+  m_Center: {x: -0.008206856, y: 0.021324685, z: 0.10768843}
 --- !u!1001 &2118858402
 PrefabInstance:
   m_ObjectHideFlags: 0

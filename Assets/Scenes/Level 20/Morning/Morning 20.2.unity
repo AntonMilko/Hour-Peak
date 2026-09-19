@@ -5526,6 +5526,7 @@ MonoBehaviour:
   mapButton: {fileID: 1387119573}
   mapPanel: {fileID: 1387119579}
   closeButton: {fileID: 1387119572}
+  cameraHeight: 50
   autoCreateUI: 1
   startWithMapOpen: 0
   closeMapOnMove: 1
@@ -20287,6 +20288,22 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1199804028}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1199804028}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HourPeak.Addition.PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1314506125187578484, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerController
       value: 
@@ -20295,6 +20312,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1199804026}
+    - target: {fileID: 2225645972757172861, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1199804028}
     - target: {fileID: 2765683170109115865, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentPartIndex
       value: 1
@@ -20331,6 +20352,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1199804026}
+    - target: {fileID: 3327144589328605238, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1199804026}
     - target: {fileID: 3460399121704988072, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelSceneName
       value: Morning 11.1
@@ -20355,6 +20380,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1199804026}
+    - target: {fileID: 5831109031509269462, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1199804028}
     - target: {fileID: 6323624345635879403, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentPartIndex
       value: 2
@@ -20552,11 +20581,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1387119578 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7021237178672979852, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
-  m_PrefabInstance: {fileID: 1387119571}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1387119579 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5879014597393440310, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
@@ -20572,7 +20596,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6827454477217542423, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
   m_PrefabInstance: {fileID: 1387119571}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387119578}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -29777,13 +29801,7 @@ PrefabInstance:
       addedObject: {fileID: 1997298415}
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 35807f23e7899e541b60b2fb2bbb51ef, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1997298414}
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: 35807f23e7899e541b60b2fb2bbb51ef, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1997298416}
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: 35807f23e7899e541b60b2fb2bbb51ef, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1997298417}
   m_SourcePrefab: {fileID: 100100000, guid: 35807f23e7899e541b60b2fb2bbb51ef, type: 3}
 --- !u!4 &1997298412 stripped
 Transform:
@@ -29795,26 +29813,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 35807f23e7899e541b60b2fb2bbb51ef, type: 3}
   m_PrefabInstance: {fileID: 1997298411}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1997298414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1997298413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4f5aa1fa22ddaf47a9f75e37ad4b3eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EndMenu
-  nextButton: {fileID: 1387119577}
-  againButton: {fileID: 1387119576}
-  exitButton: {fileID: 1387119575}
-  sceneNextLevel: Evening 11.2
-  sceneAgainLevel: Morning 11.1
-  sceneLevelSelection: LevelMenu
-  sceneMainMenu: StartMenu
-  timerDisplay: {fileID: 1387119578}
 --- !u!114 &1997298415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29855,35 +29853,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 18.6, y: 20.2, z: 17.53}
-  m_Center: {x: 0.000039577484, y: 8.464441, z: 0.4756665}
---- !u!54 &1997298417
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1997298413}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Size: {x: 14.152009, y: 18.11403, z: 12.40498}
+  m_Center: {x: 0.052971244, y: 8.536445, z: -0.45178142}
 --- !u!1001 &2003182555
 PrefabInstance:
   m_ObjectHideFlags: 0

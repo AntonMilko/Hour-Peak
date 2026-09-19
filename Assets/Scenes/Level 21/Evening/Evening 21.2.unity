@@ -341,7 +341,6 @@ GameObject:
   - component: {fileID: 63049472}
   - component: {fileID: 63049471}
   - component: {fileID: 63049470}
-  - component: {fileID: 63049474}
   - component: {fileID: 63049473}
   m_Layer: 0
   m_Name: Metro (6)
@@ -384,8 +383,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.97, y: 1.91, z: 1.66}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.1403767, y: 1.1465532, z: 1.0855266}
+  m_Center: {x: 0.001816466, y: 0.04129662, z: 0.0023342557}
 --- !u!23 &63049471
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -456,36 +455,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 21.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 63049474}
---- !u!54 &63049474
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63049468}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &69832303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1150,7 +1119,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &175922868
 PrefabInstance:
@@ -1863,7 +1832,6 @@ GameObject:
   - component: {fileID: 262040157}
   - component: {fileID: 262040156}
   - component: {fileID: 262040155}
-  - component: {fileID: 262040160}
   - component: {fileID: 262040159}
   m_Layer: 0
   m_Name: Metro
@@ -1891,7 +1859,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.97, y: 1.91, z: 1.66}
+  m_Size: {x: 1.1403767, y: 1.1465532, z: 1.0855266}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &262040156
 MeshRenderer:
@@ -1978,36 +1946,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 21.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 262040160}
---- !u!54 &262040160
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 262040154}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &269997477
 GameObject:
   m_ObjectHideFlags: 0
@@ -6949,7 +6887,6 @@ GameObject:
   - component: {fileID: 709633306}
   - component: {fileID: 709633305}
   - component: {fileID: 709633304}
-  - component: {fileID: 709633308}
   - component: {fileID: 709633307}
   m_Layer: 0
   m_Name: Metro (5)
@@ -6992,7 +6929,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.97, y: 1.91, z: 1.66}
+  m_Size: {x: 1.1403767, y: 1.1465532, z: 1.0855266}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &709633305
 MeshRenderer:
@@ -7064,36 +7001,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 21.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 709633308}
---- !u!54 &709633308
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 709633302}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &712959526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7939,7 +7846,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &815656859
 PrefabInstance:
@@ -9743,7 +9650,6 @@ GameObject:
   - component: {fileID: 963279697}
   - component: {fileID: 963279696}
   - component: {fileID: 963279695}
-  - component: {fileID: 963279699}
   - component: {fileID: 963279698}
   m_Layer: 0
   m_Name: Metro (2)
@@ -9786,7 +9692,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.97, y: 1.91, z: 1.66}
+  m_Size: {x: 1.1403767, y: 1.1465532, z: 1.0855266}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &963279696
 MeshRenderer:
@@ -9858,36 +9764,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 21.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 963279699}
---- !u!54 &963279699
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963279693}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &984224009
 GameObject:
   m_ObjectHideFlags: 0
@@ -9935,7 +9811,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &986553896
 PrefabInstance:
@@ -10396,7 +10272,6 @@ GameObject:
   - component: {fileID: 1033465096}
   - component: {fileID: 1033465095}
   - component: {fileID: 1033465094}
-  - component: {fileID: 1033465098}
   - component: {fileID: 1033465097}
   m_Layer: 0
   m_Name: Metro (7)
@@ -10439,7 +10314,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.97, y: 1.91, z: 1.66}
+  m_Size: {x: 1.1403767, y: 1.1465532, z: 1.0855266}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1033465095
 MeshRenderer:
@@ -10511,36 +10386,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 21.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1033465098}
---- !u!54 &1033465098
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1033465092}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1053216572
 GameObject:
   m_ObjectHideFlags: 0
@@ -12512,7 +12357,6 @@ GameObject:
   - component: {fileID: 1332596781}
   - component: {fileID: 1332596780}
   - component: {fileID: 1332596779}
-  - component: {fileID: 1332596783}
   - component: {fileID: 1332596782}
   m_Layer: 0
   m_Name: Metro (3)
@@ -12555,7 +12399,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.97, y: 1.91, z: 1.66}
+  m_Size: {x: 1.1403767, y: 1.1465532, z: 1.0855266}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1332596780
 MeshRenderer:
@@ -12627,36 +12471,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 21.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1332596783}
---- !u!54 &1332596783
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1332596777}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1332824360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13624,7 +13438,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 6, y: 3, z: 30}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &1423701265
 PrefabInstance:
@@ -15160,7 +14974,6 @@ GameObject:
   - component: {fileID: 1622264036}
   - component: {fileID: 1622264035}
   - component: {fileID: 1622264034}
-  - component: {fileID: 1622264039}
   - component: {fileID: 1622264038}
   m_Layer: 0
   m_Name: Metro (1)
@@ -15188,7 +15001,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.97, y: 1.91, z: 1.66}
+  m_Size: {x: 1.1403767, y: 1.1465532, z: 1.0855266}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1622264035
 MeshRenderer:
@@ -15275,36 +15088,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 21.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1622264039}
---- !u!54 &1622264039
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622264033}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1651120545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16543,7 +16326,6 @@ GameObject:
   - component: {fileID: 1757063344}
   - component: {fileID: 1757063343}
   - component: {fileID: 1757063342}
-  - component: {fileID: 1757063346}
   - component: {fileID: 1757063345}
   m_Layer: 0
   m_Name: Metro (4)
@@ -16586,7 +16368,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.97, y: 1.91, z: 1.66}
+  m_Size: {x: 1.1403767, y: 1.1465532, z: 1.0855266}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1757063343
 MeshRenderer:
@@ -16658,36 +16440,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 21.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 1757063346}
---- !u!54 &1757063346
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1757063340}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1785311108
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17424,6 +17176,7 @@ MonoBehaviour:
   mapButton: {fileID: 1884276889}
   mapPanel: {fileID: 1884276891}
   closeButton: {fileID: 1884276888}
+  cameraHeight: 50
   autoCreateUI: 1
   startWithMapOpen: 0
   closeMapOnMove: 1
@@ -17462,6 +17215,22 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1405003448}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1405003448}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HourPeak.Addition.PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1314506125187578484, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerController
       value: 
@@ -17470,6 +17239,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1405003447}
+    - target: {fileID: 2225645972757172861, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1405003448}
     - target: {fileID: 2765683170109115865, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentPartIndex
       value: 2
@@ -17490,6 +17263,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1405003447}
+    - target: {fileID: 3327144589328605238, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1405003447}
     - target: {fileID: 3460399121704988072, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelSceneName
       value: Morning 8.1
@@ -17502,6 +17279,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1405003447}
+    - target: {fileID: 5831109031509269462, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1405003448}
     - target: {fileID: 6323624345635879403, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentPartIndex
       value: 1
@@ -20425,6 +20206,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7884522935224941652, guid: 96c6ea28630ee3443acb7140b7d9c14b, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 17323031ab4fe414c99d13720b9ba524, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

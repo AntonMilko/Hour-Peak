@@ -38923,6 +38923,22 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1935641033}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1935641033}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HourPeak.Addition.PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1314506125187578484, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerController
       value: 
@@ -38931,6 +38947,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1935641034}
+    - target: {fileID: 2225645972757172861, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1935641033}
     - target: {fileID: 2765683170109115865, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelNumber
       value: 15
@@ -38947,6 +38967,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1935641034}
+    - target: {fileID: 3327144589328605238, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1935641034}
     - target: {fileID: 3460399121704988072, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelSceneName
       value: Morning 15.1
@@ -38959,6 +38983,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1935641034}
+    - target: {fileID: 5831109031509269462, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1935641033}
     - target: {fileID: 6323624345635879403, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentLevelNumber
       value: 15
@@ -39119,7 +39147,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6827454477217542423, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
   m_PrefabInstance: {fileID: 1129709068}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1159154853}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -40184,11 +40212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1159154853 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7021237178672979852, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
-  m_PrefabInstance: {fileID: 1129709068}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1160330345
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56994,13 +57017,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 6a690a756dbd65141a09a3ad7fafacc4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1621556346}
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: 6a690a756dbd65141a09a3ad7fafacc4, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1621556345}
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: 6a690a756dbd65141a09a3ad7fafacc4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1621556344}
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 6a690a756dbd65141a09a3ad7fafacc4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1621556343}
@@ -57036,26 +57053,6 @@ MonoBehaviour:
   sceneAgainLevel: Morning 15.1
   scenePartMainMenu: LevelMenu
   sceneMainMenu: StartMenu
---- !u!114 &1621556344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621556342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4f5aa1fa22ddaf47a9f75e37ad4b3eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EndMenu
-  nextButton: {fileID: 1159154852}
-  againButton: {fileID: 1159154851}
-  exitButton: {fileID: 1159154850}
-  sceneNextLevel: Evening 15.2
-  sceneAgainLevel: Morning 15.1
-  sceneLevelSelection: LevelMenu
-  sceneMainMenu: StartMenu
-  timerDisplay: {fileID: 1159154853}
 --- !u!65 &1621556345
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57075,35 +57072,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 17.3, y: 22.8, z: 17.9}
-  m_Center: {x: 0.000009059906, y: 8.464442, z: 0.47564363}
---- !u!54 &1621556346
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621556342}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Size: {x: 13.362277, y: 17.560492, z: 12.185992}
+  m_Center: {x: 0.030619007, y: 8.322991, z: -0.995493}
 --- !u!1001 &1623213561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76726,6 +76696,7 @@ MonoBehaviour:
   mapButton: {fileID: 1129709073}
   mapPanel: {fileID: 1129709072}
   closeButton: {fileID: 1129709069}
+  cameraHeight: 50
   autoCreateUI: 1
   startWithMapOpen: 0
   closeMapOnMove: 1

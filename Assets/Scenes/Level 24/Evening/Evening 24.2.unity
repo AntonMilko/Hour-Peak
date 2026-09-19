@@ -933,6 +933,7 @@ MonoBehaviour:
   mapButton: {fileID: 603485783}
   mapPanel: {fileID: 603485781}
   closeButton: {fileID: 603485780}
+  cameraHeight: 50
   autoCreateUI: 1
   startWithMapOpen: 0
   closeMapOnMove: 1
@@ -5086,7 +5087,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 4, y: 3, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &178331369
 PrefabInstance:
@@ -6227,7 +6228,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 4, y: 3, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &204184765
 PrefabInstance:
@@ -6537,6 +6538,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 31bbda51eeab02f44a8e92a7da2f5ff8, type: 3}
   m_PrefabInstance: {fileID: 208749969}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &210362640 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5043770071314779605, guid: d74c5cb6d07f5b742855bcdb155a719b, type: 3}
+  m_PrefabInstance: {fileID: 1513889927}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29b7e780b580c446901520e7ab87419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Addition.PlayerController
 --- !u!1001 &211069785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8023,7 +8035,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 4, y: 3, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &236879425
 PrefabInstance:
@@ -19164,7 +19176,7 @@ PrefabInstance:
     - target: {fileID: 528670830394039160, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 210362640}
     - target: {fileID: 588583815525460808, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: rb
       value: 
@@ -19185,6 +19197,22 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 210362640}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HourPeak.Addition.PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 885140279218384377, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1314506125187578484, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerController
       value: 
@@ -19193,6 +19221,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1513889928}
+    - target: {fileID: 2225645972757172861, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 210362640}
     - target: {fileID: 2765683170109115865, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentPartIndex
       value: 2
@@ -19224,9 +19256,13 @@ PrefabInstance:
     - target: {fileID: 3083084253811079165, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 210362640}
     - target: {fileID: 3150226253692973688, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 1513889928}
+    - target: {fileID: 3327144589328605238, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1513889928}
     - target: {fileID: 3460399121704988072, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
@@ -19253,6 +19289,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1513889928}
+    - target: {fileID: 5831109031509269462, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 210362640}
     - target: {fileID: 6323624345635879403, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: currentPartIndex
       value: 1
@@ -29103,7 +29143,6 @@ GameObject:
   - component: {fileID: 943522798}
   - component: {fileID: 943522797}
   - component: {fileID: 943522796}
-  - component: {fileID: 943522800}
   - component: {fileID: 943522799}
   m_Layer: 0
   m_Name: Platform 2
@@ -29146,8 +29185,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.02, y: 17.06, z: 1.59}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.0104496, y: 1.4834534, z: 1.1753844}
+  m_Center: {x: -0.00076595263, y: 0.6619436, z: 0.002719141}
 --- !u!23 &943522797
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29218,36 +29257,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetroTransitionController
   targetSceneName: Evening 24.1
-  MessageOnEnter: Enter!
-  DelayBeforeTransition: 0
-  Rigidbody: {fileID: 943522800}
---- !u!54 &943522800
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943522794}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &947107463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34408,7 +34417,7 @@ MonoBehaviour:
   m_SerializedVersion: 0
   m_Size: {x: 4, y: 3, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 1
+  m_Area: 0
   m_AffectedAgents: ffffffff
 --- !u!1001 &1113579176
 PrefabInstance:
@@ -65701,7 +65710,7 @@ PrefabInstance:
     - target: {fileID: 630704852250857415, guid: 3b7a3118c3c29b048bf9fee97fc2fcf3, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 9b266a13dd4b47e47b8a24ed58b2f580, type: 2}
+      objectReference: {fileID: 23800000, guid: e156f5eef1e8c93448b89547fcf32697, type: 2}
     - target: {fileID: 4528592068083104401, guid: 3b7a3118c3c29b048bf9fee97fc2fcf3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1485.0071

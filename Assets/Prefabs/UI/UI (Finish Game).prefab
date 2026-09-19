@@ -312,7 +312,6 @@ GameObject:
   - component: {fileID: 4873702108513885145}
   - component: {fileID: 5527929600078895349}
   - component: {fileID: 691230420518467743}
-  - component: {fileID: 5550048246845473884}
   m_Layer: 0
   m_Name: JumpButton (Finish Game)
   m_TagString: Untagged
@@ -423,24 +422,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5527929600078895349}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &5550048246845473884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 779555857225777410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4127abcbaedf27c4f8308e1f99abc3a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Jump
-  playerController: {fileID: 0}
-  jumpButton: {fileID: 691230420518467743}
-  fallSpeed: 10
-  jumpButtonReference: {fileID: 691230420518467743}
-  holdJumpMultiplier: 1.5
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &831479431202055061
 GameObject:
   m_ObjectHideFlags: 0
@@ -3164,7 +3158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.TheAppearanceOfStars
   starObject: {fileID: 3348086940677802939}
   starCanvasGroup: {fileID: 3305796513537502782}
-  continuationManager: {fileID: 0}
+  continuationManager: {fileID: 3029113390662344136}
   starObject1: {fileID: 1759540018658289726}
   starObject2: {fileID: 2883662538849359571}
   starObject3: {fileID: 9148157927148898775}
@@ -3553,7 +3547,7 @@ MonoBehaviour:
   exitToMainMenuButton: {fileID: 0}
   exitToMainMenuButtonFail: {fileID: 0}
   pauseMenuExitButton: {fileID: 813996221763893129}
-  gameContinuationManager: {fileID: 0}
+  gameContinuationManager: {fileID: 3029113390662344136}
   mainMenuScene: StartMenu
   partMainMenuScene: LevelMenu
   autoSaveOnExit: 1
@@ -4732,6 +4726,85 @@ Transform:
   - {fileID: 8186527148089187636}
   m_Father: {fileID: 1901525757349469148}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5258778693754956994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 418042461007776751}
+  - component: {fileID: 6519395938139596193}
+  - component: {fileID: 7977516013186552774}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &418042461007776751
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5258778693754956994}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1054.3624, y: -491.67157, z: 0}
+  m_LocalScale: {x: 0.6828772, y: 0.6828772, z: 0.6828772}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7737893856684722922}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6519395938139596193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5258778693754956994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!114 &7977516013186552774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5258778693754956994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.UI.InputSystemUIInputModule
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: 3710738434707379630, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 2064916234097673511, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: -1967631576421560919, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 8056856818456041789, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: 3279352641294131588, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: 3837173908680883260, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
 --- !u!1 &5352826762840266236
 GameObject:
   m_ObjectHideFlags: 0
@@ -6048,6 +6121,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 418042461007776751}
   - {fileID: 9006116596060240076}
   - {fileID: 509535418231674894}
   - {fileID: 1901525757349469148}
@@ -6713,7 +6787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraSwitcher
   playerCamera: {fileID: 0}
   mapCamera: {fileID: 4684395336573652070}
-  mapButton: {fileID: 0}
+  mapButton: {fileID: 4575670422150554498}
   mapPanel: {fileID: 5879014597393440310}
   closeButton: {fileID: 7741491863416743067}
   cameraHeight: 50
@@ -7029,7 +7103,7 @@ MonoBehaviour:
   timerText: {fileID: 6827454477217542423}
   timerDisplayPanel: {fileID: 7021237178672979852}
   endMenu: {fileID: 8620224143024557693}
-  indicatorSuccessForEndMenu: {fileID: 0}
+  indicatorSuccessForEndMenu: {fileID: 1959295861001747754}
   safeColor: {r: 1, g: 1, b: 1, a: 1}
   warningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   dangerColor: {r: 1, g: 0, b: 0, a: 1}
@@ -7902,7 +7976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.TheDisappearanceOfStars
   starObject: {fileID: 8041075824975654761}
   starCanvasGroup: {fileID: 9162971648657677889}
-  continuationManager: {fileID: 0}
+  continuationManager: {fileID: 3029113390662344136}
   starObject1: {fileID: 2472288385726530158}
   starObject2: {fileID: 4459224598010090041}
   starObject3: {fileID: 1437174980174127052}
@@ -8788,7 +8862,6 @@ MonoBehaviour:
   verticalSensitivity: 120
   minLookAngle: -45
   maxLookAngle: 45
-  rotationSpeed: 5
   virtualJoystick: {fileID: 7753427547918987110}
 --- !u!114 &7753427547918987110 stripped
 MonoBehaviour:
