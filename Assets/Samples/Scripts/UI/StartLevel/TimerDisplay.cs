@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
-
 using HourPeak.Settings;
 using HourPeak.Samples.Runtime;
 
@@ -17,9 +15,7 @@ public class TimerDisplay : MonoBehaviour
     /// <summary>
     /// Формат времени M:SS:ms (минуты:секунды:миллисекунды).
     /// </summary>
-    private const string TIME_FORMAT = "{0:0}:{1:00}:{2:000}";
-
-    public static TimerDisplay Instance { get; private set; }
+    private const string TIME_FORMAT = "{0:0}:{1:00}.{2:000}";
 
     #endregion
 
@@ -27,7 +23,7 @@ public class TimerDisplay : MonoBehaviour
 
     [Header("UI References")]
     [Tooltip("Текст таймера (TextMeshPro)")]
-    [SerializeField] private TMP_Text timerText;
+    [SerializeField] private TextMeshProUGUI timerText;
     
     [Tooltip("Панель таймера (для скрытия при конце времени)")]
     [SerializeField] private GameObject timerDisplayPanel;
@@ -58,14 +54,11 @@ public class TimerDisplay : MonoBehaviour
     [Tooltip("Текущий уровень сложности")]
     [SerializeField] private DifficultyLevel currentDifficulty = DifficultyLevel.Beginner;
     
+    [Tooltip("Начинать таймер сразу")]
+    [SerializeField] private bool startAutomatically = true;
+    
     [Tooltip("Закрывать панель таймера и показывать EndMenu когда время вышло")]
     [SerializeField] private bool showEndMenuOnTimeUp = true;
-
-    [Tooltip("Таймер запущен при запуске игры")]
-    [SerializeField] private bool isTimerRunning = true;
-
-    [Tooltip("Таймер включён (можно отключить для окончания уровня)")]
-    [SerializeField] private bool timerOn = true;
 
     #endregion
 
@@ -90,7 +83,6 @@ public class TimerDisplay : MonoBehaviour
     /// Флаг: вышло ли время.
     /// </summary>
     private bool isTimeUp;
-    private string sceneBuildIndex;
 
     #endregion
 
@@ -116,69 +108,92 @@ public class TimerDisplay : MonoBehaviour
     /// </summary>
     public bool IsTimeUp => isTimeUp;
 
-    /// <summary>
-    /// Таймер включён (только для чтения).
-    /// </summary>
-    public bool TimerOn { get => timerOn; set => timerOn = value; }
-
-    /// <summary>
-    /// Флаг: таймер запущен (только для чтения).
-    /// </summary>
-    public bool IsTimerRunning { get => isTimerRunning; set => isTimerRunning = value; }
-
     #endregion
 
     #region Unity Lifecycle
 
-    private void Start()
-    {
-        timerOn = true;
-    }
-
     private void Awake()
     {
-        if(remainingTime > 0f)
+        // Кэшируем ссылки
+        if (timerDisplayPanel == null)
         {
-            remainingTime -= Time.deltaTime;
-            updateTimer(remainingTime);
-        }
-        else
-        {
-            remainingTime = 0f;
-            timerOn = false;
+            timerDisplayPanel = gameObject;
         }
     }
 
-    private void updateTimer(float timer)
+    private void Start()
     {
-        timer += 1;
-        float min = Mathf.FloorToInt(timer / 60);
-        float sec = Mathf.FloorToInt(timer % 60);
-        float ms = Mathf.FloorToInt((timer % 1) * 1000);
+        if (startAutomatically)
+        {
+            StartTimer();
+        }
+    }
 
-        timerText.text = string.Format("{0:0}:{1:00}:{2:000}", min, sec, ms);
+    private void Update()
+    {
+        if (!isRunning || isTimeUp)
+            return;
+
+        UpdateTimer();
     }
 
     #endregion
 
     #region Public Methods
 
-    public void startTimer()
+    /// <summary>
+    /// Запускает таймер с текущим уровнем сложности.
+    /// </summary>
+    public void StartTimer()
     {
-        timerOn = true;
+        // Получаем настройки времени для текущего уровня сложности
         LoadDifficultySettings();
+        
+        remainingTime = 0;
+        isRunning = true;
+        isTimeUp = false;
+        
+        // Показываем таймер, скрываем EndMenu
+        if (timerDisplayPanel != null)
+            timerDisplayPanel.SetActive(true);
+        
+        if (endMenu != null)
+            endMenu.SetActive(false);
+        
+        UpdateDisplay();
+        
+        Debug.Log($"⏱️ Таймер запущен: {FormatTime(0)} ({GetDifficultyName()})");
     }
 
-    public void stopTimer()
+    /// <summary>
+    /// Останавливает таймер.
+    /// </summary>
+    public void StopTimer()
     {
-        timerOn = false;
-        LoadDifficultySettings();
+        isRunning = false;
+        Debug.Log("⏸️ Таймер остановлен");
     }
 
-    public void nextScene()
+    /// <summary>
+    /// Возобновляет таймер.
+    /// </summary>
+    public void ResumeTimer()
     {
-        SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
-        LoadDifficultySettings();
+        if (!isTimeUp)
+        {
+            isRunning = true;
+            Debug.Log("▶️ Таймер возобновлён");
+        }
+    }
+
+    /// <summary>
+    /// Сбрасывает таймер и запускает заново.
+    /// </summary>
+    public void ResetTimer()
+    {
+        isRunning = false;
+        isTimeUp = false;
+        StartTimer();
     }
 
     /// <summary>
@@ -187,7 +202,7 @@ public class TimerDisplay : MonoBehaviour
     public void SetDifficulty(DifficultyLevel difficulty)
     {
         currentDifficulty = difficulty;
-        stopTimer();
+        ResetTimer();
     }
 
     /// <summary>
