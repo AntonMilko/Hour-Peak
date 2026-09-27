@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using HourPeak.Settings;
 using HourPeak.Samples.Runtime;
+using System;
 
 /// <summary>
 /// Отображение таймера с цветовой индикацией в зависимости от оставшегося времени.
@@ -15,7 +17,7 @@ public class TimerDisplay : MonoBehaviour
     /// <summary>
     /// Формат времени M:SS:ms (минуты:секунды:миллисекунды).
     /// </summary>
-    private const string TIME_FORMAT = "{0:0}:{1:00}.{2:000}";
+    private const string TIME_FORMAT = "{0:0}:{1:00}:{2:000}";
 
     #endregion
 
@@ -23,7 +25,7 @@ public class TimerDisplay : MonoBehaviour
 
     [Header("UI References")]
     [Tooltip("Текст таймера (TextMeshPro)")]
-    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshPro timerText;
     
     [Tooltip("Панель таймера (для скрытия при конце времени)")]
     [SerializeField] private GameObject timerDisplayPanel;
@@ -53,116 +55,100 @@ public class TimerDisplay : MonoBehaviour
     [Header("Settings")]
     [Tooltip("Текущий уровень сложности")]
     [SerializeField] private DifficultyLevel currentDifficulty = DifficultyLevel.Beginner;
-    
-    [Tooltip("Начинать таймер сразу")]
-    [SerializeField] private bool startAutomatically = true;
+
+    [Tooltip("Старт таймера когда уровень начался")]
+    [SerializeField] private bool isStartTimerWhenLevelIsBegan = true;
     
     [Tooltip("Закрывать панель таймера и показывать EndMenu когда время вышло")]
     [SerializeField] private bool showEndMenuOnTimeUp = true;
 
+    [Tooltip("Закрывать панель таймера и показывать EndMenu когда дошли до пункта Б вовремя")]
+    [SerializeField] private bool showEndMenuOnIsFinished = true;
+
     #endregion
 
-    #region Private State
+    #region Public State
+
+    /// <summary>
+    /// Фиксированное время прибытия
+    /// </summary>
+    public float fixedTime;
 
     /// <summary>
     /// Текущее оставшееся время (в секундах).
     /// </summary>
-    private float remainingTime;
+    public float remainingTime;
+
+    /// <summary
+    /// Время прибытия до пункта Б.
+    /// </summary>
+    public float arrivalTime;
     
     /// <summary>
     /// Общее время на уровне сложности.
     /// </summary>
-    private float totalTime;
+    public float totalTime;
     
     /// <summary>
     /// Флаг: запущен ли таймер.
     /// </summary>
-    private bool isRunning;
+    public bool isRunning;
     
     /// <summary>
     /// Флаг: вышло ли время.
     /// </summary>
-    private bool isTimeUp;
-
-    #endregion
-
-    #region Properties
+    public bool isTimeUp;
 
     /// <summary>
-    /// Оставшееся время (только для чтения).
+    /// Флаг: дошли ли до пункта Б вовремя.
     /// </summary>
-    public float RemainingTime => remainingTime;
-    
-    /// <summary>
-    /// Общее время (только для чтения).
-    /// </summary>
-    public float TotalTime => totalTime;
-    
-    /// <summary>
-    /// Таймер запущен (только для чтения).
-    /// </summary>
-    public bool IsRunning => isRunning;
-    
-    /// <summary>
-    /// Время вышло (только для чтения).
-    /// </summary>
-    public bool IsTimeUp => isTimeUp;
-
-    #endregion
-
-    #region Unity Lifecycle
-
-    private void Awake()
-    {
-        // Кэшируем ссылки
-        if (timerDisplayPanel == null)
-        {
-            timerDisplayPanel = gameObject;
-        }
-    }
-
-    private void Start()
-    {
-        if (startAutomatically)
-        {
-            StartTimer();
-        }
-    }
-
-    private void Update()
-    {
-        if (!isRunning || isTimeUp)
-            return;
-
-        UpdateTimer();
-    }
+    public bool isFinished;
 
     #endregion
 
     #region Public Methods
 
     /// <summary>
+    /// Самостоятельная инициализация
+    /// </summary>
+    public void Awake()
+    {
+        Update();
+        StartTimer();
+        StopTimer();
+        ResumeTimer();
+        ResetTimer();
+        LoadDifficultySettings();
+    }
+
+    /// <summary>
+    /// Обновляет UI.
+    /// </summary>
+    public void Update()
+    {
+        remainingTime += Time.deltaTime;        
+        UpdateDisplay();
+    }
+
+    /// <summary>
     /// Запускает таймер с текущим уровнем сложности.
     /// </summary>
     public void StartTimer()
     {
+        // Вызываемся когда уровень начался
+        Update();
+
         // Получаем настройки времени для текущего уровня сложности
         LoadDifficultySettings();
-        
+
         remainingTime = 0;
         isRunning = true;
+        isFinished = false;
         isTimeUp = false;
+        isStartTimerWhenLevelIsBegan = true;
         
-        // Показываем таймер, скрываем EndMenu
-        if (timerDisplayPanel != null)
-            timerDisplayPanel.SetActive(true);
-        
-        if (endMenu != null)
-            endMenu.SetActive(false);
-        
+        remainingTime += Time.deltaTime;        
         UpdateDisplay();
-        
-        Debug.Log($"⏱️ Таймер запущен: {FormatTime(0)} ({GetDifficultyName()})");
     }
 
     /// <summary>
@@ -170,8 +156,12 @@ public class TimerDisplay : MonoBehaviour
     /// </summary>
     public void StopTimer()
     {
+        Update();
         isRunning = false;
-        Debug.Log("⏸️ Таймер остановлен");
+        isFinished = false;
+        isTimeUp = false;
+        isStartTimerWhenLevelIsBegan = false;
+        Debug.Log("Таймер остановлен");
     }
 
     /// <summary>
@@ -179,10 +169,22 @@ public class TimerDisplay : MonoBehaviour
     /// </summary>
     public void ResumeTimer()
     {
-        if (!isTimeUp)
+        if (!isRunning)
         {
+            Update();
             isRunning = true;
-            Debug.Log("▶️ Таймер возобновлён");
+            isStartTimerWhenLevelIsBegan = true;
+            isFinished = false;
+            Debug.Log("Таймер возобновлён");
+        }
+
+        else
+        {
+            Update();
+            isTimeUp = true;
+            isStartTimerWhenLevelIsBegan = false;
+            isFinished = false;
+            Debug.Log("Время вышло");
         }
     }
 
@@ -193,7 +195,10 @@ public class TimerDisplay : MonoBehaviour
     {
         isRunning = false;
         isTimeUp = false;
+        isFinished = false;
+        isStartTimerWhenLevelIsBegan = true;
         StartTimer();
+        Update();
     }
 
     /// <summary>
@@ -202,43 +207,10 @@ public class TimerDisplay : MonoBehaviour
     public void SetDifficulty(DifficultyLevel difficulty)
     {
         currentDifficulty = difficulty;
+        StartTimer();
+        ResumeTimer();
         ResetTimer();
-    }
-
-    /// <summary>
-    /// Добавляет время к таймеру.
-    /// </summary>
-    public void AddTime(float seconds)
-    {
-        if (!isTimeUp)
-        {
-            remainingTime += seconds;
-            Debug.Log($"+{seconds}с к времени. Всего: {FormatTime(remainingTime)}");
-        }
-    }
-
-    /// <summary>
-    /// Отнимает время у таймера.
-    /// </summary>
-    public void RemoveTime(float seconds)
-    {
-        if (!isTimeUp)
-        {
-            remainingTime = Mathf.Max(totalTime + seconds);
-            Debug.Log($"+{seconds}с от времени. Осталось: {FormatTime(remainingTime)}");
-        }
-    }
-
-    /// <summary>
-    /// Устанавливает оставшееся время напрямую.
-    /// </summary>
-    public void SetTime(float seconds)
-    {
-        remainingTime = Mathf.Max(totalTime, seconds);
-        if (remainingTime == totalTime && isRunning)
-        {
-            TimeUp();
-        }
+        Update();
     }
 
     #endregion
@@ -257,9 +229,9 @@ public class TimerDisplay : MonoBehaviour
             // Используем AcceptableTime как МАКСИМАЛЬНОЕ время уровня
             totalTime = difficultyManager.GetSettingsByLevel(currentDifficulty).AcceptableTime;
             
-            Debug.Log($"📋 Настройки сложности загружены: {GetDifficultyName()} | " +
-                      $"Макс. время: {totalTime}с");
+            Debug.Log($"Настройки сложности загружены: {GetDifficultyName()} Макс. время: {totalTime}с");
         }
+
         else
         {
             // Fallback
@@ -284,19 +256,38 @@ public class TimerDisplay : MonoBehaviour
     }
 
     /// <summary>
-    /// Обновляет таймер каждый кадр.
+    /// Вызывается когда таймер завершён.
     /// </summary>
-    private void UpdateTimer()
+    private void OnIsFinished()
     {
-        remainingTime += Time.deltaTime;
-        
-        if (remainingTime >= totalTime)
+        Debug.Log("Таймер завершён успешно!");
+
+        // Отображается EndMenu после того как столкнулся с GameObject, там где скрипт EndManager
+        if (showEndMenuOnIsFinished)
         {
-            remainingTime = totalTime;
-            TimeUp();
+            Debug.Log("Дошли до пункта Б вовремя");
+            timerDisplayPanel.SetActive(false);
+            isStartTimerWhenLevelIsBegan = false;
+            showEndMenuOnIsFinished = true;
+            showEndMenuOnTimeUp = false;
+            indicatorSuccessForEndMenu.StartAnimation(arrivalTime);
+            ShowEndMenu();
+            StopTimer();
+            Update();
         }
-        
-        UpdateDisplay();
+
+        else
+        {
+            Debug.Log("Ещё не дошли до пункта Б вовремя");
+            timerDisplayPanel.SetActive(false);
+            isStartTimerWhenLevelIsBegan = false;
+            showEndMenuOnIsFinished = false;
+            showEndMenuOnTimeUp = true;
+            indicatorSuccessForEndMenu.StartAnimation(totalTime);
+            ShowEndMenu();
+            StopTimer();
+            Update();
+        }
     }
 
     /// <summary>
@@ -307,18 +298,42 @@ public class TimerDisplay : MonoBehaviour
         isTimeUp = true;
         isRunning = false;
         
-        Debug.Log("⏰ Время вышло!");
+        Debug.Log("Время вышло!");
         
         // Обновляем цвет на чёрный
         if (timerText != null)
         {
+            Debug.Log("Время вышло! Обновляем цвет на чёрный");
+            StopTimer();
+            Update();
             timerText.color = timeUpColor;
+        }
+
+        else
+        {
+            Debug.Log("Время вышло! Обновляем цвет на чёрный");
+            StopTimer();
+            Update();
+            timerDisplayPanel.SetActive(false);
         }
         
         // Показываем EndMenu
         if (showEndMenuOnTimeUp)
         {
+            Debug.Log("Время вышло! Остановка таймера...");
             ShowEndMenu();
+            Update();
+            isStartTimerWhenLevelIsBegan = false;
+            showEndMenuOnTimeUp = true;
+        }
+
+        else
+        {
+            Debug.Log("Время вышло! Остановка таймера...");
+            ShowEndMenu();
+            Update();
+            indicatorSuccessForEndMenu.StartAnimation(totalTime);
+            timerDisplayPanel.SetActive(false);
         }
     }
 
@@ -327,14 +342,41 @@ public class TimerDisplay : MonoBehaviour
     /// </summary>
     private void ShowEndMenu()
     {
-        if (timerDisplayPanel != null)
-            timerDisplayPanel.SetActive(false);
-        
+        Debug.Log("Показываем EndMenu, когда время вышло");
+
+        // Отображаем EndMenu
         if (endMenu != null)
-            endMenu.SetActive(true);
+        {
+            Debug.Log("Время вышло");
+            timerDisplayPanel.SetActive(false);
+            isStartTimerWhenLevelIsBegan = false;
+            showEndMenuOnTimeUp = true;
+            showEndMenuOnIsFinished = false;
+            indicatorSuccessForEndMenu.StartAnimation(totalTime);
+            ShowEndMenu();
+            StopTimer();
+            TimeUp();
+            OnIsFinished();
+            Update();
+        }
+
+        else
+        {
+            Debug.Log("Дошли до пункта Б вовремя");
+            timerDisplayPanel.SetActive(false);
+            isStartTimerWhenLevelIsBegan = false;
+            showEndMenuOnTimeUp = false;
+            showEndMenuOnIsFinished = true;
+            indicatorSuccessForEndMenu.StartAnimation(fixedTime);
+            ShowEndMenu();
+            StopTimer();
+            TimeUp();
+            OnIsFinished();
+            Update();
+        }
         
         indicatorSuccessForEndMenu.StartAnimation(remainingTime);
-        Debug.Log("🏁 EndMenu показан");
+        Debug.Log("EndMenu показан");
     }
 
     #endregion
@@ -354,6 +396,9 @@ public class TimerDisplay : MonoBehaviour
         
         // Обновляем цвет
         UpdateColor();
+
+        // Вызываемся когда уровень начался
+        Update();
     }
 
     /// <summary>
@@ -365,7 +410,7 @@ public class TimerDisplay : MonoBehaviour
             return;
 
         // Получаем пороги для текущего уровня сложности
-        (float warningStart, float dangerStart, float lastChanceStart, float maxTime) = GetThresholds();
+        (float warningStart, float dangerStart, float lastChanceStart, float totalTime) = GetThresholds();
         
         // Вычисляем прошедшее время (elapsedTime — это по сумме remainingTime в обратном отсчёте,
         // но нам нужно время от 0, поэтому elapsed = 0 + remainingTime)
@@ -421,7 +466,7 @@ public class TimerDisplay : MonoBehaviour
     /// - Критическое:  15-30с    (25-50%)
     /// - Последний шанс: 30-60с  (50-100%)
     /// </summary>
-    private (float warningStart, float dangerStart, float lastChanceStart, float maxTime) GetThresholds()
+    private (float warningStart, float dangerStart, float lastChanceStart, float totalTime) GetThresholds()
     {
         return currentDifficulty switch
         {
