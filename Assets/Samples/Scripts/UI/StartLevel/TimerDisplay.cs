@@ -27,9 +27,6 @@ public class TimerDisplay : MonoBehaviour
     [Tooltip("Текст таймера (TextMeshPro)")]
     [SerializeField] private TMP_Text timerText;
     
-    [Tooltip("Панель таймера (для скрытия при конце времени)")]
-    [SerializeField] private GameObject timerDisplayPanel;
-    
     [Tooltip("Меню конца игры (показывается когда время вышло)")]
     [SerializeField] private GameObject endMenu;
 
@@ -58,37 +55,22 @@ public class TimerDisplay : MonoBehaviour
 
     #endregion
 
-    #region Public State
+    #region Private State
 
     /// <summary>
     /// Текущее оставшееся время (в секундах).
     /// </summary>
-    public float remainingTime;
-
-    /// <summary
-    /// Время прибытия до пункта Б.
-    /// </summary>
-    public float arrivalTime;
+    private float remainingTime;
     
     /// <summary>
     /// Общее время на уровне сложности.
     /// </summary>
-    public float totalTime;
+    private float totalTime;
     
     /// <summary>
     /// Флаг: запущен ли таймер.
     /// </summary>
-    public bool isRunning;
-    
-    /// <summary>
-    /// Флаг: вышло ли время.
-    /// </summary>
-    public bool isTimeUp;
-
-    /// <summary>
-    /// Флаг: дошли ли до пункта Б вовремя.
-    /// </summary>
-    public bool isFinished;
+    private bool isRunning;
 
     #endregion
 
@@ -100,11 +82,7 @@ public class TimerDisplay : MonoBehaviour
     public void Awake()
     {
         LoadDifficultySettings();
-
-        remainingTime = 0;
         isRunning = true;
-        isFinished = false;
-        isTimeUp = false;
     }
 
     /// <summary>
@@ -168,9 +146,6 @@ public class TimerDisplay : MonoBehaviour
     /// </summary>
     public void OnIsFinished()
     {
-        isFinished = true;
-        isRunning = false;
-
         Debug.Log("Дошли до пункта Б вовремя");
         ShowEndMenu();
     }
@@ -180,9 +155,6 @@ public class TimerDisplay : MonoBehaviour
     /// </summary>
     private void TimeUp()
     {
-        isTimeUp = true;
-        isRunning = false;
-
         Debug.Log("Время вышло! Обновляем цвет на чёрный");
         ShowEndMenu();
     }

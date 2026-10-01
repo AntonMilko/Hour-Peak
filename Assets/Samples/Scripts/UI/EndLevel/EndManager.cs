@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,132 +5,137 @@ using TMPro;
 
 public class EndManager : MonoBehaviour
 {
+    #region Fields
+
     [Header("UI References")]
-    public GameObject endMenuPanel;
-    public Button nextButton;
-    public Button againButton;
-    public Button exitButton;
+    [Tooltip("Панель окончания игры.")]
+    [SerializeField] private GameObject endMenuPanel;
+
+    [Header("Button References")]
+    [Tooltip("Кнопка перехода к следующему уровню.")]
+    [SerializeField] private Button nextButton;
+
+    [Tooltip("Кнопка повтора уровня.")]
+    [SerializeField] private Button againButton;
+
+    [Tooltip("Кнопка выхода в главное меню.")]
+    [SerializeField] private Button exitButton;
     
     [Header("Time Evaluation")]
-    public TextMeshProUGUI timeText;
+    [Tooltip("Текст отображающий текущее время и ограничение.")]
+    [SerializeField] private TextMeshProUGUI timeText;
     
     [Header("Scene Names")]
-    public string sceneNextLevel;
-    public string sceneAgainLevel;
-    public string scenePartMainMenu;
-    public string sceneMainMenu;
+    [Tooltip("Имя сцены, куда переходят на следующий уровень.")]
+    [SerializeField] private string sceneNextLevel;
 
-    private float elapsedTime;
-    private float timeLimit;
-    private float timeRatio;
+    [Tooltip("Имя сцены, куда начинают текущий уровень с 0.")]
+    [SerializeField] private string sceneAgainLevel;
 
-    private enum EvaluationResult
-    {
-        Perfect,
-        Super,
-        Excellent,
-        OnTime,
-        Failed
-    }
+    [Tooltip("Имя части сцены, куда переходят в главное меню.")]
+    [SerializeField] private string scenePartMainMenu;
+
+    [Tooltip("Имя сцены, куда переходят в главное меню.")]
+    [SerializeField] private string sceneMainMenu;
+
+    #endregion
+
+    #region Unity Lifecycle
 
     private void Awake()
     {
+        if (endMenuPanel != null) 
+            endMenuPanel.SetActive(false);
+        
+        if (nextButton != null) 
+            nextButton.gameObject.SetActive(false);
+            
+        if (againButton != null) 
+            againButton.gameObject.SetActive(false);
+            
+        if (exitButton != null) 
+            exitButton.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        ShowFinalSuccessScreen();
+        SetupNextButtonLogic();
+        RestartLevel();
+        ExitToMenu();
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    /// <summary>
+    /// ВЫЗЫВАТЬ ПРИ ПОБЕДЕ НА ФИНАЛЬНОМ УРОВНЕ.
+    /// ПРАВИЛО: Горит ТОЛЬКО nextButton. Все остальные скрыты.
+    /// ВЫЗВАТЬ ПРИ ПРОВАЛЕ НА ФИНАЛЬНОМ УРОВНЕ.
+    /// ПРАВИЛО: Скрыт только nextButton. Все остальные горят.
+    /// </summary>
+    public void ShowFinalSuccessScreen()
+    {
+        Debug.Log("ФИНАЛ ПРОЙДЕН УСПЕШНО!");
+
         if (nextButton != null)
-            nextButton.onClick.AddListener(NextLevel);
-        
-        if (againButton != null)
-            againButton.onClick.AddListener(AgainLevel);
-        
-        if (exitButton != null)
-            exitButton.onClick.AddListener(ExitLevel);
-    }
-
-    public void Initialize(float passedTime, float limit)
-    {
-        elapsedTime = passedTime;
-        timeLimit = limit;
-        timeRatio = limit > 0 ? elapsedTime / limit : 1f;
-        
-        EvaluateAndShowResult();
-    }
-
-    private void EvaluateAndShowResult()
-    {
-        Color color;
-
-        if (timeRatio <= 0.25f)
         {
-            color = new Color(0f, 0.8f, 0f);
-        }
-        else if (timeRatio <= 0.5f)
-        {
-            color = new Color(0f, 0.5f, 1f);
-        }
-        else if (timeRatio <= 0.75f)
-        {
-            color = new Color(1f, 0.8f, 0f);
-        }
-        else if (timeRatio <= 1f)
-        {
-            color = new Color(1f, 0.3f, 0f);
+            nextButton.gameObject.SetActive(true);
+            nextButton.onClick.RemoveAllListeners();
+            againButton.gameObject.SetActive(false);
+            exitButton.gameObject.SetActive(false);
+            Debug.LogError("Пройдена последняя часть последнего уровня!");
         }
         else
         {
-            color = Color.black;
+            nextButton.gameObject.SetActive(false);
+            againButton.gameObject.SetActive(true);
+            againButton.onClick.RemoveAllListeners();
+            exitButton.gameObject.SetActive(true);
+            exitButton.onClick.RemoveAllListeners();
+            Debug.LogError("Не пройдена последняя часть последнего уровня!");
         }
 
-        if (timeText != null)
-        {
-            timeText.text = $"Время: {FormatTime(elapsedTime)} / {FormatTime(timeLimit)}";
-            timeText.color = color;
-        }
+        if (timeText != null) 
+            timeText.text = "Время: Отлично! Уровень пройден.";
 
-        if (endMenuPanel != null)
+        if (endMenuPanel != null) 
             endMenuPanel.SetActive(true);
-        
-        Time.timeScale = 0f;
     }
 
-    public void NextLevel()
+    /// <summary>
+    /// Переход на следующую часть текущего (следующего) уровня на случай успешного прохождения текущей части текущего уровня.
+    /// </summary>
+    public void SetupNextButtonLogic()
     {
         if (!string.IsNullOrEmpty(sceneNextLevel))
+        {
             SceneManager.LoadScene(sceneNextLevel);
+        }
     }
 
-    public void AgainLevel()
+    /// <summary>
+    /// Старт текущей части текущего уровня с 0 на случай неуспешного прохождения.
+    /// </summary>
+    public void RestartLevel()
     {
         if (!string.IsNullOrEmpty(sceneAgainLevel))
+        {
             SceneManager.LoadScene(sceneAgainLevel);
+        }
     }
 
-    public void ExitLevel()
+    /// <summary>
+    /// Выход в главное меню.
+    /// </summary>
+    public void ExitToMenu()
     {
         if (!string.IsNullOrEmpty(sceneMainMenu))
-            SceneManager.LoadScene(sceneMainMenu);
-    }
-
-    public void OpenPartMainMenu()
-    {
-        if (!string.IsNullOrEmpty(scenePartMainMenu))
+        {
             SceneManager.LoadScene(scenePartMainMenu);
+        }
     }
 
-    private static string FormatTime(float time)
-    {
-        int minutes = Mathf.FloorToInt(time / 60);
-        int seconds = Mathf.FloorToInt(time % 60);
-        return $"{minutes}:{seconds:00}";
-    }
-
-    private void OnDestroy()
-    {
-        if (nextButton != null)
-            nextButton.onClick.RemoveListener(NextLevel);
-        
-        if (againButton != null)
-            againButton.onClick.RemoveListener(AgainLevel);
-        
-        if (exitButton != null)
-            exitButton.onClick.RemoveListener(ExitLevel);
-    }
+    #endregion
 }
