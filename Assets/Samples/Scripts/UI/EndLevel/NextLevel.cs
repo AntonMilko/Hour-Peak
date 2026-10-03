@@ -57,23 +57,34 @@ namespace HourPeak.Samples.Runtime
         [Tooltip("Собранное количество звёзд")]
         [SerializeField] private int starsCollected = 0;
 
+        [Header("Continue Manager")]
+        [Tooltip("Менеджер настроек сложности")]
+        [SerializeField] private Continue continueManager;
+
         #endregion
 
         #region Private State
 
+        private float remainingTime;
+        private float levelTimeLimit;
         private bool isLevelActive;
         private bool levelSuccess;
         private bool reachedDestination;
         private string currentSaveFilePath;
+        private SettingDifficulty difficultyManager;
 
         #endregion
 
         #region Unity Lifecycle
 
+
         private void Awake()
         {
+            difficultyManager = SettingDifficulty.Instance;
+
             OnNextLevelButtonClick();
             OnNextPart();
+            LoadDifficultySettings();
             LoadNextPart();
             GetLastUnlockedLevel();
             LoadNextLevel();
@@ -98,6 +109,7 @@ namespace HourPeak.Samples.Runtime
 
         public void StartLevel()
         {
+            LoadDifficultySettings();
             InitializeLevelState();
         }
 
@@ -170,6 +182,34 @@ namespace HourPeak.Samples.Runtime
 
         #region Timer Logic
 
+        private void LoadDifficultySettings()
+        {
+            DifficultyLevel currentDifficulty = DifficultyLevel.Beginner;
+            
+            if (continueManager != null)
+            {
+                currentDifficulty = continueManager.CurrentDifficulty;
+            }
+            
+            if (difficultyManager != null)
+            {
+                DifficultySettings settings = difficultyManager.GetSettingsByLevel(currentDifficulty);
+                levelTimeLimit = settings.TimeLimit;
+            }
+            else
+            {
+                levelTimeLimit = currentDifficulty switch
+                {
+                    DifficultyLevel.Beginner => 240f,
+                    DifficultyLevel.Professional => 120f,
+                    DifficultyLevel.Extremal => 60f,
+                    _ => 240f
+                };
+                
+                Debug.LogWarning($"⚠️ SettingDifficulty не найден! Используем: {levelTimeLimit}с");
+            }
+        }
+
         private void LoadNextPart()
         {
             // Проверяем, последний ли это уровень и часть
@@ -207,6 +247,7 @@ namespace HourPeak.Samples.Runtime
 
         private void InitializeLevelState()
         {
+            remainingTime = levelTimeLimit;
             isLevelActive = true;
             levelSuccess = false;
             reachedDestination = false;
@@ -262,6 +303,7 @@ namespace HourPeak.Samples.Runtime
                 currentLevel = currentLevelNumber,
                 currentPart = currentPartIndex,
                 starsCollected = starsCollected,
+                remainingTime = remainingTime,
                 saveTimestamp = DateTime.Now.ToString("yyyy.MM.dd_HH:mm:ss")
             };
 
