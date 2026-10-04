@@ -1,11 +1,13 @@
 using System;
 using System.IO;
+using HourPeak.Samples.Runtime;
+using HourPeak.Settings;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using HourPeak.Samples.Runtime;
+using Object = System.Object;
 
-namespace HourPeak
+namespace Samples.Scripts.UI.StartMenu
 {
     /// <summary>
     /// Управление кнопкой выхода в главное меню.
@@ -19,8 +21,6 @@ namespace HourPeak
         private const string SAVE_FOLDER_NAME = "GameSaves";
         private const string SAVE_FILE_EXTENSION = ".json";
         private const string GLOBAL_SAVE_FILENAME = "global_save.json";
-        private const string START_MENU_SCENE_NAME = "StartMenu";
-        private const string LEVEL_MENU_SCENE_NAME = "LevelMenu";
 
         #endregion
 
@@ -31,41 +31,36 @@ namespace HourPeak
         [SerializeField] private Button exitToMainMenuButton;
 
         [Tooltip("Кнопка неуспешного прохождения уровня")]
-        [SerializeField] private Button exitToMainMenuButtonFail;
+        [SerializeField] private Button exitToMainMenuButtonFailed;
 
         [Tooltip("Кнопка выхода из PauseMenu (показывается во время прохождения)")]
         [SerializeField] private Button pauseMenuExitButton;
 
-        [Header("Game Continue Manager")]
-        [Tooltip("Менеджер, который хранит настройки сложности")]
-        [SerializeField] private Continue gameContinuationManager;
-
         [Header("Settings")]
         [Tooltip("Сцена главного меню")]
-        [SerializeField] private string mainMenuScene = "StartMenu";
+        [SerializeField] private string startMenuSceneName = "StartMenu";
 
         [Tooltip("Сцена выбора уровней")]
-        [SerializeField] private string partMainMenuScene = "LevelMenu";
+        [SerializeField] private string chapterStartMenuSceneName = "LevelMenu";
 
-        [Tooltip("Автосохранение при выходе")]
+        [Header("Options")]
+        [Tooltip("Переходить в главное меню (StartMenu)")]
+        [SerializeField] private bool moveToMainMenu = false;
+
+        [Tooltip("Оставаться в меню главы (LevelMenu)")]
+        [SerializeField] private bool stayInChapterMainMenu = true;
+
+        [Tooltip("Автосохранять текущее прохождение перед выходом?")]
         [SerializeField] private bool autoSaveOnExit = true;
-
-        [Tooltip("Переходить в StartMenu")]
-        [SerializeField] private bool goToStartMenu = false;
-
-        [Tooltip("Оставаться в LevelMenu после StartMenu")]
-        [SerializeField] private bool stayInLevelMenu = true;
-
-        [Tooltip("Текущий уровень (номер)")]
-        [SerializeField] private int currentLevelNumber = 1;
-
-        [Tooltip("Текущая часть уровня (1, 2)")]
-        [SerializeField] private int currentPartIndex = 1;
 
         #endregion
 
         #region Private State
 
+        private Object exitLevel;
+        private string currentSaveFilePath;
+        private string currentStartMenuSceneName;
+        private string currentChapterStartMenuSceneName;
         private bool _levelPassedSuccessfully = false;
         private bool _levelFinished = false;
 
@@ -73,9 +68,6 @@ namespace HourPeak
 
         #region Properties
 
-        /// <summary>
-        /// Прошёл ли уровень успешно.
-        /// </summary>
         public bool LevelPassedSuccessfully
         {
             get => _levelPassedSuccessfully;
@@ -87,9 +79,6 @@ namespace HourPeak
             }
         }
 
-        /// <summary>
-        /// Завершён ли уровень (успешно или нет).
-        /// </summary>
         public bool LevelFinished
         {
             get => _levelFinished;
@@ -106,12 +95,25 @@ namespace HourPeak
 
         private void Awake()
         {
+            OnExitToMainMenu();
+            OnLevelPassedSuccessfully();
             SetupButtons();
+            CleanupButtons();
+            OnLevelPassedUnsuccessfully();
+            
+            exitLevel = Object();
         }
 
-        private void OnDestroy()
+        private void Update()
         {
-            CleanupButtons();
+            if (_levelFinished)
+                return;
+
+            OnExitToMainMenu();
+            OnLevelInProgress();
+            LoadPreviousProgress();
+            SaveRetryProgress();
+            CreateSaveFilePath();
         }
 
         #endregion
@@ -120,24 +122,24 @@ namespace HourPeak
 
         /// <summary>
         /// Вызывается при успешном прохождении уровня.
-        /// Скрывает кнопку выхода из EndMenu.
         /// </summary>
         public void OnLevelPassedSuccessfully()
         {
             LevelPassedSuccessfully = true;
-            if (exitToMainMenuButton != null) exitToMainMenuButton.gameObject.SetActive(false);
-            if (pauseMenuExitButton != null) pauseMenuExitButton.gameObject.SetActive(false);
-            Debug.Log("✅ Уровень пройден успешно — кнопка выхода скрыта");
+            if (exitToMainMenuButton != null) exitToMainMenuButton.gameObject.SetActive(true);
+            if (exitToMainMenuButtonFailed != null) exitToMainMenuButtonFailed.gameObject.SetActive(false);
+            if (pauseMenuExitButton != null) pauseMenuExitButton.gameObject.SetActive(true);
+            Debug.Log("✅ Уровень пройден успешно — кнопка выхода показана");
         }
 
         /// <summary>
         /// Вызывается при неуспешном прохождении уровня.
-        /// Показывает кнопку выхода из EndMenu.
         /// </summary>
         public void OnLevelPassedUnsuccessfully()
         {
             _levelPassedSuccessfully = false;
-            if (exitToMainMenuButtonFail != null) exitToMainMenuButtonFail.gameObject.SetActive(true);
+            if (exitToMainMenuButton != null) exitToMainMenuButton.gameObject.SetActive(false);
+            if (exitToMainMenuButtonFailed != null) exitToMainMenuButtonFailed.gameObject.SetActive(true);
             if (pauseMenuExitButton != null) pauseMenuExitButton.gameObject.SetActive(true);
             LevelFinished = true;
             Debug.Log("❌ Уровень пройден неуспешно — кнопка выхода показана");
@@ -145,110 +147,170 @@ namespace HourPeak
 
         /// <summary>
         /// Вызывается когда уровень ещё не завершён (например, при открытии паузы).
-        /// Показывает кнопку выхода из PauseMenu.
         /// </summary>
         public void OnLevelInProgress()
         {
-            LevelFinished = false;
+            LevelFinished = true;
             Debug.Log("⏸️ Уровень в процессе — кнопка выхода показана");
         }
 
         /// <summary>
-        /// Сбрасывает состояние (при загрузке нового уровня).
+        /// ВЫХОД В ГЛАВНОЕ МЕНЮ.
+        /// Сохраняет настройки сложности перед переходом.
         /// </summary>
-        public void ResetLevelState()
+        public void OnExitToMainMenu()
         {
-            _levelPassedSuccessfully = false;
-            LevelFinished = false;
-            Debug.Log("🔄 Состояние уровня сброшено");
-        }
+            exitLevel = Object();
+            Debug.Log("🚪 Выход в главное меню");
 
-        /// <summary>
-        /// Переход в главное меню.
-        /// </summary>
-        public void ExitToMainMenu()
-        {
-            // Автосохранение перед выходом
-            if (autoSaveOnExit && gameContinuationManager != null)
+            // 1️⃣ АВТОСОХРАНЕНИЕ ТЕКУЩЕГО ПРОХОЖДЕНИЯ
+            if (autoSaveOnExit)
             {
-                gameContinuationManager.SaveCurrentSettings();
-                Debug.Log("💾 Настройки сохранены перед выходом");
+                SaveGlobalProgress(GetCurrentPlaythrough());
+                Debug.Log("💾 Автосохранение текущего прохождения");
             }
-            
-            // Автосохранение прогресса уровня
-            SaveLevelProgressBeforeExit();
-            
-            if (goToStartMenu)
-            {
-                Debug.Log("🚪 Переход в главное меню");
-                SceneManager.LoadScene(mainMenuScene);
-            }
-            else if (stayInLevelMenu)
-            {
-                Debug.Log("🚪 Переход в меню выбора уровней");
-                SceneManager.LoadScene(partMainMenuScene);
-            }
-        }
 
-        /// <summary>
-        /// Переход в меню выбора уровней.
-        /// </summary>
-        public void ExitToLevelMenu()
-        {
-            // Автосохранение перед выходом
-            if (autoSaveOnExit && gameContinuationManager != null)
+            // 2️⃣ ВЫБОР СЦЕНЫ ДЛЯ ПЕРЕХОДА
+            if (stayInChapterMainMenu)
             {
-                gameContinuationManager.SaveCurrentSettings();
-                Debug.Log("💾 Настройки сохранены перед выходом");
+                Debug.Log("📂 Переход в меню главы (LevelMenu)");
+                SceneManager.LoadScene(chapterStartMenuSceneName);
             }
-            
-            // Автосохранение прогресса уровня
-            SaveLevelProgressBeforeExit();
-            
-            if (stayInLevelMenu)
+            else if (moveToMainMenu)
             {
-                Debug.Log("🚪 Переход в меню выбора уровней");
-                SceneManager.LoadScene(partMainMenuScene);
+                Debug.Log("📂 Переход в главное меню (StartMenu)");
+                SceneManager.LoadScene(startMenuSceneName);
             }
-            else if (goToStartMenu)
+            else
             {
-                Debug.Log("🚪 Переход в главное меню");
-                SceneManager.LoadScene(mainMenuScene);
+                // По умолчанию, если ни один флаг не установлен
+                Debug.Log("📂 Переход в меню главы по умолчанию (LevelMenu)");
+                SceneManager.LoadScene(chapterStartMenuSceneName);
             }
         }
 
-        /// <summary>
-        /// Сохраняет прогресс уровня перед выходом.
-        /// </summary>
-        private void SaveLevelProgressBeforeExit()
+        #endregion
+
+        #region Save/Load Logic
+
+        private void CreateSaveFilePath()
         {
+            string folderPath = Path.Combine(Application.persistentDataPath, SAVE_FOLDER_NAME);
+            
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+            
+            currentSaveFilePath = Path.Combine(folderPath, $"StartMenu_{currentChapterStartMenuSceneName:LevelMenu}{SAVE_FILE_EXTENSION}");
+        }
+
+        /// <summary>
+        /// Сохраняет прогресс перезапуска.
+        /// </summary>
+        public void SaveRetryProgress()
+        {
+            GameData data = new GameData
+            {
+                currentPlaythrough = GetCurrentPlaythrough(),
+                currentStartMenu = currentStartMenuSceneName,
+                currentChapterStartMenu = currentChapterStartMenuSceneName,
+                exitLevel = Object(),
+                saveTimestamp = DateTime.Now.ToString("yyyy.MM.dd_HH:mm:ss")
+            };
+
             try
             {
-                string savePath = Path.Combine(
-                    Application.persistentDataPath,
-                    "GameSaves",
-                    $"level_{currentLevelNumber:000}.json"
-                );
-                
-                var data = new GameData
-                {
-                    lastUnlockedLevel = 1,
-                    currentLevel = currentLevelNumber,
-                    currentPart = currentPartIndex,
-                    starsCollected = 0,
-                    remainingTime = 0,
-                    saveTimestamp = DateTime.Now.ToString("yyyy.MM.dd_HH:mm:ss")
-                };
-                
                 string json = JsonUtility.ToJson(data, true);
-                File.WriteAllText(savePath, json);
+                File.WriteAllText(currentSaveFilePath, json);
                 
-                Debug.Log($"💾 Автосохранение перед выходом: Уровень {currentLevelNumber} Часть {currentPartIndex}");
+                SaveGlobalProgress(data.currentPlaythrough);
+                
+                Debug.Log($"💾 Сохранение перезапуска: {currentSaveFilePath} | Выход из уровня: {exitLevel}");
             }
             catch (Exception e)
             {
-                Debug.LogError($"❌ Ошибка автосохранения: {e.Message}");
+                Debug.LogError($"❌ Ошибка сохранения: {e.Message}");
             }
+        }
+
+        private Button Object()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Загружает предыдущий прогресс.
+        /// </summary>
+        private void LoadPreviousProgress()
+        {
+            if (File.Exists(currentSaveFilePath))
+            {
+                try
+                {
+                    string json = File.ReadAllText(currentSaveFilePath);
+                    GameData data = JsonUtility.FromJson<GameData>(json);
+                    
+                    exitLevel = data.ExitLevel();
+                    Debug.Log($"💾 Загружено сохранение: Главное Меню {data.currentStartMenu} Часть Главного Меню {data.currentChapterStartMenu} | Выход из уровня: {exitLevel}");
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"❌ Ошибка загрузки: {e.Message}");
+                }
+            }
+            else
+            {
+                Debug.Log($"ℹ️ Новая игра: {currentSaveFilePath}");
+            }
+        }
+
+        /// <summary>
+        /// Сохраняет глобальный прогресс.
+        /// </summary>
+        private void SaveGlobalProgress(int currentPlaythrough)
+        {
+            string globalSavePath = Path.Combine(Application.persistentDataPath, SAVE_FOLDER_NAME, GLOBAL_SAVE_FILENAME);
+            
+            GlobalGameData data = new GlobalGameData
+            {
+                currentPlaythrough = currentPlaythrough,
+                saveTimestamp = DateTime.Now.ToString("yyyy.MM.dd_HH:mm:ss")
+            };
+
+            try
+            {
+                string json = JsonUtility.ToJson(data, true);
+                File.WriteAllText(globalSavePath, json);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"❌ Ошибка сохранения глобального прогресса: {e.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Получает последний разблокированный уровень.
+        /// </summary>
+        private int GetCurrentPlaythrough()
+        {
+            string globalSavePath = Path.Combine(Application.persistentDataPath, SAVE_FOLDER_NAME, GLOBAL_SAVE_FILENAME);
+            
+            if (File.Exists(globalSavePath))
+            {
+                try
+                {
+                    string json = File.ReadAllText(globalSavePath);
+                    GlobalGameData data = JsonUtility.FromJson<GlobalGameData>(json);
+                    return data.currentPlaythrough;
+                }
+                catch
+                {
+                    return 1;
+                }
+            }
+            
+            return 1;
         }
 
         #endregion
@@ -263,75 +325,69 @@ namespace HourPeak
                 exitToMainMenuButton.onClick.AddListener(OnLevelPassedSuccessfully);
             }
 
-            if (exitToMainMenuButtonFail != null)
+            if (exitToMainMenuButtonFailed != null)
             {
-                exitToMainMenuButtonFail.onClick.RemoveAllListeners();
-                exitToMainMenuButtonFail.onClick.AddListener(OnLevelPassedUnsuccessfully);
+                exitToMainMenuButtonFailed.onClick.RemoveAllListeners();
+                exitToMainMenuButtonFailed.onClick.AddListener(OnLevelPassedUnsuccessfully);
             }
 
             if (pauseMenuExitButton != null)
             {
                 pauseMenuExitButton.onClick.RemoveAllListeners();
-                pauseMenuExitButton.onClick.AddListener(ExitToLevelMenu);
+                pauseMenuExitButton.onClick.AddListener(OnExitToMainMenu);
             }
         }
 
         private void CleanupButtons()
         {
-            if (exitToMainMenuButton != null)
-            {
-                exitToMainMenuButton.onClick.RemoveAllListeners();
-            }
+            // Не показываем кнопку, если уровень пройден успешно
+            if (exitToMainMenuButton != null) exitToMainMenuButton.gameObject.SetActive(_levelFinished && _levelPassedSuccessfully);
 
-            if (exitToMainMenuButtonFail != null)
-            {
-                exitToMainMenuButtonFail.onClick.RemoveAllListeners();
-            }
+            if (exitToMainMenuButton != null) exitToMainMenuButton.onClick.RemoveAllListeners();
+            if (pauseMenuExitButton != null) pauseMenuExitButton.onClick.RemoveAllListeners();
+        }
 
-            if (pauseMenuExitButton != null)
+        private void UpdateExitButtonsVisibility()
+        {
+            // Показываем кнопку, если уровень НЕ пройден успешно
+            bool shouldShow = !_levelFinished || !_levelPassedSuccessfully;
+
+            if (exitToMainMenuButtonFailed != null) exitToMainMenuButtonFailed.gameObject.SetActive(shouldShow);
+            if (pauseMenuExitButton != null) pauseMenuExitButton.gameObject.SetActive(shouldShow);
+        }
+
+        #endregion
+
+        #region Data Structures
+
+        /// <summary>
+        /// Данные сохранения уровня.
+        /// </summary>
+        [Serializable]
+        public class GameData
+        {
+            public int currentPlaythrough;
+            public string saveTimestamp;
+            internal Button exitLevel;
+            internal string currentStartMenu;
+            internal string currentChapterStartMenu;
+
+            internal Button ExitLevel()
             {
-                pauseMenuExitButton.onClick.RemoveAllListeners();
+                throw new NotImplementedException();
             }
         }
 
         /// <summary>
-        /// Обновляет видимость кнопок выхода в зависимости от статуса уровня.
+        /// Глобальные данные сохранения.
         /// </summary>
-        private void UpdateExitButtonsVisibility()
+        [Serializable]
+        public class GlobalGameData
         {
-            // Кнопка выхода показывается, если:
-            // 1. Уровень ещё не завершён (во время игры)
-            // 2. Уровень завершён, но неуспешно
-            // Кнопка выхода скрывается, только если уровень пройден успешно
-            bool shouldShow = !_levelFinished || !_levelPassedSuccessfully;
-
-            if (exitToMainMenuButton != null)
-                exitToMainMenuButton.gameObject.SetActive(shouldShow);
-
-            if (exitToMainMenuButtonFail != null)
-                exitToMainMenuButtonFail.gameObject.SetActive(shouldShow);
-
-            if (pauseMenuExitButton != null)
-                pauseMenuExitButton.gameObject.SetActive(shouldShow);
+            public int currentPlaythrough;
+            public string saveTimestamp;
         }
 
         #endregion
     }
-
-    #region Data Structures
-    /// <summary>
-    /// Данные сохранения уровня.
-    /// </summary>
-    [Serializable]
-    class GameData
-    {
-        public int lastUnlockedLevel;
-        public int currentLevel;
-        public int currentPart;
-        public int starsCollected;
-        public float remainingTime;
-        public string saveTimestamp;
-    }
-
-    #endregion
 }
