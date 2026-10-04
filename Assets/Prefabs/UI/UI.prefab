@@ -1176,8 +1176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExitToMainMenu
   exitToMainMenuButton: {fileID: 8053878495123598959}
   pauseMenuExitButton: {fileID: 0}
-  gameContinuationManager: {fileID: 208393344043448923}
-  chapterStartMenuSceneName: LevelMenu
+  levelMenuSceneName: LevelMenu
   startMenuSceneName: StartMenu
   moveToMainMenu: 0
   stayInChapterMainMenu: 1
@@ -1798,18 +1797,16 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34e56796a2eb98049b5764e3fa27cec3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.Continue
-  continueLevel: 1
-  continueFromCheckpoint: 1
-  continueLevelWithSavedDifficulty: 1
+  m_EditorClassIdentifier: HourPeak.Samples.Runtime::Continue
   restoreGameTime: 1
+  restorePhysicalTime: 1
   timeScaleMultiplier: 1
   physicsSpeedMultiplier: 1
   useCustomTimer: 1
   customTimerValue: 0
   currentDifficulty: 0
   isDifficultySet: 0
-  maxCrowdCapacity: 80
+  maxCrowdCapacity: 50
   statsText: {fileID: 2428114360880024997}
 --- !u!1 &3216629457185484353
 GameObject:
@@ -2703,8 +2700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExitToMainMenu
   exitToMainMenuButton: {fileID: 0}
   pauseMenuExitButton: {fileID: 813996221763893129}
-  gameContinuationManager: {fileID: 208393344043448923}
-  chapterStartMenuSceneName: LevelMenu
+  levelMenuSceneName: LevelMenu
   startMenuSceneName: StartMenu
   moveToMainMenu: 0
   stayInChapterMainMenu: 1
@@ -4506,8 +4502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465bc1c05832dba49ab6404e4f3d2595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: HourPeak.Samples.Runtime::Retry
-  continueManager: {fileID: 0}
-  retryButton: {fileID: 0}
+  continuationManager: {fileID: 208393344043448923}
   autoSaveOnRetry: 1
   levelSceneName: 
   currentLevelNumber: 
@@ -6065,7 +6060,6 @@ GameObject:
   - component: {fileID: 3093751761473126155}
   - component: {fileID: 1142411105683192657}
   - component: {fileID: 6827454477217542423}
-  - component: {fileID: 6974577437900459199}
   m_Layer: 0
   m_Name: TimerDisplay
   m_TagString: Untagged
@@ -6192,27 +6186,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6974577437900459199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7021237178672979852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e584fe310c6bb4a43b1d889f17817a84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TimerDisplay
-  timerText: {fileID: 6827454477217542423}
-  endMenu: {fileID: 8620224143024557693}
-  indicatorSuccessForEndMenu: {fileID: 4797734851913125543}
-  safeColor: {r: 1, g: 1, b: 1, a: 1}
-  warningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  dangerColor: {r: 1, g: 0, b: 0, a: 1}
-  lastChanceColor: {r: 0.5, g: 0, b: 0, a: 1}
-  timeUpColor: {r: 0, g: 0, b: 0, a: 1}
-  currentDifficulty: 0
 --- !u!1 &7098695463181124253
 GameObject:
   m_ObjectHideFlags: 0
@@ -6680,6 +6653,8 @@ MonoBehaviour:
   currentPartIndex: 1
   currentLevelSceneName: Morning 16.1
   againLevelButton: {fileID: 1079143585592454071}
+  successPanel: {fileID: 8620224143024557693}
+  failurePanel: {fileID: 8620224143024557693}
   autoSaveOnRetry: 1
   continueManager: {fileID: 208393344043448923}
 --- !u!1 &7289148131577945103
@@ -7781,6 +7756,7 @@ GameObject:
   - component: {fileID: 3758286476193186176}
   - component: {fileID: 4129637731921213097}
   - component: {fileID: 6487281098091299656}
+  - component: {fileID: 3327144589328605238}
   m_Layer: 5
   m_Name: MapButton
   m_TagString: Untagged
@@ -7891,31 +7867,25 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4129637731921213097}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 570169299785850644}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-      - m_Target: {fileID: 5879014597393440310}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 1
+      m_Calls: []
+--- !u!114 &3327144589328605238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8319274604992381343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4b1b92be1427049b06d7f73a640d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapToggle
+  gameUI: {fileID: 570169299785850644}
+  mapUI: {fileID: 5879014597393440310}
+  mainCamera: {fileID: 0}
+  mapCamera: {fileID: 4684395336573652070}
+  mapButton: {fileID: 6487281098091299656}
+  isMapOpen: 0
 --- !u!1 &8514958230848966576
 GameObject:
   m_ObjectHideFlags: 0

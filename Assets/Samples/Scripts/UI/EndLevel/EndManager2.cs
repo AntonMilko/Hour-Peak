@@ -1,100 +1,47 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EndManager2 : MonoBehaviour
 {
-    #region fields
-
     [Header("UI References")]
-    [Tooltip("Панель окончания уровня.")]
-    [SerializeField] private GameObject endMenuPanel;
-    
-    [Header("Buttons")]
-    [Tooltip("Кнопка перехода к следующему уровню.")]
-    [SerializeField] private Button nextButton;
-
-    [Tooltip("Кнопка повтора уровня.")]
-    [SerializeField] private Button againButton;
-    
-    [Tooltip("Кнопка выхода в главное меню.")]
-    [SerializeField] private Button exitButton; 
+    public GameObject endMenuPanel;
+    public Button nextButton; 
+    public Button againButton; 
+    public Button exitButton; 
 
     [Header("Time Evaluation")]
-    [Tooltip("Текст отображающий текущее время и ограничение.")]
-    [SerializeField] private TextMeshProUGUI timeText;
+    public TextMeshProUGUI timeText;
 
     [Header("Scene Names")]
-    [Tooltip("Имя сцены, куда переходят на сертификат.")]
-    [SerializeField] private string sceneCertificate;
-    
-    [Tooltip("Имя сцены, куда начинают текущий уровень с 0.")]
-    [SerializeField] private string sceneAgainLevel;
+    public string sceneCertificate;
+    public string sceneAgainLevel;      
+    public string scenePartMainMenu;
+    public string sceneMainMenu;
 
-    [Tooltip("Имя части сцены, куда переходят в главное меню.")]    
-    [SerializeField] private string scenePartMainMenu;
-
-    [Tooltip("Имя сцены, куда переходят в главное меню.")]
-    [SerializeField] private string sceneMainMenu;
-
-    #endregion
-
-    #region Unity Lifecycle
-
-    private void Awake()
+    void Start()
     {
         if (endMenuPanel != null) 
             endMenuPanel.SetActive(false);
-        
-        if (nextButton != null) 
-            nextButton.gameObject.SetActive(false);
-            
-        if (againButton != null) 
-            againButton.gameObject.SetActive(false);
-            
-        if (exitButton != null) 
-            exitButton.gameObject.SetActive(false);
     }
-
-    private void Update()
-    {
-        ShowFinalSuccessScreen();
-        SetupNextButtonLogic();
-        RestartLevel();
-        ExitToMenu();
-    }
-
-    #endregion
-
-    #region Public Methods
 
     /// <summary>
     /// ВЫЗЫВАТЬ ПРИ ПОБЕДЕ НА ФИНАЛЬНОМ УРОВНЕ.
     /// ПРАВИЛО: Горит ТОЛЬКО nextButton. Все остальные скрыты.
-    /// ВЫЗВАТЬ ПРИ ПРОВАЛЕ НА ФИНАЛЬНОМ УРОВНЕ.
-    /// ПРАВИЛО: Скрыт только nextButton. Все остальные горят.
     /// </summary>
     public void ShowFinalSuccessScreen()
     {
-        Debug.Log("ФИНАЛ ПРОЙДЕН УСПЕШНО!");
+        Debug.Log("[END] ФИНАЛ ПРОЙДЕН!");
 
         if (nextButton != null)
         {
             nextButton.gameObject.SetActive(true);
-            nextButton.onClick.RemoveAllListeners();
-            againButton.gameObject.SetActive(false);
-            exitButton.gameObject.SetActive(false);
-            Debug.LogError("Пройдена последняя часть последнего уровня!");
+            SetupNextButtonLogic();
         }
         else
         {
-            nextButton.gameObject.SetActive(false);
-            againButton.gameObject.SetActive(true);
-            againButton.onClick.RemoveAllListeners();
-            exitButton.gameObject.SetActive(true);
-            exitButton.onClick.RemoveAllListeners();
-            Debug.LogError("Не пройдена последняя часть последнего уровня!");
+            Debug.LogError("[ERROR] Не назначена кнопка 'nextButton'!");
         }
 
         if (timeText != null) 
@@ -104,20 +51,18 @@ public class EndManager2 : MonoBehaviour
             endMenuPanel.SetActive(true);
     }
 
-    /// <summary>
-    /// Переход на сцену сертификата на случай успешного прохождения последней части последнего уровня.
-    /// </summary>
-    public void SetupNextButtonLogic()
+    private void SetupNextButtonLogic()
     {
-        if (!string.IsNullOrEmpty(sceneCertificate))
+        nextButton.onClick.RemoveAllListeners();
+        nextButton.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene(sceneCertificate);
-        }
+            Debug.Log("[TRANSITION] Переход на сертификат...");
+            
+            // ТОЛЬКО стандартная загрузка сцены. Никаких контроллеров.
+            SceneManager.LoadScene("Game completion certificate");
+        });
     }
 
-    /// <summary>
-    /// Старт последней части последнего уровня с 0 на случай неуспешного прохождения.
-    /// </summary>
     public void RestartLevel()
     {
         if (!string.IsNullOrEmpty(sceneAgainLevel))
@@ -126,9 +71,6 @@ public class EndManager2 : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Выход в главное меню.
-    /// </summary>
     public void ExitToMenu()
     {
         if (!string.IsNullOrEmpty(sceneMainMenu))
@@ -136,6 +78,4 @@ public class EndManager2 : MonoBehaviour
             SceneManager.LoadScene(scenePartMainMenu);
         }
     }
-
-    #endregion
 }
