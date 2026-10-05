@@ -1176,7 +1176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExitToMainMenu
   exitToMainMenuButton: {fileID: 8053878495123598959}
   pauseMenuExitButton: {fileID: 0}
-  gameContinuationManager: {fileID: 208393344043448923}
   chapterStartMenuSceneName: LevelMenu
   startMenuSceneName: StartMenu
   moveToMainMenu: 0
@@ -1554,9 +1553,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f2ad6c7bb731f48853f68fd34e2a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.TheAppearanceOfStars
-  starObject: {fileID: 2876438093977210663}
-  starCanvasGroup: {fileID: 555102837145756251}
-  continuationManager: {fileID: 208393344043448923}
   starObject1: {fileID: 4701946486324708498}
   starObject2: {fileID: 6918029382257986874}
   starObject3: {fileID: 4084410805458821670}
@@ -1566,23 +1562,23 @@ MonoBehaviour:
   yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   blackColor: {r: 0, g: 0, b: 0, a: 1}
   beginnerTimings:
-    allYellowTime: 0
-    star2AppearTime: 30
-    star1AppearTime: 60
-    star1AppearOnTime: 120
     allBlackTime: 240
+    star1AppearOnTime: 120
+    star1AppearTime: 60
+    star2AppearTime: 30
+    allYellowTime: 0
   professionalTimings:
-    allYellowTime: 0
-    star2AppearTime: 15
-    star1AppearTime: 30
-    star1AppearOnTime: 60
     allBlackTime: 120
-  extremalTimings:
+    star1AppearOnTime: 60
+    star1AppearTime: 30
+    star2AppearTime: 15
     allYellowTime: 0
-    star2AppearTime: 7.5
-    star1AppearTime: 15
-    star1AppearOnTime: 30
+  extremalTimings:
     allBlackTime: 60
+    star1AppearOnTime: 30
+    star1AppearTime: 15
+    star2AppearTime: 7.5
+    allYellowTime: 0
   autoStart: 1
 --- !u!1 &3033300273982286316
 GameObject:
@@ -1801,16 +1797,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.Continue
   continueLevel: 1
   continueFromCheckpoint: 1
-  continueLevelWithSavedDifficulty: 1
-  restoreGameTime: 1
-  timeScaleMultiplier: 1
-  physicsSpeedMultiplier: 1
-  useCustomTimer: 1
-  customTimerValue: 0
-  currentDifficulty: 0
-  isDifficultySet: 0
-  maxCrowdCapacity: 80
-  statsText: {fileID: 2428114360880024997}
+  continueLevelWithSavedSettings: 1
+  currentSettings: 1
 --- !u!1 &3216629457185484353
 GameObject:
   m_ObjectHideFlags: 0
@@ -2192,7 +2180,6 @@ MonoBehaviour:
   requireStarsForSuccess: 1
   requiredStars: 3
   starsCollected: 0
-  continueManager: {fileID: 208393344043448923}
 --- !u!1 &3440381435019354390
 GameObject:
   m_ObjectHideFlags: 0
@@ -2703,7 +2690,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExitToMainMenu
   exitToMainMenuButton: {fileID: 0}
   pauseMenuExitButton: {fileID: 813996221763893129}
-  gameContinuationManager: {fileID: 208393344043448923}
   chapterStartMenuSceneName: LevelMenu
   startMenuSceneName: StartMenu
   moveToMainMenu: 0
@@ -4506,7 +4492,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465bc1c05832dba49ab6404e4f3d2595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: HourPeak.Samples.Runtime::Retry
-  continueManager: {fileID: 0}
   retryButton: {fileID: 0}
   autoSaveOnRetry: 1
   levelSceneName: 
@@ -6681,7 +6666,6 @@ MonoBehaviour:
   currentLevelSceneName: Morning 16.1
   againLevelButton: {fileID: 1079143585592454071}
   autoSaveOnRetry: 1
-  continueManager: {fileID: 208393344043448923}
 --- !u!1 &7289148131577945103
 GameObject:
   m_ObjectHideFlags: 0
@@ -7976,9 +7960,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4566875d6107e3e4fb28b83369860419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.TheDisappearanceOfStars
-  starObject: {fileID: 8514958230848966576}
-  starCanvasGroup: {fileID: 1336164576192088904}
-  continuationManager: {fileID: 208393344043448923}
   starObject1: {fileID: 4439779881440324427}
   starObject2: {fileID: 8875350395298897693}
   starObject3: {fileID: 4913685882155034381}
@@ -8006,6 +7987,8 @@ MonoBehaviour:
     star1BlinkTime: 30
     allBlackTime: 60
   autoStart: 1
+  isBlinking: 1
+  blinkSpeed: 10
 --- !u!1 &8620224143024557693
 GameObject:
   m_ObjectHideFlags: 0

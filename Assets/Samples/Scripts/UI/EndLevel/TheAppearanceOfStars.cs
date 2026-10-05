@@ -12,27 +12,26 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
     [System.Serializable]
     public struct StarAppearTimings
     {
-        [Tooltip("Все 3 звезды жёлтые (0-Xс)")]
-        public float allYellowTime;
-        
-        [Tooltip("Звезда 2 появляется (Xс)")]
-        public float star2AppearTime;
+        [Tooltip("Все 3 звезды чёрные (Xс+)")]
+        public float allBlackTime;
+
+        [Tooltip("Звезда 1 появляется вовремя (Xс)")]
+        public float star1AppearOnTime;
         
         [Tooltip("Звезда 1 появляется (Xс)")]
         public float star1AppearTime;
         
-        [Tooltip("Звезда 1 появляется вовремя (Xс)")]
-        public float star1AppearOnTime;
+        [Tooltip("Звезда 2 появляется (Xс)")]
+        public float star2AppearTime;
         
-        [Tooltip("Все 3 звезды чёрные (Xс+)")]
-        public float allBlackTime;
+        [Tooltip("Все 3 звезды жёлтые (Xс-0)")]
+        public float allYellowTime;
     }
 
     #endregion
 
     public class TheAppearanceOfStars : MonoBehaviour
     {
-
         #region Fields
 
         [Header("Star Objects")]
@@ -64,31 +63,31 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
         [Header("Timing - Beginner (секунды)")]
         [SerializeField] private StarAppearTimings beginnerTimings = new StarAppearTimings
         {
-            allYellowTime = 0f,
-            star2AppearTime = 30f,
-            star1AppearTime = 60f,
+            allBlackTime = 240f,
             star1AppearOnTime = 120f,
-            allBlackTime = 240f
+            star1AppearTime = 60f,
+            star2AppearTime = 30f,
+            allYellowTime = 0f
         };
 
         [Header("Timing - Professional (секунды)")]
         [SerializeField] private StarAppearTimings professionalTimings = new StarAppearTimings
         {
-            allYellowTime = 0f,
-            star2AppearTime = 15f,
-            star1AppearTime = 30f,
+            allBlackTime = 120f,
             star1AppearOnTime = 60f,
-            allBlackTime = 120f
+            star1AppearTime = 30f,
+            star2AppearTime = 15f,
+            allYellowTime = 0f
         };
 
         [Header("Timing - Extremal (секунды)")]
         [SerializeField] private StarAppearTimings extremalTimings = new StarAppearTimings
         {
-            allYellowTime = 0f,
-            star2AppearTime = 7.5f,
-            star1AppearTime = 15f,
+            allBlackTime = 60f,
             star1AppearOnTime = 30f,
-            allBlackTime = 60f
+            star1AppearTime = 15f,
+            star2AppearTime = 7.5f,
+            allYellowTime = 0f
         };
 
         [Header("Settings")]
@@ -100,16 +99,13 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
         #region Private Methods
 
         private float currentTime = 0f;
-        private bool _isRunning = false;
         private bool _onTime = false;
-        private float allYellowTime;
-        private float star2AppearTime;
-        private float star1AppearTime;
-        private float star1AppearOnTime;
         private float allBlackTime;
+        private float star1AppearOnTime;
+        private float star1AppearTime;
+        private float star2AppearTime;
+        private float allYellowTime;
         private StarAppearTimings starAppearTimings;
-
-        public bool OnTime { get => _onTime; set => _onTime = value; }
 
         #endregion
 
@@ -118,18 +114,19 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
 
         private void Awake()
         {
-            CalculateTimingsByDifficulty(starAppearTimings);
+            CalculateTimingsByDifficulty(ref starAppearTimings);
             InitializeStars();
+            SetFinalResultTime(0f);
 
             if (autoStart)
             {
-                _isRunning = true;
+                _onTime = true;
             }
         }
 
         private void Update()
         {
-            if (!_isRunning) return;
+            if (!_onTime) return;
 
             currentTime += Time.deltaTime;
             UpdateStarsState();
@@ -139,7 +136,7 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
 
         #region Public Methods
 
-        public void CalculateTimingsByDifficulty(StarAppearTimings selectedTimings)
+        public void CalculateTimingsByDifficulty(ref StarAppearTimings selectedTimings)
         {
             bool currentDifficulty = true;
             bool isDifficultySet = false;
@@ -157,7 +154,18 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
 
             if (!isDifficultySet)
             {
-                selectedTimings = currentDifficulty ? beginnerTimings : professionalTimings;
+                if (!currentDifficulty)
+                {
+                    selectedTimings = beginnerTimings;  
+                }
+                else if (!currentDifficulty)
+                {
+                    selectedTimings = professionalTimings; 
+                }
+                else
+                {
+                    selectedTimings = extremalTimings;
+                }
             }
             else
             {
@@ -169,13 +177,13 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
                 };
             }
 
-            allYellowTime = selectedTimings.allYellowTime;    
-            star2AppearTime = selectedTimings.star2AppearTime;
-            star1AppearTime = selectedTimings.star1AppearTime;
-            star1AppearOnTime = selectedTimings.star1AppearOnTime;
             allBlackTime = selectedTimings.allBlackTime;
+            star1AppearOnTime = selectedTimings.star1AppearOnTime;
+            star1AppearTime = selectedTimings.star1AppearTime;    
+            star2AppearTime = selectedTimings.star2AppearTime;
+            allYellowTime = selectedTimings.allYellowTime;
 
-            Debug.Log($"⏱️ Тайминги: Все жёлтые=0-{star2AppearTime}s | Звезда3={star2AppearTime}-{star1AppearTime}s | Звезда2={star1AppearTime}-{star1AppearOnTime}s | Мигание={star1AppearOnTime}-{allBlackTime}s | Чёрные={allBlackTime}с+");
+            Debug.Log($"⏱️ Тайминги: Чёрные={allBlackTime}с+ | Звезда1={allBlackTime}-{star1AppearOnTime}s | Звезда1={star1AppearOnTime}-{star1AppearTime}s | Звезда2={star1AppearTime}-{star2AppearTime}s | {star2AppearTime}-Все жёлтые=0s");
         }
 
         private void InitializeStars()
@@ -192,33 +200,47 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
             Debug.Log("🟡 Все звёзды инициализированы жёлтыми");
         }
 
+        public void SetFinalResultTime(float time)
+        {
+            currentTime = time;
+            UpdateStarsState();
+        }
+
         public void UpdateStarsState()
         {
-            // 🕐 0 - Star2AppearTime: Все 3 звезды жёлтые
-            if (currentTime < star2AppearTime)
+            // 🕐 AllBlackTime+: Все 3 звезды чёрные
+            if (currentTime >= allBlackTime)
             {
-                SetAllStarsYellow();
+                SetAllStarsBlack();
+                _onTime = false;
+                Debug.Log("⚫ Все звёзды стали чёрными - отсчёт завершён");
             }
-            // 🕐 Star2AppearTime - Star1AppearTime: Звезда 3 чёрная, 1-2 жёлтые
-            else if (currentTime < star1AppearTime)
+            // 🕐 AllBlackTime - Star1AppearOnTime: Звезда 1 появляется во время
+            else if (currentTime >= star1AppearOnTime)
             {
                 SetStarColor(starImage1, yellowColor);
-                SetStarColor(starImage2, yellowColor);
+                SetStarColor(starImage2, blackColor);
                 SetStarColor(starImage3, blackColor);
+                _onTime = true;
             }
-            // 🕐 Star1AppearTime - Star1AppearOnTime: Звезда 1 жёлтая (одна осталась), 2-3 чёрные
-            else if (currentTime < star1AppearOnTime)
+            // 🕐 Star1AppearOnTime - Star1AppearTime: Звезда 1 появляется
+            else if (currentTime >= star1AppearTime)
             {
                 SetStarColor(starImage1, yellowColor);
                 SetStarColor(starImage2, blackColor);
                 SetStarColor(starImage3, blackColor);
             }
-            // 🕐 AllBlackTime+: Все 3 звезды чёрные
+            // 🕐 Star1AppearTime - Star2AppearTime: Звезда 2 появляется
+            else if (currentTime >= star2AppearTime)
+            {
+                SetStarColor(starImage1, yellowColor);
+                SetStarColor(starImage2, yellowColor);
+                SetStarColor(starImage3, blackColor);
+            }
+            // 🕐 Star2AppearTime - 0: Все 3 звезды жёлтые
             else
             {
-                SetAllStarsBlack();
-                _isRunning = false;
-                Debug.Log("⚫ Все звёзды стали чёрными - отсчёт завершён");
+                SetAllStarsYellow();
             }
         }
 
@@ -247,41 +269,11 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
 
         public IEnumerator onTime()
         {
-            while (currentTime < allBlackTime && _isRunning)
-            {
-                if (starImage1 != null)
-                {
-                    starImage1.enabled = !starImage1.enabled;
-                }
-                yield return new WaitForSeconds(0.5f);
-            }
-            
             if (starImage1 != null)
             {
-                starImage1.enabled = true;
+                starImage1.enabled = !starImage1.enabled;
             }
-        }
-
-        public void RestartTimer()
-        {
-            currentTime = 0f;
-            _isRunning = true;
-            _onTime = false;
-            StopAllCoroutines();
-            InitializeStars();
-            Debug.Log("🔄 Таймер звёзд перезапущен");
-        }
-
-        public void StopTimer()
-        {
-            _isRunning = false;
-            Debug.Log("⏸️ Таймер звёзд остановлен");
-        }
-
-        public void ResumeTimer()
-        {
-            _isRunning = true;
-            Debug.Log("▶️ Таймер звёзд продолжен");
+            yield return new WaitForSeconds(0.5f);
         }
 
         public float GetCurrentTime() => currentTime;

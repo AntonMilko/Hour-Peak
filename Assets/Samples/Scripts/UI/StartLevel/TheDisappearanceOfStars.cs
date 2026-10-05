@@ -94,13 +94,18 @@ namespace HourPeak.Samples.Runtime.StarDisappearTimings
         [Tooltip("Автоматически запускать отсчёт при старте")]
         [SerializeField] private bool autoStart = true;
 
+        [Tooltip("Звезда 1 мигает при достижении ограниченного времени")]
+        [SerializeField] private bool isBlinking = true;
+
+        [Tooltip("Скорость мигания")]
+        [SerializeField] private float blinkSpeed = 10f;
+
         #endregion
 
         #region Private Methods
 
         private float currentTime = 0f;
         private bool _isRunning = false;
-        private bool _isBlink = false;
         private float allYellowTime;
         private float star3DisappearTime;
         private float star2DisappearTime;
@@ -108,7 +113,9 @@ namespace HourPeak.Samples.Runtime.StarDisappearTimings
         private float allBlackTime;
         private StarDisappearTimings starDisappearTimings;
 
-        public bool IsBlink { get => _isBlink; set => _isBlink = value; }
+        public bool IsBlinking { get => isBlinking; set => isBlinking = value; }
+        public float AllYellowTime { get => allYellowTime; set => allYellowTime = value; }
+        public bool AutoStart { get => autoStart; set => autoStart = value; }
 
         #endregion
 
@@ -123,11 +130,17 @@ namespace HourPeak.Samples.Runtime.StarDisappearTimings
             {
                 _isRunning = true;
             }
+            else
+            {
+                isBlinking = true;
+            }
         }
 
         private void Update()
         {
             if (!_isRunning) return;
+            if (!isBlinking) return;
+            enabled = true;
 
             currentTime += Time.deltaTime;
             UpdateStarsState();
@@ -186,7 +199,6 @@ namespace HourPeak.Samples.Runtime.StarDisappearTimings
             if (starObject2 != null) starObject2.SetActive(true);
             if (starObject3 != null) starObject3.SetActive(true);
 
-            _isBlink = false;
             Debug.Log("🟡 Все звёзды инициализированы жёлтыми");
         }
 
@@ -211,6 +223,14 @@ namespace HourPeak.Samples.Runtime.StarDisappearTimings
                 SetStarColor(starImage2, blackColor);
                 SetStarColor(starImage3, blackColor);
             }
+            // 🕐 Star1BlinkTime - AllBlackTime: Звезда 1 жёлтая (она мигает), 2-3 чёрные
+            else if (currentTime < allBlackTime)
+            {
+                SetStarColor(starImage1, Mathf.Sin(Time.time * blinkSpeed) > 0 ? yellowColor : blackColor);
+                SetStarColor(starImage2, blackColor);
+                SetStarColor(starImage3, blackColor);
+                isBlinking = true;
+            }
             // 🕐 AllBlackTime+: Все 3 звезды чёрные
             else
             {
@@ -232,7 +252,7 @@ namespace HourPeak.Samples.Runtime.StarDisappearTimings
             SetStarColor(starImage1, blackColor);
             SetStarColor(starImage2, blackColor);
             SetStarColor(starImage3, blackColor);
-            _isBlink = false;
+            isBlinking = false;
         }
 
         public void SetStarColor(Image starImage, Color color)
@@ -264,7 +284,7 @@ namespace HourPeak.Samples.Runtime.StarDisappearTimings
         {
             currentTime = 0f;
             _isRunning = true;
-            _isBlink = false;
+            isBlinking = true;
             StopAllCoroutines();
             InitializeStars();
             Debug.Log("🔄 Таймер звёзд перезапущен");

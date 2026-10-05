@@ -82,6 +82,7 @@ public class TimerDisplay : MonoBehaviour
     public void Awake()
     {
         LoadDifficultySettings();
+        isRunning = true;
     }
 
     /// <summary>
