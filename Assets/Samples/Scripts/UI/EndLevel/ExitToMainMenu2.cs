@@ -36,13 +36,6 @@ namespace Samples.Scripts.UI.StartMenu
         [Tooltip("Кнопка выхода из PauseMenu (показывается во время прохождения)")]
         [SerializeField] private Button pauseMenuExitButton;
 
-        [Header("Settings")]
-        [Tooltip("Сцена главного меню")]
-        [SerializeField] private string startMenuSceneName = "StartMenu";
-
-        [Tooltip("Сцена выбора уровней")]
-        [SerializeField] private string chapterStartMenuSceneName = "LevelMenu";
-
         [Header("Options")]
         [Tooltip("Переходить в главное меню (StartMenu)")]
         [SerializeField] private bool moveToMainMenu = false;
@@ -129,7 +122,8 @@ namespace Samples.Scripts.UI.StartMenu
             if (exitToMainMenuButton != null) exitToMainMenuButton.gameObject.SetActive(true);
             if (exitToMainMenuButtonFailed != null) exitToMainMenuButtonFailed.gameObject.SetActive(false);
             if (pauseMenuExitButton != null) pauseMenuExitButton.gameObject.SetActive(true);
-            Debug.Log("✅ Уровень пройден успешно — кнопка выхода показана");
+            LevelFinished = true;
+            Debug.Log("Уровень пройден успешно — кнопка выхода не показана");
         }
 
         /// <summary>
@@ -141,8 +135,8 @@ namespace Samples.Scripts.UI.StartMenu
             if (exitToMainMenuButton != null) exitToMainMenuButton.gameObject.SetActive(false);
             if (exitToMainMenuButtonFailed != null) exitToMainMenuButtonFailed.gameObject.SetActive(true);
             if (pauseMenuExitButton != null) pauseMenuExitButton.gameObject.SetActive(true);
-            LevelFinished = true;
-            Debug.Log("❌ Уровень пройден неуспешно — кнопка выхода показана");
+            LevelFinished = false;
+            Debug.Log("Уровень пройден неуспешно — кнопка выхода показана");
         }
 
         /// <summary>
@@ -170,22 +164,34 @@ namespace Samples.Scripts.UI.StartMenu
                 Debug.Log("💾 Автосохранение текущего прохождения");
             }
 
-            // 2️⃣ ВЫБОР СЦЕНЫ ДЛЯ ПЕРЕХОДА
-            if (stayInChapterMainMenu)
+            // 2️⃣ ПЕРЕХОД В ГЛАВНОЕ МЕНЮ
+            if (moveToMainMenu)
             {
-                Debug.Log("📂 Переход в меню главы (LevelMenu)");
-                SceneManager.LoadScene(chapterStartMenuSceneName);
+                if (!string.IsNullOrEmpty(currentStartMenuSceneName))
+                {
+                    SceneManager.LoadScene(currentStartMenuSceneName);
+                    Debug.Log($"🏠 Переход в главное меню: {currentStartMenuSceneName}");
+                }
+                else
+                {
+                    Debug.LogWarning("⚠️ Имя сцены главного меню не задано!");
+                }
             }
-            else if (moveToMainMenu)
+            else if (stayInChapterMainMenu)
             {
-                Debug.Log("📂 Переход в главное меню (StartMenu)");
-                SceneManager.LoadScene(startMenuSceneName);
+                if (!string.IsNullOrEmpty(currentChapterStartMenuSceneName))
+                {
+                    SceneManager.LoadScene(currentChapterStartMenuSceneName);
+                    Debug.Log($"📂 Переход в меню главы: {currentChapterStartMenuSceneName}");
+                }
+                else
+                {
+                    Debug.LogWarning("⚠️ Имя сцены меню главы не задано!");
+                }
             }
             else
             {
-                // По умолчанию, если ни один флаг не установлен
-                Debug.Log("📂 Переход в меню главы по умолчанию (LevelMenu)");
-                SceneManager.LoadScene(chapterStartMenuSceneName);
+                Debug.LogWarning("⚠️ Переход в главное меню не задан!");
             }
         }
 
@@ -193,6 +199,9 @@ namespace Samples.Scripts.UI.StartMenu
 
         #region Save/Load Logic
 
+        /// <summary>
+        /// Создаёт путь к файлу сохранения для текущего прохождения.
+        /// </summary>
         private void CreateSaveFilePath()
         {
             string folderPath = Path.Combine(Application.persistentDataPath, SAVE_FOLDER_NAME);
@@ -234,6 +243,9 @@ namespace Samples.Scripts.UI.StartMenu
             }
         }
 
+        /// <summary>
+        /// Создаёт объект кнопки выхода в главное меню.
+        /// </summary>
         private Button Object()
         {
             throw new NotImplementedException();
@@ -317,6 +329,9 @@ namespace Samples.Scripts.UI.StartMenu
 
         #region UI Management
 
+        /// <summary>
+        /// Настраивает кнопки выхода в главное меню.
+        /// </summary>
         private void SetupButtons()
         {
             if (exitToMainMenuButton != null)
@@ -338,6 +353,9 @@ namespace Samples.Scripts.UI.StartMenu
             }
         }
 
+        /// <summary>
+        /// Удаляет кнопки выхода в главное меню.
+        /// </summary>
         private void CleanupButtons()
         {
             // Не показываем кнопку, если уровень пройден успешно
@@ -347,6 +365,9 @@ namespace Samples.Scripts.UI.StartMenu
             if (pauseMenuExitButton != null) pauseMenuExitButton.onClick.RemoveAllListeners();
         }
 
+        /// <summary>
+        /// Обновляет видимость кнопок выхода в главное меню.
+        /// </summary>
         private void UpdateExitButtonsVisibility()
         {
             // Показываем кнопку, если уровень НЕ пройден успешно

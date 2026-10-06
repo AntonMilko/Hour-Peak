@@ -10,16 +10,6 @@ public class EndManager2 : MonoBehaviour
     [Header("UI References")]
     [Tooltip("Панель окончания уровня.")]
     [SerializeField] private GameObject endMenuPanel;
-    
-    [Header("Buttons")]
-    [Tooltip("Кнопка перехода к следующему уровню.")]
-    [SerializeField] private Button nextButton;
-
-    [Tooltip("Кнопка повтора уровня.")]
-    [SerializeField] private Button againButton;
-    
-    [Tooltip("Кнопка выхода в главное меню.")]
-    [SerializeField] private Button exitButton; 
 
     [Header("Time Evaluation")]
     [Tooltip("Текст отображающий текущее время и ограничение.")]
@@ -29,11 +19,11 @@ public class EndManager2 : MonoBehaviour
     [Tooltip("Имя сцены, куда переходят на сертификат.")]
     [SerializeField] private string sceneCertificate;
     
-    [Tooltip("Имя сцены, куда начинают текущий уровень с 0.")]
+    [Tooltip("Имя сцены, куда начинают финальную часть финального уровня с 0.")]
     [SerializeField] private string sceneAgainLevel;
 
     [Tooltip("Имя части сцены, куда переходят в главное меню.")]    
-    [SerializeField] private string scenePartMainMenu;
+    [SerializeField] private string partSceneMainMenu;
 
     [Tooltip("Имя сцены, куда переходят в главное меню.")]
     [SerializeField] private string sceneMainMenu;
@@ -46,23 +36,12 @@ public class EndManager2 : MonoBehaviour
     {
         if (endMenuPanel != null) 
             endMenuPanel.SetActive(false);
-        
-        if (nextButton != null) 
-            nextButton.gameObject.SetActive(false);
-            
-        if (againButton != null) 
-            againButton.gameObject.SetActive(false);
-            
-        if (exitButton != null) 
-            exitButton.gameObject.SetActive(false);
     }
 
     private void Update()
     {
         ShowFinalSuccessScreen();
-        SetupNextButtonLogic();
-        RestartLevel();
-        ExitToMenu();
+        ShowFinalFailureScreen();
     }
 
     #endregion
@@ -70,45 +49,19 @@ public class EndManager2 : MonoBehaviour
     #region Public Methods
 
     /// <summary>
-    /// ВЫЗЫВАТЬ ПРИ ПОБЕДЕ НА ФИНАЛЬНОМ УРОВНЕ.
+    /// ВЫЗЫВАТЬ ПРИ ПОБЕДЕ НА ФИНАЛЬНОЙ ЧАСТИ ФИНАЛЬНОГО УРОВНЯ.
     /// ПРАВИЛО: Горит ТОЛЬКО nextButton. Все остальные скрыты.
-    /// ВЫЗВАТЬ ПРИ ПРОВАЛЕ НА ФИНАЛЬНОМ УРОВНЕ.
-    /// ПРАВИЛО: Скрыт только nextButton. Все остальные горят.
     /// </summary>
     public void ShowFinalSuccessScreen()
     {
-        Debug.Log("ФИНАЛ ПРОЙДЕН УСПЕШНО!");
-
-        if (nextButton != null)
-        {
-            nextButton.gameObject.SetActive(true);
-            nextButton.onClick.RemoveAllListeners();
-            againButton.gameObject.SetActive(false);
-            exitButton.gameObject.SetActive(false);
-            Debug.LogError("Пройдена последняя часть последнего уровня!");
-        }
-        else
-        {
-            nextButton.gameObject.SetActive(false);
-            againButton.gameObject.SetActive(true);
-            againButton.onClick.RemoveAllListeners();
-            exitButton.gameObject.SetActive(true);
-            exitButton.onClick.RemoveAllListeners();
-            Debug.LogError("Не пройдена последняя часть последнего уровня!");
-        }
+        Debug.Log("ФИНАЛЬНАЯ ЧАСТЬ ФИНАЛЬНОГО УРОВНЯ ПРОЙДЕНА УСПЕШНО!");
 
         if (timeText != null) 
             timeText.text = "Время: Отлично! Уровень пройден.";
 
         if (endMenuPanel != null) 
             endMenuPanel.SetActive(true);
-    }
 
-    /// <summary>
-    /// Переход на сцену сертификата на случай успешного прохождения последней части последнего уровня.
-    /// </summary>
-    public void SetupNextButtonLogic()
-    {
         if (!string.IsNullOrEmpty(sceneCertificate))
         {
             SceneManager.LoadScene(sceneCertificate);
@@ -116,24 +69,27 @@ public class EndManager2 : MonoBehaviour
     }
 
     /// <summary>
-    /// Старт последней части последнего уровня с 0 на случай неуспешного прохождения.
+    /// ВЫЗЫВАТЬ ПРИ ПРОВАЛЕ НА ФИНАЛЬНОЙ ЧАСТИ ФИНАЛЬНОГО УРОВНЯ.
+    /// ПРАВИЛО: Скрыт только nextButton. Все остальные горят.
     /// </summary>
-    public void RestartLevel()
+    public void ShowFinalFailureScreen()
     {
+        Debug.Log("ФИНАЛЬНАЯ ЧАСТЬ ФИНАЛЬНОГО УРОВНЯ НЕ ПРОЙДЕНА!");
+
+        if (timeText != null) 
+            timeText.text = "Время: Попробуйте ещё раз!";
+
+        if (endMenuPanel != null) 
+            endMenuPanel.SetActive(true);
+
         if (!string.IsNullOrEmpty(sceneAgainLevel))
         {
             SceneManager.LoadScene(sceneAgainLevel);
         }
-    }
-
-    /// <summary>
-    /// Выход в главное меню.
-    /// </summary>
-    public void ExitToMenu()
-    {
+        
         if (!string.IsNullOrEmpty(sceneMainMenu))
         {
-            SceneManager.LoadScene(scenePartMainMenu);
+            SceneManager.LoadScene(partSceneMainMenu);
         }
     }
 

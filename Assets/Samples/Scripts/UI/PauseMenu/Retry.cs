@@ -28,21 +28,13 @@ namespace HourPeak.Samples.Runtime
         [Tooltip("Автосохранение настроек сложности при нажатии Retry")]
         [SerializeField] private bool autoSaveOnRetry = true;
 
-        [Header("Информация об уровне")]
-        [Tooltip("Название сцены для перезагрузки (пусто = текущая сцена)")]
-        [SerializeField] private string levelSceneName = "";
-
-        [Tooltip("Номер текущего уровня")]
-        [SerializeField] private string currentLevelNumber = "";
-        
-        [Tooltip("Часть текущего уровня (например: 1 или 2)")]
-        [SerializeField] private string currentLevelPart = "";
-
         #endregion
 
         #region Private State
 
-        private string currentLevelSceneName;
+        private string levelSceneName;
+        private int currentLevelNumber;
+        private int currentLevelPart;
         private int retryCount;
         private string currentSaveFilePath;
         private UnityAction OnRetryButtonClick;
@@ -100,10 +92,10 @@ namespace HourPeak.Samples.Runtime
         /// </summary>
         public void LoadCurrentLevel()
         {
-            if (!string.IsNullOrEmpty(currentLevelSceneName))
+            if (!string.IsNullOrEmpty(levelSceneName))
             {
-                Debug.Log($"🔄 Перезагрузка сцены: {currentLevelSceneName}");
-                SceneManager.LoadScene(currentLevelSceneName);
+                Debug.Log($"🔄 Перезагрузка сцены: {levelSceneName}");
+                SceneManager.LoadScene(levelSceneName);
             }
             else
             {
@@ -117,7 +109,7 @@ namespace HourPeak.Samples.Runtime
         /// </summary>
         public string GetCurrentLevelSceneName()
         {
-            return currentLevelSceneName;
+            return levelSceneName;
         }
 
         #endregion

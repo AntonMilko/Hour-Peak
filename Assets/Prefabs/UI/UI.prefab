@@ -1176,8 +1176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExitToMainMenu
   exitToMainMenuButton: {fileID: 8053878495123598959}
   pauseMenuExitButton: {fileID: 0}
-  chapterStartMenuSceneName: LevelMenu
-  startMenuSceneName: StartMenu
   moveToMainMenu: 0
   stayInChapterMainMenu: 1
   autoSaveOnExit: 1
@@ -1552,7 +1550,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7f2ad6c7bb731f48853f68fd34e2a49, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.TheAppearanceOfStars
+  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.StarAppearTimings.TheAppearanceOfStars
   starObject1: {fileID: 4701946486324708498}
   starObject2: {fileID: 6918029382257986874}
   starObject3: {fileID: 4084410805458821670}
@@ -1579,7 +1577,7 @@ MonoBehaviour:
     star1AppearTime: 15
     star2AppearTime: 7.5
     allYellowTime: 0
-  autoStart: 1
+  autoStart: 0
 --- !u!1 &3033300273982286316
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,9 +2169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a11537d03361d4db5dc75a6a49fc5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.NextLevel
-  currentLevelNumber: 1
-  currentPartIndex: 1
-  nextLevelSceneName: 
   nextLevelButton: {fileID: 5270180842950189212}
   nextLevelButtonFailed: {fileID: 5270180842950189212}
   autoSaveOnTransition: 1
@@ -2690,8 +2685,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExitToMainMenu
   exitToMainMenuButton: {fileID: 0}
   pauseMenuExitButton: {fileID: 813996221763893129}
-  chapterStartMenuSceneName: LevelMenu
-  startMenuSceneName: StartMenu
   moveToMainMenu: 0
   stayInChapterMainMenu: 1
   autoSaveOnExit: 1
@@ -4492,11 +4485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465bc1c05832dba49ab6404e4f3d2595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: HourPeak.Samples.Runtime::Retry
-  retryButton: {fileID: 0}
+  retryButton: {fileID: 4002394093345924309}
   autoSaveOnRetry: 1
-  levelSceneName: 
-  currentLevelNumber: 
-  currentLevelPart: 
 --- !u!1 &5879014597393440310
 GameObject:
   m_ObjectHideFlags: 0
@@ -6661,9 +6651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2bd2d3fe34a7b41ae14dc18dd8f9f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AgainLevel
-  currentLevelNumber: 1
-  currentPartIndex: 1
-  currentLevelSceneName: Morning 16.1
   againLevelButton: {fileID: 1079143585592454071}
   autoSaveOnRetry: 1
 --- !u!1 &7289148131577945103

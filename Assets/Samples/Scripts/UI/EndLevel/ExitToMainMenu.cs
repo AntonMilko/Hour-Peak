@@ -33,13 +33,6 @@ namespace Samples.Scripts.UI.StartMenu
         [Tooltip("Кнопка выхода из PauseMenu (показывается во время прохождения)")]
         [SerializeField] private Button pauseMenuExitButton;
 
-        [Header("Settings")]
-        [Tooltip("Сцена LevelMenu (раздел выбора уровней)")]
-        [SerializeField] private string chapterStartMenuSceneName = "LevelMenu";
-
-        [Tooltip("Сцена StartMenu (главное меню)")]
-        [SerializeField] private string startMenuSceneName = "StartMenu";
-
         [Header("Options")]
         [Tooltip("Переходить в главное меню (StartMenu)")]
         [SerializeField] private bool moveToMainMenu = false;
@@ -125,7 +118,7 @@ namespace Samples.Scripts.UI.StartMenu
             LevelPassedSuccessfully = true;
             if (exitToMainMenuButton != null) exitToMainMenuButton.gameObject.SetActive(true);
             if (pauseMenuExitButton != null) pauseMenuExitButton.gameObject.SetActive(true);
-            Debug.Log("✅ Уровень пройден успешно — кнопка выхода показана");
+            Debug.Log("Уровень пройден успешно — кнопка выхода показана");
         }
 
         /// <summary>
@@ -136,8 +129,8 @@ namespace Samples.Scripts.UI.StartMenu
             _levelPassedSuccessfully = false;
             if (exitToMainMenuButton != null) exitToMainMenuButton.gameObject.SetActive(true);
             if (pauseMenuExitButton != null) pauseMenuExitButton.gameObject.SetActive(true);
-            LevelFinished = true;
-            Debug.Log("❌ Уровень пройден неуспешно — кнопка выхода показана");
+            LevelFinished = false;
+            Debug.Log("Уровень пройден неуспешно — кнопка выхода показана");
         }
 
         /// <summary>
@@ -165,22 +158,34 @@ namespace Samples.Scripts.UI.StartMenu
                 Debug.Log("💾 Автосохранение текущего прохождения");
             }
 
-            // 2️⃣ ВЫБОР СЦЕНЫ ДЛЯ ПЕРЕХОДА
-            if (stayInChapterMainMenu)
+            // 2️⃣ ПЕРЕХОД В ГЛАВНОЕ МЕНЮ
+            if (moveToMainMenu)
             {
-                Debug.Log("📂 Переход в меню главы (LevelMenu)");
-                SceneManager.LoadScene(chapterStartMenuSceneName);
+                if (!string.IsNullOrEmpty(currentStartMenuSceneName))
+                {
+                    SceneManager.LoadScene(currentStartMenuSceneName);
+                    Debug.Log($"🏠 Переход в главное меню: {currentStartMenuSceneName}");
+                }
+                else
+                {
+                    Debug.LogWarning("⚠️ Имя сцены главного меню не задано!");
+                }
             }
-            else if (moveToMainMenu)
+            else if (stayInChapterMainMenu)
             {
-                Debug.Log("📂 Переход в главное меню (StartMenu)");
-                SceneManager.LoadScene(startMenuSceneName);
+                if (!string.IsNullOrEmpty(currentChapterStartMenuSceneName))
+                {
+                    SceneManager.LoadScene(currentChapterStartMenuSceneName);
+                    Debug.Log($"📂 Переход в меню главы: {currentChapterStartMenuSceneName}");
+                }
+                else
+                {
+                    Debug.LogWarning("⚠️ Имя сцены меню главы не задано!");
+                }
             }
             else
             {
-                // По умолчанию, если ни один флаг не установлен
-                Debug.Log("📂 Переход в меню главы по умолчанию (LevelMenu)");
-                SceneManager.LoadScene(chapterStartMenuSceneName);
+                Debug.LogWarning("⚠️ Переход в главное меню не задан!");
             }
         }
 

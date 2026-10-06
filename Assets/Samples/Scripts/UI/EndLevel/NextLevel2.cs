@@ -27,10 +27,6 @@ namespace HourPeak.Samples.Runtime
 
         #region Fields
 
-        [Header("Level Settings")]
-        [Tooltip("Название сцены 'Game completion certificate'")]
-        [SerializeField] private string certificateSceneName = "Game completion certificate";
-
         [Header("UI References")]
         [Tooltip("Кнопка 'Далее' (успех)")]
         [SerializeField] private Button nextLevelButton;
@@ -55,6 +51,7 @@ namespace HourPeak.Samples.Runtime
 
         #region Private State
 
+        private string certificateSceneName;
         private bool isCertificateActive;
         private bool lastLevelSuccess;
         private bool reachedDestination;
@@ -70,7 +67,8 @@ namespace HourPeak.Samples.Runtime
             OnNextPart();
             LoadNextPart();
             GetLastUnlockedLevel();
-            LoadNextLevel();
+            FailedLastLevel();
+            OnFailed();
         }
 
         private void Update()
@@ -160,6 +158,18 @@ namespace HourPeak.Samples.Runtime
             LoadNextPart();
         }
 
+        public void OnFailed()
+        {
+            if (lastLevelSuccess)
+            {
+                Debug.LogWarning("⚠️ Нельзя вызвать неудачу после успешного завершения!");
+                return;
+            }
+
+            SaveProgress();
+            FailedLastLevel();
+        }
+
         #endregion
 
         #region Timer Logic
@@ -193,6 +203,23 @@ namespace HourPeak.Samples.Runtime
             
             CreateSaveFilePath();
             LastLevel();
+        }
+
+        private void FailedLastLevel()
+        {
+            Debug.LogWarning("Неудача! Отсутствие отображения кнопки Далее.");
+            
+            // Кнопка "Далее" скрыта при неудаче
+            if (nextLevelButton != null)
+            {
+                nextLevelButton.gameObject.SetActive(false);
+                nextLevelButton.interactable = false;
+            }
+            else
+            {
+                nextLevelButtonFailed.gameObject.SetActive(true);
+                nextLevelButtonFailed.interactable = true;
+            }
         }
 
         private void InitializeLevelState()

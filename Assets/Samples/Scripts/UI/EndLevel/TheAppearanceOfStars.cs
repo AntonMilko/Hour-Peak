@@ -92,7 +92,7 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
 
         [Header("Settings")]
         [Tooltip("Автоматически запускать отсчёт при старте")]
-        [SerializeField] private bool autoStart = true;
+        [SerializeField] private bool autoStart = false;
 
         #endregion
 
@@ -114,6 +114,7 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
 
         private void Awake()
         {
+            starAppearTimings = new StarAppearTimings();
             CalculateTimingsByDifficulty(ref starAppearTimings);
             InitializeStars();
             SetFinalResultTime(0f);
@@ -121,6 +122,10 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
             if (autoStart)
             {
                 _onTime = true;
+            }
+            else
+            {
+                _onTime = false;
             }
         }
 
@@ -130,6 +135,8 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
 
             currentTime += Time.deltaTime;
             UpdateStarsState();
+            SetAllStarsYellow();
+            SetAllStarsBlack();
         }
 
         #endregion

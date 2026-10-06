@@ -24,16 +24,6 @@ namespace HourPeak.Samples.Runtime
 
         #region Fields
 
-        [Header("Level Settings")]
-        [Tooltip("Текущий уровень (номер)")]
-        [SerializeField] private int currentLevelNumber = 1;
-        
-        [Tooltip("Текущая часть уровня (1, 2)")]
-        [SerializeField] private int currentPartIndex = 1;
-        
-        [Tooltip("Название сцены текущего уровня")]
-        [SerializeField] private string currentLevelSceneName;
-
         [Header("UI References")]
         [Tooltip("Кнопка 'Заново' (скрыта при успехе последнего уровня)")]
         [SerializeField] private Button againLevelButton;
@@ -49,6 +39,9 @@ namespace HourPeak.Samples.Runtime
 
         #region Private State
 
+        private int currentLevelNumber;
+        private int currentPartIndex;
+        private string currentLevelSceneName;
         private int retryCount;
         private string currentSaveFilePath;
 

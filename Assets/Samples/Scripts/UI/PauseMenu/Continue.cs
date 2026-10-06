@@ -38,6 +38,11 @@ namespace HourPeak.Samples.Runtime
         private bool _continueLevelWithSavedSettings;
         private bool _currentSettings;
 
+        public bool ContinueLevel { get => _continueLevel; set => _continueLevel = value; }
+        public bool ContinueFromCheckpoint { get => _continueFromCheckpoint; set => _continueFromCheckpoint = value; }
+        public bool ContinueLevelWithSavedSettings { get => _continueLevelWithSavedSettings; set => _continueLevelWithSavedSettings = value; }
+        public bool CurrentSettings { get => _currentSettings; set => _currentSettings = value; }
+
         #endregion
 
         #region Unity Lifecycle

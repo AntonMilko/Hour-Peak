@@ -27,18 +27,8 @@ namespace HourPeak.Samples.Runtime
 
         #region Fields
 
-        [Header("Level Settings")]
-        [Tooltip("Текущий уровень (номер)")]
-        [SerializeField] private int currentLevelNumber = 1;
-        
-        [Tooltip("Текущая часть уровня (1, 2)")]
-        [SerializeField] private int currentPartIndex = 1;
-        
-        [Tooltip("Название сцены следующего уровня")]
-        [SerializeField] private string nextLevelSceneName;
-
         [Header("UI References")]
-        [Tooltip("Кнопка 'Далее'")]
+        [Tooltip("Кнопка 'Далее' (успех)")]
         [SerializeField] private Button nextLevelButton;
         
         [Tooltip("Кнопка 'Далее' (при неудаче/время вышло)")]
@@ -61,7 +51,12 @@ namespace HourPeak.Samples.Runtime
 
         #region Private State
 
+        private int currentLevelNumber;
+        private int currentPartIndex;
+        private string nextLevelSceneName;
         private bool isLevelActive;
+        private bool isCurrentLevel;
+        private bool isCurrentPart;
         private bool levelSuccess;
         private bool reachedDestination;
         private string currentSaveFilePath;
@@ -76,7 +71,8 @@ namespace HourPeak.Samples.Runtime
             OnNextPart();
             LoadNextPart();
             GetLastUnlockedLevel();
-            LoadNextLevel();
+            FailedCurrentPart();
+            OnFailed();
         }
 
         private void Update()
@@ -166,25 +162,37 @@ namespace HourPeak.Samples.Runtime
             LoadNextPart();
         }
 
+        public void OnFailed()
+        {
+            if (levelSuccess)
+            {
+                Debug.LogWarning("⚠️ Нельзя вызвать неудачу после успешного завершения!");
+                return;
+            }
+
+            SaveProgress();
+            FailedCurrentPart();
+        }
+
         #endregion
 
         #region Timer Logic
 
         private void LoadNextPart()
         {
-            // Проверяем, последний ли это уровень и часть
-            bool isLastLevel = currentLevelNumber >= 36;
-            bool isPart2 = currentPartIndex >= 2;
+            // Проверяем, основной ли это уровень и часть
+            bool isCurrentLevel = currentLevelNumber >= 1;
+            bool isCurrentPart = currentPartIndex >= 1;
             
-            if (isLastLevel && isPart2)
+            if (isCurrentLevel && isCurrentPart)
             {
-                // Финальная часть финального уровня — переход к сертификату
-                Debug.Log("🏆 Финальная часть пройдена! Переход к сертификату...");
+                // Основная часть основного уровня — переход к следующей части текущего (следующего) уровня
+                Debug.Log("Основная часть пройдена! Переход к следующему");
                 
                 // Автосохранение перед переходом
                 SaveProgress();
                 
-                // Переход к сцене сертификата
+                // Переход к сцене следующей части текущего (следующего) уровня
                 if (!string.IsNullOrEmpty(nextLevelSceneName))
                 {
                     SceneManager.LoadScene(nextLevelSceneName);
@@ -192,7 +200,7 @@ namespace HourPeak.Samples.Runtime
                 else
                 {
                     // Если nextLevelSceneName не задана — используем стандартное имя
-                    SceneManager.LoadScene("Game completion certificate");
+                    SceneManager.LoadScene("Level Scene Index");
                 }
                 return;
             }
@@ -203,6 +211,23 @@ namespace HourPeak.Samples.Runtime
             
             CreateSaveFilePath();
             StartLevel();
+        }
+
+        private void FailedCurrentPart()
+        {
+            Debug.LogWarning("Неудача! Отсутствие отображения кнопки Далее.");
+            
+            // Кнопка "Далее" скрыта при неудаче
+            if (nextLevelButton != null)
+            {
+                nextLevelButton.gameObject.SetActive(false);
+                nextLevelButton.interactable = false;
+            }
+            else
+            {
+                nextLevelButtonFailed.gameObject.SetActive(true);
+                nextLevelButtonFailed.interactable = true;
+            }
         }
 
         private void InitializeLevelState()

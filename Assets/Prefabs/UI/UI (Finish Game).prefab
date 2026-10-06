@@ -1869,11 +1869,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: HourPeak.Samples.Runtime::HourPeak.ExitToMainMenu2
   exitToMainMenuButton: {fileID: 8053878495123598959}
-  exitToMainMenuButtonFail: {fileID: 8053878495123598959}
+  exitToMainMenuButtonFailed: {fileID: 8053878495123598959}
   pauseMenuExitButton: {fileID: 0}
-  gameContinuationManager: {fileID: 133221232425587596}
-  startMenuSceneName: StartMenu
-  chapterStartMenuSceneName: LevelMenu
   moveToMainMenu: 0
   stayInChapterMainMenu: 1
   autoSaveOnExit: 1
@@ -3166,14 +3163,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71a162b6ba19c049a3eac4d4e4b188a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.NextLevel2
-  certificateSceneName: Game completion certificate
   nextLevelButton: {fileID: 5270180842950189212}
   nextLevelButtonFailed: {fileID: 5270180842950189212}
   autoSaveOnTransition: 1
   requireStarsForSuccess: 1
   requiredStars: 3
   starsCollected: 0
-  continueManager: {fileID: 133221232425587596}
 --- !u!1 &3348086940677802939
 GameObject:
   m_ObjectHideFlags: 0
@@ -3233,10 +3228,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7f2ad6c7bb731f48853f68fd34e2a49, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.TheAppearanceOfStars
-  starObject: {fileID: 3348086940677802939}
-  starCanvasGroup: {fileID: 3305796513537502782}
-  continuationManager: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.StarAppearTimings.TheAppearanceOfStars
   starObject1: {fileID: 1759540018658289726}
   starObject2: {fileID: 2883662538849359571}
   starObject3: {fileID: 9148157927148898775}
@@ -3246,24 +3238,24 @@ MonoBehaviour:
   yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   blackColor: {r: 0, g: 0, b: 0, a: 1}
   beginnerTimings:
-    allYellowTime: 0
-    star2AppearTime: 30
-    star1AppearTime: 60
-    star1AppearOnTime: 120
     allBlackTime: 240
+    star1AppearOnTime: 120
+    star1AppearTime: 60
+    star2AppearTime: 30
+    allYellowTime: 0
   professionalTimings:
-    allYellowTime: 0
-    star2AppearTime: 15
-    star1AppearTime: 30
-    star1AppearOnTime: 60
     allBlackTime: 120
-  extremalTimings:
+    star1AppearOnTime: 60
+    star1AppearTime: 30
+    star2AppearTime: 15
     allYellowTime: 0
-    star2AppearTime: 7.5
-    star1AppearTime: 15
-    star1AppearOnTime: 30
+  extremalTimings:
     allBlackTime: 60
-  autoStart: 1
+    star1AppearOnTime: 30
+    star1AppearTime: 15
+    star2AppearTime: 7.5
+    allYellowTime: 0
+  autoStart: 0
 --- !u!1 &3440381435019354390
 GameObject:
   m_ObjectHideFlags: 0
@@ -3482,11 +3474,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Samples.Scripts.UI.StartMenu.ExitToMainMenu2
   exitToMainMenuButton: {fileID: 0}
-  exitToMainMenuButtonFail: {fileID: 0}
+  exitToMainMenuButtonFailed: {fileID: 0}
   pauseMenuExitButton: {fileID: 3376171680757369053}
-  gameContinuationManager: {fileID: 133221232425587596}
-  startMenuSceneName: StartMenu
-  chapterStartMenuSceneName: LevelMenu
   moveToMainMenu: 0
   stayInChapterMainMenu: 1
   autoSaveOnExit: 1
@@ -6365,16 +6354,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.Continue
   continueLevel: 1
   continueFromCheckpoint: 1
-  continueLevelWithSavedDifficulty: 1
-  restoreGameTime: 1
-  timeScaleMultiplier: 1
-  physicsSpeedMultiplier: 1
-  useCustomTimer: 1
-  customTimerValue: 0
-  currentDifficulty: 0
-  isDifficultySet: 0
-  maxCrowdCapacity: 80
-  statsText: {fileID: 3387143598365326012}
+  continueLevelWithSavedSettings: 1
+  currentSettings: 1
 --- !u!1 &6793238881611841524
 GameObject:
   m_ObjectHideFlags: 0
@@ -7313,13 +7294,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a673d8e921b1b8940ac7fcd203fbc076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.AgainLevel2
-  currentLevelNumber: 36
-  currentPartIndex: 2
-  currentLevelSceneName: Evening 36.2
   againLevelButton: {fileID: 1079143585592454071}
   againLevelButtonFailed: {fileID: 1079143585592454071}
   autoSaveOnRetry: 1
-  continueManager: {fileID: 133221232425587596}
 --- !u!1 &7448044098791458617
 GameObject:
   m_ObjectHideFlags: 0
@@ -7457,12 +7434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465bc1c05832dba49ab6404e4f3d2595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: HourPeak.Samples.Runtime::Retry
-  continueManager: {fileID: 133221232425587596}
   retryButton: {fileID: 6823365608123888151}
   autoSaveOnRetry: 1
-  levelSceneName: Evening 36.2
-  currentLevelNumber: 36
-  currentLevelPart: 2
 --- !u!1 &7671591830578969403
 GameObject:
   m_ObjectHideFlags: 0
@@ -7894,9 +7867,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4566875d6107e3e4fb28b83369860419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.TheDisappearanceOfStars
-  starObject: {fileID: 8041075824975654761}
-  starCanvasGroup: {fileID: 9162971648657677889}
-  continuationManager: {fileID: 0}
   starObject1: {fileID: 2472288385726530158}
   starObject2: {fileID: 4459224598010090041}
   starObject3: {fileID: 1437174980174127052}
@@ -7924,6 +7894,8 @@ MonoBehaviour:
     star1BlinkTime: 30
     allBlackTime: 60
   autoStart: 1
+  isBlinking: 1
+  blinkSpeed: 10
 --- !u!1 &8457568174097006036
 GameObject:
   m_ObjectHideFlags: 0
