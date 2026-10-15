@@ -26,6 +26,9 @@ public class LookJoystick : MonoBehaviour
     [Tooltip("Ссылка на PlayerController (автоматически найдётся по тегу Player)")]
     [SerializeField] private PlayerController playerController;
 
+    [Tooltip("Ссылка на Joystick")]
+    [SerializeField] private Joystick virtualJoystick;
+
     [Header("Rotation Settings")]
     [Tooltip("Скорость вращения камеры по горизонтали (градусов в секунду)")]
     [SerializeField] private float horizontalSensitivity = 120f;
@@ -38,9 +41,6 @@ public class LookJoystick : MonoBehaviour
     
     [Tooltip("Максимальный угол наклона камеры (вниз)")]
     [SerializeField] private float maxLookAngle = 45f;
-
-    [Tooltip("Ссылка на Joystick")]
-    [SerializeField] private Joystick virtualJoystick;
 
     #endregion
 

@@ -52,6 +52,9 @@ public class TimerDisplay : MonoBehaviour
     [Header("Settings")]
     [Tooltip("Текущий уровень сложности")]
     [SerializeField] private DifficultyLevel currentDifficulty = DifficultyLevel.Beginner;
+    
+    [Tooltip("Проверка сцены")]
+    [SerializeField] private bool isFirstScene;
 
     #endregion
 
@@ -60,7 +63,7 @@ public class TimerDisplay : MonoBehaviour
     /// <summary>
     /// Текущее оставшееся время (в секундах).
     /// </summary>
-    private float remainingTime;
+    private static float time;
     
     /// <summary>
     /// Общее время на уровне сложности.
@@ -76,6 +79,16 @@ public class TimerDisplay : MonoBehaviour
 
     #region Public Methods
 
+    public bool isTimeUp()
+    {
+        return time >= totalTime;
+    }
+
+    public void SetIsRunning(bool isRunning)
+    {
+        this.isRunning = isRunning;
+    }
+
     /// <summary>
     /// Самостоятельная инициализация
     /// </summary>
@@ -83,6 +96,10 @@ public class TimerDisplay : MonoBehaviour
     {
         LoadDifficultySettings();
         isRunning = true;
+        if (isFirstScene)
+        {
+            time = 0f;
+        }
     }
 
     /// <summary>
@@ -93,11 +110,11 @@ public class TimerDisplay : MonoBehaviour
         if (!isRunning)
             return;
 
-        remainingTime += Time.deltaTime;
-        timerText.text = FormatTime(remainingTime);
+        time += Time.deltaTime;
+        timerText.text = FormatTime(time);
         UpdateColor();
 
-        if (remainingTime >= totalTime)
+        if (time >= totalTime)
             TimeUp();
     }
 
@@ -165,7 +182,7 @@ public class TimerDisplay : MonoBehaviour
     private void ShowEndMenu()
     {
         endMenu.SetActive(true);
-        indicatorSuccessForEndMenu.StartAnimation(remainingTime);
+        indicatorSuccessForEndMenu.StartAnimation(time);
         Debug.Log("EndMenu показан");
     }
 
@@ -182,22 +199,22 @@ public class TimerDisplay : MonoBehaviour
         (float warningStart, float dangerStart, float lastChanceStart, float totalTime) = GetThresholds();
         
         // Определяем цвет на основе прошедшего времени
-        if (remainingTime < warningStart)
+        if (time < warningStart)
         {
             // Спокойное время: прошло 0-12.5%
             timerText.color = safeColor;
         }
-        else if (remainingTime < dangerStart)
+        else if (time < dangerStart)
         {
             // Серьёзное время: прошло 12.5-25%
             timerText.color = warningColor;
         }
-        else if (remainingTime < lastChanceStart)
+        else if (time < lastChanceStart)
         {
             // Критическое время: прошло 25-50%
             timerText.color = dangerColor;
         }
-        else if (remainingTime < totalTime)
+        else if (time < totalTime)
         {
             // Последний шанс: прошло 50-100%
             timerText.color = lastChanceColor;

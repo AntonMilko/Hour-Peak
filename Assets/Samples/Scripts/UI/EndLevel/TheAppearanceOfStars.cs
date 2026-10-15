@@ -111,7 +111,6 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
 
         #region Unity Lifecycle
 
-
         private void Awake()
         {
             starAppearTimings = new StarAppearTimings();
@@ -121,11 +120,11 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
 
             if (autoStart)
             {
-                _onTime = true;
+                _onTime = false;
             }
             else
             {
-                _onTime = false;
+                _onTime = true;
             }
         }
 

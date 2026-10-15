@@ -15,8 +15,8 @@ namespace HourPeak.Samples.Runtime
     #region Fields
 
     [Header("UI References")]
-    [SerializeField] private Slider resultSlider;
     [SerializeField] private Image progressFill;
+    [SerializeField] private Slider resultSlider;
     
     [Header("Colors")]
     [Tooltip("Превосходно (шустро) - зелёный")]
@@ -29,7 +29,7 @@ namespace HourPeak.Samples.Runtime
     [SerializeField] private Color excellentColor = new Color(1f, 0.8f, 0f);
     
     [Tooltip("Вовремя (нормально) - красный")]
-    [SerializeField] private Color onTimeColor = new Color(1f, 0.3f, 0f);
+    [SerializeField] private Color onTimeColor = new Color(1f, 0f, 0f);
     
     [Tooltip("Провал (опоздал) - чёрный")]
     [SerializeField] private Color failColor = Color.black;
@@ -49,15 +49,6 @@ namespace HourPeak.Samples.Runtime
     private bool isRunning;
     private bool isFinished;
     private float currentProgress;
-
-    #endregion
-
-    #region Properties
-
-    public bool IsRunning => isRunning;
-    public bool IsFinished => isFinished;
-    public float ElapsedTime => elapsedTime;
-    public DifficultyLevel CurrentDifficulty => currentDifficulty;
 
     #endregion
 

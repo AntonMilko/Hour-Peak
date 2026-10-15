@@ -103,12 +103,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b413f6c263def40b0f44ddf34c8bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.IndicatorSuccessForEndMenu
-  resultSlider: {fileID: 4730155853493993555}
   progressFill: {fileID: 274250856026108028}
+  resultSlider: {fileID: 4730155853493993555}
   perfectColor: {r: 0, g: 0.8, b: 0, a: 1}
   superColor: {r: 0, g: 0.5, b: 1, a: 1}
   excellentColor: {r: 1, g: 0.8, b: 0, a: 1}
-  onTimeColor: {r: 1, g: 0.3, b: 0, a: 1}
+  onTimeColor: {r: 1, g: 0, b: 0, a: 1}
   failColor: {r: 0, g: 0, b: 0, a: 1}
   currentDifficulty: 0
 --- !u!1 &570169299785850644
@@ -1683,7 +1683,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2951339863447603716}
+        m_TargetAssemblyTypeName: TimerDisplay, Assembly-CSharp
+        m_MethodName: SetIsRunning
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 5938949568865501198}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1743,7 +1755,7 @@ GameObject:
   - component: {fileID: 1173272274596021394}
   - component: {fileID: 3906815911188245376}
   - component: {fileID: 8053878495123598959}
-  - component: {fileID: 1856206792645204043}
+  - component: {fileID: 3230547598910450685}
   m_Layer: 5
   m_Name: Exit (Finish Game)
   m_TagString: Untagged
@@ -1855,8 +1867,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3906815911188245376}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1856206792645204043
+      m_Calls:
+      - m_Target: {fileID: 3230547598910450685}
+        m_TargetAssemblyTypeName: HourPeak.Samples.Runtime.ChangeScene2, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+--- !u!114 &3230547598910450685
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1865,15 +1889,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2358869778217977423}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd886a37e6970fb4f8abe0ec46a09435, type: 3}
+  m_Script: {fileID: 11500000, guid: a673d8e921b1b8940ac7fcd203fbc076, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: HourPeak.Samples.Runtime::HourPeak.ExitToMainMenu2
-  exitToMainMenuButton: {fileID: 8053878495123598959}
-  exitToMainMenuButtonFailed: {fileID: 8053878495123598959}
-  pauseMenuExitButton: {fileID: 0}
-  moveToMainMenu: 0
-  stayInChapterMainMenu: 1
-  autoSaveOnExit: 1
+  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.ChangeScene2
+  sceneName: StartMenu
+  timer: {fileID: 2951339863447603716}
 --- !u!1 &2441172785690591319
 GameObject:
   m_ObjectHideFlags: 0
@@ -3150,7 +3170,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9083754037786185096}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6537808392368442553}
+        m_TargetAssemblyTypeName: HourPeak.Samples.Runtime.NextLevel2, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &6537808392368442553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3163,12 +3195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71a162b6ba19c049a3eac4d4e4b188a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.NextLevel2
-  nextLevelButton: {fileID: 5270180842950189212}
-  nextLevelButtonFailed: {fileID: 5270180842950189212}
-  autoSaveOnTransition: 1
-  requireStarsForSuccess: 1
-  requiredStars: 3
-  starsCollected: 0
+  certificateSceneName: Game completion certificate
+  timer: {fileID: 2951339863447603716}
 --- !u!1 &3348086940677802939
 GameObject:
   m_ObjectHideFlags: 0
@@ -3348,7 +3376,7 @@ GameObject:
   - component: {fileID: 1520807525127752126}
   - component: {fileID: 5930454663340070995}
   - component: {fileID: 3376171680757369053}
-  - component: {fileID: 6101892857209026282}
+  - component: {fileID: 39615369413950241}
   m_Layer: 5
   m_Name: Exit To Main Menu (Finish Game)
   m_TagString: Untagged
@@ -3460,8 +3488,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5930454663340070995}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &6101892857209026282
+      m_Calls:
+      - m_Target: {fileID: 39615369413950241}
+        m_TargetAssemblyTypeName: HourPeak.Samples.Runtime.ChangeScene2, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+--- !u!114 &39615369413950241
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3470,15 +3510,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3786653540812493708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd886a37e6970fb4f8abe0ec46a09435, type: 3}
+  m_Script: {fileID: 11500000, guid: a673d8e921b1b8940ac7fcd203fbc076, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Samples.Scripts.UI.StartMenu.ExitToMainMenu2
-  exitToMainMenuButton: {fileID: 0}
-  exitToMainMenuButtonFailed: {fileID: 0}
-  pauseMenuExitButton: {fileID: 3376171680757369053}
-  moveToMainMenu: 0
-  stayInChapterMainMenu: 1
-  autoSaveOnExit: 1
+  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.ChangeScene2
+  sceneName: StartMenu
+  timer: {fileID: 0}
 --- !u!1 &3815419671907429000
 GameObject:
   m_ObjectHideFlags: 0
@@ -4609,29 +4645,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 570169299785850644}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
-      - m_Target: {fileID: 5879014597393440310}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 1
 --- !u!1 &4898747569031091737
 GameObject:
@@ -5689,7 +5713,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2953515061469941225
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6015,7 +6039,6 @@ RectTransform:
   m_Children:
   - {fileID: 418042461007776751}
   - {fileID: 9006116596060240076}
-  - {fileID: 509535418231674894}
   - {fileID: 1901525757349469148}
   - {fileID: 4506338202795169368}
   - {fileID: 2220179553403543249}
@@ -6227,7 +6250,6 @@ GameObject:
   - component: {fileID: 5886594807016208739}
   - component: {fileID: 2909389591776602350}
   - component: {fileID: 1291878261550454800}
-  - component: {fileID: 133221232425587596}
   m_Layer: 5
   m_Name: Continue (Finish Game)
   m_TagString: Untagged
@@ -6339,23 +6361,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2909389591776602350}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &133221232425587596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6538798537776950713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34e56796a2eb98049b5764e3fa27cec3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.Continue
-  continueLevel: 1
-  continueFromCheckpoint: 1
-  continueLevelWithSavedSettings: 1
-  currentSettings: 1
+      m_Calls:
+      - m_Target: {fileID: 5938949568865501198}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 570169299785850644}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 2951339863447603716}
+        m_TargetAssemblyTypeName: TimerDisplay, Assembly-CSharp
+        m_MethodName: SetIsRunning
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!1 &6793238881611841524
 GameObject:
   m_ObjectHideFlags: 0
@@ -6526,170 +6568,6 @@ Transform:
   - {fileID: 2463805907186009590}
   m_Father: {fileID: 2479612227532342761}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6881305309502939203
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 509535418231674894}
-  - component: {fileID: 4684395336573652070}
-  - component: {fileID: 4693570468845036795}
-  - component: {fileID: 1734328438138681054}
-  - component: {fileID: 3150226253692973688}
-  m_Layer: 0
-  m_Name: MapCamera (Finish Game)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &509535418231674894
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6881305309502939203}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1063, y: -126.8, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7737893856684722922}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!20 &4684395336573652070
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6881305309502939203}
-  m_Enabled: 0
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 10.85
-  far clip plane: 119.55
-  field of view: 60
-  orthographic: 1
-  orthographic size: 210
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: 0
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!114 &4693570468845036795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6881305309502939203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_AllowHDROutput: 1
-  m_UseScreenCoordOverride: 0
-  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
-  m_Version: 2
---- !u!114 &1734328438138681054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6881305309502939203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28036d6d9c49b6d448f3d35cddf168e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Menu
-  isopen: 0
---- !u!114 &3150226253692973688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6881305309502939203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e65044bc18f13c4d8b3a3796fc4e0e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraSwitcher
-  playerCamera: {fileID: 0}
-  mapCamera: {fileID: 4684395336573652070}
-  mapButton: {fileID: 4575670422150554498}
-  mapPanel: {fileID: 5879014597393440310}
-  closeButton: {fileID: 7741491863416743067}
-  cameraHeight: 50
-  autoCreateUI: 1
-  startWithMapOpen: 0
-  closeMapOnMove: 1
 --- !u!1 &6938798822920705209
 GameObject:
   m_ObjectHideFlags: 0
@@ -6927,6 +6805,7 @@ MonoBehaviour:
   lastChanceColor: {r: 0.5, g: 0, b: 0, a: 1}
   timeUpColor: {r: 0, g: 0, b: 0, a: 1}
   currentDifficulty: 0
+  isFirstScene: 0
 --- !u!1 &7065390014668635828
 GameObject:
   m_ObjectHideFlags: 0
@@ -7281,7 +7160,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6141352487897369111}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5193075457358609463}
+        m_TargetAssemblyTypeName: HourPeak.Samples.Runtime.ChangeScene2, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &5193075457358609463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7294,9 +7185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a673d8e921b1b8940ac7fcd203fbc076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.AgainLevel2
-  againLevelButton: {fileID: 1079143585592454071}
-  againLevelButtonFailed: {fileID: 1079143585592454071}
-  autoSaveOnRetry: 1
+  sceneName: Evening 36.2
+  timer: {fileID: 2951339863447603716}
 --- !u!1 &7448044098791458617
 GameObject:
   m_ObjectHideFlags: 0
@@ -7309,7 +7199,7 @@ GameObject:
   - component: {fileID: 6658200890367437780}
   - component: {fileID: 2016243724833373063}
   - component: {fileID: 6823365608123888151}
-  - component: {fileID: 3348797629125510776}
+  - component: {fileID: 1895582589129648446}
   m_Layer: 5
   m_Name: Retry (Finish Game)
   m_TagString: Untagged
@@ -7421,8 +7311,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2016243724833373063}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &3348797629125510776
+      m_Calls:
+      - m_Target: {fileID: 1895582589129648446}
+        m_TargetAssemblyTypeName: HourPeak.Samples.Runtime.ChangeScene2, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+--- !u!114 &1895582589129648446
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7431,11 +7333,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7448044098791458617}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 465bc1c05832dba49ab6404e4f3d2595, type: 3}
+  m_Script: {fileID: 11500000, guid: a673d8e921b1b8940ac7fcd203fbc076, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: HourPeak.Samples.Runtime::Retry
-  retryButton: {fileID: 6823365608123888151}
-  autoSaveOnRetry: 1
+  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.ChangeScene2
+  sceneName: Evening 36.2
+  timer: {fileID: 0}
 --- !u!1 &7671591830578969403
 GameObject:
   m_ObjectHideFlags: 0
@@ -7701,21 +7603,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5879014597393440310}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-      - m_Target: {fileID: 570169299785850644}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8033,7 +7923,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5938949568865501198}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -8828,11 +8718,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LookJoystick
   playerCamera: {fileID: 0}
   playerController: {fileID: 0}
+  virtualJoystick: {fileID: 7753427547918987110}
   horizontalSensitivity: 120
   verticalSensitivity: 120
   minLookAngle: -45
   maxLookAngle: 45
-  virtualJoystick: {fileID: 7753427547918987110}
 --- !u!114 &7753427547918987110 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 662188730274814196, guid: 56fae09712773584fb63896d473a98ee, type: 3}
