@@ -22,6 +22,7 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private Image progressFill;
     [SerializeField] private Slider sliderFill;
+    [SerializeField] private TMP_Text timerText;
 
     [Header("Colors")]
     [Tooltip("Превосходно (шустро) - зелёный")]
@@ -40,26 +41,49 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
     [SerializeField] private Color failColor = Color.black;
 
     [Header("Settings")]
+    [Tooltip("Текущий уровень сложности")]
     [SerializeField] private DifficultyLevel currentDifficulty = DifficultyLevel.Beginner;
+
+    [Tooltip("Автозапуск таймера")]
     [SerializeField] private bool autoStart = true;
+    
+    [Tooltip("Проверка сцены")]
+    [SerializeField] private bool isFirstScene;
 
     #endregion
 
     #region Private State
 
-    private float currentLevelTime;
+    private float currentLevelTime = 0f;
     private float levelTimeLimit;
     private bool isLevelActive;
+    private bool isRunning;
 
     #endregion
 
     #region Unity Lifecycle
 
-    private void Start()
+    public bool isTimeUp()
+    {
+        return currentLevelTime >= levelTimeLimit;
+    }
+
+    public void SetIsRunning(bool isRunning)
+    {
+        this.isRunning = isRunning;
+    }
+
+    private void Awake()
     {
         if (autoStart)
         {
             StartLevel();
+        }
+
+        isRunning = true;
+        if (isFirstScene)
+        {
+            currentLevelTime = 0f;
         }
     }
 
@@ -68,7 +92,16 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
         if (!isLevelActive)
             return;
 
+        if (!isRunning)
+            return;
+
         UpdateLevel();
+        currentLevelTime += Time.deltaTime;
+        timerText.text = FormatTime(currentLevelTime);
+        UpdateUI();
+
+        if (currentLevelTime >= levelTimeLimit)
+            TimeUp();
     }
 
     #endregion
@@ -128,6 +161,9 @@ public class IndicatorSuccessForGameplay : MonoBehaviour
 
     private void UpdateLevel()
     {
+        if (!isRunning)
+            return;
+
         currentLevelTime += Time.deltaTime;
         UpdateUI();
         

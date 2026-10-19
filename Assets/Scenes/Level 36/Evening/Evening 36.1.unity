@@ -14069,6 +14069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraSwitch
   playerCamera: {fileID: 1141654057}
   mapCamera: {fileID: 1350045820}
+  GameUI: {fileID: 1764165653}
   mapPanel: {fileID: 1764165652}
   timer: {fileID: 1764165651}
 --- !u!20 &1350045820
@@ -17700,6 +17701,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 145201929303839263, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 1350045820}
+    - target: {fileID: 454227764923111018, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 1350045820}
     - target: {fileID: 528670830394039160, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
       propertyPath: playerCamera
       value: 
@@ -17724,14 +17733,42 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 714352993006370693, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 1350045820}
+    - target: {fileID: 955912294531535154, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 1350045820}
     - target: {fileID: 1054399693720668704, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1141654056}
+    - target: {fileID: 1058971818911994168, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 1350045820}
+    - target: {fileID: 1311572307668994239, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 1350045820}
+    - target: {fileID: 1364772255474302359, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 1350045820}
     - target: {fileID: 2358869778217977423, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2790635090279226427, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 1350045820}
+    - target: {fileID: 2794045065739433153, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 1350045820}
     - target: {fileID: 3083084253811079165, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
       propertyPath: playerController
       value: 
@@ -17756,6 +17793,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4922194789944519577, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 1350045820}
     - target: {fileID: 5948831970764378108, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
@@ -17780,10 +17821,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6013283994210278982, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 1350045820}
     - target: {fileID: 6329163192121487951, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
       propertyPath: m_Name
       value: UI (Finish Game)
       objectReference: {fileID: 0}
+    - target: {fileID: 6632339391027802068, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 1350045820}
     - target: {fileID: 6638375432862939650, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -17811,6 +17860,30 @@ PrefabInstance:
     - target: {fileID: 7274892346373281797, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672866231193872315, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672866231193872315, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1350045819}
+    - target: {fileID: 7672866231193872315, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMapOpen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672866231193872315, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CameraSwitch, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672866231193872315, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7672866231193872315, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7715074630344774724, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
       propertyPath: playerController
@@ -17896,6 +17969,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8108012532575996032, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 1350045820}
+    - target: {fileID: 8222488725506611230, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 1350045820}
+    - target: {fileID: 8480989466860600119, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+      propertyPath: mapCamera
+      value: 
+      objectReference: {fileID: 1350045820}
     - target: {fileID: 8596778915703345884, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
       propertyPath: mapCamera
       value: 
@@ -17938,7 +18023,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TimerDisplay
 --- !u!1 &1764165652 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5879014597393440310, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 194494436734057302, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
+  m_PrefabInstance: {fileID: 1764165648}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1764165653 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 570169299785850644, guid: 6286c49433b12ed48b8329efb529e94c, type: 3}
   m_PrefabInstance: {fileID: 1764165648}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1766094333

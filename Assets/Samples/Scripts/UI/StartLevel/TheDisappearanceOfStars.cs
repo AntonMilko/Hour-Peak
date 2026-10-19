@@ -4,6 +4,7 @@ using HourPeak.Settings;
 using HourPeak.Addition;
 using System.Collections;
 using HourPeak.Samples.Runtime.StarDisappearTimings;
+using System;
 
 namespace HourPeak.Samples.Runtime.StarDisappearTimings
 {
@@ -96,6 +97,9 @@ namespace HourPeak.Samples.Runtime.StarDisappearTimings
 
         [Tooltip("Звезда 1 мигает при достижении ограниченного времени")]
         [SerializeField] private bool isBlinking = true;
+    
+        [Tooltip("Проверка сцены")]
+        [SerializeField] private bool isFirstScene;
 
         [Tooltip("Скорость мигания")]
         [SerializeField] private float blinkSpeed = 10f;
@@ -121,6 +125,16 @@ namespace HourPeak.Samples.Runtime.StarDisappearTimings
 
         #region Unity Lifecycle
 
+        public bool isTimeUp()
+        {
+            return currentTime >= allBlackTime;
+        }
+
+        public void SetIsRunning(bool isRunning)
+        {
+            _isRunning = isRunning;
+        }
+
         private void Awake()
         {
             CalculateTimingsByDifficulty(starDisappearTimings);
@@ -134,6 +148,13 @@ namespace HourPeak.Samples.Runtime.StarDisappearTimings
             {
                 isBlinking = true;
             }
+        
+            if (isFirstScene)
+            {
+                currentTime = 0f;
+            }        
+            UpdateStarsState();
+            _isRunning = true;
         }
 
         private void Update()
@@ -143,7 +164,10 @@ namespace HourPeak.Samples.Runtime.StarDisappearTimings
             enabled = true;
 
             currentTime += Time.deltaTime;
+            DifficultyManager.OnDifficultyChanged += UpdateStarsState;
             UpdateStarsState();
+            if (currentTime >= allBlackTime)
+                SetAllStarsBlack();
         }
 
         #endregion
@@ -311,6 +335,7 @@ namespace HourPeak.Samples.Runtime.StarDisappearTimings
 
         internal class DifficultyManager
         {
+            internal static Action OnDifficultyChanged;
             internal bool CurrentDifficulty;
             internal bool IsDifficultySet;
         }
