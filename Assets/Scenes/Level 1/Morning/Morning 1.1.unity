@@ -3192,7 +3192,7 @@ PrefabInstance:
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: pathContainer
       value: 
-      objectReference: {fileID: 217099470}
+      objectReference: {fileID: 217099471}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: splineContainer
       value: 
@@ -11292,20 +11292,36 @@ PrefabInstance:
       value: 264
       objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: cruiseSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: stopDistance
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: stopDuration
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: pathContainer
       value: 
-      objectReference: {fileID: 677726465}
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: slowDownSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: busLayer.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: splineContainer
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: stopApproachDistance
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: trafficLightStopDist
@@ -11316,12 +11332,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: m_EditorClassIdentifier
+      value: Assembly-CSharp::BusSplineMovement
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: busStopPoints.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: lightTraffics.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: trafficLights.Array.size
@@ -15939,23 +15959,39 @@ PrefabInstance:
       value: M16
       objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: cruiseSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: stopDistance
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: stopDuration
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: pathContainer
       value: 
-      objectReference: {fileID: 725777905}
+      objectReference: {fileID: 725777906}
+    - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: slowDownSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: splineContainer
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: enableTrafficFlow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: busStops.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: stopApproachDistance
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
@@ -15967,8 +16003,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: m_EditorClassIdentifier
+      value: Assembly-CSharp::BusSplineMovement
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: busStopPoints.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: lightTraffics.Array.size
@@ -15986,6 +16026,10 @@ PrefabInstance:
       propertyPath: 'busStopPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 7063578}
+    - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: 'busStopPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 334335009}
     - target: {fileID: 6509885279888096123, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: 'lightTraffics.Array.data[0]'
       value: 
