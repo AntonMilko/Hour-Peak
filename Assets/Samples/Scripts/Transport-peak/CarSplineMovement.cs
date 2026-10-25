@@ -164,18 +164,4 @@ public class CarSplineMovement : MonoBehaviour
     }
 
     private IEnumerator Accelerate() { isStopped = false; activeSignal = null; float t = 0f; while (t < 1.5f) { t += Time.deltaTime; currentSpeed = Mathf.Lerp(0f, cruiseSpeed, t / 1.5f); yield return null; } currentSpeed = cruiseSpeed; }
-
-    public float GetCurrentSpeed() => currentSpeed;
-    public bool IsStopped() => isStopped;
-    public void ForceStop() { isStopped = true; currentSpeed = 0f; }
-    public void ResumeMovement() { isStopped = false; currentSpeed = slowDownSpeed; }
-    public void SetCruiseSpeed(float speed) { cruiseSpeed = Mathf.Max(speed, 1f); }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.white;
-        for (int i = 0; waypoints != null && i < waypoints.Count - 1; i++) Gizmos.DrawLine(waypoints[i].position, waypoints[i + 1].position);
-        Gizmos.color = new Color(1, 0, 0, 0.3f);
-        Gizmos.DrawWireCube(transform.position + transform.forward * detectionDistance / 2f + Vector3.up * 1.5f, new Vector3(4f, 6f, detectionDistance));
-    }
 }

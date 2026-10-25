@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using TMPro;
 using System;
 using System.IO;
@@ -62,8 +61,8 @@ public class EndManager : MonoBehaviour
 
     #region Private State
 
-    private bool isShowSuccessScreen = false;
-    private bool isShowFailureScreen = false;
+    private bool isShowSuccessScreen;
+    private bool isShowFailureScreen;
     private bool loadSceneMainMenu = false;
     private bool loadSceneAgainLevel = false;
     private bool levelSuccess;

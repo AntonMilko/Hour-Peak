@@ -715,7 +715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1847,7 +1847,7 @@ MonoBehaviour:
   starImage1: {fileID: 2042198436099833490}
   starImage2: {fileID: 6901152794696304745}
   starImage3: {fileID: 1863057168326483550}
-  yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  yellowColor: {r: 1, g: 1, b: 0, a: 1}
   blackColor: {r: 0, g: 0, b: 0, a: 1}
   beginnerTimings:
     allBlackTime: 240
@@ -1868,6 +1868,7 @@ MonoBehaviour:
     star2AppearTime: 7.5
     allYellowTime: 0
   autoStart: 0
+  onTime: 0
 --- !u!1 &2981014213217634276
 GameObject:
   m_ObjectHideFlags: 0
@@ -2005,14 +2006,14 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4566875d6107e3e4fb28b83369860419, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.TheDisappearanceOfStars
+  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.StarDisappearTimings.TheDisappearanceOfStars
   starObject1: {fileID: 6803930693572843579}
   starObject2: {fileID: 1981487793557496472}
   starObject3: {fileID: 5316378233340117857}
   starImage1: {fileID: 7213611360017617328}
   starImage2: {fileID: 6419344512509378626}
   starImage3: {fileID: 4581346261537818333}
-  yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  yellowColor: {r: 1, g: 1, b: 0, a: 1}
   blackColor: {r: 0, g: 0, b: 0, a: 1}
   beginnerTimings:
     allYellowTime: 0
@@ -2034,6 +2035,7 @@ MonoBehaviour:
     allBlackTime: 60
   autoStart: 1
   isBlinking: 1
+  isFirstScene: 0
   blinkSpeed: 10
 --- !u!1 &3131700930319180608
 GameObject:
@@ -2729,7 +2731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.08320022, b: 1, a: 1}
+  m_Color: {r: 0.20392157, g: 0.28627452, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2854,13 +2856,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IndicatorSuccessForGameplay
   progressFill: {fileID: 685788090542019849}
   sliderFill: {fileID: 7347119584987195091}
-  perfectColor: {r: 0, g: 0.8, b: 0, a: 1}
-  superColor: {r: 0, g: 0.5, b: 1, a: 1}
-  excellentColor: {r: 1, g: 0.8, b: 0, a: 1}
+  perfectColor: {r: 0, g: 1, b: 0, a: 1}
+  superColor: {r: 0, g: 0, b: 1, a: 1}
+  excellentColor: {r: 1, g: 1, b: 0, a: 1}
   onTimeColor: {r: 1, g: 0, b: 0, a: 1}
   failColor: {r: 0, g: 0, b: 0, a: 1}
-  currentDifficulty: 0
   autoStart: 1
+  isFirstScene: 0
 --- !u!1 &3815419671907429000
 GameObject:
   m_ObjectHideFlags: 0
@@ -3840,7 +3842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.06265974, b: 1, a: 1}
+  m_Color: {r: 0.20392157, g: 0.28627452, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3958,7 +3960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5424,7 +5426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.8, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5645,7 +5647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6426,7 +6428,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TimerDisplay
   timerText: {fileID: 6827454477217542423}
   endMenu: {fileID: 8620224143024557693}
-  indicatorSuccessForEndMenu: {fileID: 3191984784096065849}
   safeColor: {r: 1, g: 1, b: 1, a: 1}
   warningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   dangerColor: {r: 1, g: 0, b: 0, a: 1}
@@ -7007,7 +7008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.078431375, b: 1, a: 1}
+  m_Color: {r: 0.20392157, g: 0.28627452, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7540,12 +7541,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.IndicatorSuccessForEndMenu
   progressFill: {fileID: 2193369065871214763}
   resultSlider: {fileID: 2805447846891225157}
-  perfectColor: {r: 0, g: 0.8, b: 0, a: 1}
-  superColor: {r: 0, g: 0.5, b: 1, a: 1}
-  excellentColor: {r: 1, g: 0.8, b: 0, a: 1}
+  perfectColor: {r: 0, g: 1, b: 0, a: 1}
+  superColor: {r: 0, g: 0, b: 1, a: 1}
+  excellentColor: {r: 1, g: 1, b: 0, a: 1}
   onTimeColor: {r: 1, g: 0, b: 0, a: 1}
   failColor: {r: 0, g: 0, b: 0, a: 1}
-  currentDifficulty: 0
+  autoStart: 0
+  isLevelFinished: 0
 --- !u!1 &7784021851998886889
 GameObject:
   m_ObjectHideFlags: 0

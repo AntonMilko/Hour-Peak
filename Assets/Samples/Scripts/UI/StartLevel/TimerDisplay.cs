@@ -1,10 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
 using HourPeak.Settings;
-using HourPeak.Samples.Runtime;
-using System;
 
 /// <summary>
 /// Отображение таймера с цветовой индикацией в зависимости от оставшегося времени.
@@ -30,9 +26,6 @@ public class TimerDisplay : MonoBehaviour
     [Tooltip("Меню конца игры (показывается когда время вышло)")]
     [SerializeField] private GameObject endMenu;
 
-    [Tooltip("Меню конца игры (показывается когда время вышло)")]
-    [SerializeField] private IndicatorSuccessForEndMenu indicatorSuccessForEndMenu;
-
     [Header("Colors")]
     [Tooltip("Безопасное время (спокойствие) - белый")]
     [SerializeField] private Color safeColor = Color.white;
@@ -49,31 +42,37 @@ public class TimerDisplay : MonoBehaviour
     [Tooltip("Время вышло (провал) - чёрный")]
     [SerializeField] private Color timeUpColor = Color.black;
 
-    [Header("Settings")]
+    [Header("Difficulty")]
     [Tooltip("Текущий уровень сложности")]
     [SerializeField] private DifficultyLevel currentDifficulty = DifficultyLevel.Beginner;
     
+    [Header("Settings")]
     [Tooltip("Проверка сцены")]
     [SerializeField] private bool isFirstScene;
 
     #endregion
 
-    #region Private State
+    #region Global time state
 
     /// <summary>
     /// Текущее оставшееся время (в секундах).
     /// </summary>
-    private static float time;
+    public static float time { get; private set; }
     
     /// <summary>
     /// Общее время на уровне сложности.
     /// </summary>
-    private float totalTime;
+    public static float totalTime { get; private set; }
+
+    /// <summary>
+    /// Состояние завершения уровня.
+    /// </summary>
+    public static bool isFinished { get; private set; }
     
     /// <summary>
     /// Флаг: запущен ли таймер.
     /// </summary>
-    private bool isRunning;
+    public static bool isRunning { get; private set; }
 
     #endregion
 
@@ -86,7 +85,12 @@ public class TimerDisplay : MonoBehaviour
 
     public void SetIsRunning(bool isRunning)
     {
-        this.isRunning = isRunning;
+        TimerDisplay.isRunning = isRunning;
+    }
+
+    public void SetIsFinished(bool isFinished)
+    {
+        TimerDisplay.isFinished = isFinished;
     }
 
     /// <summary>
@@ -96,6 +100,7 @@ public class TimerDisplay : MonoBehaviour
     {
         LoadDifficultySettings();
         isRunning = true;
+        isFinished = false;
         if (isFirstScene)
         {
             time = 0f;
@@ -116,11 +121,66 @@ public class TimerDisplay : MonoBehaviour
 
         if (time >= totalTime)
             TimeUp();
+
+        if (isFinished)
+            OnIsFinished();
     }
 
     #endregion
 
     #region Timer Logic
+
+    /// <summary>
+    /// Вызывается когда таймер завершён.
+    /// </summary>
+    public void OnIsFinished()
+    {
+        Debug.Log("Дошли до пункта Б вовремя");
+        ShowEndMenu();
+    }
+
+    /// <summary>
+    /// Вызывается когда время вышло.
+    /// </summary>
+    private void TimeUp()
+    {
+        Debug.Log("Время вышло! Обновляем цвет на чёрный");
+        ShowEndMenu();
+    }
+
+    /// <summary>
+    /// Показывает меню конца игры.
+    /// </summary>
+    private void ShowEndMenu()
+    {
+        if (isRunning)
+        {
+            endMenu.SetActive(false);
+            Debug.Log("EndMenu не показан во время прохождения уровня");
+        }
+
+        else if (isFinished)
+        {
+            endMenu.SetActive(true);
+            Debug.Log("EndMenu показан после успешного прохождения уровня");
+        }
+
+        else if (time >= totalTime)
+        {
+            endMenu.SetActive(true);
+            Debug.Log("EndMenu показан после провального прохождения уровня");
+        }
+
+        else
+        {
+            endMenu.SetActive(false);
+            Debug.Log("EndMenu не показан во время прохождения уровня");
+        }
+    }
+
+    #endregion
+
+    #region UI Update
 
     /// <summary>
     /// Загружает настройки времени для текущего уровня сложности.
@@ -159,57 +219,22 @@ public class TimerDisplay : MonoBehaviour
     }
 
     /// <summary>
-    /// Вызывается когда таймер завершён.
-    /// </summary>
-    public void OnIsFinished()
-    {
-        Debug.Log("Дошли до пункта Б вовремя");
-        ShowEndMenu();
-    }
-
-    /// <summary>
-    /// Вызывается когда время вышло.
-    /// </summary>
-    private void TimeUp()
-    {
-        Debug.Log("Время вышло! Обновляем цвет на чёрный");
-        ShowEndMenu();
-    }
-
-    /// <summary>
-    /// Показывает меню конца игры.
-    /// </summary>
-    private void ShowEndMenu()
-    {
-        endMenu.SetActive(true);
-        indicatorSuccessForEndMenu.StartAnimation(time);
-        Debug.Log("EndMenu показан");
-    }
-
-    #endregion
-
-    #region UI Update
-
-    /// <summary>
     /// Обновляет цвет таймера в зависимости от ПРОШЕДШЕГО времени.
     /// </summary>
     private void UpdateColor()
-    {
-        // Получаем пороги для текущего уровня сложности
-        (float warningStart, float dangerStart, float lastChanceStart, float totalTime) = GetThresholds();
-        
+    {        
         // Определяем цвет на основе прошедшего времени
-        if (time < warningStart)
+        if (time < totalTime/8)
         {
             // Спокойное время: прошло 0-12.5%
             timerText.color = safeColor;
         }
-        else if (time < dangerStart)
+        else if (time < totalTime/4)
         {
             // Серьёзное время: прошло 12.5-25%
             timerText.color = warningColor;
         }
-        else if (time < lastChanceStart)
+        else if (time < totalTime/2)
         {
             // Критическое время: прошло 25-50%
             timerText.color = dangerColor;
@@ -224,17 +249,6 @@ public class TimerDisplay : MonoBehaviour
             // Время вышло
             timerText.color = timeUpColor;
         }
-    }
-
-    private (float warningStart, float dangerStart, float lastChanceStart, float totalTime) GetThresholds()
-    {
-        return currentDifficulty switch
-        {
-            DifficultyLevel.Beginner => (30f, 60f, 120f, 240f),
-            DifficultyLevel.Professional => (15f, 30f, 60f, 120f),
-            DifficultyLevel.Extremal => (7.5f, 15f, 30f, 60f),
-            _ => (30f, 60f, 120f, 240f)
-        };
     }
 
     #endregion

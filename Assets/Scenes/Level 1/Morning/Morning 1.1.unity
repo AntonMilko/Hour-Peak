@@ -10268,6 +10268,18 @@ PrefabInstance:
       propertyPath: signalConfigs.Array.data[0].greenPedFlashDuration
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3843110136109174721, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].redPedDuration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843110136109174721, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].greenPedDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843110136109174721, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].greenPedFlashDuration
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8509344228576450489, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
       propertyPath: m_LocalScale.x
       value: 6
@@ -17317,6 +17329,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 0db6fcb12f854c04981438826ea60c2e, type: 2}
     - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].greenPedFlashDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843110136109174721, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].redPedDuration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843110136109174721, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].greenPedDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843110136109174721, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
       propertyPath: signalConfigs.Array.data[0].greenPedFlashDuration
       value: 3
       objectReference: {fileID: 0}

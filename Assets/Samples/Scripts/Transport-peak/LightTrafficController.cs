@@ -289,16 +289,5 @@ namespace HourPeak.Transport
         }
 
         #endregion
-
-#if UNITY_EDITOR
-        [ContextMenu("Start Cycle")]
-        private void DebugStart() => StartCycle();
-
-        [ContextMenu("Stop Cycle")]
-        private void DebugStop() => StopCycle();
-
-        [ContextMenu("Force Next Signal")]
-        private void DebugNext() => ForceNextSignal();
-#endif
     }
 }

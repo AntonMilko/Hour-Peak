@@ -367,10 +367,42 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: e990e6eea049c8b45b40c6d891fb8e0c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7288818927954859892}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e990e6eea049c8b45b40c6d891fb8e0c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3843110136109174721}
   m_SourcePrefab: {fileID: 100100000, guid: e990e6eea049c8b45b40c6d891fb8e0c, type: 3}
 --- !u!4 &8509344228576450489 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e990e6eea049c8b45b40c6d891fb8e0c, type: 3}
   m_PrefabInstance: {fileID: 8186974578513064018}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9033257479888276739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e990e6eea049c8b45b40c6d891fb8e0c, type: 3}
+  m_PrefabInstance: {fileID: 8186974578513064018}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3843110136109174721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9033257479888276739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36a52c37468e04448622c261b09cccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Transport.PedestrianLightTraffic
+  signalConfigs:
+  - redPedLight: {fileID: 5208405589829121125}
+    greenPedLight: {fileID: 427660122990369001}
+    offMaterial: {fileID: 2100000, guid: 362235ed5c65327428eb4db44df8d0a2, type: 2}
+    greenPedMaterial: {fileID: 2100000, guid: 0db6fcb12f854c04981438826ea60c2e, type: 2}
+    redPedMaterial: {fileID: 2100000, guid: fe8b0a710b0dc9744895793b3b151d81, type: 2}
+    greenPedDuration: 0
+    greenPedFlashDuration: 0
+    redPedDuration: 0
+    pedDirection: -1
+  autoStart: 1
+  logSwitches: 1
