@@ -1,167 +1,156 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Splines;
 
 [RequireComponent(typeof(BoxCollider))]
 public class CarSplineMovement : MonoBehaviour
 {
+    #region Fields
+
     [Header("Движение")]
-    [SerializeField] private Transform pathContainer;
+    [SerializeField] private SplineContainer pathContainer;
     [SerializeField] private float cruiseSpeed = 40f;
     [SerializeField] private float slowDownSpeed = 15f;
-    [SerializeField] private float acceleration = 8f;
     [SerializeField] private float deceleration = 10f;
-    [SerializeField] private bool loopPath = false;
 
     [Header("Светофоры")]
-    [SerializeField] private float detectionDistance = 10f;
-    [SerializeField] private float stopDistance = 4f;
+    [SerializeField] private float lightDetectionDistance = 15f;
+    [SerializeField] private float lightStopDistance = 5f;
     [SerializeField] private List<Transform> lightTraffics = new List<Transform>();
 
     [Header("Поток")]
-    [SerializeField] private bool enableTrafficFlow = false;
+    [SerializeField] private bool enableTrafficFlow = true;
     [SerializeField] private float safeFollowingDistance = 30f;
-    [SerializeField] private LayerMask vehicleLayer;
 
-    private List<Transform> waypoints = new List<Transform>();
-    private float currentDistance = 0f, totalLength = 0f, currentSpeed = 0f;
-    private bool isStopped = false, reachedEnd = false;
-    private LightTraficSignal activeSignal = null;
-    private GameObject carInFront;
+    #endregion
 
-    private void Start()
+    #region Private state
+
+    private List<BezierKnot> waypoints;
+    private float currentSpeed;
+    private bool isStopped;
+    private CarSplineMovement carInFront;
+    private GameObject activeSignalObject;
+    private float pos;
+
+    #endregion
+
+    #region Unity lifecycle
+
+    private void Awake()
     {
-        if (!InitPath()) { enabled = false; return; }
-        currentSpeed = cruiseSpeed;
+        waypoints = pathContainer.Splines[0].Knots.ToList();
+        currentSpeed = cruiseSpeed;        
     }
 
     private void Update()
     {
-        if (reachedEnd || waypoints.Count < 2) return;
-        
+        if (waypoints.Count < 2 || isStopped)
+            return;
+
         CheckLights();
         if (enableTrafficFlow)
             CheckCarAhead();
-        UpdateSpeed();
-        if (!isStopped) Move();
+        Move();
     }
 
-    private bool InitPath()
-    {
-        if (!pathContainer) return false;
-        waypoints.Clear();
-        for (int i = 0; i < pathContainer.childCount; i++)
-        {
-            Transform child = pathContainer.GetChild(i);
-            if (child != null) waypoints.Add(child);
-        }
-        if (waypoints.Count < 2) return false;
-        totalLength = 0f;
-        for (int i = 0; i < waypoints.Count - 1; i++)
-            totalLength += Vector3.Distance(waypoints[i].position, waypoints[i + 1].position);
-        return true;
-    }
+    #endregion
 
-    private Vector3 GetPosition(float dist)
-    {
-        float acc = 0f;
-        for (int i = 0; i < waypoints.Count - 1; i++)
-        {
-            float len = Vector3.Distance(waypoints[i].position, waypoints[i + 1].position);
-            if (dist >= acc && dist < acc + len)
-                return Vector3.Lerp(waypoints[i].position, waypoints[i + 1].position, (dist - acc) / len);
-            acc += len;
-        }
-        return waypoints[waypoints.Count - 1].position;
-    }
+    #region Private methods
 
     private void CheckLights()
     {
-        if (lightTraffics == null || lightTraffics.Count == 0) return;
+        if (lightTraffics.Count == 0)
+            return;
 
-        LightTraficSignal closest = null;
-        float dist = float.MaxValue;
+        GameObject closestSignal = null;
+        float closestDist = float.MaxValue;
 
+        // Проверяем только светофоры из назначенного списка
         foreach (Transform light in lightTraffics)
         {
-            if (light == null) continue;
-
-            float d = Vector3.Distance(transform.position, light.position);
-            if (d <= detectionDistance)
+            float dist = Vector3.Distance(transform.position, light.position);
+            if (dist <= lightDetectionDistance)
             {
-                var s = light.GetComponent<LightTraficSignal>();
-                if (s && s.IsRed() && d < dist)
+                var signal = light.GetComponent<LightTraficSignal>();
+                if (signal.IsRed() && dist < closestDist)
                 {
-                    closest = s;
-                    dist = d;
+                    closestSignal = light.gameObject;
+                    closestDist = dist;
                 }
             }
         }
 
-        if (closest && dist <= detectionDistance)
+        if (closestSignal != null)
         {
-            activeSignal = closest;
-            if (dist <= stopDistance + 3f && !isStopped) isStopped = true;
+            activeSignalObject = closestSignal;
+            if (closestDist <= lightStopDistance)
+            {
+                isStopped = true;
+            }
+            else
+            {
+                currentSpeed = Mathf.Lerp(currentSpeed, 0, deceleration * Time.deltaTime);
+            }
         }
-        else if (isStopped && activeSignal != null && !activeSignal.IsRed())
+        else if (isStopped && activeSignalObject != null)
         {
-            StartCoroutine(Accelerate());
+            var signal = activeSignalObject.GetComponent<LightTraficSignal>();
+            if (signal != null && !signal.IsRed())
+            {
+                StartCoroutine(ReleaseFromSignal());
+            }
         }
+    }
+
+    private IEnumerator ReleaseFromSignal()
+    {
+        isStopped = false;
+        activeSignalObject = null;
+        float elapsed = 0f;
+        float duration = 1.5f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            currentSpeed = Mathf.Lerp(0f, cruiseSpeed, t);
+            yield return null;
+        }
+        currentSpeed = cruiseSpeed;
     }
 
     private void CheckCarAhead()
     {
         carInFront = null;
-        Ray ray = new Ray(transform.position + Vector3.up * 1.5f, transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, safeFollowingDistance, vehicleLayer))
+        Ray ray = new Ray(transform.position + Vector3.up * 1f, transform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, safeFollowingDistance))
         {
-            carInFront = hit.collider.gameObject;
-        }
-    }
-
-    private void UpdateSpeed()
-    {
-        float target = cruiseSpeed;
-
-        if (activeSignal != null && activeSignal.IsRed())
-        {
-            float distToLight = Vector3.Distance(transform.position, activeSignal.transform.position);
-            if (distToLight <= stopDistance) { target = 0f; isStopped = true; }
-            else if (distToLight <= stopDistance + 5f) target = slowDownSpeed;
+            var other = hit.collider.GetComponent<CarSplineMovement>();
+            if (other != null && other != this)
+                carInFront = other;
         }
 
-        if (enableTrafficFlow && carInFront != null)
+        if (carInFront != null)
         {
-            float distToCar = Vector3.Distance(transform.position, carInFront.transform.position);
-            if (distToCar < safeFollowingDistance * 0.5f)
-            {
-                target = 0f;
+            float dist = Vector3.Distance(transform.position, carInFront.transform.position);
+            if (dist < safeFollowingDistance * 0.5f)
                 isStopped = true;
-            }
-            else if (distToCar < safeFollowingDistance)
-            {
-                target = slowDownSpeed;
-            }
+            else if (dist < safeFollowingDistance)
+                currentSpeed = Mathf.Lerp(currentSpeed, slowDownSpeed, deceleration * Time.deltaTime);
         }
-
-        currentSpeed = currentSpeed > target ? Mathf.Lerp(currentSpeed, target, deceleration * Time.deltaTime) : Mathf.Lerp(currentSpeed, target, acceleration * Time.deltaTime);
-        if (isStopped && currentSpeed < 0.1f) currentSpeed = 0f;
     }
 
     private void Move()
     {
-        currentDistance += currentSpeed * Time.deltaTime;
-        if (currentDistance >= totalLength)
-        {
-            if (loopPath) currentDistance %= totalLength;
-            else { currentDistance = totalLength; reachedEnd = true; return; }
-        }
-        Vector3 pos = GetPosition(currentDistance);
-        Vector3 next = GetPosition(currentDistance + 0.5f);
-        transform.position = pos;
-        if ((next - pos).sqrMagnitude > 0.001f)
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(next - pos), 10f * Time.deltaTime);
+        pos += Time.deltaTime * currentSpeed;
+        pathContainer.Evaluate(pos / pathContainer.CalculateLength(), out var position, out var tangent, out var up);
+        transform.position = position;
+        transform.rotation = Quaternion.LookRotation(tangent, up);
     }
 
-    private IEnumerator Accelerate() { isStopped = false; activeSignal = null; float t = 0f; while (t < 1.5f) { t += Time.deltaTime; currentSpeed = Mathf.Lerp(0f, cruiseSpeed, t / 1.5f); yield return null; } currentSpeed = cruiseSpeed; }
+    #endregion
 }

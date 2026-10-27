@@ -7,11 +7,12 @@ using UnityEngine.Splines;
 [RequireComponent(typeof(BoxCollider))]
 public class BusSplineMovement : MonoBehaviour
 {
+    #region Fields
+
     [Header("Движение")]
     [SerializeField] private SplineContainer pathContainer;
     [SerializeField] private float cruiseSpeed = 30f;
     [SerializeField] private float slowDownSpeed = 10f;
-    [SerializeField] private float acceleration = 5f;
     [SerializeField] private float deceleration = 7f;
 
     [Header("Светофоры")]
@@ -28,14 +29,22 @@ public class BusSplineMovement : MonoBehaviour
     [SerializeField] private bool enableTrafficFlow = true;
     [SerializeField] private float safeFollowingDistance = 30f;
 
+    #endregion
+
+    #region Private state
+
     private List<BezierKnot> waypoints;
     private float currentSpeed;
     private bool isStopped;
     private Transform currentStop;
     private BusSplineMovement busInFront;
     private GameObject activeSignalObject;
-    private int currentKnot;
+    private float pos;
     public bool IsWaitingAtBusStop => isStopped && currentStop != null;
+
+    #endregion
+
+    #region Unity lifecycle
 
     private void Awake()
     {
@@ -55,6 +64,10 @@ public class BusSplineMovement : MonoBehaviour
         Move();
     }
 
+    #endregion
+
+    #region Private methods
+
     private void CheckLights()
     {
         if (lightTraffics.Count == 0)
@@ -70,7 +83,7 @@ public class BusSplineMovement : MonoBehaviour
             if (dist <= lightDetectionDistance)
             {
                 var signal = light.GetComponent<LightTraficSignal>();
-                if (signal.IsRed() && dist < closestDist)
+                if (!signal.IsGreen() && dist < closestDist)
                 {
                     closestSignal = light.gameObject;
                     closestDist = dist;
@@ -93,7 +106,7 @@ public class BusSplineMovement : MonoBehaviour
         else if (isStopped && activeSignalObject != null)
         {
             var signal = activeSignalObject.GetComponent<LightTraficSignal>();
-            if (signal != null && !signal.IsRed())
+            if (signal != null && signal.IsGreen())
             {
                 StartCoroutine(ReleaseFromSignal());
             }
@@ -102,6 +115,7 @@ public class BusSplineMovement : MonoBehaviour
 
     private IEnumerator ReleaseFromSignal()
     {
+        Debug.Log("ReleaseFromSignal");
         isStopped = false;
         activeSignalObject = null;
         float elapsed = 0f;
@@ -149,6 +163,7 @@ public class BusSplineMovement : MonoBehaviour
             float dist = Vector3.Distance(transform.position, stop.position);
             if (dist <= stopApproachDistance)
             {
+                Debug.Log("Автобус остановился на остановке?");
                 currentStop = stop;
                 StartCoroutine(StopAtBusStop());
                 break;
@@ -161,7 +176,6 @@ public class BusSplineMovement : MonoBehaviour
         isStopped = true;
         yield return new WaitForSeconds(stopDuration);
         isStopped = false;
-        currentStop = null;
         StartCoroutine(AccelerateFromStop());
     }
 
@@ -169,7 +183,7 @@ public class BusSplineMovement : MonoBehaviour
     {
         float elapsed = 0f;
         float duration = 2f;
-
+        
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
@@ -178,15 +192,16 @@ public class BusSplineMovement : MonoBehaviour
             yield return null;
         }
         currentSpeed = cruiseSpeed;
+        currentStop = null;
     }
 
     private void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[currentKnot].Position, currentSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, waypoints[currentKnot].Rotation, currentSpeed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, waypoints[currentKnot].Position) < 0.1f)
-        {
-            currentKnot = Mathf.Min(currentKnot + 1, waypoints.Count - 1);
-        }
+        pos += Time.deltaTime * currentSpeed;
+        pathContainer.Evaluate(pos / pathContainer.CalculateLength(), out var position, out var tangent, out var up);
+        transform.position = position;
+        transform.rotation = Quaternion.LookRotation(tangent, up);
     }
+
+    #endregion
 }
