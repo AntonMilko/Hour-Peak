@@ -57,11 +57,11 @@ namespace HourPeak.Transport
             pedGreenSignal
         }
 
+        public bool IsGreen() => _currentSignal == TrafficSignalType.Green;
+
         public void SetCarSignal(TrafficSignalType carSignal)
         {
             if (_currentSignal == carSignal) return;
-
-            _currentSignal = carSignal;
 
             redLight.SetActive(carSignal == TrafficSignalType.Red);
             yellowLight.SetActive(carSignal == TrafficSignalType.Yellow);
@@ -71,8 +71,6 @@ namespace HourPeak.Transport
         public void SetPedestrianSignal(TrafficSignalType pedestrianSignal)
         {
             if (_currentSignal == pedestrianSignal) return;
-
-            _currentSignal = pedestrianSignal;
 
             greenPedLight.SetActive(pedestrianSignal == TrafficSignalType.pedGreenSignal);
             redPedLight.SetActive(pedestrianSignal == TrafficSignalType.pedRedSignal);

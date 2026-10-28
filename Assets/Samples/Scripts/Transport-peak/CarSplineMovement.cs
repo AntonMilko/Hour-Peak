@@ -32,7 +32,7 @@ public class CarSplineMovement : MonoBehaviour
     private float currentSpeed;
     private bool isStopped;
     private CarSplineMovement carInFront;
-    private GameObject activeSignalObject;
+    private LightTrafficController activeSignalObject;
     private float pos;
 
     #endregion
@@ -74,7 +74,7 @@ public class CarSplineMovement : MonoBehaviour
             float dist = Vector3.Distance(transform.position, light.position);
             if (dist <= lightDetectionDistance)
             {
-                var signal = light.GetComponent<LightTraficSignal>();
+                var signal = light.GetComponent<LightTrafficController>();
                 if (signal.IsRed() && dist < closestDist)
                 {
                     closestSignal = light.gameObject;
@@ -97,7 +97,7 @@ public class CarSplineMovement : MonoBehaviour
         }
         else if (isStopped && activeSignalObject != null)
         {
-            var signal = activeSignalObject.GetComponent<LightTraficSignal>();
+            var signal = activeSignalObject.GetComponent<LightTrafficController>();
             if (signal != null && !signal.IsRed())
             {
                 StartCoroutine(ReleaseFromSignal());

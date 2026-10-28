@@ -38,7 +38,7 @@ public class BusSplineMovement : MonoBehaviour
     private bool isStopped;
     private Transform currentStop;
     private BusSplineMovement busInFront;
-    private GameObject activeSignalObject;
+    private LightTrafficController activeSignalObject;
     private float pos;
     public bool IsWaitingAtBusStop => isStopped && currentStop != null;
 
@@ -54,14 +54,16 @@ public class BusSplineMovement : MonoBehaviour
 
     private void Update()
     {
-        if (waypoints.Count < 2 || isStopped)
+        if (waypoints.Count < 2)
             return;
 
         CheckLights();
         if (enableTrafficFlow)
             CheckBusAhead();
         CheckBusStop();
-        Move();
+
+        if (!isStopped)
+            Move();
     }
 
     #endregion
@@ -82,7 +84,7 @@ public class BusSplineMovement : MonoBehaviour
             float dist = Vector3.Distance(transform.position, light.position);
             if (dist <= lightDetectionDistance)
             {
-                var signal = light.GetComponent<LightTraficSignal>();
+                var signal = light.GetComponent<LightTrafficController>();
                 if (!signal.IsGreen() && dist < closestDist)
                 {
                     closestSignal = light.gameObject;
@@ -94,18 +96,20 @@ public class BusSplineMovement : MonoBehaviour
         if (closestSignal != null)
         {
             activeSignalObject = closestSignal;
-            if (closestDist <= lightStopDistance)
+            if (currentSpeed <= 0)
             {
                 isStopped = true;
             }
             else
             {
                 currentSpeed = Mathf.Lerp(currentSpeed, 0, deceleration * Time.deltaTime);
+                if (closestDist <= lightStopDistance)
+                    currentSpeed = 0;
             }
         }
         else if (isStopped && activeSignalObject != null)
         {
-            var signal = activeSignalObject.GetComponent<LightTraficSignal>();
+            var signal = activeSignalObject.GetComponent<LightTrafficController>();
             if (signal != null && signal.IsGreen())
             {
                 StartCoroutine(ReleaseFromSignal());

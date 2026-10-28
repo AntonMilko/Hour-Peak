@@ -27,7 +27,7 @@ namespace HourPeak.Transport
 
         #region Private State
 
-        private TrafficSignalType _currentSignal;
+        private LightTrafficController _currentSignal;
         private float _timer;
         private float _totalDuration;
 
@@ -45,15 +45,15 @@ namespace HourPeak.Transport
             _timer += Time.deltaTime;
             if(_timer % _totalDuration < redPedDuration)
             {
-                SetPedestrianSignal(TrafficSignalType.PedRed);
+                SetPedestrianSignal(LightTrafficController.PedRed);
             }
             else if (_timer % _totalDuration < redPedDuration || _timer % _totalDuration > redPedDuration + greenPedDuration)
             {
-                SetPedestrianSignal(TrafficSignalType.PedRed);
+                SetPedestrianSignal(LightTrafficController.PedRed);
             }
             else
             {
-                SetPedestrianSignal(TrafficSignalType.PedGreen);
+                SetPedestrianSignal(LightTrafficController.PedGreen);
             }
         }
 
@@ -64,7 +64,7 @@ namespace HourPeak.Transport
         /// <summary>
         /// Тип транспортного сигнала.
         /// </summary>
-        public enum TrafficSignalType
+        public enum LightTrafficController
         {
             PedRed,
             PedGreen,
@@ -73,14 +73,12 @@ namespace HourPeak.Transport
         /// <summary>
         /// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СѓРєР°Р·Р°РЅРЅС‹Р№ СЃРёРіРЅР°Р» РґР»СЏ РІСЃРµС… РїРµС€РµС…РѕРґРЅС‹С… РїРµСЂРµС…РѕРґРѕРІ.
         /// </summary>
-        public void SetPedestrianSignal(TrafficSignalType pedSignal)
+        public void SetPedestrianSignal(LightTrafficController pedSignal)
         {
             if (_currentSignal == pedSignal) return;
 
-            _currentSignal = pedSignal;
-
-            redPedLight.SetActive(pedSignal == TrafficSignalType.PedRed);
-            greenPedLight.SetActive(pedSignal == TrafficSignalType.PedGreen);
+            redPedLight.SetActive(pedSignal == LightTrafficController.PedRed);
+            greenPedLight.SetActive(pedSignal == LightTrafficController.PedGreen);
         }
 
         #endregion
