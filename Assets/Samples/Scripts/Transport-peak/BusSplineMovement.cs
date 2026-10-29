@@ -1,8 +1,10 @@
+using HourPeak.Transport;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Splines;
+using Unity.Mathematics;
 
 [RequireComponent(typeof(BoxCollider))]
 public class BusSplineMovement : MonoBehaviour
@@ -38,7 +40,7 @@ public class BusSplineMovement : MonoBehaviour
     private bool isStopped;
     private Transform currentStop;
     private BusSplineMovement busInFront;
-    private LightTrafficController activeSignalObject;
+    private GameObject activeSignalObject;
     private float pos;
     public bool IsWaitingAtBusStop => isStopped && currentStop != null;
 
@@ -202,6 +204,8 @@ public class BusSplineMovement : MonoBehaviour
     private void Move()
     {
         pos += Time.deltaTime * currentSpeed;
+        if (pos >= pathContainer.CalculateLength())
+            pos = 0;
         pathContainer.Evaluate(pos / pathContainer.CalculateLength(), out var position, out var tangent, out var up);
         transform.position = position;
         transform.rotation = Quaternion.LookRotation(tangent, up);

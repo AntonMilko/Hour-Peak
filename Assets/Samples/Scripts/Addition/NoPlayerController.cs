@@ -40,6 +40,9 @@ public class NoPlayerController : MonoBehaviour
     [Tooltip("NavMesh layer mask for movement. Use ~0 for all layers.")]
     [SerializeField] private int navMeshLayerMask = ~0;
 
+    [Header("Условие бега")]
+    [SerializeField] private bool isRunning = false;
+
     #endregion
 
     #region Fields
@@ -48,6 +51,7 @@ public class NoPlayerController : MonoBehaviour
     private Transform targetPoint;
     private float nextTargetTime;
     private bool hasNavMesh;
+    private bool isMoving;
 
     // Rigidbody fallback fields
     private Vector3 moveDirection;
@@ -63,7 +67,7 @@ public class NoPlayerController : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
-    private void Start()
+    private void Update()
     {
         hasNavMesh = CheckNavMeshExists();
         if (hasNavMesh)
@@ -75,11 +79,11 @@ public class NoPlayerController : MonoBehaviour
             Debug.LogWarning("NavMesh not found! Falling back to Rigidbody.Movement.", this);
         }
 
-        PickNewTarget();
-    }
+        if (Time.time >= nextTargetTime)
+        {
+            PickNewTarget();
+        }
 
-    private void Update()
-    {
         if (hasNavMesh && useNavMesh && navMeshAgent != null && navMeshAgent.enabled)
         {
             MoveWithNavMesh();
@@ -88,12 +92,11 @@ public class NoPlayerController : MonoBehaviour
         {
             MoveWithRigidbody();
         }
+    }
 
-        // Update target periodically
-        if (Time.time >= nextTargetTime)
-        {
-            PickNewTarget();
-        }
+    private void FixedUpdate()
+    {
+        UpdateAnimation();
     }
 
     #endregion
@@ -147,6 +150,31 @@ public class NoPlayerController : MonoBehaviour
             velocity.y -= Physics.gravity.y * Time.deltaTime;
             rb.MovePosition(rb.position + velocity * Time.deltaTime);
         }
+    }
+
+    private void UpdateAnimation()
+    {
+        if (isMoving)
+        {
+            if (isRunning)
+            {
+                animator.SetBool ("IsRunning", true);
+                animator.SetBool ("IsWalking", false);
+            }
+            else
+            {
+                animator.SetBool ("IsRunning", false);
+                animator.SetBool ("IsWalking", true);
+            }
+        }
+
+        else
+        {
+            animator.SetBool ("IsRunning", false);
+            animator.SetBool ("IsWalking", false);
+        }
+
+        isMoving = false;
     }
 
     #endregion
@@ -211,21 +239,6 @@ public class NoPlayerController : MonoBehaviour
     {
         NavMeshHit hit;
         return NavMesh.SamplePosition(transform.position, out hit, 5f, navMeshLayerMask);
-    }
-
-    #endregion
-
-    #region Cleanup
-
-    private void OnDestroy()
-    {
-        // Clean up target objects only during play mode
-        if (!Application.isPlaying) return;
-
-        if (targetPoint != null && targetPoint.parent == transform)
-        {
-            Destroy(targetPoint.gameObject);
-        }
     }
 
     #endregion

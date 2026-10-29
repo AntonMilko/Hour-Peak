@@ -1,8 +1,10 @@
+using HourPeak.Transport;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Splines;
+using Unity.Mathematics;
 
 [RequireComponent(typeof(BoxCollider))]
 public class CarSplineMovement : MonoBehaviour
@@ -32,7 +34,7 @@ public class CarSplineMovement : MonoBehaviour
     private float currentSpeed;
     private bool isStopped;
     private CarSplineMovement carInFront;
-    private LightTrafficController activeSignalObject;
+    private GameObject activeSignalObject;
     private float pos;
 
     #endregion
@@ -75,7 +77,7 @@ public class CarSplineMovement : MonoBehaviour
             if (dist <= lightDetectionDistance)
             {
                 var signal = light.GetComponent<LightTrafficController>();
-                if (signal.IsRed() && dist < closestDist)
+                if (!signal.IsGreen() && dist < closestDist)
                 {
                     closestSignal = light.gameObject;
                     closestDist = dist;
@@ -93,12 +95,14 @@ public class CarSplineMovement : MonoBehaviour
             else
             {
                 currentSpeed = Mathf.Lerp(currentSpeed, 0, deceleration * Time.deltaTime);
+                if (closestDist <= lightStopDistance)
+                    currentSpeed = 0;
             }
         }
         else if (isStopped && activeSignalObject != null)
         {
             var signal = activeSignalObject.GetComponent<LightTrafficController>();
-            if (signal != null && !signal.IsRed())
+            if (signal != null && signal.IsGreen())
             {
                 StartCoroutine(ReleaseFromSignal());
             }
@@ -147,6 +151,8 @@ public class CarSplineMovement : MonoBehaviour
     private void Move()
     {
         pos += Time.deltaTime * currentSpeed;
+        if (pos >= pathContainer.CalculateLength())
+            pos = 0;
         pathContainer.Evaluate(pos / pathContainer.CalculateLength(), out var position, out var tangent, out var up);
         transform.position = position;
         transform.rotation = Quaternion.LookRotation(tangent, up);

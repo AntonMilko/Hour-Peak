@@ -23,6 +23,9 @@ namespace HourPeak.Addition
         [SerializeField] private LayerMask transportLayer;
         [SerializeField] private float transportInteractDistance = 3f;
 
+        [Header("Условие бега")]
+        [SerializeField] private bool isRunning = false;
+
         private Vector3 velocity;
         private bool isGrounded;
         private float currentSpeed;
@@ -30,7 +33,6 @@ namespace HourPeak.Addition
         private bool isMoving;
         private Vector2 joystickInput;
         private bool isJumping = false;
-        public bool isRunning = false;
 
         public enum TransportMode { Walking, Bus, Train }
         private TransportMode currentMode = TransportMode.Walking;

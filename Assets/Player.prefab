@@ -187,15 +187,15 @@ MonoBehaviour:
   rb: {fileID: 755118808960902977}
   animator: {fileID: 1615732881596430302}
   cameraTransform: {fileID: 122471033898397753}
-  walkSpeed: 23
-  runSpeed: 35
+  walkSpeed: 20
+  runSpeed: 40
   gravity: -15
   jumpSpeed: 5
-  busSpeed: 50
+  busSpeed: 60
   enterExitTime: 1.5
   transportLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   transportInteractDistance: 3
   isRunning: 0
 --- !u!54 &755118808960902977
