@@ -11,12 +11,12 @@ namespace HourPeak.Transport
     {
         #region Fields
 
-        [Header("References")]
-        [Tooltip("GameObject красного света")]
+        [Header("References of Light Traffic")]
+        [Tooltip("GameObject красного света (нельзя ехать)")]
         public GameObject redLight;
-        [Tooltip("GameObject жёлтого света")]
+        [Tooltip("GameObject жёлтого света (будь внимательным)")]
         public GameObject yellowLight;
-        [Tooltip("GameObject зелёного света")]
+        [Tooltip("GameObject зелёного света (можно ехать)")]
         public GameObject greenLight;
 
         [Header("Timing (секунды)")]
@@ -27,7 +27,7 @@ namespace HourPeak.Transport
         [Tooltip("Длительность красного")]
         public float redDuration = 5f;
        
-        [Header("References")]
+        [Header("References of Pedestrians Light Traffic")]
         [Tooltip("GameObject красного пешехода (нельзя идти)")]
         public GameObject redPedLight;
         [Tooltip("GameObject зелёного пешехода (можно идти)")]

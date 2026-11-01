@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
   - component: {fileID: 2915200770987568262}
-  - component: {fileID: 6509885279888096123}
+  - component: {fileID: 7121632553417381928}
   m_Layer: 0
   m_Name: Vehicle_Bus_color01
   m_TagString: Untagged
@@ -113,7 +113,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.9, y: 4.88, z: 11.26}
   m_Center: {x: -0.0013978485, y: 1.784227, z: -0.050180923}
---- !u!114 &6509885279888096123
+--- !u!114 &7121632553417381928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,35 +124,16 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab0cbaefa7f56d945abeba382b4cc30e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::BusSplineMovement
   pathContainer: {fileID: 0}
-  cruiseSpeed: 50
+  cruiseSpeed: 60
   slowDownSpeed: 30
-  acceleration: 5
   deceleration: 7
-  loopPath: 1
-  lightDetectionDistance: 15
-  lightStopDistance: 5
-  trafficLightLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  lightDetectionDistance: 30
+  lightStopDistance: 20
+  lightTraffics: []
   busStopPoints: []
   stopDuration: 20
-  stopApproachDistance: 12
-  enableTrafficFlow: 0
+  stopApproachDistance: 20
+  enableTrafficFlow: 1
   safeFollowingDistance: 30
-  busLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  OnStopArrival:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStopDeparture:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTrafficLightDetected:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPathFinished:
-    m_PersistentCalls:
-      m_Calls: []

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
-  - component: {fileID: 5383485688728439597}
+  - component: {fileID: 7731738495585199683}
   - component: {fileID: 1860439012506530537}
   m_Layer: 0
   m_Name: Vehicle_SUV_color01
@@ -92,7 +92,7 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5383485688728439597
+--- !u!114 &7731738495585199683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,27 +103,16 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3421f6bd82650994a8c5909d384c4bf2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: HourPeak.Samples.Runtime::CarSplineMovement
+  m_EditorClassIdentifier: Assembly-CSharp::CarSplineMovement
   pathContainer: {fileID: 0}
   cruiseSpeed: 80
-  slowDownSpeed: 30
-  acceleration: 8
-  deceleration: 15
-  loopPath: 0
-  detectionDistance: 10
-  stopDistance: 4
-  trafficLightLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  OnStoppedChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTrafficLightDetected:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPathFinished:
-    m_PersistentCalls:
-      m_Calls: []
+  slowDownSpeed: 40
+  deceleration: 10
+  lightDetectionDistance: 30
+  lightStopDistance: 20
+  lightTraffics: []
+  enableTrafficFlow: 1
+  safeFollowingDistance: 30
 --- !u!65 &1860439012506530537
 BoxCollider:
   m_ObjectHideFlags: 0

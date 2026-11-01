@@ -1727,6 +1727,26 @@ PrefabInstance:
       propertyPath: stopPoints.Array.data[0].distance
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: pathContainer
+      value: 
+      objectReference: {fileID: 1637121627}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: busStopPoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: lightTraffics.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: 'busStopPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1430770730}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: 'lightTraffics.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1399514322}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3277,6 +3297,26 @@ PrefabInstance:
       propertyPath: stopPoints.Array.data[0].distance
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: pathContainer
+      value: 
+      objectReference: {fileID: 217099471}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: busStopPoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: lightTraffics.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: 'busStopPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 334335009}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: 'lightTraffics.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1728050408}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11418,6 +11458,34 @@ PrefabInstance:
       propertyPath: stopPoints.Array.data[1].distance
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: pathContainer
+      value: 
+      objectReference: {fileID: 677726466}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: busStopPoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: lightTraffics.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: 'busStopPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2118858403}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: 'lightTraffics.Array.data[0]'
+      value: 
+      objectReference: {fileID: 457459152}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: 'lightTraffics.Array.data[1]'
+      value: 
+      objectReference: {fileID: 226539190}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: 'lightTraffics.Array.data[2]'
+      value: 
+      objectReference: {fileID: 877916408}
     m_RemovedComponents:
     - {fileID: 1203780154931379310, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
     m_RemovedGameObjects: []
@@ -12125,72 +12193,29 @@ PrefabInstance:
       propertyPath: 'lightTraffics.Array.data[0]'
       value: 
       objectReference: {fileID: 1728050408}
+    - target: {fileID: 6924371519020107759, guid: 81835658bbd378143a0f525b8552f557, type: 3}
+      propertyPath: pathContainer
+      value: 
+      objectReference: {fileID: 1609977827}
+    - target: {fileID: 6924371519020107759, guid: 81835658bbd378143a0f525b8552f557, type: 3}
+      propertyPath: lightTraffics.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924371519020107759, guid: 81835658bbd378143a0f525b8552f557, type: 3}
+      propertyPath: 'lightTraffics.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1728050408}
     m_RemovedComponents:
-    - {fileID: 5948613929730335771, guid: 81835658bbd378143a0f525b8552f557, type: 3}
-    - {fileID: 8955114785152781939, guid: 81835658bbd378143a0f525b8552f557, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: 81835658bbd378143a0f525b8552f557, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1300264075}
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: 81835658bbd378143a0f525b8552f557, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1300264074}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81835658bbd378143a0f525b8552f557, type: 3}
 --- !u!4 &1300264072 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 81835658bbd378143a0f525b8552f557, type: 3}
   m_PrefabInstance: {fileID: 1300264071}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1300264073 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 81835658bbd378143a0f525b8552f557, type: 3}
-  m_PrefabInstance: {fileID: 1300264071}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1300264074
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1300264073}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.9580624, y: 2.1952403, z: 6.320544}
-  m_Center: {x: -0.0029746897, y: 1.0939791, z: -0.19417278}
---- !u!114 &1300264075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1300264073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3421f6bd82650994a8c5909d384c4bf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CarSplineMovement
-  pathContainer: {fileID: 1609977827}
-  cruiseSpeed: 80
-  slowDownSpeed: 40
-  deceleration: 10
-  lightDetectionDistance: 60
-  lightStopDistance: 50
-  lightTraffics:
-  - {fileID: 1728050408}
-  enableTrafficFlow: 1
-  safeFollowingDistance: 30
 --- !u!1001 &1308888162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16098,6 +16123,34 @@ PrefabInstance:
       propertyPath: stopPoints.Array.data[1].distance
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: pathContainer
+      value: 
+      objectReference: {fileID: 725777906}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: busStopPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: lightTraffics.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: 'busStopPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 7063578}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: 'busStopPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 334335009}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: 'lightTraffics.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1849873029}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: 'lightTraffics.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1779105657}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19667,72 +19720,29 @@ PrefabInstance:
       propertyPath: 'lightTraffics.Array.data[0]'
       value: 
       objectReference: {fileID: 1399514322}
+    - target: {fileID: 6924371519020107759, guid: 81835658bbd378143a0f525b8552f557, type: 3}
+      propertyPath: pathContainer
+      value: 
+      objectReference: {fileID: 1260250504}
+    - target: {fileID: 6924371519020107759, guid: 81835658bbd378143a0f525b8552f557, type: 3}
+      propertyPath: lightTraffics.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924371519020107759, guid: 81835658bbd378143a0f525b8552f557, type: 3}
+      propertyPath: 'lightTraffics.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1399514322}
     m_RemovedComponents:
-    - {fileID: 5948613929730335771, guid: 81835658bbd378143a0f525b8552f557, type: 3}
-    - {fileID: 8955114785152781939, guid: 81835658bbd378143a0f525b8552f557, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: 81835658bbd378143a0f525b8552f557, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1884074868}
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: 81835658bbd378143a0f525b8552f557, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1884074867}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81835658bbd378143a0f525b8552f557, type: 3}
 --- !u!4 &1884074865 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 81835658bbd378143a0f525b8552f557, type: 3}
   m_PrefabInstance: {fileID: 1884074864}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1884074866 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 81835658bbd378143a0f525b8552f557, type: 3}
-  m_PrefabInstance: {fileID: 1884074864}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1884074867
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884074866}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.9580624, y: 2.1952403, z: 6.320544}
-  m_Center: {x: -0.0029861338, y: 1.0939817, z: -0.19415753}
---- !u!114 &1884074868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884074866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3421f6bd82650994a8c5909d384c4bf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CarSplineMovement
-  pathContainer: {fileID: 1260250504}
-  cruiseSpeed: 80
-  slowDownSpeed: 40
-  deceleration: 10
-  lightDetectionDistance: 60
-  lightStopDistance: 50
-  lightTraffics:
-  - {fileID: 1399514322}
-  enableTrafficFlow: 1
-  safeFollowingDistance: 30
 --- !u!1001 &1886879645
 PrefabInstance:
   m_ObjectHideFlags: 0
