@@ -1,3 +1,6 @@
+using HourPeak.Characters;
+using HourPeak.Transport;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -16,22 +19,22 @@ public class NoPlayerController : MonoBehaviour
     [Tooltip("Reference to Animator component")]
     [SerializeField] private Animator animator;
 
-    [Header("Rigidbody")]
-    [Tooltip("Reference to Rigidbody component")]
-    [SerializeField] private Rigidbody rb;
-
-    [Tooltip("Whether to apply gravity")]
-    [SerializeField] private bool applyGravity = true;
-
     [Header("Movement")]
     [Tooltip("Speed of movement")]
     [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float slowMoveSpeed = 15f;
 
     [Tooltip("Distance to pick a new target point")]
     [SerializeField] private float targetDistance = 5f;
 
     [Tooltip("Range for random target offset")]
     [SerializeField] private float randomOffset = 3f;
+    [SerializeField] private float deceleration = 7f;
+
+    [Header("Светофоры")]
+    [SerializeField] private float lightDetectionDistance = 15f;
+    [SerializeField] private float lightStopDistance = 5f;
+    [SerializeField] private List<Transform> pedestrianLightTraffics = new List<Transform>();
 
     [Header("NavMesh")]
     [Tooltip("Whether to use NavMesh movement when available")]
@@ -43,6 +46,10 @@ public class NoPlayerController : MonoBehaviour
     [Header("Условие бега")]
     [SerializeField] private bool isRunning = false;
 
+    [Header("Поток")]
+    [SerializeField] private bool enableTrafficFlow = true;
+    [SerializeField] private float safeFollowingDistance = 30f;
+
     #endregion
 
     #region Fields
@@ -52,10 +59,10 @@ public class NoPlayerController : MonoBehaviour
     private float nextTargetTime;
     private bool hasNavMesh;
     private bool isMoving;
-
-    // Rigidbody fallback fields
-    private Vector3 moveDirection;
-    private float nextDirectionChangeTime;
+    private bool isStopped;
+    private float currentSpeed;
+    private GameObject activeSignalObject;
+    private CrowdSpawner crowdInFront;
 
     #endregion
 
@@ -88,10 +95,11 @@ public class NoPlayerController : MonoBehaviour
         {
             MoveWithNavMesh();
         }
-        else
-        {
-            MoveWithRigidbody();
-        }
+
+        CheckPedestrianLights();
+        if (enableTrafficFlow)
+            CheckPedestrianTrafficFlow();
+        MoveWithNavMesh();
     }
 
     private void FixedUpdate()
@@ -123,35 +131,6 @@ public class NoPlayerController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Moves the NPC using Rigidbody.Movement when no NavMesh is available.
-    /// Moves in a straight line without rotation.
-    /// </summary>
-    private void MoveWithRigidbody()
-    {
-        if (rb == null || !rb) return;
-
-        // Choose random direction if needed
-        if (Time.time >= nextDirectionChangeTime)
-        {
-            float angle = Random.value * Mathf.PI * 2f;
-            moveDirection = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)).normalized;
-            nextDirectionChangeTime = Time.time + Random.Range(2f, 5f);
-        }
-
-        // Move in straight line
-        Vector3 movement = moveDirection * moveSpeed * Time.deltaTime;
-        rb.MovePosition(rb.position + movement);
-
-        // Apply gravity if needed
-        if (applyGravity)
-        {
-            Vector3 velocity = rb.linearVelocity;
-            velocity.y -= Physics.gravity.y * Time.deltaTime;
-            rb.MovePosition(rb.position + velocity * Time.deltaTime);
-        }
-    }
-
     private void UpdateAnimation()
     {
         if (isMoving)
@@ -175,6 +154,93 @@ public class NoPlayerController : MonoBehaviour
         }
 
         isMoving = false;
+    }
+
+    private void CheckPedestrianLights()
+    {
+        if (pedestrianLightTraffics.Count == 0)
+            return;
+
+        GameObject closestSignal = null;
+        float closestDist = float.MaxValue;
+
+        // Проверяем только светофоры из назначенного списка
+        foreach (Transform light in pedestrianLightTraffics)
+        {
+            float dist = Vector3.Distance(transform.position, light.position);
+            if (dist <= lightDetectionDistance)
+            {
+                var signal = light.GetComponent<LightTrafficController>();
+                if (!signal.IsGreen() && dist < closestDist)
+                {
+                    closestSignal = light.gameObject;
+                    closestDist = dist;
+                }
+            }
+        }
+
+        if (closestSignal != null)
+        {
+            activeSignalObject = closestSignal;
+            if (currentSpeed <= 0)
+            {
+                isStopped = true;
+            }
+            else
+            {
+                currentSpeed = Mathf.Lerp(currentSpeed, 0, deceleration * Time.deltaTime);
+                if (closestDist <= lightStopDistance)
+                    currentSpeed = 0;
+            }
+        }
+        else if (isStopped && activeSignalObject != null)
+        {
+            var signal = activeSignalObject.GetComponent<LightTrafficController>();
+            if (signal != null && signal.IsGreen())
+            {
+                StartCoroutine(ReleaseFromSignal());
+            }
+        }
+    }
+
+    private IEnumerator ReleaseFromSignal()
+    {
+        Debug.Log("ReleaseFromSignal");
+        isStopped = false;
+        activeSignalObject = null;
+        float elapsed = 0f;
+        float duration = 1.5f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            currentSpeed = Mathf.Lerp(0f, moveSpeed, t);
+            yield return null;
+        }
+        currentSpeed = moveSpeed;
+    }
+
+    private void CheckPedestrianTrafficFlow()
+    {
+        crowdInFront = null;
+        Ray ray = new Ray(transform.position + Vector3.up * 1f, transform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, safeFollowingDistance))
+        {
+            var other = hit.collider.GetComponent<CrowdSpawner>();
+            if (other != null && other != this)
+                crowdInFront = other;
+        }
+
+        if (crowdInFront != null)
+        {
+            float dist = Vector3.Distance(transform.position, crowdInFront.transform.position);
+            if (dist < safeFollowingDistance * 0.5f)
+                isStopped = true;
+            else if (dist < safeFollowingDistance)
+                currentSpeed = Mathf.Lerp(currentSpeed, slowMoveSpeed, deceleration * Time.deltaTime);
+        }
     }
 
     #endregion

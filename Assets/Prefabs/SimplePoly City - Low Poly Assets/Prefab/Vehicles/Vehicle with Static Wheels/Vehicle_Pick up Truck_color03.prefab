@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
-  - component: {fileID: 4684637841417682681}
   - component: {fileID: 2551235459245869471}
+  - component: {fileID: 4684637841417682681}
   m_Layer: 0
   m_Name: Vehicle_Pick up Truck_color03
   m_TagString: Untagged
@@ -92,27 +92,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4684637841417682681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3421f6bd82650994a8c5909d384c4bf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CarSplineMovement
-  pathContainer: {fileID: 0}
-  cruiseSpeed: 80
-  slowDownSpeed: 40
-  deceleration: 10
-  lightDetectionDistance: 30
-  lightStopDistance: 20
-  lightTraffics: []
-  enableTrafficFlow: 1
-  safeFollowingDistance: 30
 --- !u!65 &2551235459245869471
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -134,3 +113,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.4, y: 4.05, z: 7.78}
   m_Center: {x: -0.0009114742, y: 1.132328, z: 0.13397205}
+--- !u!114 &4684637841417682681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3421f6bd82650994a8c5909d384c4bf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarSplineMovement
+  pathContainer: {fileID: 0}
+  cruiseSpeed: 80
+  slowDownSpeed: 40
+  deceleration: 10
+  lightDetectionDistance: 50
+  lightStopDistance: 40
+  lightTraffics: []
+  enableTrafficFlow: 1
+  safeFollowingDistance: 30

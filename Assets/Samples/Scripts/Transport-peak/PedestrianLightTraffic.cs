@@ -77,6 +77,8 @@ namespace HourPeak.Transport
         {
             if (_currentSignal == pedSignal) return;
 
+            _currentSignal = pedSignal;
+
             redPedLight.SetActive(pedSignal == LightTrafficController.PedRed);
             greenPedLight.SetActive(pedSignal == LightTrafficController.PedGreen);
         }
