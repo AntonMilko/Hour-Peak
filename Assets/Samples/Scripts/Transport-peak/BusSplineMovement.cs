@@ -80,7 +80,6 @@ public class BusSplineMovement : MonoBehaviour
         GameObject closestSignal = null;
         float closestDist = float.MaxValue;
 
-        // Проверяем только светофоры из назначенного списка
         foreach (Transform light in lightTraffics)
         {
             float dist = Vector3.Distance(transform.position, light.position);
@@ -105,7 +104,7 @@ public class BusSplineMovement : MonoBehaviour
             else
             {
                 currentSpeed = Mathf.Lerp(currentSpeed, 0, deceleration * Time.deltaTime);
-                if (closestDist <= lightStopDistance)
+                if (closestDist <= lightStopDistance || currentSpeed <= 0.1f)
                     currentSpeed = 0;
             }
         }

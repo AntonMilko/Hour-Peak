@@ -128,7 +128,7 @@ MonoBehaviour:
   pathContainer: {fileID: 0}
   cruiseSpeed: 80
   slowDownSpeed: 40
-  deceleration: 10
+  deceleration: 5
   lightDetectionDistance: 50
   lightStopDistance: 40
   lightTraffics: []

@@ -2,11 +2,6 @@ using UnityEngine;
 
 namespace HourPeak.Transport
 {
-    /// <summary>
-    /// Главный контроллер транспортных светофоров.
-    /// Управляет переключением сигналов для нескольких направлений.
-    /// Связан с пешеходными светофорами для синхронизации.
-    /// </summary>
     public class LightTrafficController : MonoBehaviour
     {
         #region Fields
@@ -45,9 +40,6 @@ namespace HourPeak.Transport
 
         #region Public Methods
 
-        /// <summary>
-        /// Тип транспортного сигнала.
-        /// </summary>
         public enum TrafficSignalType
         {
             Red,
@@ -73,8 +65,6 @@ namespace HourPeak.Transport
         public void SetPedestrianSignal(TrafficSignalType pedestrianSignal)
         {
             if (_currentSignal == pedestrianSignal) return;
-
-            _currentSignal = pedestrianSignal;
 
             greenPedLight.SetActive(pedestrianSignal == TrafficSignalType.pedGreenSignal);
             redPedLight.SetActive(pedestrianSignal == TrafficSignalType.pedRedSignal);

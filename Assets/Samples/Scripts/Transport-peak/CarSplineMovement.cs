@@ -49,13 +49,15 @@ public class CarSplineMovement : MonoBehaviour
 
     private void Update()
     {
-        if (waypoints.Count < 2 || isStopped)
+        if (waypoints.Count < 2)
             return;
 
         CheckLights();
         if (enableTrafficFlow)
             CheckCarAhead();
-        Move();
+
+        if (!isStopped)
+            Move();
     }
 
     #endregion
@@ -70,7 +72,6 @@ public class CarSplineMovement : MonoBehaviour
         GameObject closestSignal = null;
         float closestDist = float.MaxValue;
 
-        // Проверяем только светофоры из назначенного списка
         foreach (Transform light in lightTraffics)
         {
             float dist = Vector3.Distance(transform.position, light.position);
@@ -90,17 +91,19 @@ public class CarSplineMovement : MonoBehaviour
             activeSignalObject = closestSignal;
             if (closestDist <= lightStopDistance)
             {
+                Debug.Log("Находит ли светофор?");
                 isStopped = true;
             }
             else
             {
                 currentSpeed = Mathf.Lerp(currentSpeed, 0, deceleration * Time.deltaTime);
-                if (closestDist <= lightStopDistance)
+                if (closestDist <= lightStopDistance || currentSpeed <= 0.1f)
                     currentSpeed = 0;
             }
         }
         else if (isStopped && activeSignalObject != null)
         {
+            Debug.Log("Начинает ли старт когда загорелся зелёный сигнал?");
             var signal = activeSignalObject.GetComponent<LightTrafficController>();
             if (signal != null && signal.IsGreen())
             {

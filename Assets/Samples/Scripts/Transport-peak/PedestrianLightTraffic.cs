@@ -2,11 +2,6 @@
 
 namespace HourPeak.Transport
 {
-    /// <summary>
-    /// РљРѕРЅС‚СЂРѕР»Р»РµСЂ РїРµС€РµС…РѕРґРЅС‹С… СЃРІРµС‚РѕС„РѕСЂРѕРІ.
-    /// РЎРёРЅС…СЂРѕРЅРёР·РёСЂРѕРІР°РЅ СЃ С‚СЂР°РЅСЃРїРѕСЂС‚РЅС‹РјРё: РєРѕРіРґР° РјР°С€РёРЅС‹ РµРґСѓС‚ вЂ” РїРµС€РµС…РѕРґР°Рј РЅРµР»СЊР·СЏ,
-    /// Рё РЅР°РѕР±РѕСЂРѕС‚. РЈРїСЂР°РІР»СЏРµС‚СЃСЏ РёР· LightTrafficController.
-    /// </summary>
     public class PedestrianLightTraffic : MonoBehaviour
     {
         #region Fields        
@@ -61,18 +56,12 @@ namespace HourPeak.Transport
 
         #region Public Methods
 
-        /// <summary>
-        /// Тип транспортного сигнала.
-        /// </summary>
         public enum LightTrafficController
         {
             PedRed,
             PedGreen,
         }
 
-        /// <summary>
-        /// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СѓРєР°Р·Р°РЅРЅС‹Р№ СЃРёРіРЅР°Р» РґР»СЏ РІСЃРµС… РїРµС€РµС…РѕРґРЅС‹С… РїРµСЂРµС…РѕРґРѕРІ.
-        /// </summary>
         public void SetPedestrianSignal(LightTrafficController pedSignal)
         {
             if (_currentSignal == pedSignal) return;

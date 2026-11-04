@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic; // <-- ЭТОГО НЕ ХВАТАЛО (для List<>)
+using System.Collections.Generic;
 using HourPeak.Settings;
 
 namespace HourPeak.Characters
@@ -53,16 +53,13 @@ namespace HourPeak.Characters
 
             int baseCount = 100;
             float percentage = 0.2f;
-            
-            // ПРИМЕР (раскомментируйте и измените под себя):
-            /*
+
             switch (difficulty.CurrentDifficulty) 
             {
                 case DifficultyLevel.Beginner: percentage = 0.2f; break;
                 case DifficultyLevel.Professional: percentage = 0.5f; break;
                 case DifficultyLevel.Extremal: percentage = 0.8f; break;
             }
-            */
 
             int mode = difficulty.GetDifficultyMode();
             
@@ -111,7 +108,7 @@ namespace HourPeak.Characters
             if (npcScript != null)
             {
                 activeNPCCs.Add(npcScript);
-                // npcScript.Spawn(spawnPos); 
+                npcScript.Spawn(spawnPos); 
             }
             else
             {
