@@ -1,10 +1,10 @@
+using HourPeak.Addition;
 using HourPeak.Transport;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Splines;
-using Unity.Mathematics;
 
 [RequireComponent(typeof(BoxCollider))]
 public class BusSplineMovement : MonoBehaviour
@@ -31,6 +31,9 @@ public class BusSplineMovement : MonoBehaviour
     [SerializeField] private bool enableTrafficFlow = true;
     [SerializeField] private float safeFollowingDistance = 30f;
 
+    [Header("Камера")]
+    public GameObject _camera;
+
     #endregion
 
     #region Private state
@@ -42,6 +45,7 @@ public class BusSplineMovement : MonoBehaviour
     private BusSplineMovement busInFront;
     private GameObject activeSignalObject;
     private float pos;
+
     public bool IsWaitingAtBusStop => isStopped && currentStop != null;
 
     #endregion
@@ -85,7 +89,7 @@ public class BusSplineMovement : MonoBehaviour
             float dist = Vector3.Distance(transform.position, light.position);
             if (dist <= lightDetectionDistance)
             {
-                var signal = light.GetComponent<LightTrafficController>();
+                var signal = light.GetComponent<LightTrafficSystem>();
                 if (!signal.IsGreen() && dist < closestDist)
                 {
                     closestSignal = light.gameObject;
@@ -110,7 +114,7 @@ public class BusSplineMovement : MonoBehaviour
         }
         else if (isStopped && activeSignalObject != null)
         {
-            var signal = activeSignalObject.GetComponent<LightTrafficController>();
+            var signal = activeSignalObject.GetComponent<LightTrafficSystem>();
             if (signal != null && signal.IsGreen())
             {
                 StartCoroutine(ReleaseFromSignal());

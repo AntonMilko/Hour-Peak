@@ -172,8 +172,6 @@ MonoBehaviour:
   excellentColor: {r: 1, g: 1, b: 0, a: 1}
   onTimeColor: {r: 1, g: 0, b: 0, a: 1}
   failColor: {r: 0, g: 0, b: 0, a: 1}
-  autoStart: 0
-  isLevelFinished: 0
 --- !u!1 &570169299785850644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,8 +1433,6 @@ MonoBehaviour:
   excellentColor: {r: 1, g: 1, b: 0, a: 1}
   onTimeColor: {r: 1, g: 0, b: 0, a: 1}
   failColor: {r: 0, g: 0, b: 0, a: 1}
-  autoStart: 1
-  isFirstScene: 0
 --- !u!1 &1666154509953528650
 GameObject:
   m_ObjectHideFlags: 0
@@ -3568,34 +3564,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f2ad6c7bb731f48853f68fd34e2a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.StarAppearTimings.TheAppearanceOfStars
-  starObject1: {fileID: 1759540018658289726}
-  starObject2: {fileID: 2883662538849359571}
-  starObject3: {fileID: 9148157927148898775}
   starImage1: {fileID: 3342372193692311845}
   starImage2: {fileID: 5884596442010577217}
   starImage3: {fileID: 2022515626745661940}
   yellowColor: {r: 1, g: 1, b: 0, a: 1}
   blackColor: {r: 0, g: 0, b: 0, a: 1}
-  beginnerTimings:
-    allBlackTime: 240
-    star1AppearOnTime: 120
-    star1AppearTime: 60
-    star2AppearTime: 30
-    allYellowTime: 0
-  professionalTimings:
-    allBlackTime: 120
-    star1AppearOnTime: 60
-    star1AppearTime: 30
-    star2AppearTime: 15
-    allYellowTime: 0
-  extremalTimings:
-    allBlackTime: 60
-    star1AppearOnTime: 30
-    star1AppearTime: 15
-    star2AppearTime: 7.5
-    allYellowTime: 0
-  autoStart: 0
-  onTime: 0
 --- !u!1 &3413397516392225575
 GameObject:
   m_ObjectHideFlags: 0
@@ -3791,7 +3764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20392157, g: 0.28627452, b: 1, a: 1}
+  m_Color: {r: 0.2, g: 0.40392157, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5831,7 +5804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20392157, g: 0.28627452, b: 1, a: 1}
+  m_Color: {r: 0.2, g: 0.40392157, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7380,7 +7353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20392157, g: 0.28627452, b: 1, a: 1}
+  m_Color: {r: 0.2, g: 0.40392157, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7460,35 +7433,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4566875d6107e3e4fb28b83369860419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Samples.Runtime.StarDisappearTimings.TheDisappearanceOfStars
-  starObject1: {fileID: 2472288385726530158}
-  starObject2: {fileID: 4459224598010090041}
-  starObject3: {fileID: 1437174980174127052}
   starImage1: {fileID: 5284618588911991167}
   starImage2: {fileID: 836144226607317014}
   starImage3: {fileID: 2588980624801303173}
   yellowColor: {r: 1, g: 1, b: 0, a: 1}
   blackColor: {r: 0, g: 0, b: 0, a: 1}
-  beginnerTimings:
-    allYellowTime: 0
-    star3DisappearTime: 30
-    star2DisappearTime: 60
-    star1BlinkTime: 120
-    allBlackTime: 240
-  professionalTimings:
-    allYellowTime: 0
-    star3DisappearTime: 15
-    star2DisappearTime: 30
-    star1BlinkTime: 60
-    allBlackTime: 120
-  extremalTimings:
-    allYellowTime: 0
-    star3DisappearTime: 7.5
-    star2DisappearTime: 15
-    star1BlinkTime: 30
-    allBlackTime: 60
-  autoStart: 1
-  isBlinking: 1
-  isFirstScene: 0
   blinkSpeed: 10
 --- !u!1 &8209983947262891889
 GameObject:

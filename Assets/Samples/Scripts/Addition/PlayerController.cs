@@ -6,6 +6,8 @@ namespace HourPeak.Addition
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : MonoBehaviour
     {
+        #region Configuration
+
         [Header("Компоненты")]
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Animator animator;
@@ -18,32 +20,25 @@ namespace HourPeak.Addition
         [SerializeField] private float jumpSpeed = 5f;
 
         [Header("Транспорт")]
-        [SerializeField] private float busSpeed = 20f;
         [SerializeField] private float enterExitTime = 1.5f;
-        [SerializeField] private LayerMask transportLayer;
-        [SerializeField] private float transportInteractDistance = 3f;
 
         [Header("Условие бега")]
         public bool isRunning = false;
+
+        #endregion
+
+        #region Fields
 
         private Vector3 velocity;
         private bool isGrounded;
         private float currentSpeed;
         private Vector3 lookDirection;
         private bool isMoving;
-        private Vector2 joystickInput;
-        private bool isJumping = false;
+        private BusSplineMovement currentTransport;
 
-        public enum TransportMode { Walking, Bus, Train }
-        private TransportMode currentMode = TransportMode.Walking;
-        private bool isEntering = false;
-        private bool isExiting = false;
-        private Transform currentTransport;
+        #endregion
 
-        public event Action<TransportMode> OnTransportModeChanged;
-        public event Action OnTransportEnter;
-        public event Action OnTransportExit;
-        public event Action<GameObject> OnNearTransport;
+        #region Unity Lifecycle
 
         private void Awake()
         {
@@ -53,16 +48,19 @@ namespace HourPeak.Addition
 
         private void Update()
         {
-            if (isEntering || isExiting) return;
+            if (currentTransport != null)
+            {
+                transform.position = currentTransport.transform.position + Vector3.up * 2;
+                return;
+            }
 
             HandleGroundCheck();
-            HandleTransportInteraction();
-        }
-
-        private void FixedUpdate()
-        {
             UpdateAnimation();
         }
+
+        #endregion
+
+        #region Movement
 
         private void HandleGroundCheck()
         {
@@ -73,24 +71,25 @@ namespace HourPeak.Addition
 
         public void Move(Vector2 moveInput)
         {
-            if (cameraTransform != null)
+            if (currentTransport != null)
             {
-                Vector3 forward = cameraTransform.forward;
-                Vector3 right = cameraTransform.right;
-                forward.y = 0f; right.y = 0f;
-                forward.Normalize(); right.Normalize();
-                Vector3 target = forward * moveInput.y + right * moveInput.x;
-
-                target.Normalize();
-                lookDirection = target;
+                return;
             }
+
+            Vector3 forward = cameraTransform.forward;
+            Vector3 right = cameraTransform.right;
+            forward.y = 0f; right.y = 0f;
+            forward.Normalize(); right.Normalize();
+            Vector3 target = forward * moveInput.y + right * moveInput.x;
+
+            target.Normalize();
+            lookDirection = target;
 
             currentSpeed = walkSpeed;
             if (isRunning) currentSpeed = runSpeed;
 
             Vector3 moveVector = lookDirection * currentSpeed;
             rb.MovePosition(rb.position + moveVector * Time.deltaTime);
-            Debug.Log(moveVector);
             HandleGravity();
 
             isMoving = true;
@@ -127,83 +126,34 @@ namespace HourPeak.Addition
             rb.MovePosition(rb.position + new Vector3(0, velocity.y * Time.deltaTime, 0));
         }
 
-        private void HandleTransportInteraction()
+        #endregion
+
+        #region Bus Mobility
+
+        private void OnTriggerEnter(Collider collider)
         {
-            if (currentMode != TransportMode.Walking) return;
-
-            Collider[] hits = Physics.OverlapSphere(transform.position, transportInteractDistance, transportLayer);
-            GameObject nearestTransport = null;
-            float nearestDist = float.MaxValue;
-
-            foreach (var hit in hits)
+            BusSplineMovement bus = collider.GetComponent<BusSplineMovement>();
+            if (bus != null)
             {
-                float dist = Vector3.Distance(transform.position, hit.transform.position);
-                if (dist < nearestDist)
+                if (bus.IsWaitingAtBusStop)
                 {
-                    nearestDist = dist;
-                    nearestTransport = hit.gameObject;
+                    cameraTransform.gameObject.SetActive(false);
+                    bus._camera.SetActive(true);
+                    currentTransport = bus;
                 }
             }
-
-            OnNearTransport?.Invoke(nearestTransport);
-
-            if (nearestTransport != null)
-            {
-                TryEnterTransport(nearestTransport);
-            }
         }
 
-        private void TryEnterTransport(GameObject transport)
+        public void BusExit()
         {
-            var busMovement = transport.GetComponent<BusSplineMovement>();
-
-            if (busMovement != null)
-            {
-                StartCoroutine(EnterTransport(TransportMode.Bus, transport.transform));
-            }
-        }
-
-        private System.Collections.IEnumerator EnterTransport(TransportMode mode, Transform transportTransform)
-        {
-            isEntering = true;
-
-            yield return new WaitForSeconds(enterExitTime);
-
-            currentMode = mode;
-            currentTransport = transportTransform;
-            isEntering = false;
-
-            OnTransportEnter?.Invoke();
-            OnTransportModeChanged?.Invoke(currentMode);
-        }
-
-        public void TryExitTransport()
-        {
-            if (currentMode == TransportMode.Walking) return;
-            if (isExiting || isEntering) return;
-
-            StartCoroutine(ExitTransport());
-        }
-
-        private System.Collections.IEnumerator ExitTransport()
-        {
-            isExiting = true;
-
-            Vector3 exitPosition = currentTransport.position + currentTransport.forward * 3f;
-            Vector3 exitRotation = currentTransport.forward;
-
-            yield return new WaitForSeconds(enterExitTime);
-
-            transform.position = exitPosition;
-            transform.rotation = Quaternion.LookRotation(exitRotation);
-
-            currentMode = TransportMode.Walking;
+            cameraTransform.gameObject.SetActive(true);
+            currentTransport._camera.SetActive(false);
             currentTransport = null;
-            isExiting = false;
-
-            OnTransportExit?.Invoke();
-            OnTransportModeChanged?.Invoke(currentMode);
         }
+
+        #endregion
+
+        #region Input
 
         /// <summary>
         /// Запрос прыжка (вызывается из UI)
@@ -220,25 +170,14 @@ namespace HourPeak.Addition
         /// <summary>
         /// Показывать ли кнопку выхода (игрок в автобусе и автобус стоит на остановке)
         /// </summary>
-        public bool ShouldShowBusExitButton
+        public bool ShouldShowBusExitButton()
         {
-            get
-            {
-                if (currentMode != TransportMode.Bus || currentTransport == null)
-                    return false;
+            if (currentTransport == null)
+                return false;
 
-                var busMovement = currentTransport.GetComponent<BusSplineMovement>();
-                return busMovement != null && busMovement.IsWaitingAtBusStop;
-            }
+            return currentTransport.IsWaitingAtBusStop;
         }
 
-        /// <summary>
-        /// Выход из автобуса (вызывается из UI)
-        /// </summary>
-        public void ExitFromBus()
-        {
-            if (currentMode != TransportMode.Bus) return;
-            TryExitTransport();
-        }
+        #endregion
     }
 }

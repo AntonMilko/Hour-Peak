@@ -674,7 +674,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e990e6eea049c8b45b40c6d891fb8e0c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6308506633192983918}
+      addedObject: {fileID: 7528413548045309797}
   m_SourcePrefab: {fileID: 100100000, guid: e990e6eea049c8b45b40c6d891fb8e0c, type: 3}
 --- !u!4 &8509344228576450489 stripped
 Transform:
@@ -686,7 +686,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e990e6eea049c8b45b40c6d891fb8e0c, type: 3}
   m_PrefabInstance: {fileID: 8186974578513064018}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6308506633192983918
+--- !u!114 &7528413548045309797
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -695,14 +695,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 9033257479888276739}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e103a633261c90f45993bd34630db19e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a2824fd226a94943bef51bcee1a03af, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TrafficLightSignals
+  m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Transport.LightTrafficSystem
+  redPedLight: {fileID: 5208405589829121125}
+  greenPedLight: {fileID: 427660122990369001}
+  greenPedDuration: 5
+  redPedDuration: 10
   redLight: {fileID: 4413883390616571360}
   yellowLight: {fileID: 7275498001478096997}
   greenLight: {fileID: 3945657507399915242}
   greenDuration: 10
   yellowDuration: 3
   redDuration: 5
-  redPedLight: {fileID: 5208405589829121125}
-  greenPedLight: {fileID: 427660122990369001}

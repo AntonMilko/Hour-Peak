@@ -44,13 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cedb215c01d8242b97b4c7d33cec6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Characters.CrowdSpawner
-  npcPrefab: {fileID: 3081331961055770196, guid: 98ae9cd18e117634b8dae64fa5cbd56b, type: 3}
-  minX: -10
-  maxX: 10
-  minZ: -10
-  maxZ: 10
-  spawnY: 0
-  baseCrowdNPC: 100
-  beginnerCrowdPercentage: 0.2
-  professionalCrowdPercentage: 0.5
-  extremalCrowdPercentage: 0.8
+  npcPrefab: {fileID: 3078578921313923866, guid: 98ae9cd18e117634b8dae64fa5cbd56b, type: 3}
+  spawnBatchSize: 100
+  targetPositions: []

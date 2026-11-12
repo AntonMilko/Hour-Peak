@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Splines;
-using Unity.Mathematics;
 
 [RequireComponent(typeof(BoxCollider))]
 public class CarSplineMovement : MonoBehaviour
@@ -77,7 +76,7 @@ public class CarSplineMovement : MonoBehaviour
             float dist = Vector3.Distance(transform.position, light.position);
             if (dist <= lightDetectionDistance)
             {
-                var signal = light.GetComponent<LightTrafficController>();
+                var signal = light.GetComponent<LightTrafficSystem>();
                 if (!signal.IsGreen() && dist < closestDist)
                 {
                     closestSignal = light.gameObject;
@@ -89,9 +88,8 @@ public class CarSplineMovement : MonoBehaviour
         if (closestSignal != null)
         {
             activeSignalObject = closestSignal;
-            if (closestDist <= lightStopDistance)
+            if (currentSpeed <= 0)
             {
-                Debug.Log("Находит ли светофор?");
                 isStopped = true;
             }
             else
@@ -103,8 +101,7 @@ public class CarSplineMovement : MonoBehaviour
         }
         else if (isStopped && activeSignalObject != null)
         {
-            Debug.Log("Начинает ли старт когда загорелся зелёный сигнал?");
-            var signal = activeSignalObject.GetComponent<LightTrafficController>();
+            var signal = activeSignalObject.GetComponent<LightTrafficSystem>();
             if (signal != null && signal.IsGreen())
             {
                 StartCoroutine(ReleaseFromSignal());

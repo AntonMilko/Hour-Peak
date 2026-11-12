@@ -7,24 +7,32 @@ namespace HourPeak.Characters
 {
     public class CrowdSpawner : MonoBehaviour
     {
-        [Header("NPC Prefab")]
-        [SerializeField] private GameObject npcPrefab;
+        #region Configuration
 
-        [Header("Spawn Area")]
-        [SerializeField] private float minX = -10f;
-        [SerializeField] private float maxX = 10f;
-        [SerializeField] private float spawnY = 0f;
-        [SerializeField] private float maxZ = 20f;
-        [SerializeField] private float minZ = -20f;
+        [Header("NPC Prefab")]
+        [SerializeField] private NoPlayerController npcPrefab;
 
         [Header("Performance")]
-        [SerializeField] private int spawnBatchSize = 100; // Спавним по 100 NPC за кадр
+        [SerializeField] private int spawnBatchSize = 100;
 
-        private List<NPCPasserby> activeNPCCs = new List<NPCPasserby>();
+        [Header("General Settings")]
+        [SerializeField] private List <Transform> targetPositions;
+
+        #endregion
+
+        #region Fields
+
+        public static List <Transform> _targetPositions;
+        private List<NoPlayerController> activeNPCCs = new List<NoPlayerController>();
         private int targetCount = 0;
+
+        #endregion
+
+        #region Unity Lifecycle
 
         private void Awake()
         {
+            _targetPositions = targetPositions;
             var allSpawners = Object.FindObjectsByType<CrowdSpawner>(FindObjectsSortMode.None);
             
             if (allSpawners.Length > 1)
@@ -40,6 +48,10 @@ namespace HourPeak.Characters
 
             StartCoroutine(SpawnCrowdOverTime());
         }
+
+        #endregion
+
+        #region Crowd Methods
 
         private int CalculateTargetCount()
         {
@@ -92,40 +104,11 @@ namespace HourPeak.Characters
 
         private void SpawnSingleNPC()
         {
-            if (npcPrefab == null)
-            {
-                Debug.LogError("[CrowdSpawner] NPC Prefab не назначен в инспекторе!");
-                return;
-            }
-
-            float randomX = Random.Range(minX, maxX);
-            float randomZ = Random.Range(minZ, maxZ);
-            Vector3 spawnPos = new Vector3(randomX, spawnY, randomZ);
-
-            GameObject npcObj = Instantiate(npcPrefab, spawnPos, Quaternion.identity);
-            NPCPasserby npcScript = npcObj.GetComponent<NPCPasserby>();
-            
-            if (npcScript != null)
-            {
-                activeNPCCs.Add(npcScript);
-                npcScript.Spawn(spawnPos); 
-            }
-            else
-            {
-                Debug.LogWarning("[CrowdSpawner] На префабе NPC нет скрипта NPCPasserby!");
-            }
+            Vector3 spawnPos = _targetPositions[Random.Range(0, _targetPositions.Count)].position;
+            NoPlayerController npc = Instantiate(npcPrefab, spawnPos, Quaternion.identity);
+            activeNPCCs.Add(npc);
         }
 
-        private void OnDestroy()
-        {
-            foreach (var npc in activeNPCCs)
-            {
-                if (npc != null)
-                {
-                    Destroy(npc.gameObject);
-                }
-            }
-            activeNPCCs.Clear();
-        }
+        #endregion
     }
 }

@@ -391,10 +391,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 9033257479888276739}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c36a52c37468e04448622c261b09cccd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a2824fd226a94943bef51bcee1a03af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrafficLightPedestrian
   redPedLight: {fileID: 5208405589829121125}
   greenPedLight: {fileID: 427660122990369001}
   greenPedDuration: 5
-  redPedDuration: 5
+  redPedDuration: 10
+  redLight: {fileID: 0}
+  yellowLight: {fileID: 0}
+  greenLight: {fileID: 0}
+  greenDuration: 10
+  yellowDuration: 3
+  redDuration: 5
