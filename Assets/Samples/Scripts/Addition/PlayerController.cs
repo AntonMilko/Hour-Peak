@@ -55,6 +55,10 @@ namespace HourPeak.Addition
             }
 
             HandleGroundCheck();
+        }
+
+        private void FixedUpdate()
+        {
             UpdateAnimation();
         }
 
@@ -64,7 +68,6 @@ namespace HourPeak.Addition
 
         private void HandleGroundCheck()
         {
-            // Простая проверка: если скорость по Y близка к 0 и мы не падаем
             isGrounded = Mathf.Abs(rb.linearVelocity.y) < 0.1f;
             if (isGrounded && velocity.y < 0) velocity.y = -0.01f;
         }
@@ -155,9 +158,6 @@ namespace HourPeak.Addition
 
         #region Input
 
-        /// <summary>
-        /// Запрос прыжка (вызывается из UI)
-        /// </summary>
         public void RequestJump()
         {
             if (isGrounded)
@@ -167,9 +167,6 @@ namespace HourPeak.Addition
             }
         }
 
-        /// <summary>
-        /// Показывать ли кнопку выхода (игрок в автобусе и автобус стоит на остановке)
-        /// </summary>
         public bool ShouldShowBusExitButton()
         {
             if (currentTransport == null)

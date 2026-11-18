@@ -4531,6 +4531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7613073776355177548}
+  - component: {fileID: 497649465296925751}
   m_Layer: 0
   m_Name: Buttons (Finish Game)
   m_TagString: Untagged
@@ -4558,6 +4559,20 @@ Transform:
   - {fileID: 8624596943213764980}
   m_Father: {fileID: 6914671938178418923}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &497649465296925751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4898747569031091737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264c3d5f5fa28aa47a53020527360fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BusExitButton
+  playerController: {fileID: 0}
+  exitButton: {fileID: 6012372129601093653}
 --- !u!1 &4991001833614668345
 GameObject:
   m_ObjectHideFlags: 0
@@ -5292,7 +5307,6 @@ GameObject:
   - component: {fileID: 5454719861024160283}
   - component: {fileID: 6848724587557972343}
   - component: {fileID: 4536883587704444530}
-  - component: {fileID: 7715074630344774724}
   m_Layer: 0
   m_Name: ExitFromBusButton (Finish Game)
   m_TagString: Untagged
@@ -5403,24 +5417,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6848724587557972343}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &7715074630344774724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6012372129601093653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 264c3d5f5fa28aa47a53020527360fcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BusExitButton
-  autoCheckVisibility: 1
-  exitButtonPanel: {fileID: 6012372129601093653}
-  showDuringPlayerControl: 0
-  hiddenButtonPanel: {fileID: 6012372129601093653}
-  playerController: {fileID: 0}
+      m_Calls:
+      - m_Target: {fileID: 497649465296925751}
+        m_TargetAssemblyTypeName: BusExitButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &6329163192121487951
 GameObject:
   m_ObjectHideFlags: 0

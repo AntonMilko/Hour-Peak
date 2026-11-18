@@ -25,7 +25,6 @@ public class NoPlayerController : MonoBehaviour
 
     private NavMeshAgent navMeshAgent;
     private Transform targetPoint;
-    private bool isMoving;
     private LightTrafficSystem activeSignalObject;
 
     #endregion
@@ -71,7 +70,7 @@ public class NoPlayerController : MonoBehaviour
 
     private void UpdateAnimation()
     {
-        if (isMoving)
+        if (navMeshAgent.speed > 0f)
         {
             animator.SetBool ("IsWalking", true);
         }

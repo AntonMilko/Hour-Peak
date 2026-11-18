@@ -23208,7 +23208,7 @@ PrefabInstance:
     - target: {fileID: 6444471408783704993, guid: f0bca8289a48f6147bb524056539560d, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 382a3a4c458d713448962f4b1d7a43ea, type: 2}
+      objectReference: {fileID: 23800000, guid: abdf44ffcf474fd43a53af2250ac43b5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23223,6 +23223,9 @@ SceneRoots:
   - {fileID: 496970331}
   - {fileID: 837484061}
   - {fileID: 931486684}
+  - {fileID: 2030257466}
+  - {fileID: 1532641031}
+  - {fileID: 980813626}
   - {fileID: 1461653395}
   - {fileID: 1776878819}
   - {fileID: 1085070884}
@@ -23232,6 +23235,3 @@ SceneRoots:
   - {fileID: 1768339576}
   - {fileID: 1565249018}
   - {fileID: 1446857683}
-  - {fileID: 2030257466}
-  - {fileID: 1532641031}
-  - {fileID: 980813626}
