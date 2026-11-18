@@ -26077,6 +26077,10 @@ PrefabInstance:
       propertyPath: mapCamera
       value: 
       objectReference: {fileID: 871276505}
+    - target: {fileID: 4728515192968909896, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1419018396}
     - target: {fileID: 4794079905443272842, guid: c9929af0c01ca2f40b007abd804292c1, type: 3}
       propertyPath: mapCamera
       value: 
