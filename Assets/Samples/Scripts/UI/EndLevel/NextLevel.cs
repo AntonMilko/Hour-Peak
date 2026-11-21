@@ -1,9 +1,5 @@
-using System;
-using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using HourPeak.Settings;
 
 namespace HourPeak.Samples.Runtime
 {
@@ -20,10 +16,7 @@ namespace HourPeak.Samples.Runtime
 
         void Start()
         {
-            if (timer.isTimeUp())
-            {
-                gameObject.SetActive(false);
-            }
+            gameObject.SetActive(!timer.isTimeUp());
         }
 
         #endregion

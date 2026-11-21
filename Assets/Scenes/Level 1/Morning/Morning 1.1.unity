@@ -2809,7 +2809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: redDuration
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: redPedLight
@@ -2821,7 +2821,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: greenDuration
-      value: 20
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: greenPedLight
@@ -2829,11 +2829,11 @@ PrefabInstance:
       objectReference: {fileID: 218056604}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: redPedDuration
-      value: 20
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: greenPedDuration
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: signalConfigs.Array.data[0].redPedDuration
@@ -3330,14 +3330,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: HourPeak.Samples.Runtime::HourPeak.Transport.LightTrafficController
   redPedLight: {fileID: 2078120540}
   greenPedLight: {fileID: 1926969768}
-  greenPedDuration: 10
-  redPedDuration: 20
+  greenPedDuration: 4
+  redPedDuration: 8
   redLight: {fileID: 1932430072}
   yellowLight: {fileID: 8960783}
   greenLight: {fileID: 395370040}
-  greenDuration: 20
+  greenDuration: 8
   yellowDuration: 3
-  redDuration: 10
+  redDuration: 4
 --- !u!1001 &270960514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4114,14 +4114,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: HourPeak.Samples.Runtime::HourPeak.Transport.LightTrafficController
   redPedLight: {fileID: 1506348185}
   greenPedLight: {fileID: 563322554}
-  greenPedDuration: 5
-  redPedDuration: 10
+  greenPedDuration: 2
+  redPedDuration: 4
   redLight: {fileID: 521327548}
   yellowLight: {fileID: 1471863234}
   greenLight: {fileID: 1174846056}
-  greenDuration: 10
+  greenDuration: 4
   yellowDuration: 3
-  redDuration: 5
+  redDuration: 2
 --- !u!1001 &325924787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7334,7 +7334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: redDuration
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: redPedLight
@@ -7342,7 +7342,7 @@ PrefabInstance:
       objectReference: {fileID: 695175442}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: greenDuration
-      value: 20
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: greenPedLight
@@ -7350,11 +7350,11 @@ PrefabInstance:
       objectReference: {fileID: 695175443}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: redPedDuration
-      value: 20
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: greenPedDuration
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: signalConfigs.Array.data[0].redPedDuration
@@ -8795,14 +8795,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: HourPeak.Samples.Runtime::HourPeak.Transport.LightTrafficController
   redPedLight: {fileID: 185365092}
   greenPedLight: {fileID: 1047394450}
-  greenPedDuration: 10
-  redPedDuration: 20
+  greenPedDuration: 4
+  redPedDuration: 8
   redLight: {fileID: 1227978196}
   yellowLight: {fileID: 1557125628}
   greenLight: {fileID: 876093267}
-  greenDuration: 20
+  greenDuration: 8
   yellowDuration: 3
-  redDuration: 10
+  redDuration: 4
 --- !u!1 &839576918
 GameObject:
   m_ObjectHideFlags: 0
@@ -10013,14 +10013,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: HourPeak.Samples.Runtime::HourPeak.Transport.LightTrafficController
   redPedLight: {fileID: 1034092019}
   greenPedLight: {fileID: 771598037}
-  greenPedDuration: 5
-  redPedDuration: 10
+  greenPedDuration: 2
+  redPedDuration: 4
   redLight: {fileID: 1989754266}
   yellowLight: {fileID: 638752584}
   greenLight: {fileID: 209038108}
-  greenDuration: 10
+  greenDuration: 4
   yellowDuration: 3
-  redDuration: 5
+  redDuration: 2
 --- !u!1 &1003722540
 GameObject:
   m_ObjectHideFlags: 0
@@ -11645,14 +11645,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: HourPeak.Samples.Runtime::HourPeak.Transport.LightTrafficController
   redPedLight: {fileID: 1707137070}
   greenPedLight: {fileID: 664641175}
-  greenPedDuration: 5
-  redPedDuration: 10
+  greenPedDuration: 2
+  redPedDuration: 4
   redLight: {fileID: 96449441}
   yellowLight: {fileID: 1904862914}
   greenLight: {fileID: 317407605}
-  greenDuration: 10
+  greenDuration: 4
   yellowDuration: 3
-  redDuration: 5
+  redDuration: 2
 --- !u!1001 &1199421950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13765,14 +13765,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: HourPeak.Samples.Runtime::HourPeak.Transport.LightTrafficController
   redPedLight: {fileID: 612413682}
   greenPedLight: {fileID: 192562399}
-  greenPedDuration: 10
-  redPedDuration: 20
+  greenPedDuration: 4
+  redPedDuration: 8
   redLight: {fileID: 1468768409}
   yellowLight: {fileID: 421509859}
   greenLight: {fileID: 1344282478}
-  greenDuration: 20
+  greenDuration: 8
   yellowDuration: 3
-  redDuration: 10
+  redDuration: 4
 --- !u!1001 &1401769585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14640,14 +14640,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HourPeak.Transport.LightTrafficController
   redPedLight: {fileID: 1009623835}
   greenPedLight: {fileID: 1003722540}
-  greenPedDuration: 10
-  redPedDuration: 20
+  greenPedDuration: 4
+  redPedDuration: 8
   redLight: {fileID: 2118521754}
   yellowLight: {fileID: 1865835380}
   greenLight: {fileID: 1045569778}
-  greenDuration: 20
+  greenDuration: 8
   yellowDuration: 3
-  redDuration: 10
+  redDuration: 4
 --- !u!1 &1468768409
 GameObject:
   m_ObjectHideFlags: 0
@@ -18322,14 +18322,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: HourPeak.Samples.Runtime::HourPeak.Transport.LightTrafficController
   redPedLight: {fileID: 1283358537}
   greenPedLight: {fileID: 1932848817}
-  greenPedDuration: 5
-  redPedDuration: 10
+  greenPedDuration: 2
+  redPedDuration: 4
   redLight: {fileID: 1101963080}
   yellowLight: {fileID: 1621291306}
   greenLight: {fileID: 1603882560}
-  greenDuration: 10
+  greenDuration: 4
   yellowDuration: 3
-  redDuration: 5
+  redDuration: 2
 --- !u!1001 &1688763714
 PrefabInstance:
   m_ObjectHideFlags: 0

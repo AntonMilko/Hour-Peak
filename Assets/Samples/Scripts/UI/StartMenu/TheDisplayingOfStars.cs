@@ -1,13 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Скрипт отображения звёзд в зависимости от результата уровня.
-/// Все звёзды всегда видимы — состояние отображается цветом:
-/// - Заработанные: цвет успеха (жёлтый).
-/// - Незаработанные (Утро/Белый фон): чёрные.
-/// - Незаработанные (Вечер/Чёрный фон): белые.
-/// </summary>
 public class TheDisplayingOfStars : MonoBehaviour
 {
     #region Serialized Fields
@@ -17,7 +10,6 @@ public class TheDisplayingOfStars : MonoBehaviour
     [SerializeField] private Image star1;
     [SerializeField] private Image star2;
     [SerializeField] private Image star3;
-
 
     [Header("Settings")]
     [Tooltip("Текущее состояние фона: true = Утро (Белый), false = Вечер (Чёрный)")]
@@ -48,8 +40,7 @@ public class TheDisplayingOfStars : MonoBehaviour
     #region Unity Lifecycle
 
     private void Awake()
-    {        
-        // Начальное обновление цветов при старте
+    {
         SetStars(0);
     }
 
@@ -57,11 +48,6 @@ public class TheDisplayingOfStars : MonoBehaviour
 
     #region Public Methods
 
-    /// <summary>
-    /// Устанавливает результат уровня и количество звёзд.
-    /// </summary>
-    /// <param name="passed">Пройден ли уровень.</param>
-    /// <param name="count">Количество собранных звёзд (0-3).</param>
     public void SetLevelResult(bool passed, int count)
     {
         starsCollected = count;
@@ -69,10 +55,6 @@ public class TheDisplayingOfStars : MonoBehaviour
         SetStars(count);
     }
 
-    /// <summary>
-    /// Меняет режим фона (Утро/Вечер) и пересчитывает цвета звёзд.
-    /// </summary>
-    /// <param name="morning">true - Утро (белый фон), false - Вечер (чёрный фон).</param>
     public void SetBackgroundMode(bool morning)
     {
         isMorning = morning;
@@ -131,9 +113,7 @@ public class TheDisplayingOfStars : MonoBehaviour
             }
 
         }
-        // Если forceRecolorStars = false, цвет не меняется (берется из спрайта)
     }
-
 
     public void HideStars()
     {

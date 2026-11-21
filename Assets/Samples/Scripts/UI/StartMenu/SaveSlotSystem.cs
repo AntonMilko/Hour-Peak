@@ -30,9 +30,6 @@ public class SaveSlotSystem : MonoBehaviour
     private bool _isInitialized = false;
 
     // 🔥 КЭШИРОВАННЫЕ ССЫЛКИ — чтобы не искать каждый раз
-    private SaveManager _saveManager;
-    private GameSaveController _gameController;
-    private LevelMenuManager _levelMenuManager;
     private GameObject _foldersSaveMenu;
     private Transform _rootTransform; // Кэш root
 

@@ -4091,7 +4091,7 @@ GameObject:
   - component: {fileID: 497622411}
   - component: {fileID: 497622410}
   - component: {fileID: 497622409}
-  - component: {fileID: 497622408}
+  - component: {fileID: 497622412}
   m_Layer: 0
   m_Name: Folder 20
   m_TagString: Untagged
@@ -4121,18 +4121,6 @@ RectTransform:
   m_AnchoredPosition: {x: 620, y: -240}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &497622408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 497622406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &497622409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4176,7 +4164,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 497622410}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &497622410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4218,6 +4230,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497622406}
   m_CullTransparentMesh: 1
+--- !u!114 &497622412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497622406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 1059763668}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &501046290
 GameObject:
   m_ObjectHideFlags: 0
@@ -6944,7 +6971,7 @@ GameObject:
   - component: {fileID: 738768807}
   - component: {fileID: 738768806}
   - component: {fileID: 738768805}
-  - component: {fileID: 738768804}
+  - component: {fileID: 738768808}
   m_Layer: 0
   m_Name: Folder 5
   m_TagString: Untagged
@@ -6974,18 +7001,6 @@ RectTransform:
   m_AnchoredPosition: {x: 620, y: 240}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &738768804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 738768802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &738768805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7029,7 +7044,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 738768806}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &738768806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7071,6 +7110,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 738768802}
   m_CullTransparentMesh: 1
+--- !u!114 &738768808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738768802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 1638652397}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &743326491
 GameObject:
   m_ObjectHideFlags: 0
@@ -8344,7 +8398,7 @@ GameObject:
   - component: {fileID: 808407306}
   - component: {fileID: 808407305}
   - component: {fileID: 808407304}
-  - component: {fileID: 808407303}
+  - component: {fileID: 808407307}
   m_Layer: 0
   m_Name: Folder 18
   m_TagString: Untagged
@@ -8374,18 +8428,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -240}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &808407303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808407301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &808407304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8429,7 +8471,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 808407305}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &808407305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8471,6 +8537,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808407301}
   m_CullTransparentMesh: 1
+--- !u!114 &808407307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808407301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 1241696810}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &870137455
 GameObject:
   m_ObjectHideFlags: 0
@@ -10222,7 +10303,7 @@ GameObject:
   - component: {fileID: 1073902818}
   - component: {fileID: 1073902817}
   - component: {fileID: 1073902816}
-  - component: {fileID: 1073902815}
+  - component: {fileID: 1073902819}
   m_Layer: 0
   m_Name: Folder 17
   m_TagString: Untagged
@@ -10252,18 +10333,6 @@ RectTransform:
   m_AnchoredPosition: {x: -310, y: -240}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1073902815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073902813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1073902816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10307,7 +10376,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1073902817}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1073902817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10349,6 +10442,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073902813}
   m_CullTransparentMesh: 1
+--- !u!114 &1073902819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073902813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 769167323}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1088770985
 GameObject:
   m_ObjectHideFlags: 0
@@ -11160,7 +11268,7 @@ GameObject:
   - component: {fileID: 1179194773}
   - component: {fileID: 1179194772}
   - component: {fileID: 1179194771}
-  - component: {fileID: 1179194770}
+  - component: {fileID: 1179194774}
   m_Layer: 0
   m_Name: Folder 14
   m_TagString: Untagged
@@ -11190,18 +11298,6 @@ RectTransform:
   m_AnchoredPosition: {x: 310, y: -80}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1179194770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1179194768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1179194771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11245,7 +11341,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1179194772}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1179194772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11287,6 +11407,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179194768}
   m_CullTransparentMesh: 1
+--- !u!114 &1179194774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179194768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 1556683188}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1182117937
 GameObject:
   m_ObjectHideFlags: 0
@@ -11852,7 +11987,7 @@ GameObject:
   - component: {fileID: 1227383902}
   - component: {fileID: 1227383901}
   - component: {fileID: 1227383900}
-  - component: {fileID: 1227383899}
+  - component: {fileID: 1227383903}
   m_Layer: 0
   m_Name: Folder 16
   m_TagString: Untagged
@@ -11882,18 +12017,6 @@ RectTransform:
   m_AnchoredPosition: {x: -620, y: -240}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1227383899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1227383897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1227383900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11937,7 +12060,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1227383901}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1227383901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11979,6 +12126,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227383897}
   m_CullTransparentMesh: 1
+--- !u!114 &1227383903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227383897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 1502414012}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1241696808
 GameObject:
   m_ObjectHideFlags: 0
@@ -13016,7 +13178,7 @@ GameObject:
   - component: {fileID: 1345442336}
   - component: {fileID: 1345442335}
   - component: {fileID: 1345442334}
-  - component: {fileID: 1345442333}
+  - component: {fileID: 1345442337}
   m_Layer: 0
   m_Name: Folder 8
   m_TagString: Untagged
@@ -13046,18 +13208,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 80}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1345442333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1345442331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1345442334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13101,7 +13251,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1345442335}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1345442335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13143,6 +13317,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345442331}
   m_CullTransparentMesh: 1
+--- !u!114 &1345442337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345442331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 1625873528}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1365759535
 GameObject:
   m_ObjectHideFlags: 0
@@ -13566,7 +13755,7 @@ GameObject:
   - component: {fileID: 1411107592}
   - component: {fileID: 1411107591}
   - component: {fileID: 1411107590}
-  - component: {fileID: 1411107589}
+  - component: {fileID: 1411107593}
   m_Layer: 0
   m_Name: Folder 13
   m_TagString: Untagged
@@ -13596,18 +13785,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -80}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1411107589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1411107587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1411107590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13651,7 +13828,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1411107591}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1411107591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13693,6 +13894,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411107587}
   m_CullTransparentMesh: 1
+--- !u!114 &1411107593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411107587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 770306713}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1466330707
 GameObject:
   m_ObjectHideFlags: 0
@@ -13705,7 +13921,7 @@ GameObject:
   - component: {fileID: 1466330712}
   - component: {fileID: 1466330711}
   - component: {fileID: 1466330710}
-  - component: {fileID: 1466330709}
+  - component: {fileID: 1466330713}
   m_Layer: 0
   m_Name: Folder 15
   m_TagString: Untagged
@@ -13735,18 +13951,6 @@ RectTransform:
   m_AnchoredPosition: {x: 620, y: -80}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1466330709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1466330707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1466330710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13790,7 +13994,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1466330711}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1466330711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13832,6 +14060,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1466330707}
   m_CullTransparentMesh: 1
+--- !u!114 &1466330713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466330707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 1275104651}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1477445938
 GameObject:
   m_ObjectHideFlags: 0
@@ -16163,7 +16406,7 @@ GameObject:
   - component: {fileID: 1653740748}
   - component: {fileID: 1653740747}
   - component: {fileID: 1653740746}
-  - component: {fileID: 1653740745}
+  - component: {fileID: 1653740749}
   m_Layer: 0
   m_Name: Folder 9
   m_TagString: Untagged
@@ -16193,18 +16436,6 @@ RectTransform:
   m_AnchoredPosition: {x: 310, y: 80}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1653740745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1653740743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1653740746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16248,7 +16479,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1653740747}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1653740747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16290,6 +16545,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653740743}
   m_CullTransparentMesh: 1
+--- !u!114 &1653740749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653740743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 1391798150}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1664320144
 GameObject:
   m_ObjectHideFlags: 0
@@ -16450,7 +16720,7 @@ GameObject:
   - component: {fileID: 1664785386}
   - component: {fileID: 1664785385}
   - component: {fileID: 1664785384}
-  - component: {fileID: 1664785383}
+  - component: {fileID: 1664785387}
   m_Layer: 0
   m_Name: Folder 1
   m_TagString: Untagged
@@ -16480,18 +16750,6 @@ RectTransform:
   m_AnchoredPosition: {x: -620, y: 240}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1664785383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1664785381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1664785384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16535,7 +16793,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1664785385}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1664785385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16577,6 +16859,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664785381}
   m_CullTransparentMesh: 1
+--- !u!114 &1664785387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664785381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 1880284892}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1666744129
 GameObject:
   m_ObjectHideFlags: 0
@@ -16726,7 +17023,7 @@ GameObject:
   - component: {fileID: 1675899488}
   - component: {fileID: 1675899487}
   - component: {fileID: 1675899486}
-  - component: {fileID: 1675899485}
+  - component: {fileID: 1675899489}
   m_Layer: 0
   m_Name: Folder 4
   m_TagString: Untagged
@@ -16756,18 +17053,6 @@ RectTransform:
   m_AnchoredPosition: {x: 310, y: 240}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1675899485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1675899483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1675899486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16811,7 +17096,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1675899487}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1675899487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16853,6 +17162,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675899483}
   m_CullTransparentMesh: 1
+--- !u!114 &1675899489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675899483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 647782477}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1701630833
 GameObject:
   m_ObjectHideFlags: 0
@@ -17977,7 +18301,7 @@ GameObject:
   - component: {fileID: 1849096500}
   - component: {fileID: 1849096499}
   - component: {fileID: 1849096498}
-  - component: {fileID: 1849096497}
+  - component: {fileID: 1849096501}
   m_Layer: 0
   m_Name: Folder 11
   m_TagString: Untagged
@@ -18007,18 +18331,6 @@ RectTransform:
   m_AnchoredPosition: {x: -620, y: -80}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1849096497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849096495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1849096498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18062,7 +18374,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1849096499}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1849096499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18104,6 +18440,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849096495}
   m_CullTransparentMesh: 1
+--- !u!114 &1849096501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849096495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 60928046}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1857830546
 GameObject:
   m_ObjectHideFlags: 0
@@ -18390,7 +18741,7 @@ GameObject:
   - component: {fileID: 1902618352}
   - component: {fileID: 1902618351}
   - component: {fileID: 1902618350}
-  - component: {fileID: 1902618349}
+  - component: {fileID: 1902618353}
   m_Layer: 0
   m_Name: Folder 10
   m_TagString: Untagged
@@ -18420,18 +18771,6 @@ RectTransform:
   m_AnchoredPosition: {x: 620, y: 80}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1902618349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1902618347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1902618350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18475,7 +18814,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1902618351}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1902618351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18517,6 +18880,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902618347}
   m_CullTransparentMesh: 1
+--- !u!114 &1902618353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902618347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 1022210950}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1914571382
 GameObject:
   m_ObjectHideFlags: 0
@@ -18529,7 +18907,7 @@ GameObject:
   - component: {fileID: 1914571387}
   - component: {fileID: 1914571386}
   - component: {fileID: 1914571385}
-  - component: {fileID: 1914571384}
+  - component: {fileID: 1914571388}
   m_Layer: 0
   m_Name: Folder 3
   m_TagString: Untagged
@@ -18559,18 +18937,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 240}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1914571384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1914571382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1914571385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18614,7 +18980,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1914571386}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1914571386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18656,6 +19046,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914571382}
   m_CullTransparentMesh: 1
+--- !u!114 &1914571388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914571382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 1786363505}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1917108828
 GameObject:
   m_ObjectHideFlags: 0
@@ -18668,7 +19073,7 @@ GameObject:
   - component: {fileID: 1917108833}
   - component: {fileID: 1917108832}
   - component: {fileID: 1917108831}
-  - component: {fileID: 1917108830}
+  - component: {fileID: 1917108834}
   m_Layer: 0
   m_Name: Folder 2
   m_TagString: Untagged
@@ -18698,18 +19103,6 @@ RectTransform:
   m_AnchoredPosition: {x: -310, y: 240}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1917108830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1917108828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1917108831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18753,7 +19146,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1917108832}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1917108832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18795,6 +19212,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917108828}
   m_CullTransparentMesh: 1
+--- !u!114 &1917108834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917108828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 454971981}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1922106336
 GameObject:
   m_ObjectHideFlags: 0
@@ -19314,7 +19746,7 @@ GameObject:
   - component: {fileID: 1959760549}
   - component: {fileID: 1959760548}
   - component: {fileID: 1959760547}
-  - component: {fileID: 1959760546}
+  - component: {fileID: 1959760550}
   m_Layer: 0
   m_Name: Folder 12
   m_TagString: Untagged
@@ -19344,18 +19776,6 @@ RectTransform:
   m_AnchoredPosition: {x: -310, y: -80}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1959760546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1959760544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1959760547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19399,7 +19819,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1959760548}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1959760548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19441,6 +19885,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959760544}
   m_CullTransparentMesh: 1
+--- !u!114 &1959760550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959760544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 573201150}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1967613190
 GameObject:
   m_ObjectHideFlags: 0
@@ -19453,7 +19912,7 @@ GameObject:
   - component: {fileID: 1967613195}
   - component: {fileID: 1967613194}
   - component: {fileID: 1967613193}
-  - component: {fileID: 1967613192}
+  - component: {fileID: 1967613196}
   m_Layer: 0
   m_Name: Folder 19
   m_TagString: Untagged
@@ -19483,18 +19942,6 @@ RectTransform:
   m_AnchoredPosition: {x: 310, y: -240}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1967613192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1967613190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1967613193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19538,7 +19985,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1967613194}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1967613194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19580,6 +20051,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1967613190}
   m_CullTransparentMesh: 1
+--- !u!114 &1967613196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967613190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 1666744131}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1968239447
 GameObject:
   m_ObjectHideFlags: 0
@@ -19688,7 +20174,7 @@ GameObject:
   - component: {fileID: 1982671530}
   - component: {fileID: 1982671529}
   - component: {fileID: 1982671528}
-  - component: {fileID: 1982671527}
+  - component: {fileID: 1982671531}
   m_Layer: 0
   m_Name: Folder 6
   m_TagString: Untagged
@@ -19718,18 +20204,6 @@ RectTransform:
   m_AnchoredPosition: {x: -620, y: 80}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1982671527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1982671525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &1982671528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19773,7 +20247,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1982671529}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1982671529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19815,6 +20313,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982671525}
   m_CullTransparentMesh: 1
+--- !u!114 &1982671531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982671525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 1857830548}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &1983650832
 GameObject:
   m_ObjectHideFlags: 0
@@ -20659,21 +21172,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075409574}
   m_CullTransparentMesh: 1
---- !u!115 &2099029820
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 7
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_Type: 0
-  m_ExecutionOrder: 0
-  m_ClassName: SaveSlotSystem/SlotGizmoDrawer
-  m_Namespace: 
-  m_AssemblyName: Assembly-CSharp
 --- !u!1 &2120534969
 GameObject:
   m_ObjectHideFlags: 0
@@ -21245,7 +21743,7 @@ GameObject:
   - component: {fileID: 2140125477}
   - component: {fileID: 2140125476}
   - component: {fileID: 2140125475}
-  - component: {fileID: 2140125474}
+  - component: {fileID: 2140125478}
   m_Layer: 0
   m_Name: Folder 7
   m_TagString: Untagged
@@ -21275,18 +21773,6 @@ RectTransform:
   m_AnchoredPosition: {x: -310, y: 80}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2140125474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2140125472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2099029820}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveSlotSystem/SlotGizmoDrawer
 --- !u!114 &2140125475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21330,7 +21816,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2140125476}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400246989}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1190420093}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &2140125476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21372,6 +21882,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140125472}
   m_CullTransparentMesh: 1
+--- !u!114 &2140125478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140125472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce7cf3e5557e1b4887be7ef2ac678fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.StartMenu.DateTime
+  realTimeText: {fileID: 527513191}
+  timeFormat: dd.MM.yyyy HH:mm:ss
+  saveFileName: rush_hour_progress.json
 --- !u!1 &2146809679
 GameObject:
   m_ObjectHideFlags: 0

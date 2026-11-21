@@ -110,7 +110,6 @@ namespace HourPeak.Settings
 
         #region Private State
 
-        private DifficultyLevel _currentDifficulty;
         private DifficultySettings _currentSettings;
 
         #endregion
@@ -129,7 +128,7 @@ namespace HourPeak.Settings
         /// <summary>
         /// Текущий уровень сложности.
         /// </summary>
-        public DifficultyLevel CurrentDifficulty => _currentDifficulty;
+        public static DifficultyLevel CurrentDifficulty;
 
         /// <summary>
         /// Текущие настройки сложности.
@@ -173,8 +172,8 @@ namespace HourPeak.Settings
             };
 
             // Устанавливаем текущую сложность по умолчанию
-            _currentDifficulty = DifficultyLevel.Beginner;
-            _currentSettings = GetSettingsByLevel(_currentDifficulty);
+            CurrentDifficulty = DifficultyLevel.Beginner;
+            _currentSettings = GetSettingsByLevel(CurrentDifficulty);
 
             Debug.Log("📊 Доступные сложности:");
             DebugLogAllDifficulties();
@@ -218,13 +217,13 @@ namespace HourPeak.Settings
         /// </summary>
         public void SetDifficulty(DifficultyLevel level)
         {
-            if (_currentDifficulty == level)
+            if (CurrentDifficulty == level)
             {
                 Debug.Log($"⚠️ Уже установлена сложность: {GetCurrentDifficultyName()}");
                 return;
             }
 
-            _currentDifficulty = level;
+            CurrentDifficulty = level;
             _currentSettings = GetSettingsByLevel(level);
             
             SaveDifficulty();
@@ -238,7 +237,7 @@ namespace HourPeak.Settings
         /// </summary>
         public void SetDifficultyChange()
         {
-            int nextIndex = ((int)_currentDifficulty + 1) % AllDifficulties.Length;
+            int nextIndex = ((int)CurrentDifficulty + 1) % AllDifficulties.Length;
             SetDifficulty((DifficultyLevel)nextIndex);
         }
 
@@ -256,7 +255,7 @@ namespace HourPeak.Settings
         /// </summary>
         public void SaveDifficulty()
         {
-            PlayerPrefs.SetInt(PREFS_KEY_DIFFICULTY, (int)_currentDifficulty);
+            PlayerPrefs.SetInt(PREFS_KEY_DIFFICULTY, (int)CurrentDifficulty);
             PlayerPrefs.Save();
             Debug.Log($"💾 Сложность сохранена: {GetCurrentDifficultyName()}");
         }
@@ -269,8 +268,8 @@ namespace HourPeak.Settings
             int savedIndex = PlayerPrefs.GetInt(PREFS_KEY_DIFFICULTY, 0);
             DifficultyLevel savedDifficulty = (DifficultyLevel)Mathf.Clamp(savedIndex, 0, AllDifficulties.Length - 1);
             
-            _currentDifficulty = savedDifficulty;
-            _currentSettings = GetSettingsByLevel(_currentDifficulty);
+            CurrentDifficulty = savedDifficulty;
+            _currentSettings = GetSettingsByLevel(CurrentDifficulty);
             
             Debug.Log($"📂 Сложность загружена: {GetCurrentDifficultyName()}");
         }
@@ -280,7 +279,7 @@ namespace HourPeak.Settings
         /// </summary>
         private void NotifyDifficultyChanged()
         {
-            OnDifficultyChanged?.Invoke(_currentDifficulty, _currentSettings);
+            OnDifficultyChanged?.Invoke(CurrentDifficulty, _currentSettings);
         }
 
         /// <summary>

@@ -1,33 +1,35 @@
 using UnityEngine;
 using TMPro;
-using System; // Required for DateTime
-using System.IO; // Required for saving files
+using System;
+using System.IO;
 using System.Collections.Generic;
 
 namespace UI.StartMenu
 {
-    /// <summary>
-    /// Displays the static real-world date and time of the currently loaded save file.
-    /// The text remains empty until a save file is loaded.
-    /// Records level completion times to the save file.
-    /// </summary>
     public class DateTime : MonoBehaviour
     {
+        #region Configuration
+
         [Header("UI Settings")]
-        [SerializeField]
-        private TextMeshProUGUI realTimeText;
+        [SerializeField] private TextMeshProUGUI realTimeText;
 
         [Header("Format Settings")]
-        [SerializeField]
-        private string timeFormat = "dd.MM.yyyy HH:mm";
+        [SerializeField] private string timeFormat = "dd.MM.yyyy HH:mm:ss";
 
         [Header("Save Settings")]
-        [SerializeField]
-        private string saveFileName = "rush_hour_progress.json";
+        [SerializeField] private string saveFileName = "rush_hour_progress.json";
+
+        #endregion
+
+        #region Fields
 
         // Internal state
         private bool _isRealTimeFound = false;
         private GameProgress _currentProgress;
+
+        #endregion
+
+        #region DateTime Structure
 
         // Data structure for saving
         [System.Serializable]
@@ -44,6 +46,10 @@ namespace UI.StartMenu
             public int lastLevelIndex;
             public string saveTimeStamp; // When this save was created/last loaded
         }
+
+        #endregion
+
+        #region Unity Lifecycle
 
         private void Start()
         {
@@ -69,10 +75,10 @@ namespace UI.StartMenu
             _currentProgress.completedLevels = new List<LevelCompletion>();
         }
 
-        /// <summary>
-        /// Call this when the player clicks a file/folder to load.
-        /// This loads the progress and displays the time.
-        /// </summary>
+        #endregion
+
+        #region Public Methods
+
         public void LoadGameFile()
         {
             LoadProgress();
@@ -93,9 +99,10 @@ namespace UI.StartMenu
             }
         }
 
-        /// <summary>
-        /// Updates the text to show the real-world time right now.
-        /// </summary>
+        #endregion
+
+        #region Private Methods
+
         private void UpdateCurrentTime()
         {
             if (!_isRealTimeFound) return;
@@ -103,18 +110,16 @@ namespace UI.StartMenu
             realTimeText.text = now.ToString(timeFormat);
         }
 
-        /// <summary>
-        /// Clears the text display (used at start).
-        /// </summary>
         private void ClearDisplay()
         {
             if (!_isRealTimeFound) return;
             realTimeText.text = "";
         }
 
-        /// <summary>
-        /// Call this method when a level is finished to record the time.
-        /// </summary>
+        #endregion
+
+        #region Structure of Saving
+
         public void RecordLevelCompletion(string levelName)
         {
             if (_currentProgress == null) _currentProgress = new GameProgress();
@@ -144,9 +149,6 @@ namespace UI.StartMenu
             Debug.Log($"[DateTime] Level '{levelName}' completed at {newRecord.completionTime}");
         }
 
-        /// <summary>
-        /// Updates the last played level index so the player can continue from there.
-        /// </summary>
         public void UpdateLastLevelIndex(int index)
         {
             if (_currentProgress == null) _currentProgress = new GameProgress();
@@ -154,14 +156,15 @@ namespace UI.StartMenu
             SaveProgress();
         }
 
-        /// <summary>
-        /// Returns the index of the level the player should continue from.
-        /// </summary>
         public int GetContinueLevelIndex()
         {
             if (_currentProgress == null) LoadProgress();
             return _currentProgress != null ? _currentProgress.lastLevelIndex : 0;
         }
+
+        #endregion
+
+        #region Progress
 
         private void SaveProgress()
         {
@@ -202,5 +205,7 @@ namespace UI.StartMenu
                 _currentProgress.lastLevelIndex = 0;
             }
         }
+
+        #endregion
     }
 }

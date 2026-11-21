@@ -66,7 +66,7 @@ namespace HourPeak.Characters
             int baseCount = 100;
             float percentage = 0.2f;
 
-            switch (difficulty.CurrentDifficulty) 
+            switch (SettingDifficulty.CurrentDifficulty) 
             {
                 case DifficultyLevel.Beginner: percentage = 0.2f; break;
                 case DifficultyLevel.Professional: percentage = 0.5f; break;

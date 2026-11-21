@@ -98,14 +98,14 @@ public class SaveSlotUI : MonoBehaviour
         _currentSaveData = saveData;
         _onSlotSelected = onSlotSelected;
         
-        Debug.Log($"SaveSlotUI[{slotIndex}]: Initialized with saveData={saveData?.SaveName ?? "null"}, active={gameObject?.activeInHierarchy}");
+        Debug.Log($"SaveSlotUI[{slotIndex}]: Initialized with saveData={saveData?.FormattedDate ?? "null"}, active={gameObject?.activeInHierarchy}");
         
         // Обновляем текст слота
         if (slotDateText != null)
         {
             if (saveData != null)
             {
-                slotDateText.text = saveData.SaveName;
+                slotDateText.text = saveData.FormattedDate;
             }
             else
             {
@@ -199,9 +199,7 @@ public class SaveSlotUI : MonoBehaviour
     #region Event Handlers
 
     private void OnSlotClicked()
-    {
-        Debug.Log($"SaveSlotUI: Clicked slot index={_slotIndex}, unlocked={_isLevelUnlocked}, saveData={_currentSaveData?.SaveName ?? "null"}");
-        
+    {        
         if (!_isLevelUnlocked)
         {
             Debug.Log($"🔒 Уровень {_slotIndex + 1} заблокирован!");

@@ -16,10 +16,7 @@ namespace HourPeak.Samples.Runtime
         
         void Start()
         {
-            if (timer.isTimeUp())
-            {
-                gameObject.SetActive(true);
-            }
+            gameObject.SetActive(timer.isTimeUp());
         }
 
         #endregion
