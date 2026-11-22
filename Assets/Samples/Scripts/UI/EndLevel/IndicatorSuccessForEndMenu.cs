@@ -27,21 +27,26 @@ namespace HourPeak.Samples.Runtime
         [Tooltip("Провал (опоздал) - чёрный")]
         [SerializeField] private Color failColor = Color.black;
 
+        private float timeRatio;
+
         #endregion
 
         #region Unity Lifecycle
 
-        void Update()
+        void OnEnable()
         {
-            
-            float timeRatio = TimerDisplay.time / TimerDisplay.totalTime;
+            timeRatio = TimerDisplay.time / TimerDisplay.totalTime;
             if (timeRatio < 0.25f)
                 timeRatio = timeRatio * 2;
             else if (timeRatio < 0.5f)
                 timeRatio = timeRatio + 0.25f;
             else 
                 timeRatio = timeRatio / 2 + 0.5f;
-            resultSlider.value = Mathf.Min(resultSlider.value + Time.deltaTime, 1 - timeRatio);
+        }
+
+        void Update()
+        {           
+            resultSlider.value = Mathf.Max(resultSlider.value - Time.deltaTime, 1 - timeRatio);
             progressFill.color = GetColorForTimeRatio(resultSlider.value);
         }
 
@@ -51,19 +56,19 @@ namespace HourPeak.Samples.Runtime
 
         private Color GetColorForTimeRatio(float timeRatio)
         {
-            if (timeRatio < 0.25f)
+            if (timeRatio > 0.75f)
             {
                 return perfectColor;
             }
-            else if (timeRatio < 0.5f)
+            else if (timeRatio > 0.5f)
             {
                 return superColor;
             }
-            else if (timeRatio < 0.75f)
+            else if (timeRatio > 0.25f)
             {
                 return excellentColor;
             }
-            else if (timeRatio < 1f)
+            else if (timeRatio > 0f)
             {
                 return onTimeColor;
             }

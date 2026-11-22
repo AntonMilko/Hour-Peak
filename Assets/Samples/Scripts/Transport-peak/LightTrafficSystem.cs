@@ -41,6 +41,7 @@ namespace HourPeak.Transport
         private TrafficSignalType _currentSignal;
         private float _timer;
         private float _totalDuration;
+        internal object lightTrafficSystem;
 
         #endregion
 

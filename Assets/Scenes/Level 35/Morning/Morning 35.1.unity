@@ -2766,46 +2766,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1823219748}
     m_Modifications:
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].offMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 362235ed5c65327428eb4db44df8d0a2, type: 2}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].redPedLight
-      value: 
-      objectReference: {fileID: 332541036}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].pedDirection
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].greenPedLight
-      value: 
-      objectReference: {fileID: 332541037}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].redPedDuration
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].redPedMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: fe8b0a710b0dc9744895793b3b151d81, type: 2}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].greenPedDuration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].greenPedMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 0db6fcb12f854c04981438826ea60c2e, type: 2}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].greenPedFlashDuration
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: redDuration
       value: 4
@@ -2901,6 +2861,46 @@ PrefabInstance:
     - target: {fileID: 9033257479888276739, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: m_Name
       value: PedestrianLightTrafic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].offMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 362235ed5c65327428eb4db44df8d0a2, type: 2}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].redPedLight
+      value: 
+      objectReference: {fileID: 332541036}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].pedDirection
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].greenPedLight
+      value: 
+      objectReference: {fileID: 332541037}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].redPedDuration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].redPedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: fe8b0a710b0dc9744895793b3b151d81, type: 2}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].greenPedDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].greenPedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0db6fcb12f854c04981438826ea60c2e, type: 2}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].greenPedFlashDuration
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5319,7 +5319,7 @@ PrefabInstance:
     - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: 'lightTraffics.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1468804781}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5574,7 +5574,7 @@ PrefabInstance:
     - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: 'lightTraffics.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1430255902}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5625,46 +5625,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1823219748}
     m_Modifications:
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].offMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 362235ed5c65327428eb4db44df8d0a2, type: 2}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].redPedLight
-      value: 
-      objectReference: {fileID: 653710139}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].pedDirection
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].greenPedLight
-      value: 
-      objectReference: {fileID: 653710140}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].redPedDuration
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].redPedMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: fe8b0a710b0dc9744895793b3b151d81, type: 2}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].greenPedDuration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].greenPedMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 0db6fcb12f854c04981438826ea60c2e, type: 2}
-    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
-      propertyPath: signalConfigs.Array.data[0].greenPedFlashDuration
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 5046524513068349077, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: redDuration
       value: 4
@@ -5756,6 +5716,46 @@ PrefabInstance:
     - target: {fileID: 9033257479888276739, guid: 6c44389068deea04c968c03f7f3b0bb0, type: 3}
       propertyPath: m_Name
       value: PedestrianLightTrafic (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].offMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 362235ed5c65327428eb4db44df8d0a2, type: 2}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].redPedLight
+      value: 
+      objectReference: {fileID: 653710139}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].pedDirection
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].greenPedLight
+      value: 
+      objectReference: {fileID: 653710140}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].redPedDuration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].redPedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: fe8b0a710b0dc9744895793b3b151d81, type: 2}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].greenPedDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].greenPedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0db6fcb12f854c04981438826ea60c2e, type: 2}
+    - target: {fileID: 1962128150478150913, guid: 0ee57c4615882144c933bf479477cbd1, type: 3}
+      propertyPath: signalConfigs.Array.data[0].greenPedFlashDuration
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7809,11 +7809,11 @@ PrefabInstance:
     - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: 'lightTraffics.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 669622612}
     - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: 'lightTraffics.Array.data[1]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2052467479}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7984,7 +7984,7 @@ PrefabInstance:
     - target: {fileID: 6924371519020107759, guid: 81835658bbd378143a0f525b8552f557, type: 3}
       propertyPath: 'lightTraffics.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1430255902}
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects: []
@@ -11668,15 +11668,15 @@ PrefabInstance:
     - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: 'lightTraffics.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 980611236}
     - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: 'lightTraffics.Array.data[1]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 997979623}
     - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: 'lightTraffics.Array.data[2]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 296096902}
     m_RemovedComponents:
     - {fileID: 1203780154931379310, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
     m_RemovedGameObjects: []
@@ -16872,7 +16872,7 @@ PrefabInstance:
     - target: {fileID: 6924371519020107759, guid: 81835658bbd378143a0f525b8552f557, type: 3}
       propertyPath: 'lightTraffics.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1468804781}
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects: []

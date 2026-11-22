@@ -19,35 +19,16 @@ public class DownloadCertificate : MonoBehaviour
     [Header("Настройки камеры")]
     [Tooltip("Камера, с которой делать скриншот сертификата")]
     [SerializeField] private Camera certificateCamera;
-    
-    [Header("Параметры изображения")]
-    [Tooltip("Ширина захвата изображения (пиксели)")]
-    [SerializeField] private int imageWidth = 1920;
-    [Tooltip("Высота захвата изображения (пиксели)")]
-    [SerializeField] private int imageHeight = 1080;
 
-    #endregion
-
-    #region Unity Lifecycle
-
-    private void Start()
-    {
-        if (certificateCamera == null)
-        {
-            certificateCamera = Camera.main;
-        }
-    }
-
-    public void OnDownloadButtonClick()
-    {
-        StartCoroutine(DownloadAndReturnToMenu());
-    }
+    [Header("Ссылка на кнопку")]
+    [Tooltip("После скачивания кнопка исчезает")]
+    [SerializeField] private GameObject downloadButton;
 
     #endregion
 
     #region Download Logic
 
-    private IEnumerator DownloadAndReturnToMenu()
+    public void DownloadAndReturnToMenu()
     {
         Time.timeScale = 1f;
 
@@ -64,20 +45,17 @@ public class DownloadCertificate : MonoBehaviour
             if (saveSuccess)
             {
                 Debug.Log("✅ Сертификат сохранён. Переход в меню...");
-                yield return new WaitForSecondsRealtime(0.3f);
                 SceneManager.LoadScene(startMenuSceneName);
             }
             else
             {
                 Debug.LogError("❌ Ошибка сохранения сертификата на устройство.");
-                yield return new WaitForSecondsRealtime(2f);
                 SceneManager.LoadScene(startMenuSceneName);
             }
         }
         else
         {
             Debug.LogError("❌ Ошибка захвата сертификата.");
-            yield return new WaitForSecondsRealtime(2f);
             SceneManager.LoadScene(startMenuSceneName);
         }
     }
@@ -85,6 +63,7 @@ public class DownloadCertificate : MonoBehaviour
     private bool CaptureCertificateScreenshot(out string savedPath)
     {
         savedPath = null;
+        downloadButton.SetActive(false);
 
         if (certificateCamera == null)
         {
@@ -94,6 +73,8 @@ public class DownloadCertificate : MonoBehaviour
 
         try
         {
+            int imageWidth = certificateCamera.pixelWidth;
+            int imageHeight = certificateCamera.pixelHeight;
             RenderTexture rt = new RenderTexture(imageWidth, imageHeight, 24);
             certificateCamera.targetTexture = rt;
             certificateCamera.Render();
