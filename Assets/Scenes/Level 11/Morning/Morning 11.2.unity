@@ -28219,6 +28219,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
+      propertyPath: pathContainer
+      value: 
+      objectReference: {fileID: 1150034095}
+    - target: {fileID: 7121632553417381928, guid: 9500f0cdde0097a4aac35ced7c1935d7, type: 3}
       propertyPath: busStopPoints.Array.size
       value: 1
       objectReference: {fileID: 0}
