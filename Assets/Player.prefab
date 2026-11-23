@@ -189,14 +189,9 @@ MonoBehaviour:
   cameraTransform: {fileID: 122471033898397753}
   walkSpeed: 20
   runSpeed: 40
-  gravity: -15
+  gravity: -1
   jumpSpeed: 5
-  busSpeed: 60
   enterExitTime: 1.5
-  transportLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  transportInteractDistance: 3
   isRunning: 0
 --- !u!54 &755118808960902977
 Rigidbody:

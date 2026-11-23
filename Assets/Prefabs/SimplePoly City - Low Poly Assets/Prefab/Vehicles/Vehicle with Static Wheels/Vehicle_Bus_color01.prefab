@@ -134,10 +134,10 @@ MonoBehaviour:
   lightStopDistance: 30
   lightTraffics: []
   busStopPoints: []
-  stopDuration: 5
+  stopDuration: 10
   stopApproachDistance: 20
   enableTrafficFlow: 1
-  safeFollowingDistance: 30
+  safeFollowingDistance: 60
   _camera: {fileID: 8411370710992902263}
 --- !u!1 &8411370710992902263
 GameObject:

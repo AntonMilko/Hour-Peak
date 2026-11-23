@@ -16,11 +16,7 @@ namespace HourPeak.Addition
         [Header("Движение пешком")]
         [SerializeField] private float walkSpeed = 3f;
         [SerializeField] private float runSpeed = 6f;
-        [SerializeField] private float gravity = -15f;
         [SerializeField] private float jumpSpeed = 5f;
-
-        [Header("Транспорт")]
-        [SerializeField] private float enterExitTime = 1.5f;
 
         [Header("Условие бега")]
         public bool isRunning = false;
@@ -69,7 +65,6 @@ namespace HourPeak.Addition
         private void HandleGroundCheck()
         {
             isGrounded = Mathf.Abs(rb.linearVelocity.y) < 0.1f;
-            if (isGrounded && velocity.y < 0) velocity.y = -0.01f;
         }
 
         public void Move(Vector2 moveInput)
@@ -92,8 +87,7 @@ namespace HourPeak.Addition
             if (isRunning) currentSpeed = runSpeed;
 
             Vector3 moveVector = lookDirection * currentSpeed;
-            rb.MovePosition(rb.position + moveVector * Time.deltaTime);
-            HandleGravity();
+            rb.MovePosition(rb.position + moveVector * Time.fixedDeltaTime);
 
             isMoving = true;
         }
@@ -123,12 +117,6 @@ namespace HourPeak.Addition
             isMoving = false;
         }
 
-        private void HandleGravity()
-        {
-            velocity.y += gravity * Time.deltaTime;
-            rb.MovePosition(rb.position + new Vector3(0, velocity.y * Time.deltaTime, 0));
-        }
-
         #endregion
 
         #region Bus Mobility
@@ -151,6 +139,7 @@ namespace HourPeak.Addition
         {
             cameraTransform.gameObject.SetActive(true);
             currentTransport._camera.SetActive(false);
+            transform.position += currentTransport.transform.right * 15;
             currentTransport = null;
         }
 

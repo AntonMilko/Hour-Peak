@@ -41,6 +41,7 @@ public class BusSplineMovement : MonoBehaviour
     private List<BezierKnot> waypoints;
     private float currentSpeed;
     private bool isStopped;
+    private bool isBusAhead;
     private Transform currentStop;
     private BusSplineMovement busInFront;
     private GameObject activeSignalObject;
@@ -68,7 +69,7 @@ public class BusSplineMovement : MonoBehaviour
             CheckBusAhead();
         CheckBusStop();
 
-        if (!isStopped)
+        if (!isStopped && !isBusAhead)
             Move();
     }
 
@@ -156,9 +157,13 @@ public class BusSplineMovement : MonoBehaviour
         {
             float dist = Vector3.Distance(transform.position, busInFront.transform.position);
             if (dist < safeFollowingDistance * 0.5f)
-                isStopped = true;
+                isBusAhead = true;
             else if (dist < safeFollowingDistance)
                 currentSpeed = Mathf.Lerp(currentSpeed, slowDownSpeed, deceleration * Time.deltaTime);
+        }
+        else
+        {
+            isBusAhead = false;
         }
     }
 
