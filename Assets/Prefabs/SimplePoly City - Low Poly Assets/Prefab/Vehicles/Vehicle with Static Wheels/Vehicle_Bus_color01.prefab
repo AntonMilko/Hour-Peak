@@ -134,7 +134,7 @@ MonoBehaviour:
   lightStopDistance: 30
   lightTraffics: []
   busStopPoints: []
-  stopDuration: 10
+  stopDuration: 7.5
   stopApproachDistance: 20
   enableTrafficFlow: 1
   safeFollowingDistance: 60
