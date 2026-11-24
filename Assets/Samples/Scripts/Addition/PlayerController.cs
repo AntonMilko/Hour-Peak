@@ -40,6 +40,7 @@ namespace HourPeak.Addition
         {
             rb ??= GetComponent<Rigidbody>();
             if (Camera.main != null) cameraTransform = Camera.main.transform;
+            rb.maxDepenetrationVelocity = runSpeed + 10f;
         }
 
         private void Update()
