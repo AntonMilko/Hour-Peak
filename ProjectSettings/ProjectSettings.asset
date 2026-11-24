@@ -146,7 +146,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.1.3
+  bundleVersion: 0.1.4
   preloadedAssets:
   - {fileID: 11400000, guid: 9aba829dd65291045bb91c60ad4b1827, type: 2}
   - {fileID: -944628639613478452, guid: 81dbc299c027c514d82d150229f991c6, type: 3}
@@ -279,8 +279,8 @@ PlayerSettings:
   AndroidAllowedArchitectures: -13
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 2800000, guid: ee448c9e7aa8db348a5457440051dacf, type: 3}
-  AndroidKeystoreName: '{inproject}: user.keystore'
-  AndroidKeyaliasName: antonmilko01062002
+  AndroidKeystoreName: '{inproject}: Hour-peak.keystore'
+  AndroidKeyaliasName: h-p
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidEnableArm64MTE: 0
   AndroidBuildApkPerCpuArchitecture: 0
