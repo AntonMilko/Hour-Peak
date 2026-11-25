@@ -32,6 +32,7 @@ public class CarSplineMovement : MonoBehaviour
     private List<BezierKnot> waypoints;
     private float currentSpeed;
     private bool isStopped;
+    private bool isCarAhead;
     private CarSplineMovement carInFront;
     private GameObject activeSignalObject;
     private float pos;
@@ -55,7 +56,7 @@ public class CarSplineMovement : MonoBehaviour
         if (enableTrafficFlow)
             CheckCarAhead();
 
-        if (!isStopped)
+        if (!isStopped && !isCarAhead)
             Move();
     }
 
@@ -142,9 +143,13 @@ public class CarSplineMovement : MonoBehaviour
         {
             float dist = Vector3.Distance(transform.position, carInFront.transform.position);
             if (dist < safeFollowingDistance * 0.5f)
-                isStopped = true;
+                isCarAhead = true;
             else if (dist < safeFollowingDistance)
                 currentSpeed = Mathf.Lerp(currentSpeed, slowDownSpeed, deceleration * Time.deltaTime);
+        }
+        else
+        {
+            isCarAhead = false;
         }
     }
 
