@@ -16,9 +16,6 @@ public class TheDisplayingOfStars : MonoBehaviour
     public bool isMorning = true;
 
     [Header("Colors")]
-    [Tooltip("Если true - скрипт перекрашивает звезды. Если false - оставляет цвета из спрайтов (РЕКОМЕНДУЕТСЯ)")]
-    [SerializeField] private bool forceRecolorStars = false;
-
     [Tooltip("Цвет звёзд при успешном прохождении")]
     public Color colorPass = Color.yellow;
     
@@ -94,24 +91,16 @@ public class TheDisplayingOfStars : MonoBehaviour
 
     private void ApplyStarState(Image starImage, bool isVisible)
     {
-        if (starImage == null) return;
-
-        starImage.gameObject.SetActive(isVisible);
-
-        if (forceRecolorStars)
+        if (isVisible)
         {
-            if (isVisible)
-            {
-                starImage.color = colorPass;
-            }
+            starImage.color = colorPass;
+        }
+        else
+        {
+            if (isMorning)
+                starImage.color = colorFailMorning;
             else
-            {
-                if (isMorning)
-                    starImage.color = colorFailMorning;
-                else
-                    starImage.color = colorFailEvening;
-            }
-
+                starImage.color = colorFailEvening;
         }
     }
 

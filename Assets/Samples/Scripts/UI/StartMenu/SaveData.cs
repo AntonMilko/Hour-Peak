@@ -5,8 +5,7 @@ using HourPeak.Settings;
 /// Data container for game save information.
 /// Stores player progress, level state, and metadata.
 /// </summary>
-[Serializable]
-public class SaveData
+[Serializable] public class SaveData
 {
     #region Metadata
 

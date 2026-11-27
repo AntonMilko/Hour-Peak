@@ -74,6 +74,7 @@ public static class SaveManager
             // Write to file
             string filePath = GetSaveFilePath(slotIndex);
             File.WriteAllText(filePath, json);
+            Debug. Log(filePath);
 
             return true;
         }

@@ -35,12 +35,6 @@ namespace HourPeak.Samples.Runtime.StarDisappearTimings
 
         #endregion
 
-        #region Public Methods
-
-        
-
-        #endregion
-
         #region Private Methods
 
         private void SetStarForElapsedTime()

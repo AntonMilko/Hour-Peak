@@ -133959,7 +133959,7 @@ PrefabInstance:
     - target: {fileID: 6264456949846402768, guid: 8a0cce47a0f60334caf219a802f79ca9, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: d4e17d18d83ee6d4e9e9dafcd28afd00, type: 2}
+      objectReference: {fileID: 23800000, guid: 2bf050328b77c9b40824569b657ab689, type: 2}
     - target: {fileID: 8177838682155252437, guid: 8a0cce47a0f60334caf219a802f79ca9, type: 3}
       propertyPath: m_Name
       value: Ground

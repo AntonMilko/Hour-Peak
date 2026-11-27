@@ -53,21 +53,21 @@ public class LevelMenuManager : MonoBehaviour
     [SerializeField] private float lockedAlpha = 0.4f;
     [SerializeField] private float unlockedAlpha = 1.0f;
 
+    [Header("Компоненты для кнопок уровней")]
+    [SerializeField] private List<GameObject> _levelButtons = new List<GameObject>();
+    [SerializeField] private List<Image> _morningImages = new List<Image>();
+    [SerializeField] private List<Image> _eveningImages = new List<Image>();
+    [SerializeField] private List<CanvasGroup> _morningCanvasGroups = new List<CanvasGroup>();
+    [SerializeField] private List<CanvasGroup> _eveningCanvasGroups = new List<CanvasGroup>();
+    [SerializeField] private List<TheDisplayingOfStars> _morningStarDisplay = new List<TheDisplayingOfStars>();
+    [SerializeField] private List<TheDisplayingOfStars> _eveningStarDisplay = new List<TheDisplayingOfStars>();
+
     #endregion
 
     #region Private Fields
 
-    private List<GameObject> _levelButtons = new List<GameObject>();
-    private List<Image> _morningImages = new List<Image>();
-    private List<Image> _eveningImages = new List<Image>();
     public static int[] _morningStars;
     public static int[] _eveningStars;
-    private List<CanvasGroup> _morningCanvasGroups = new List<CanvasGroup>();
-    private List<CanvasGroup> _eveningCanvasGroups = new List<CanvasGroup>();
-    private List<TheDisplayingOfStars> _morningStarDisplay = new List<TheDisplayingOfStars>();
-    private List<TheDisplayingOfStars> _eveningStarDisplay = new List<TheDisplayingOfStars>();
-
-    private Transform _levelPanel;
 
     #endregion
 
@@ -104,7 +104,7 @@ public class LevelMenuManager : MonoBehaviour
     /// <summary>
     /// Применяет визуальное состояние к Morning или Evening внутри кнопки уровня.
     /// </summary>
-    private void UpdateLevelState(int levelIndex)
+    public void UpdateLevelState(int levelIndex)
     {
         bool isMorningUnlocked = IsMorningUnlocked(levelIndex);
         bool isEveningUnlocked = IsEveningUnlocked(levelIndex);
@@ -125,6 +125,7 @@ public class LevelMenuManager : MonoBehaviour
             bool morningPassed = _morningStars[levelIndex] > 0;
             _morningStarDisplay[levelIndex].SetBackgroundMode(true);
             _morningStarDisplay[levelIndex].SetLevelResult(morningPassed, _morningStars[levelIndex]);
+            Debug.Log($"Отображаются ли звёзды в части утро?");
         }
 
         // Evening
@@ -143,7 +144,11 @@ public class LevelMenuManager : MonoBehaviour
             bool eveningPassed = _eveningStars[levelIndex] > 0;
             _eveningStarDisplay[levelIndex].SetBackgroundMode(false);
             _eveningStarDisplay[levelIndex].SetLevelResult(eveningPassed, _eveningStars[levelIndex]);
+            Debug.Log($"Отображаются ли звёзды в части вечер?");
         }
+
+        Debug.Log($"Отображаются ли звёзды в части утро?");
+        Debug.Log($"Отображаются ли звёзды в части вечер?");
     }
 
     #endregion
@@ -196,7 +201,7 @@ public class LevelMenuManager : MonoBehaviour
     /// <summary>
     /// Загружает Утро текущего уровня (первая сцена).
     /// </summary>
-    public bool LoadLevelMorning(int baseLevelIndex)
+    public void LoadLevelMorning(int baseLevelIndex)
     {
         Debug.Log($"[LevelMenuManager] >>> LoadLevelMorning: Уровень {baseLevelIndex + 1}");
 
@@ -205,13 +210,12 @@ public class LevelMenuManager : MonoBehaviour
         _currentSceneIndex = 1;
 
         LoadLevelScene(baseLevelIndex, false, 1);
-        return true;
     }
 
     /// <summary>
     /// Загружает Вечер текущего уровня (последняя сцена, т.к. вечер идёт в обратном порядке).
     /// </summary>
-    public bool LoadLevelEvening(int baseLevelIndex)
+    public void LoadLevelEvening(int baseLevelIndex)
     {
         Debug.Log($"[LevelMenuManager] >>> LoadLevelEvening: Уровень {baseLevelIndex + 1}");
 
@@ -220,7 +224,6 @@ public class LevelMenuManager : MonoBehaviour
         _currentSceneIndex = GetMaxScenes(baseLevelIndex);
 
         LoadLevelScene(baseLevelIndex, true, _currentSceneIndex);
-        return true;
     }
 
     /// <summary>
@@ -234,112 +237,6 @@ public class LevelMenuManager : MonoBehaviour
         Debug.Log($"[LevelMenuManager] >>> SceneManager.LoadScene('{sceneName}')");
 
         SceneManager.LoadScene(sceneName);
-    }
-
-    /// <summary>
-    /// Статический метод перехода к следующей сцене/части/уровню.
-    /// Вызывается из EndManager2 после сохранения прогресса.
-    /// </summary>
-    public static IEnumerator LoadNextLevelPartStatic()
-    {
-        Time.timeScale = 1f;
-
-        bool isEvening = _currentPartIndex >= 2;
-        int maxScenes = GetMaxScenes(_currentBaseLevelIndex);
-
-        // Для Evening последняя сцена — когда _currentSceneIndex <= 1
-        bool isLastSceneInPart = isEvening
-            ? _currentSceneIndex <= 1
-            : _currentSceneIndex >= maxScenes;
-
-        bool isLastLevel = _currentBaseLevelIndex >= 35; // 36 уровней (0-based)
-
-        // Случай 4: Evening уровня 36 завершён → сертификат
-        if (isEvening && isLastSceneInPart && isLastLevel)
-        {
-            Debug.Log("🏆 Все уровни пройдены! Переход к сертификату...");
-            SceneManager.LoadSceneAsync("Game completion certificate");
-            yield break;
-        }
-
-        // Случай 3: Evening завершён (не последний уровень) → Morning следующего уровня
-        if (isEvening && isLastSceneInPart)
-        {
-            int nextLevel = _currentBaseLevelIndex + 1;
-            _currentBaseLevelIndex = nextLevel;
-            _currentPartIndex = 1;
-            _currentSceneIndex = 1;
-            string sceneName = GetSceneName(nextLevel, false, 1);
-            Debug.Log($"🔄 Переход: Уровень {nextLevel + 1} Morning → {sceneName}");
-            SceneManager.LoadSceneAsync(sceneName);
-            yield break;
-        }
-
-        // Случай 2: Morning завершена (последняя сцена) → Evening того же уровня
-        if (!isEvening && isLastSceneInPart)
-        {
-            _currentPartIndex = 2;
-            _currentSceneIndex = maxScenes;
-            string sceneName = GetSceneName(_currentBaseLevelIndex, true, _currentSceneIndex);
-            Debug.Log($"🔄 Переход: Уровень {_currentBaseLevelIndex + 1} Evening → {sceneName}");
-            SceneManager.LoadSceneAsync(sceneName);
-            yield break;
-        }
-
-        // Случай 1: Следующая сцена в той же части
-        // Для Evening — уменьшаем (обратный порядок), для Morning — увеличиваем
-        _currentSceneIndex += isEvening ? -1 : 1;
-        string partName = isEvening ? "Evening" : "Morning";
-        string nextScene = GetSceneName(_currentBaseLevelIndex, isEvening, _currentSceneIndex);
-        Debug.Log($"🔄 Переход: Уровень {_currentBaseLevelIndex + 1} {partName} сцена {_currentSceneIndex}");
-        SceneManager.LoadSceneAsync(nextScene);
-    }
-
-    /// <summary>
-    /// Загружает сцену сертификата.
-    /// </summary>
-    public void LoadCertificateScene()
-    {
-        Debug.Log("🏆 Загрузка сертификата: Game completion certificate");
-        Time.timeScale = 1f;
-        SceneManager.LoadSceneAsync("Game completion certificate");
-    }
-
-    /// <summary>
-    /// Загружает сцену StartMenu.
-    /// </summary>
-    public void LoadStartMenuScene()
-    {
-        Debug.Log("📺 Загрузка StartMenu");
-        Time.timeScale = 1f;
-        SceneManager.LoadSceneAsync("StartMenu");
-    }
-
-    /// <summary>
-    /// Вызывается при клике на Morning части уровня.
-    /// </summary>
-    public void OnMorningClicked(int baseLevelIndex)
-    {
-        Debug.Log($"[LevelMenuManager] >>> КЛИК Morning: Уровень {baseLevelIndex + 1}");
-        LoadLevelMorning(baseLevelIndex);
-    }
-
-    /// <summary>
-    /// Вызывается при клике на Evening части уровня.
-    /// </summary>
-    public void OnEveningClicked(int baseLevelIndex)
-    {
-        Debug.Log($"[LevelMenuManager] >>> КЛИК Evening: Уровень {baseLevelIndex + 1}");
-        LoadLevelEvening(baseLevelIndex);
-    }
-
-    /// <summary>
-    /// Вызывается при клике на кнопку уровня.
-    /// </summary>
-    public void OnLevelClicked(int levelIndex)
-    {
-        Debug.Log($"[LevelMenuManager] Нажат уровень {levelIndex + 1}");
-        LoadLevelMorning(levelIndex);
     }
 
     #endregion

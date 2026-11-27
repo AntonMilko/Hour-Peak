@@ -22,6 +22,9 @@ public class SaveSlotSystem : MonoBehaviour
     [SerializeField] private float slotSpacingY = 10f; // Вертикальный отступ между слотами
     [SerializeField] private Color slotColor = Color.black; // Чёрный цвет
 
+    [Header("Ссылка на следующее меню")]
+    [SerializeField] private LevelMenuManager levelMenuManager;
+
     private List<GameObject> _slots = new List<GameObject>();
     private List<TextMeshProUGUI> _dateTimeTexts = new List<TextMeshProUGUI>();
     private Canvas _canvas;
@@ -361,6 +364,9 @@ public class SaveSlotSystem : MonoBehaviour
                 levelTransform.gameObject.SetActive(true);
             }
         }
+
+        SaveManager.LoadGame(slotIndex);
+        levelMenuManager.UpdateLevelState(0);
     }
     // ========================================================================
     // ON DRAW GIZMOS: ВИЗУАЛИЗАЦИЯ В РЕДАКТОРЕ
@@ -1020,34 +1026,4 @@ public class SaveSlotSystem : MonoBehaviour
         // 5. ВИЗУАЛИЗАЦИЯ GIZMOS
         Debug.Log("[SaveSlotSystem] 🎨 Визуализация Gizmos активирована");
     }
-
-    // ========================================================================
-    // ПЕРЕХОД К УРОВНЮ ПО ИНДЕКСУ (из меню уровней)
-    // ========================================================================
-
-    /// <summary>
-    /// Переходит на уровень по индексу через LevelMenuManager.
-    /// </summary>
-    public void StartLevelFromSave(int levelIndex)
-    {
-        Debug.Log($"[SaveSlotSystem] 🚀 Переход на уровень {levelIndex + 1} через LevelMenuManager...");
-        
-        // Ищем LevelMenuManager
-        var levelMenuManager = FindFirstObjectByType<LevelMenuManager>();
-        
-        if (levelMenuManager != null)
-        {
-            // Вызываем OnLevelClicked
-            levelMenuManager.OnLevelClicked(levelIndex);
-            Debug.Log($"[SaveSlotSystem] ✅ Уровень {levelIndex + 1} загружается через OnLevelClicked...");
-        }
-        else
-        {
-            Debug.LogError("[SaveSlotSystem] LevelMenuManager не найден на сцене!");
-        }
-    }
-
-    /// <summary>
-    /// Загружает уровень по индексу.
-    /// </summary>
 }

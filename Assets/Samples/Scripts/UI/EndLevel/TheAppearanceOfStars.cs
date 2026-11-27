@@ -30,7 +30,7 @@ namespace HourPeak.Samples.Runtime.StarAppearTimings
 
         #endregion
 
-        #region Public Methods
+        #region Private Methods
 
         private void SetStarForElapsedTime()
         {

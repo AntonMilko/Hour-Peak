@@ -42,6 +42,7 @@ public class EndManager : MonoBehaviour
             }
 
             SaveManager.SaveGame();
+            Debug.Log("Сохраняется ли игра?");
         }
     }
 
