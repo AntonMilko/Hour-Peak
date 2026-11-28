@@ -1,5 +1,6 @@
 using System;
 using HourPeak.Settings;
+using UnityEngine;
 
 /// <summary>
 /// Data container for game save information.
@@ -12,7 +13,13 @@ using HourPeak.Settings;
     /// <summary>
     /// Timestamp when the save was last modified.
     /// </summary>
-    public DateTime LastModified { get; set; }
+    public DateTime LastModified
+    {
+        get => DateTime.FromBinary(LastModifiedValue);
+        set => LastModifiedValue = value.ToBinary();
+    }
+
+    [SerializeField] private long LastModifiedValue;
 
     /// <summary>
     /// Formatted date string for display.

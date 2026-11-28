@@ -48,27 +48,27 @@ public class EndManager : MonoBehaviour
 
     #endregion
 
-    #region Public Methods
+    #region Private Methods
 
-        private int SetStarForElapsedTime()
+    private int SetStarForElapsedTime()
+    {
+        if (TimerDisplay.time < TimerDisplay.totalTime/8)
         {
-            if (TimerDisplay.time < TimerDisplay.totalTime/8)
-            {
-                return 3;
-            }
-            else if (TimerDisplay.time < TimerDisplay.totalTime/4)
-            {
-                return 2;
-            }
-            else if (TimerDisplay.time < TimerDisplay.totalTime)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
+            return 3;
         }
+        else if (TimerDisplay.time < TimerDisplay.totalTime/4)
+        {
+            return 2;
+        }
+        else if (TimerDisplay.time < TimerDisplay.totalTime)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 
-        #endregion
+    #endregion
 }
